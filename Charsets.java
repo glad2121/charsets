@@ -336,7 +336,7 @@ class Charsets {
             bab.append(String.format("U+%04X   ", ss.codePointAt(0)));
             bab.append(String.format("%-8s ", toHexString(ss.toCharArray())));
             bab.append(String.format("%-12s ", toHexString(ss.getBytes(UTF_8))));
-            if ("-w31j".equals(option)) {
+            if ("-sjis".equals(option) || "-w31j".equals(option)) {
                 bab.append("[").append(bs).append("]");
             } else {
                 bab.append(String.format("[%s]", ss));
@@ -371,7 +371,7 @@ class Charsets {
         bab.append(String.format("%-8s ", toHexString(sw.toCharArray())));
         bab.append(String.format("%-12s ", toHexString(sw.getBytes(UTF_8))));
         if (!sw.equals("\uFFFD")) {
-            if ("-w31j".equals(option)) {
+            if ("-sjis".equals(option) || "-w31j".equals(option)) {
                 bab.append("[").append(bs).append("]");
             } else {
                 bab.append(String.format("[%s]", sw));
