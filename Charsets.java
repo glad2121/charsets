@@ -11,14 +11,11 @@ class Charsets {
     static final Charset WINDOWS_31J = Charset.forName("Windows-31J");
     static final Charset SHIFT_JISX0213 = Charset.forName("x-SJIS_0213");
 
-    String option;
-    Charset encoding;
+    final String option;
+    final Charset encoding;
 
     public static void main(String[] args) {
-        Charsets o = new Charsets();
-        o.option = (args.length == 0) ? "" : args[0];
-        o.encoding = optionToEncoding(o.option);
-        o.printEncodingLines();
+        new Charsets(args).printEncodedLines();
     }
 
     static Charset optionToEncoding(String option) {
@@ -37,9 +34,14 @@ class Charsets {
         }
     }
 
-    void printEncodingLines() {
+    Charsets(String[] args) {
+        option = (args.length == 0) ? "" : args[0];
+        encoding = optionToEncoding(option);
+    }
+
+    void printEncodedLines() {
         println("#");
-        println(String.format("# encoding%s.txt", option));
+        println("# encoding%s.txt", option);
         println("#");
         
         println();
@@ -48,12 +50,12 @@ class Charsets {
         printHeader();
         printSeparator();
         for (int c = 0x00; c <= 0x1F; ++c) {
-            printLines(encodingLines(c, option));
+            printLines(encodedLines(c, option));
         }
         List<byte[]> laters = new ArrayList<>();
         printSeparator();
         for (int c = 0x20; c <= 0x7F; ++c) {
-            List<byte[]> lines = encodingLines(c, option);
+            List<byte[]> lines = encodedLines(c, option);
             printLine(lines.get(0));
             if (lines.size() > 1) {
                 laters.addAll(lines.subList(1, lines.size()));
@@ -68,15 +70,15 @@ class Charsets {
         printLines(laters);
         printSeparator();
         for (int c = 0x80; c <= 0x9F; ++c) {
-            printLines(encodingLines(c, option));
+            printLines(encodedLines(c, option));
         }
         printSeparator();
         for (int c = 0xA0; c <= 0xDF; ++c) {
-            printLines(encodingLines(c, option));
+            printLines(encodedLines(c, option));
         }
         printSeparator();
         for (int c = 0xE0; c <= 0xFF; ++c) {
-            printLines(encodingLines(c, option));
+            printLines(encodedLines(c, option));
         }
         
         println();
@@ -84,12 +86,12 @@ class Charsets {
         println();
         printHeaderX0208();
         printSeparator();
-        printLines(encodingLines(1, 33, option));
-        printLines(encodingLines(1, 34, option));
-        printLines(encodingLines(1, 61, option));
-        printLines(encodingLines(1, 81, option));
-        printLines(encodingLines(1, 82, option));
-        printLines(encodingLines(2, 44, option));
+        printLines(encodedLines(1, 33, option));
+        printLines(encodedLines(1, 34, option));
+        printLines(encodedLines(1, 61, option));
+        printLines(encodedLines(1, 81, option));
+        printLines(encodedLines(1, 82, option));
+        printLines(encodedLines(2, 44, option));
         
         println();
         println("# JIS X 0208 - 非漢字");
@@ -98,7 +100,7 @@ class Charsets {
         for (int k = 1; k <= 12; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodingLines(k, t, option));
+                printLines(encodedLines(k, t, option));
             }
         }
         
@@ -109,7 +111,7 @@ class Charsets {
         for (int k = 13; k <= 15; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodingLines(k, t, option));
+                printLines(encodedLines(k, t, option));
             }
         }
         
@@ -120,7 +122,7 @@ class Charsets {
         for (int k = 16; k <= 47; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodingLines(k, t, option));
+                printLines(encodedLines(k, t, option));
             }
         }
         
@@ -131,7 +133,7 @@ class Charsets {
         for (int k = 48; k <= 88; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodingLines(k, t, option));
+                printLines(encodedLines(k, t, option));
             }
         }
         
@@ -142,7 +144,7 @@ class Charsets {
         for (int k = 89; k <= 94; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodingLines(k, t, option));
+                printLines(encodedLines(k, t, option));
             }
         }
         
@@ -153,7 +155,7 @@ class Charsets {
         for (int k = 95; k <= 114; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodingLines(k, t, option));
+                printLines(encodedLines(k, t, option));
             }
         }
         
@@ -164,7 +166,7 @@ class Charsets {
         for (int k = 115; k <= 120; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodingLines(k, t, option));
+                printLines(encodedLines(k, t, option));
             }
         }
         
@@ -176,7 +178,7 @@ class Charsets {
             if (k == 1) continue;
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodingLinesX0213(1, k, t, option));
+                printLines(encodedLinesX0213(1, k, t, option));
             }
         }
         
@@ -192,7 +194,7 @@ class Charsets {
             
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodingLinesX0213(1, k, t, option));
+                printLines(encodedLinesX0213(1, k, t, option));
             }
         }
         
@@ -209,7 +211,7 @@ class Charsets {
             
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodingLinesX0213(2, k, t, option));
+                printLines(encodedLinesX0213(2, k, t, option));
             }
         }
     }
@@ -240,6 +242,10 @@ class Charsets {
         printLine(s == null ? EMPTY_BYTES : s.getBytes(encoding));
     }
 
+    void println(String format, Object... args) {
+        println(String.format(format, args));
+    }
+
     void printLine(byte[] bytes) {
         try {
             System.out.write(bytes);
@@ -256,38 +262,38 @@ class Charsets {
         }
     }
 
-    List<byte[]> encodingLines(int c, String option) {
+    List<byte[]> encodedLines(int c, String option) {
         byte[] bs = {(byte) c};
         String ss = toString(bs, SHIFT_JIS);
         
         ByteArrayBuilder bab = new ByteArrayBuilder();
-        bab.append(String.format("      %02X ", c));
+        bab.append("      %02X ", c);
         if (ss.equals("\uFFFD")) {
             bab.append("-    -      -    ");
         } else {
-            bab.append(String.format("%02X   ", c & 0x7F));
+            bab.append("%02X   ", c & 0x7F);
             if (c < 0x80) {
-                bab.append(String.format("%02X     ", c));
+                bab.append("%02X     ", c);
             } else {
-                bab.append(String.format("8E%02X   ", c));
+                bab.append("8E%02X   ", c);
             }
             if (c == 0x5C || c == 0x7E) {
                 bab.append("-    ");
             } else {
-                bab.append(String.format("%02X   ", c));
+                bab.append("%02X   ", c);
             }
         }
-        bab.append(String.format("%02X   ", c));
-        bab.append(String.format("U+%04X   ", ss.codePointAt(0)));
-        bab.append(String.format("%-8s ", toHexString(ss.toCharArray())));
-        bab.append(String.format("%-12s ", toHexString(ss.getBytes(UTF_8))));
+        bab.append("%02X   ", c);
+        bab.append("U+%04X   ", ss.codePointAt(0));
+        bab.append("%-8s ", toHexString(ss.toCharArray()));
+        bab.append("%-12s ", toHexString(ss.getBytes(UTF_8)));
         if (!ss.equals("\uFFFD")) {
             if (0x20 <= c && c != 0x7F) {
-                bab.append(String.format("[%s]", ss));
+                bab.append("[%s]", ss);
             }
             byte[] bs2 = ss.getBytes(SHIFT_JIS);
             if (!Arrays.equals(bs, bs2)) {
-                bab.append(String.format(" => %s", toHexString(bs2)));
+                bab.append(" => %s", toHexString(bs2));
             }
         }
         byte[] line = bab.toByteArray();
@@ -297,25 +303,25 @@ class Charsets {
         
         ss = (c == 0x5C) ? "\u00A5" : "\u203E";
         bab = new ByteArrayBuilder();
-        bab.append(String.format("      %02X ", c));
-        bab.append(String.format("%02X   ", c & 0x7F));
+        bab.append("      %02X ", c);
+        bab.append("%02X   ", c & 0x7F);
         bab.append("-      ");
-        bab.append(String.format("%02X   ", c));
+        bab.append("%02X   ", c);
         bab.append("-    ");
-        bab.append(String.format("U+%04X   ", ss.codePointAt(0)));
-        bab.append(String.format("%-8s ", toHexString(ss.toCharArray())));
-        bab.append(String.format("%-12s ", toHexString(ss.getBytes(UTF_8))));
+        bab.append("U+%04X   ", ss.codePointAt(0));
+        bab.append("%-8s ", toHexString(ss.toCharArray()));
+        bab.append("%-12s ", toHexString(ss.getBytes(UTF_8)));
         if (!ss.equals("\uFFFD")) {
-                bab.append(String.format("[%s]", ss));
+                bab.append("[%s]", ss);
             byte[] bs2 = ss.getBytes(SHIFT_JIS);
             if (!Arrays.equals(bs, bs2)) {
-                bab.append(String.format(" => %s", toHexString(bs2)));
+                bab.append(" => %s", toHexString(bs2));
             }
         }
         return Arrays.asList(line, bab.toByteArray());
     }
 
-    List<byte[]> encodingLines(int k, int t, String option) {
+    List<byte[]> encodedLines(int k, int t, String option) {
         int jis = (94 < k) ? 0 : kutenToJis(k, t);
         int euc = (94 < k) ? 0 : kutenToEuc(k, t);
         int sjis = kutenToSjis(k, t);
@@ -328,26 +334,26 @@ class Charsets {
         
         boolean showSjis = (!ss.equals("\uFFFD") && !ss.equals(sw));
         if (showSjis) {
-            bab.append(String.format("   %02d-%02d ", k, t));
-            bab.append(String.format("%04X ", jis));
-            bab.append(String.format("%04X   ", euc));
-            bab.append(String.format("%04X ", sjis));
+            bab.append("   %02d-%02d ", k, t);
+            bab.append("%04X ", jis);
+            bab.append("%04X   ", euc);
+            bab.append("%04X ", sjis);
             bab.append("-    ");
-            bab.append(String.format("U+%04X   ", ss.codePointAt(0)));
-            bab.append(String.format("%-8s ", toHexString(ss.toCharArray())));
-            bab.append(String.format("%-12s ", toHexString(ss.getBytes(UTF_8))));
+            bab.append("U+%04X   ", ss.codePointAt(0));
+            bab.append("%-8s ", toHexString(ss.toCharArray()));
+            bab.append("%-12s ", toHexString(ss.getBytes(UTF_8)));
             if ("-sjis".equals(option) || "-w31j".equals(option)) {
                 bab.append("[").append(bs).append("]");
             } else {
-                bab.append(String.format("[%s]", ss));
+                bab.append("[%s]", ss);
             }
             byte[] bs2 = ss.getBytes(SHIFT_JIS);
             if (!Arrays.equals(bs, bs2)) {
-                bab.append(String.format(" => %s", toHexString(bs2)));
+                bab.append(" => %s", toHexString(bs2));
             } else {
                 byte[] bw2 = ss.getBytes(WINDOWS_31J);
                 if (!Arrays.equals(bs, bw2)) {
-                    bab.append(String.format(" -> %s (W31J)", toHexString(bw2)));
+                    bab.append(" -> %s (W31J)", toHexString(bw2));
                 }
             }
             lines.add(bab.toByteArray());
@@ -355,34 +361,34 @@ class Charsets {
         }
         
         if (k < 100) {
-            bab.append(String.format("   %02d-%02d ", k, t));
+            bab.append("   %02d-%02d ", k, t);
         } else {
-            bab.append(String.format("  %3d-%02d ", k, t));
+            bab.append("  %3d-%02d ", k, t);
         }
         if (showSjis || ss.equals("\uFFFD")) {
             bab.append("-    -      -    ");
         } else {
-            bab.append(String.format("%04X ", jis));
-            bab.append(String.format("%04X   ", euc));
-            bab.append(String.format("%04X ", sjis));
+            bab.append("%04X ", jis);
+            bab.append("%04X   ", euc);
+            bab.append("%04X ", sjis);
         }
-        bab.append(String.format("%04X ", sjis));
-        bab.append(String.format("U+%04X   ", sw.codePointAt(0)));
-        bab.append(String.format("%-8s ", toHexString(sw.toCharArray())));
-        bab.append(String.format("%-12s ", toHexString(sw.getBytes(UTF_8))));
+        bab.append("%04X ", sjis);
+        bab.append("U+%04X   ", sw.codePointAt(0));
+        bab.append("%-8s ", toHexString(sw.toCharArray()));
+        bab.append("%-12s ", toHexString(sw.getBytes(UTF_8)));
         if (!sw.equals("\uFFFD")) {
             if ("-sjis".equals(option) || "-w31j".equals(option)) {
                 bab.append("[").append(bs).append("]");
             } else {
-                bab.append(String.format("[%s]", sw));
+                bab.append("[%s]", sw);
             }
             byte[] bw2 = sw.getBytes(WINDOWS_31J);
             if (!Arrays.equals(bs, bw2)) {
-                bab.append(String.format(" => %s", toHexString(bw2)));
+                bab.append(" => %s", toHexString(bw2));
             } else {
                 byte[] bs2 = sw.getBytes(SHIFT_JISX0213);
                 if (!Arrays.equals(bs, bs2)) {
-                    bab.append(String.format(" -> %s (SJIS0213)", toHexString(bs2)));
+                    bab.append(" -> %s (SJIS0213)", toHexString(bs2));
                 }
             }
         }
@@ -391,7 +397,7 @@ class Charsets {
         return lines;
     }
 
-    List<byte[]> encodingLinesX0213(int m, int k, int t, String option) {
+    List<byte[]> encodedLinesX0213(int m, int k, int t, String option) {
         // 補助漢字。
         if (m == 2 && (k == 2
                 || ( 6 <= k && k <=  7)
@@ -413,39 +419,39 @@ class Charsets {
         }
         
         ByteArrayBuilder bab = new ByteArrayBuilder();
-        bab.append(String.format("%2d-%02d-%02d ", m, k, t));
-        bab.append(String.format("%04X ", jis));
+        bab.append("%2d-%02d-%02d ", m, k, t);
+        bab.append("%04X ", jis);
         if (euc <= 0xFFFF) {
-            bab.append(String.format("%04X   ", euc));
+            bab.append("%04X   ", euc);
         } else {
-            bab.append(String.format("%06X ", euc));
+            bab.append("%06X ", euc);
         }
-        bab.append(String.format("%04X ", sjis));
+        bab.append("%04X ", sjis);
         if (!sw.equals(sx)) {
             bab.append("-    ");
         } else {
-            bab.append(String.format("%04X ", sjis));
+            bab.append("%04X ", sjis);
         }
         if (sx.codePointCount(0, sx.length()) > 1) {
             bab.append("-        ");
         } else {
             int cpx = sx.codePointAt(0);
             if (cpx <= 0xFFFF) {
-                bab.append(String.format("U+%04X   ", cpx));
+                bab.append("U+%04X   ", cpx);
             } else {
-                bab.append(String.format("U+%06X ", cpx));
+                bab.append("U+%06X ", cpx);
             }
         }
-        bab.append(String.format("%-8s ", toHexString(sx.toCharArray())));
-        bab.append(String.format("%-12s ", toHexString(sx.getBytes(UTF_8))));
-        bab.append(String.format("[%s]", sx));
+        bab.append("%-8s ", toHexString(sx.toCharArray()));
+        bab.append("%-12s ", toHexString(sx.getBytes(UTF_8)));
+        bab.append("[%s]", sx);
         byte[] bx2 = sx.getBytes(SHIFT_JISX0213);
         if (!Arrays.equals(bs, bx2)) {
-            bab.append(String.format(" => %s", toHexString(bx2)));
+            bab.append(" => %s", toHexString(bx2));
         } else {
             byte[] bw2 = sx.getBytes(WINDOWS_31J);
             if (!Arrays.equals(bs, bw2)) {
-                bab.append(String.format(" -> %s (W31J)", toHexString(bw2)));
+                bab.append(" -> %s (W31J)", toHexString(bw2));
             }
         }
         return Collections.singletonList(bab.toByteArray());
@@ -546,16 +552,20 @@ class Charsets {
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-        public ByteArrayBuilder append(byte[] bytes) {
+        ByteArrayBuilder append(byte[] bytes) {
             baos.write(bytes, 0, bytes.length);
             return this;
         }
 
-        public ByteArrayBuilder append(String s) {
+        ByteArrayBuilder append(String s) {
             return append(s.getBytes(encoding));
         }
 
-        public byte[] toByteArray() {
+        ByteArrayBuilder append(String format, Object... args) {
+            return append(String.format(format, args));
+        }
+
+        byte[] toByteArray() {
             return baos.toByteArray();
         }
 
