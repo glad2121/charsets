@@ -86,6 +86,7 @@ class Charsets {
         println();
         printHeaderX0208();
         printSeparator();
+        printLines(encodedLines(1, 29, option));
         printLines(encodedLines(1, 33, option));
         printLines(encodedLines(1, 34, option));
         printLines(encodedLines(1, 61, option));
@@ -316,6 +317,12 @@ class Charsets {
             byte[] bs2 = ss.getBytes(SHIFT_JIS);
             if (!Arrays.equals(bs, bs2)) {
                 bab.append(" => %s", toHexString(bs2));
+            } else {
+                bab.append(" -> %s (SJIS)", toHexString(bs2));
+            }
+            byte[] bw2 = ss.getBytes(WINDOWS_31J);
+            if (!Arrays.equals(bs, bw2)) {
+                bab.append(" -> %s (W31J)", toHexString(bw2));
             }
         }
         return Arrays.asList(line, bab.toByteArray());
@@ -332,7 +339,7 @@ class Charsets {
         List<byte[]> lines = new ArrayList<>();
         ByteArrayBuilder bab = new ByteArrayBuilder();
         
-        boolean showSjis = (!ss.equals("\uFFFD") && !ss.equals(sw));
+        boolean showSjis = (!ss.startsWith("\uFFFD") && !ss.equals(sw));
         if (showSjis) {
             bab.append("   %02d-%02d ", k, t);
             bab.append("%04X ", jis);
@@ -352,7 +359,7 @@ class Charsets {
                 bab.append(" => %s", toHexString(bs2));
             } else {
                 byte[] bw2 = ss.getBytes(WINDOWS_31J);
-                if (!Arrays.equals(bs, bw2)) {
+                if (!Arrays.equals(bs, bw2) || showSjis) {
                     bab.append(" -> %s (W31J)", toHexString(bw2));
                 }
             }
@@ -365,7 +372,7 @@ class Charsets {
         } else {
             bab.append("  %3d-%02d ", k, t);
         }
-        if (showSjis || ss.equals("\uFFFD")) {
+        if (showSjis || ss.startsWith("\uFFFD")) {
             bab.append("-    -      -    ");
         } else {
             bab.append("%04X ", jis);
@@ -376,7 +383,7 @@ class Charsets {
         bab.append("U+%04X   ", sw.codePointAt(0));
         bab.append("%-8s ", toHexString(sw.toCharArray()));
         bab.append("%-12s ", toHexString(sw.getBytes(UTF_8)));
-        if (!sw.equals("\uFFFD")) {
+        if (!sw.startsWith("\uFFFD")) {
             if ("-sjis".equals(option) || "-w31j".equals(option)) {
                 bab.append("[").append(bs).append("]");
             } else {
@@ -387,7 +394,7 @@ class Charsets {
                 bab.append(" => %s", toHexString(bw2));
             } else {
                 byte[] bs2 = sw.getBytes(SHIFT_JISX0213);
-                if (!Arrays.equals(bs, bs2)) {
+                if (!Arrays.equals(bs, bs2) || showSjis) {
                     bab.append(" -> %s (SJIS0213)", toHexString(bs2));
                 }
             }
