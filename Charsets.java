@@ -313,7 +313,7 @@ class Charsets {
         bab.append("%-8s ", toHexString(ss.toCharArray()));
         bab.append("%-12s ", toHexString(ss.getBytes(UTF_8)));
         if (!ss.equals("\uFFFD")) {
-                bab.append("[%s]", ss);
+            bab.append("[%s]", ss);
             byte[] bs2 = ss.getBytes(SHIFT_JIS);
             if (!Arrays.equals(bs, bs2)) {
                 bab.append(" => %s", toHexString(bs2));
