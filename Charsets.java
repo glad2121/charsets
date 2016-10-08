@@ -15,6 +15,12 @@ class Charsets {
     final Charset encoding;
 
     public static void main(String[] args) {
+        if (args.length > 0 && "-list".equals(args[0])) {
+            for (Charset charset : Charset.availableCharsets().values()) {
+                System.out.println(charset.name() + ": " + charset.aliases());
+            }
+            return;
+        }
         new Charsets(args).printEncodedLines();
     }
 
