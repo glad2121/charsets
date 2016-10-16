@@ -1,4 +1,6 @@
 import static java.nio.charset.StandardCharsets.*;
+import static java.text.Normalizer.*;
+import static java.text.Normalizer.Form.*;
 import java.io.*;
 import java.nio.charset.*;
 import java.util.*;
@@ -9,7 +11,10 @@ class Charsets {
     static final Charset EUC_JP = Charset.forName("EUC-JP");
     static final Charset SHIFT_JIS = Charset.forName("Shift_JIS");
     static final Charset WINDOWS_31J = Charset.forName("Windows-31J");
-    static final Charset SHIFT_JISX0213 = Charset.forName("x-SJIS_0213");
+    static final Charset SHIFT_JIS_2004 = Charset.forName("x-SJIS_0213");
+
+    static final byte[] EMPTY_BYTES = {};
+    static final byte[] BYTES_3F = {(byte) 0x3F};
 
     final String option;
     final Charset encoding;
@@ -30,7 +35,7 @@ class Charsets {
         } else if ("-euc".equals(option)) {
             return EUC_JP;
         } else if ("-sjis".equals(option)) {
-            return SHIFT_JISX0213;
+            return SHIFT_JIS_2004;
         } else if ("-w31j".equals(option)) {
             return WINDOWS_31J;
         } else if ("-utf8".equals(option)) {
@@ -49,6 +54,19 @@ class Charsets {
         println("#");
         println("# encoding%s.txt", option);
         println("#");
+        
+        println();
+        println("# 区分:");
+        println("# No 規格等       水準         Windows-31J        Unicode      正規化      ");
+        println("# -- ------------ ------------ ------------------ ------------ ------------");
+        println("#  0 -            非漢字       標準規格           -            差異なし    ");
+        println("#  1 US-ASCII     第1水準漢字  NEC特殊文字        基本多言語面 NFDで差異   ");
+        println("#  2 JIS X 0201   第2水準漢字  NEC選定IBM拡張文字 追加面       NFKCで差異  ");
+        println("#  3 JIS X 0208   第3水準漢字  IBM拡張文字        結合文字列   NFCで差異   ");
+        println("#  4 JIS X 0213   第4水準漢字  -                  -            -           ");
+        println("#  7 ベンダー外字 ベンダー外字 Encodeのみ可       Decodeのみ可 -           ");
+        println("#  8 ユーザー外字 ユーザー外字 ユーザー外字       ユーザー外字 ユーザー外字");
+        println("#  9 未定義       未定義       未定義             未定義       未定義      ");
         
         println();
         println("# US-ASCII");
@@ -194,9 +212,9 @@ class Charsets {
         println();
         printHeaderX0213();
         for (int k = 14; k <= 94; ++k) {
-            // 第1水準。
+            // 第1水準漢字。
             if (16 <= k && k <= 46) continue;
-            // 第2水準。
+            // 第2水準漢字。
             if (48 <= k && k <= 83) continue;
             
             printSeparator();
@@ -224,22 +242,20 @@ class Charsets {
     }
 
     void printHeader() {
-        println("         JIS  EUC    SJIS W31J Unicode  UTF-16   UTF-8");
+        println("    CODE 区分   JIS  EUC    SJIS W31J Unicode  UTF-16   UTF-8        備考");
     }
 
     void printHeaderX0208() {
-        println("   区-点 JIS  EUC    SJIS W31J Unicode  UTF-16   UTF-8");
+        println("   区-点 区分   JIS  EUC    SJIS W31J Unicode  UTF-16   UTF-8        備考");
     }
 
     void printHeaderX0213() {
-        println("面-区-点 JIS  EUC    SJIS W31J Unicode  UTF-16   UTF-8");
+        println("面-区-点 区分   JIS  EUC    SJIS W31J Unicode  UTF-16   UTF-8        備考");
     }
 
     void printSeparator() {
-        println("-------- ---- ------ ---- ---- -------- -------- ------------ ----");
+        println("-------- ------ ---- ------ ---- ---- -------- -------- ------------ ----");
     }
-
-    static final byte[] EMPTY_BYTES = {};
 
     void println() {
         printLine(EMPTY_BYTES);
@@ -275,31 +291,41 @@ class Charsets {
         
         ByteArrayBuilder bab = new ByteArrayBuilder();
         bab.append("      %02X ", c);
+        // 区分。
+        bab.append("%-6s ", kubun(c, ss));
         if (ss.equals("\uFFFD")) {
             bab.append("-    -      -    ");
         } else {
+            // ISO-2022-JP
             bab.append("%02X   ", c & 0x7F);
+            // EUC-JP
             if (c < 0x80) {
                 bab.append("%02X     ", c);
             } else {
                 bab.append("8E%02X   ", c);
             }
+            // Shift_JIS
             if (c == 0x5C || c == 0x7E) {
                 bab.append("-    ");
             } else {
                 bab.append("%02X   ", c);
             }
         }
+        // Windows-31J
         bab.append("%02X   ", c);
+        // Unicode
         bab.append("U+%04X   ", ss.codePointAt(0));
+        // UTF-16
         bab.append("%-8s ", toHexString(ss.toCharArray()));
+        // UTF-8
         bab.append("%-12s ", toHexString(ss.getBytes(UTF_8)));
+        // 備考。
         if (!ss.equals("\uFFFD")) {
             if (0x20 <= c && c != 0x7F) {
                 bab.append("[%s]", ss);
             }
             byte[] bs2 = ss.getBytes(SHIFT_JIS);
-            if (!Arrays.equals(bs, bs2)) {
+            if (!Arrays.equals(bs2, bs)) {
                 bab.append(" => %s", toHexString(bs2));
             }
         }
@@ -309,27 +335,35 @@ class Charsets {
         }
         
         ss = (c == 0x5C) ? "\u00A5" : "\u203E";
+        byte[] bw2 = ss.getBytes(WINDOWS_31J);
+        
         bab = new ByteArrayBuilder();
         bab.append("      %02X ", c);
+        // 区分。
+        bab.append("%-6s ", kubun(c, ss));
+        // ISO-2022-JP
         bab.append("%02X   ", c & 0x7F);
+        // EUC
         bab.append("-      ");
+        // Shift_JIS
         bab.append("%02X   ", c);
-        bab.append("-    ");
+        // Windows-31J
+        if (Arrays.equals(bw2, BYTES_3F)) {
+            bab.append("-    ");
+        } else {
+            bab.append("%-4s ", toHexString(bw2));
+        }
+        // Unicode
         bab.append("U+%04X   ", ss.codePointAt(0));
+        // UTF-16
         bab.append("%-8s ", toHexString(ss.toCharArray()));
+        // UTF-8
         bab.append("%-12s ", toHexString(ss.getBytes(UTF_8)));
-        if (!ss.equals("\uFFFD")) {
-            bab.append("[%s]", ss);
-            byte[] bs2 = ss.getBytes(SHIFT_JIS);
-            if (!Arrays.equals(bs, bs2)) {
-                bab.append(" => %s", toHexString(bs2));
-            } else {
-                bab.append(" -> %s (SJIS)", toHexString(bs2));
-            }
-            byte[] bw2 = ss.getBytes(WINDOWS_31J);
-            if (!Arrays.equals(bs, bw2)) {
-                bab.append(" -> %s (W31J)", toHexString(bw2));
-            }
+        // 備考。
+        bab.append("[%s]", ss);
+        byte[] bs2 = ss.getBytes(SHIFT_JIS);
+        if (!Arrays.equals(bs2, bs)) {
+            bab.append(" => %s", toHexString(bs2));
         }
         return Arrays.asList(line, bab.toByteArray());
     }
@@ -348,24 +382,34 @@ class Charsets {
         boolean showSjis = (!ss.startsWith("\uFFFD") && !ss.equals(sw));
         if (showSjis) {
             bab.append("   %02d-%02d ", k, t);
+            // 区分。
+            bab.append("%-6s ", kubun(k, t, ss, "307"));
+            // ISO-2022-JP
             bab.append("%04X ", jis);
+            // EUC-JP
             bab.append("%04X   ", euc);
+            // Shift_JIS
             bab.append("%04X ", sjis);
+            // Windows-31J
             bab.append("-    ");
+            // Unicode
             bab.append("U+%04X   ", ss.codePointAt(0));
+            // UTF-16
             bab.append("%-8s ", toHexString(ss.toCharArray()));
+            // UTF-8
             bab.append("%-12s ", toHexString(ss.getBytes(UTF_8)));
+            // 備考。
             if ("-sjis".equals(option) || "-w31j".equals(option)) {
                 bab.append("[").append(bs).append("]");
             } else {
                 bab.append("[%s]", ss);
             }
             byte[] bs2 = ss.getBytes(SHIFT_JIS);
-            if (!Arrays.equals(bs, bs2)) {
+            if (!Arrays.equals(bs2, bs)) {
                 bab.append(" => %s", toHexString(bs2));
             } else {
                 byte[] bw2 = ss.getBytes(WINDOWS_31J);
-                if (!Arrays.equals(bs, bw2) || showSjis) {
+                if (!Arrays.equals(bw2, BYTES_3F)) {
                     bab.append(" -> %s (W31J)", toHexString(bw2));
                 }
             }
@@ -379,16 +423,28 @@ class Charsets {
             bab.append("  %3d-%02d ", k, t);
         }
         if (showSjis || ss.startsWith("\uFFFD")) {
+            // 区分。
+            bab.append("%-6s ", kubun(k, t, sw, "770"));
             bab.append("-    -      -    ");
         } else {
+            // 区分。
+            bab.append("%-6s ", kubun(k, t, sw, "300"));
+            // ISO-2022-JP
             bab.append("%04X ", jis);
+            // EUC-JP
             bab.append("%04X   ", euc);
+            // Shift_JIS
             bab.append("%04X ", sjis);
         }
+        // Windows-31J
         bab.append("%04X ", sjis);
+        // Unicode
         bab.append("U+%04X   ", sw.codePointAt(0));
+        // UTF-16
         bab.append("%-8s ", toHexString(sw.toCharArray()));
+        // UTF-8
         bab.append("%-12s ", toHexString(sw.getBytes(UTF_8)));
+        // 備考。
         if (!sw.startsWith("\uFFFD")) {
             if ("-sjis".equals(option) || "-w31j".equals(option)) {
                 bab.append("[").append(bs).append("]");
@@ -396,11 +452,11 @@ class Charsets {
                 bab.append("[%s]", sw);
             }
             byte[] bw2 = sw.getBytes(WINDOWS_31J);
-            if (!Arrays.equals(bs, bw2)) {
+            if (!Arrays.equals(bw2, bs)) {
                 bab.append(" => %s", toHexString(bw2));
             } else {
-                byte[] bs2 = sw.getBytes(SHIFT_JISX0213);
-                if (!Arrays.equals(bs, bs2) || showSjis) {
+                byte[] bs2 = sw.getBytes(SHIFT_JIS_2004);
+                if ((showSjis || !Arrays.equals(bs2, bs)) && !Arrays.equals(bs2, BYTES_3F)) {
                     bab.append(" -> %s (SJIS0213)", toHexString(bs2));
                 }
             }
@@ -423,7 +479,7 @@ class Charsets {
         int euc = kutenToEuc(m, k, t);
         int sjis = kutenToSjis(m, k, t);
         byte[] bs = bytes(sjis, 2);
-        String sx = toString(bs, SHIFT_JISX0213);
+        String sx = toString(bs, SHIFT_JIS_2004);
         String ss = toString(bs, SHIFT_JIS);
         String sw = toString(bs, WINDOWS_31J);
         
@@ -431,8 +487,11 @@ class Charsets {
             return Collections.emptyList();
         }
         
+        byte[] bw2 = sx.getBytes(WINDOWS_31J);
+        
         ByteArrayBuilder bab = new ByteArrayBuilder();
         bab.append("%2d-%02d-%02d ", m, k, t);
+        bab.append("%-6s ", kubun(m, k, t, sx));
         bab.append("%04X ", jis);
         if (euc <= 0xFFFF) {
             bab.append("%04X   ", euc);
@@ -458,16 +517,125 @@ class Charsets {
         bab.append("%-8s ", toHexString(sx.toCharArray()));
         bab.append("%-12s ", toHexString(sx.getBytes(UTF_8)));
         bab.append("[%s]", sx);
-        byte[] bx2 = sx.getBytes(SHIFT_JISX0213);
-        if (!Arrays.equals(bs, bx2)) {
+        byte[] bx2 = sx.getBytes(SHIFT_JIS_2004);
+        if (!Arrays.equals(bx2, bs)) {
             bab.append(" => %s", toHexString(bx2));
         } else {
-            byte[] bw2 = sx.getBytes(WINDOWS_31J);
-            if (!Arrays.equals(bs, bw2)) {
+            // byte[] bw2 = sx.getBytes(WINDOWS_31J);
+            if (!Arrays.equals(bw2, bs) && !Arrays.equals(bw2, BYTES_3F)) {
                 bab.append(" -> %s (W31J)", toHexString(bw2));
             }
         }
         return Collections.singletonList(bab.toByteArray());
+    }
+
+    String kubun(int c, String s) {
+        if (s.equals("\uFFFD")) {
+            // 未定義文字。
+            return "99999";
+        }
+        StringBuilder sb = new StringBuilder();
+        if (s.equals("\u00A5") || s.equals("\u203E")) {
+            sb.append("207");
+        } else if (c < 0x80) {
+            // US-ASCII
+            sb.append("100");
+        } else {
+            // JIS X 0201
+            sb.append("200");
+        }
+        sb.append('1');
+        if (!s.equals(normalize(s, NFC))) {
+            sb.append('3');
+        } else if (!s.equals(normalize(s, NFKC))) {
+            sb.append('2');
+        } else if (!s.equals(normalize(s, NFD))) {
+            sb.append('1');
+        } else {
+            sb.append('0');
+        }
+        return sb.toString();
+    }
+
+    String kubun(int k, int t, String s, String hikanji) {
+        if (s.equals("\uFFFD")) {
+            // 未定義文字。
+            return "99999";
+        }
+        StringBuilder sb = new StringBuilder();
+        if (k < 13) {
+            // 非漢字。
+            sb.append(hikanji);
+        } else if (k < 16) {
+            // NEC特殊文字。
+            sb.append("771");
+        } else if (k < 48) {
+            // 第1水準漢字。
+            sb.append("310");
+        } else if (k < 89) {
+            // 第2水準漢字。
+            sb.append("320");
+        } else if (k < 95) {
+            // NEC選定IBM拡張文字。
+            sb.append("772");
+        } else if (k < 115) {
+            // ユーザー外字領域。
+            return "88888";
+        } else {
+            // IBM拡張漢字。
+            sb.append("773");
+        }
+        sb.append('1');
+        if (!s.equals(normalize(s, NFC))) {
+            sb.append('3');
+        } else if (!s.equals(normalize(s, NFKC))) {
+            sb.append('2');
+        } else if (!s.equals(normalize(s, NFD))) {
+            sb.append('1');
+        } else {
+            sb.append('0');
+        }
+        return sb.toString();
+    }
+
+    String kubun(int m, int k, int t, String s) {
+        if (s.equals("\uFFFD")) {
+            // 未定義文字。
+            return "99999";
+        }
+        StringBuilder sb = new StringBuilder();
+        if (m == 2) {
+            // 第4水準漢字。
+            if (s.length() > 1) {
+                sb.append("4492");
+            } else {
+                sb.append("4491");
+            }
+        } else if (k < 14) {
+            // 非漢字。
+            if (s.length() > 1) {
+                return "40930";
+            } else {
+                sb.append("4091");
+            }
+        } else {
+            // 第3水準漢字。
+            if (s.length() > 1) {
+                sb.append("4392");
+            } else {
+                sb.append("4391");
+            }
+        }
+        if (!s.equals(normalize(s, NFC))) {
+            sb.append('3');
+        } else if (!s.equals(normalize(s, NFKC))) {
+            sb.append('2');
+        } else if (!s.equals(normalize(s, NFD))) {
+            sb.append('1');
+        } else {
+            sb.append('0');
+        }
+        return sb.toString();
     }
 
     static int kutenToJis(int k, int t) {
