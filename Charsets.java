@@ -421,6 +421,10 @@ class Charsets {
         return sb.toString();
     }
 
+    static String toHexString(String s) {
+        return toHexString(s.toCharArray());
+    }
+
     class CodeInfo {
 
         String option;
@@ -435,6 +439,8 @@ class Charsets {
 
         String s;
         int cp;
+
+        String nfc;
 
         boolean undefined() {
             return s.contains("\uFFFD");
@@ -457,7 +463,7 @@ class Charsets {
         }
 
         String utf16() {
-            return toHexString(s.toCharArray());
+            return toHexString(s);
         }
 
         String utf8() {
@@ -480,6 +486,7 @@ class Charsets {
             this.cp = s.codePointAt(0);
             this.bs2 = s.getBytes(SHIFT_JIS);
             this.bw2 = s.getBytes(WINDOWS_31J);
+            this.nfc = normalize(s, NFC);
         }
 
         JisX0201Info(int c, String s) {
@@ -492,6 +499,7 @@ class Charsets {
             this.cp = s.codePointAt(0);
             this.bs2 = s.getBytes(SHIFT_JIS);
             this.bw2 = s.getBytes(WINDOWS_31J);
+            this.nfc = normalize(s, NFC);
         }
 
         byte[] encodedLine() {
@@ -544,6 +552,8 @@ class Charsets {
                     bab.append(" -> %s (SJIS)", toHexString(bs2));
                 } else if (!Arrays.equals(bw2, BYTES_3F) && !decodableFromW31j()) {
                     bab.append(" -> %s (W31J)", toHexString(bw2));
+                } else if (!s.equals(nfc)) {
+                    bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
                 }
             }
             return bab.toByteArray();
@@ -565,7 +575,7 @@ class Charsets {
                 sb.append("200");
             }
             sb.append('1');
-            if (!s.equals(normalize(s, NFC))) {
+            if (!s.equals(nfc)) {
                 sb.append('3');
             } else if (!s.equals(normalize(s, NFKC))) {
                 sb.append('2');
@@ -596,6 +606,7 @@ class Charsets {
             this.cp = s.codePointAt(0);
             this.bs2 = s.getBytes(SHIFT_JIS);
             this.bw2 = s.getBytes(WINDOWS_31J);
+            this.nfc = normalize(s, NFC);
         }
 
         byte[] encodedLine() {
@@ -628,6 +639,8 @@ class Charsets {
                     bab.append(" => %s", toHexString(bs2));
                 } else if (!Arrays.equals(bw2, BYTES_3F)) {
                     bab.append(" -> %s (W31J)", toHexString(bw2));
+                } else if (!s.equals(nfc)) {
+                    bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
                 }
             }
             return bab.toByteArray();
@@ -650,7 +663,7 @@ class Charsets {
                 sb.append("320");
             }
             sb.append('1');
-            if (!s.equals(normalize(s, NFC))) {
+            if (!s.equals(nfc)) {
                 sb.append('3');
             } else if (!s.equals(normalize(s, NFKC))) {
                 sb.append('2');
@@ -686,6 +699,7 @@ class Charsets {
             this.bs2 = s.getBytes(SHIFT_JIS_2004);
             this.bw2 = s.getBytes(WINDOWS_31J);
             this.showSjis = !ss.contains("\uFFFD") && !ss.equals(s);
+            this.nfc = normalize(s, NFC);
         }
 
         byte[] encodedLine() {
@@ -735,6 +749,8 @@ class Charsets {
                 } else if ((showSjis || !encodableToSjis())
                         && !Arrays.equals(bs2, BYTES_3F) && !decodableFromSjis()) {
                     bab.append(" -> %s (SJIS0213)", toHexString(bs2));
+                } else if (!s.equals(nfc)) {
+                    bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
                 }
             }
             return bab.toByteArray();
@@ -769,7 +785,7 @@ class Charsets {
                 sb.append("773");
             }
             sb.append('1');
-            if (!s.equals(normalize(s, NFC))) {
+            if (!s.equals(nfc)) {
                 sb.append('3');
             } else if (!s.equals(normalize(s, NFKC))) {
                 sb.append('2');
@@ -806,6 +822,7 @@ class Charsets {
             this.cp = (s.codePointCount(0, s.length()) > 1) ? -1 : s.codePointAt(0);
             this.bs2 = s.getBytes(SHIFT_JIS_2004);
             this.bw2 = s.getBytes(WINDOWS_31J);
+            this.nfc = normalize(s, NFC);
         }
 
         byte[] encodedLine() {
@@ -854,6 +871,8 @@ class Charsets {
                 } else if (!encodableToW31j()
                         && !Arrays.equals(bw2, BYTES_3F) && !decodableFromW31j()) {
                     bab.append(" -> %s (W31J)", toHexString(bw2));
+                } else if (!s.equals(nfc)) {
+                    bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
                 }
             }
             return bab.toByteArray();
@@ -887,7 +906,7 @@ class Charsets {
                     sb.append("4391");
                 }
             }
-            if (!s.equals(normalize(s, NFC))) {
+            if (!s.equals(nfc)) {
                 sb.append('3');
             } else if (!s.equals(normalize(s, NFKC))) {
                 sb.append('2');
