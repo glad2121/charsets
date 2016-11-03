@@ -521,8 +521,7 @@ class Charsets {
                     bab.append("%02X   ", sjis);
                 }
                 // Windows-31J
-                if (!encodableToW31j()
-                        && (contains(bw2, 0x3F) || !decodableFromW31j())) {
+                if (!encodableToW31j() || !decodableFromW31j()) {
                     bab.append("-    ");
                 } else {
                     bab.append("%-4s ", toHexString(bw2));
