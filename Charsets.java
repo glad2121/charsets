@@ -613,7 +613,7 @@ class Charsets {
             ByteArrayBuilder bab = new ByteArrayBuilder();
             bab.append("   %02d-%02d ", k, t);
             // 区分。
-            bab.append("%-6s ", kubun("307"));
+            bab.append("%-6s ", kubun());
             // ISO-2022-JP
             bab.append("%04X ", jis);
             // EUC-JP
@@ -646,7 +646,7 @@ class Charsets {
             return bab.toByteArray();
         }
 
-        String kubun(String hikanji) {
+        String kubun() {
             if (undefined()) {
                 // 未定義文字。
                 return "99999";
@@ -654,7 +654,11 @@ class Charsets {
             StringBuilder sb = new StringBuilder();
             if (k < 16) {
                 // 非漢字。
-                sb.append(hikanji);
+                if (contains(bw2, 0x3F)) {
+                    sb.append("309");
+                } else {
+                    sb.append("307");
+                }
             } else if (k < 48) {
                 // 第1水準漢字。
                 sb.append("310");
@@ -662,7 +666,11 @@ class Charsets {
                 // 第2水準漢字。
                 sb.append("320");
             }
-            sb.append('1');
+            if (!encodableToSjis()) {
+                sb.append('7');
+            } else {
+                sb.append('1');
+            }
             if (!s.equals(nfc)) {
                 sb.append('3');
             } else if (!s.equals(normalize(s, NFKC))) {
@@ -709,9 +717,9 @@ class Charsets {
             } else {
                 bab.append("  %3d-%02d ", k, t);
             }
+            // 区分。
+            bab.append("%-6s ", kubun());
             if (ss.contains("\uFFFD") || !ss.equals(s)) {
-                // 区分。
-                bab.append("%-6s ", kubun("770"));
                 bab.append("-    -      ");
                 if (!encodableToW31j()
                         || contains(bs2, 0x3F) || !decodableFromSjis()) {
@@ -720,8 +728,6 @@ class Charsets {
                     bab.append("%-4s ", toHexString(bs2));
                 }
             } else {
-                // 区分。
-                bab.append("%-6s ", kubun("300"));
                 // ISO-2022-JP
                 bab.append("%04X ", jis);
                 // EUC-JP
@@ -756,7 +762,7 @@ class Charsets {
             return bab.toByteArray();
         }
 
-        String kubun(String hikanji) {
+        String kubun() {
             if (undefined()) {
                 // 未定義文字。
                 return "99999";
@@ -764,10 +770,18 @@ class Charsets {
             StringBuilder sb = new StringBuilder();
             if (k < 13) {
                 // 非漢字。
-                sb.append(hikanji);
+                if (!ss.equals(s)) {
+                    sb.append("770");
+                } else {
+                    sb.append("300");
+                }
             } else if (k < 16) {
                 // NEC特殊文字。
-                sb.append("771");
+                if (!encodableToSjis()) {
+                    sb.append("771");
+                } else {
+                    sb.append("701");
+                }
             } else if (k < 48) {
                 // 第1水準漢字。
                 sb.append("310");
@@ -784,7 +798,11 @@ class Charsets {
                 // IBM拡張漢字。
                 sb.append("773");
             }
-            sb.append('1');
+            if (!encodableToW31j()) {
+                sb.append('7');
+            } else {
+                sb.append('1');
+            }
             if (!s.equals(nfc)) {
                 sb.append('3');
             } else if (!s.equals(normalize(s, NFKC))) {
@@ -886,24 +904,50 @@ class Charsets {
             StringBuilder sb = new StringBuilder();
             if (m == 2) {
                 // 第4水準漢字。
-                if (s.length() > 1) {
-                    sb.append("4492");
+                sb.append("44");
+                if (contains(bw2, 0x3F)) {
+                    sb.append('9');
                 } else {
-                    sb.append("4491");
+                    sb.append('7');
+                }
+                if (!encodableToSjis()) {
+                    sb.append('7');
+                } else if (s.length() > 1) {
+                    sb.append('2');
+                } else {
+                    sb.append('1');
                 }
             } else if (k < 14) {
                 // 非漢字。
-                if (s.length() > 1) {
-                    return "40930";
+                sb.append("40");
+                if (contains(bw2, 0x3F)) {
+                    sb.append('9');
+                } else if (encodableToW31j()) {
+                    sb.append('1');
                 } else {
-                    sb.append("4091");
+                    sb.append('7');
+                }
+                if (!encodableToSjis()) {
+                    sb.append('7');
+                } else if (s.length() > 1) {
+                    sb.append('3');
+                } else {
+                    sb.append('1');
                 }
             } else {
                 // 第3水準漢字。
-                if (s.length() > 1) {
-                    sb.append("4392");
+                sb.append("43");
+                if (contains(bw2, 0x3F)) {
+                    sb.append('9');
                 } else {
-                    sb.append("4391");
+                    sb.append('7');
+                }
+                if (!encodableToSjis()) {
+                    sb.append('7');
+                } else if (s.length() > 1) {
+                    sb.append('2');
+                } else {
+                    sb.append('1');
                 }
             }
             if (!s.equals(nfc)) {
