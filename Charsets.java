@@ -12,6 +12,8 @@ class Charsets {
     static final Charset SHIFT_JIS = Charset.forName("Shift_JIS");
     static final Charset WINDOWS_31J = Charset.forName("Windows-31J");
     static final Charset SHIFT_JIS_2004 = Charset.forName("x-SJIS_0213");
+    static final Charset IBM_930 = Charset.forName("x-IBM930");
+    static final Charset IBM_939 = Charset.forName("x-IBM939");
 
     static final byte[] EMPTY_BYTES = {};
     static final byte[] BYTES_3F = {(byte) 0x3F};
@@ -242,19 +244,19 @@ class Charsets {
     }
 
     void printHeader() {
-        println("    CODE 区分   JIS  EUC    SJIS W31J Unicode  UTF-16   UTF-8        備考");
+        println("    CODE 区分   JIS  EUC    SJIS W31J I930 I939 Unicode  UTF-16   UTF-8        備考");
     }
 
     void printHeaderX0208() {
-        println("   区-点 区分   JIS  EUC    SJIS W31J Unicode  UTF-16   UTF-8        備考");
+        println("   区-点 区分   JIS  EUC    SJIS W31J I930 I939 Unicode  UTF-16   UTF-8        備考");
     }
 
     void printHeaderX0213() {
-        println("面-区-点 区分   JIS  EUC    SJIS W31J Unicode  UTF-16   UTF-8        備考");
+        println("面-区-点 区分   JIS  EUC    SJIS W31J I930 I939 Unicode  UTF-16   UTF-8        備考");
     }
 
     void printSeparator() {
-        println("-------- ------ ---- ------ ---- ---- -------- -------- ------------ ----");
+        println("-------- ------ ---- ------ ---- ---- ---- ---- -------- -------- ------------ ----");
     }
 
     void println() {
@@ -425,6 +427,18 @@ class Charsets {
         return toHexString(s.toCharArray());
     }
 
+    static boolean isEbcdicKanji(byte[] ebcdic) {
+        int length = ebcdic.length;
+        return length == 4 && ebcdic[0] == 0x0E && ebcdic[length - 1] == 0x0F;
+    }
+
+    static String ebcdicToHexString(byte[] ebcdic) {
+        if (isEbcdicKanji(ebcdic)) {
+            return toHexString(Arrays.copyOfRange(ebcdic, 1, ebcdic.length - 1));
+        }
+        return toHexString(ebcdic);
+    }
+
     class CodeInfo {
 
         String option;
@@ -436,6 +450,9 @@ class Charsets {
         byte[] b;
         byte[] bs2;
         byte[] bw2;
+
+        byte[] i930;
+        byte[] i939;
 
         String s;
         int cp;
@@ -454,12 +471,36 @@ class Charsets {
             return Arrays.equals(bw2, b);
         }
 
+        boolean encodableToI930() {
+            return s.equals("?") || !contains(i930, 0x6F) || isEbcdicKanji(i930);
+        }
+
+        boolean encodableToI939() {
+            return s.equals("?") || !contains(i939, 0x6F) || isEbcdicKanji(i939);
+        }
+
         boolean decodableFromSjis() {
             return Charsets.toString(bs2, SHIFT_JIS_2004).equals(s);
         }
 
         boolean decodableFromW31j() {
             return Charsets.toString(bw2, WINDOWS_31J).equals(s);
+        }
+
+        boolean decodableFromI930() {
+            return Charsets.toString(i930, IBM_930).equals(s);
+        }
+
+        boolean decodableFromI939() {
+            return Charsets.toString(i939, IBM_939).equals(s);
+        }
+
+        String i930() {
+            return ebcdicToHexString(i930);
+        }
+
+        String i939() {
+            return ebcdicToHexString(i939);
         }
 
         String utf16() {
@@ -486,6 +527,8 @@ class Charsets {
             this.cp = s.codePointAt(0);
             this.bs2 = s.getBytes(SHIFT_JIS);
             this.bw2 = s.getBytes(WINDOWS_31J);
+            this.i930 = s.getBytes(IBM_930);
+            this.i939 = s.getBytes(IBM_939);
             this.nfc = normalize(s, NFC);
         }
 
@@ -499,6 +542,8 @@ class Charsets {
             this.cp = s.codePointAt(0);
             this.bs2 = s.getBytes(SHIFT_JIS);
             this.bw2 = s.getBytes(WINDOWS_31J);
+            this.i930 = s.getBytes(IBM_930);
+            this.i939 = s.getBytes(IBM_939);
             this.nfc = normalize(s, NFC);
         }
 
@@ -535,6 +580,22 @@ class Charsets {
                     bab.append("%-4s ", toHexString(bw2));
                 }
             }
+            if (undefined() || !encodableToSjis()) {
+                bab.append("-    -    ");
+            } else {
+                // IBM 930
+                if (!encodableToI930() || !decodableFromI930()) {
+                    bab.append("-    ");
+                } else {
+                    bab.append("%-4s ", i930());
+                }
+                // IBM 939
+                if (!encodableToI939() || !decodableFromI939()) {
+                    bab.append("-    ");
+                } else {
+                    bab.append("%-4s ", i939());
+                }
+            }
             // Unicode
             bab.append("U+%04X   ", cp);
             // UTF-16
@@ -548,12 +609,22 @@ class Charsets {
                 }
                 if (!encodableToSjis()) {
                     bab.append(" => %s", toHexString(bs2));
-                } else if (sjis < 0) {
-                    bab.append(" -> %s (SJIS)", toHexString(bs2));
-                } else if (!Arrays.equals(bw2, BYTES_3F) && !decodableFromW31j()) {
-                    bab.append(" -> %s (W31J)", toHexString(bw2));
-                } else if (!s.equals(nfc)) {
-                    bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
+                } else {
+                    if (sjis < 0) {
+                        bab.append(" -> %s (SJIS)", toHexString(bs2));
+                    }
+                    if (!Arrays.equals(bw2, BYTES_3F) && !decodableFromW31j()) {
+                        bab.append(" -> %s (W31J)", toHexString(bw2));
+                    }
+                    if (encodableToI930() && !decodableFromI930()) {
+                        bab.append(" -> %s (I930)", i930());
+                    }
+                    if (encodableToI939() && !decodableFromI939()) {
+                        bab.append(" -> %s (I939)", i939());
+                    }
+                    if (!s.equals(nfc)) {
+                        bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
+                    }
                 }
             }
             return bab.toByteArray();
@@ -606,6 +677,8 @@ class Charsets {
             this.cp = s.codePointAt(0);
             this.bs2 = s.getBytes(SHIFT_JIS);
             this.bw2 = s.getBytes(WINDOWS_31J);
+            this.i930 = s.getBytes(IBM_930);
+            this.i939 = s.getBytes(IBM_939);
             this.nfc = normalize(s, NFC);
         }
 
@@ -622,6 +695,22 @@ class Charsets {
             bab.append("%04X ", sjis);
             // Windows-31J
             bab.append("-    ");
+            if (undefined() || !encodableToSjis()) {
+                bab.append("-    -    ");
+            } else {
+                // IBM 930
+                if (!encodableToI930() || !decodableFromI930()) {
+                    bab.append("-    ");
+                } else {
+                    bab.append("%-4s ", i930());
+                }
+                // IBM 939
+                if (!encodableToI939() || !decodableFromI939()) {
+                    bab.append("-    ");
+                } else {
+                    bab.append("%-4s ", i939());
+                }
+            }
             // Unicode
             bab.append("U+%04X   ", cp);
             // UTF-16
@@ -637,10 +726,19 @@ class Charsets {
                 }
                 if (!encodableToSjis()) {
                     bab.append(" => %s", toHexString(bs2));
-                } else if (!Arrays.equals(bw2, BYTES_3F)) {
-                    bab.append(" -> %s (W31J)", toHexString(bw2));
-                } else if (!s.equals(nfc)) {
-                    bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
+                } else {
+                    if (!Arrays.equals(bw2, BYTES_3F)) {
+                        bab.append(" -> %s (W31J)", toHexString(bw2));
+                    }
+                    if (encodableToI930() && !decodableFromI930()) {
+                        bab.append(" -> %s (I930)", i930());
+                    }
+                    if (encodableToI939() && !decodableFromI939()) {
+                        bab.append(" -> %s (I939)", i939());
+                    }
+                    if (!s.equals(nfc)) {
+                        bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
+                    }
                 }
             }
             return bab.toByteArray();
@@ -707,6 +805,8 @@ class Charsets {
             this.bs2 = s.getBytes(SHIFT_JIS_2004);
             this.bw2 = s.getBytes(WINDOWS_31J);
             this.showSjis = !ss.contains("\uFFFD") && !ss.equals(s);
+            this.i930 = s.getBytes(IBM_930);
+            this.i939 = s.getBytes(IBM_939);
             this.nfc = normalize(s, NFC);
         }
 
@@ -737,6 +837,22 @@ class Charsets {
             }
             // Windows-31J
             bab.append("%04X ", sjis);
+            if (undefined() || !encodableToW31j()) {
+                bab.append("-    -    ");
+            } else {
+                // IBM 930
+                if (!encodableToI930() || !decodableFromI930()) {
+                    bab.append("-    ");
+                } else {
+                    bab.append("%-4s ", i930());
+                }
+                // IBM 939
+                if (!encodableToI939() || !decodableFromI939()) {
+                    bab.append("-    ");
+                } else {
+                    bab.append("%-4s ", i939());
+                }
+            }
             // Unicode
             bab.append("U+%04X   ", cp);
             // UTF-16
@@ -752,11 +868,20 @@ class Charsets {
                 }
                 if (!encodableToW31j()) {
                     bab.append(" => %s", toHexString(bw2));
-                } else if ((showSjis || !encodableToSjis())
-                        && !Arrays.equals(bs2, BYTES_3F) && !decodableFromSjis()) {
-                    bab.append(" -> %s (SJIS0213)", toHexString(bs2));
-                } else if (!s.equals(nfc)) {
-                    bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
+                } else {
+                    if ((showSjis || !encodableToSjis())
+                            && !Arrays.equals(bs2, BYTES_3F) && !decodableFromSjis()) {
+                        bab.append(" -> %s (SJIS0213)", toHexString(bs2));
+                    }
+                    if (encodableToI930() && !decodableFromI930()) {
+                        bab.append(" -> %s (I930)", i930());
+                    }
+                    if (encodableToI939() && !decodableFromI939()) {
+                        bab.append(" -> %s (I939)", i939());
+                    }
+                    if (!s.equals(nfc)) {
+                        bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
+                    }
                 }
             }
             return bab.toByteArray();
@@ -840,6 +965,8 @@ class Charsets {
             this.cp = (s.codePointCount(0, s.length()) > 1) ? -1 : s.codePointAt(0);
             this.bs2 = s.getBytes(SHIFT_JIS_2004);
             this.bw2 = s.getBytes(WINDOWS_31J);
+            this.i930 = s.getBytes(IBM_930);
+            this.i939 = s.getBytes(IBM_939);
             this.nfc = normalize(s, NFC);
         }
 
@@ -869,6 +996,22 @@ class Charsets {
             } else {
                 bab.append("%04X ", sjis);
             }
+            if (undefined() || !encodableToSjis()) {
+                bab.append("-    -    ");
+            } else {
+                // IBM 930
+                if (!encodableToI930() || !decodableFromI930()) {
+                    bab.append("-    ");
+                } else {
+                    bab.append("%-4s ", i930());
+                }
+                // IBM 939
+                if (!encodableToI939() || !decodableFromI939()) {
+                    bab.append("-    ");
+                } else {
+                    bab.append("%-4s ", i939());
+                }
+            }
             // Unicode
             if (cp < 0) {
                 bab.append("-        ");
@@ -886,11 +1029,20 @@ class Charsets {
                 bab.append("[%s]", s);
                 if (!encodableToSjis()) {
                     bab.append(" => %s", toHexString(bs2));
-                } else if (!encodableToW31j()
-                        && !Arrays.equals(bw2, BYTES_3F) && !decodableFromW31j()) {
-                    bab.append(" -> %s (W31J)", toHexString(bw2));
-                } else if (!s.equals(nfc)) {
-                    bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
+                } else {
+                    if (!encodableToW31j()
+                            && !Arrays.equals(bw2, BYTES_3F) && !decodableFromW31j()) {
+                        bab.append(" -> %s (W31J)", toHexString(bw2));
+                    }
+                    if (encodableToI930() && !decodableFromI930()) {
+                        bab.append(" -> %s (I930)", i930());
+                    }
+                    if (encodableToI939() && !decodableFromI939()) {
+                        bab.append(" -> %s (I939)", i939());
+                    }
+                    if (!s.equals(nfc)) {
+                        bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
+                    }
                 }
             }
             return bab.toByteArray();
