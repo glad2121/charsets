@@ -189,69 +189,69 @@
       9F 99999  -    -      -    9F   -    -    U+FFFD   FFFD     EFBFBD       
 -------- ------ ---- ------ ---- ---- ---- ---- -------- -------- ------------ ----
       A0 99999  -    -      -    A0   -    -    U+FFFD   FFFD     EFBFBD       
-      A1 20012  21   8EA1   A1   A1   41   42   U+FF61   FF61     EFBDA1       [¡]
-      A2 20012  22   8EA2   A2   A2   42   43   U+FF62   FF62     EFBDA2       [¢]
-      A3 20012  23   8EA3   A3   A3   43   44   U+FF63   FF63     EFBDA3       [£]
-      A4 20012  24   8EA4   A4   A4   44   45   U+FF64   FF64     EFBDA4       [¤]
-      A5 20012  25   8EA5   A5   A5   45   46   U+FF65   FF65     EFBDA5       [¥]
-      A6 20012  26   8EA6   A6   A6   46   47   U+FF66   FF66     EFBDA6       [¦]
-      A7 20012  27   8EA7   A7   A7   47   48   U+FF67   FF67     EFBDA7       [§]
-      A8 20012  28   8EA8   A8   A8   48   49   U+FF68   FF68     EFBDA8       [¨]
-      A9 20012  29   8EA9   A9   A9   49   51   U+FF69   FF69     EFBDA9       [©]
-      AA 20012  2A   8EAA   AA   AA   51   52   U+FF6A   FF6A     EFBDAA       [ª]
-      AB 20012  2B   8EAB   AB   AB   52   53   U+FF6B   FF6B     EFBDAB       [«]
-      AC 20012  2C   8EAC   AC   AC   53   54   U+FF6C   FF6C     EFBDAC       [¬]
-      AD 20012  2D   8EAD   AD   AD   54   55   U+FF6D   FF6D     EFBDAD       [­]
-      AE 20012  2E   8EAE   AE   AE   55   56   U+FF6E   FF6E     EFBDAE       [®]
-      AF 20012  2F   8EAF   AF   AF   56   57   U+FF6F   FF6F     EFBDAF       [¯]
-      B0 20012  30   8EB0   B0   B0   58   58   U+FF70   FF70     EFBDB0       [°]
-      B1 20012  31   8EB1   B1   B1   81   59   U+FF71   FF71     EFBDB1       [±]
-      B2 20012  32   8EB2   B2   B2   82   62   U+FF72   FF72     EFBDB2       [²]
-      B3 20012  33   8EB3   B3   B3   83   63   U+FF73   FF73     EFBDB3       [³]
-      B4 20012  34   8EB4   B4   B4   84   64   U+FF74   FF74     EFBDB4       [´]
-      B5 20012  35   8EB5   B5   B5   85   65   U+FF75   FF75     EFBDB5       [µ]
-      B6 20012  36   8EB6   B6   B6   86   66   U+FF76   FF76     EFBDB6       [¶]
-      B7 20012  37   8EB7   B7   B7   87   67   U+FF77   FF77     EFBDB7       [·]
-      B8 20012  38   8EB8   B8   B8   88   68   U+FF78   FF78     EFBDB8       [¸]
-      B9 20012  39   8EB9   B9   B9   89   69   U+FF79   FF79     EFBDB9       [¹]
-      BA 20012  3A   8EBA   BA   BA   8A   70   U+FF7A   FF7A     EFBDBA       [º]
-      BB 20012  3B   8EBB   BB   BB   8C   71   U+FF7B   FF7B     EFBDBB       [»]
-      BC 20012  3C   8EBC   BC   BC   8D   72   U+FF7C   FF7C     EFBDBC       [¼]
-      BD 20012  3D   8EBD   BD   BD   8E   73   U+FF7D   FF7D     EFBDBD       [½]
-      BE 20012  3E   8EBE   BE   BE   8F   74   U+FF7E   FF7E     EFBDBE       [¾]
-      BF 20012  3F   8EBF   BF   BF   90   75   U+FF7F   FF7F     EFBDBF       [¿]
-      C0 20012  40   8EC0   C0   C0   91   76   U+FF80   FF80     EFBE80       [À]
-      C1 20012  41   8EC1   C1   C1   92   77   U+FF81   FF81     EFBE81       [Á]
-      C2 20012  42   8EC2   C2   C2   93   78   U+FF82   FF82     EFBE82       [Â]
-      C3 20012  43   8EC3   C3   C3   94   8A   U+FF83   FF83     EFBE83       [Ã]
-      C4 20012  44   8EC4   C4   C4   95   8B   U+FF84   FF84     EFBE84       [Ä]
-      C5 20012  45   8EC5   C5   C5   96   8C   U+FF85   FF85     EFBE85       [Å]
-      C6 20012  46   8EC6   C6   C6   97   8D   U+FF86   FF86     EFBE86       [Æ]
-      C7 20012  47   8EC7   C7   C7   98   8E   U+FF87   FF87     EFBE87       [Ç]
-      C8 20012  48   8EC8   C8   C8   99   8F   U+FF88   FF88     EFBE88       [È]
-      C9 20012  49   8EC9   C9   C9   9A   9A   U+FF89   FF89     EFBE89       [É]
-      CA 20012  4A   8ECA   CA   CA   9D   9B   U+FF8A   FF8A     EFBE8A       [Ê]
-      CB 20012  4B   8ECB   CB   CB   9E   9C   U+FF8B   FF8B     EFBE8B       [Ë]
-      CC 20012  4C   8ECC   CC   CC   9F   9D   U+FF8C   FF8C     EFBE8C       [Ì]
-      CD 20012  4D   8ECD   CD   CD   A2   9E   U+FF8D   FF8D     EFBE8D       [Í]
-      CE 20012  4E   8ECE   CE   CE   A3   9F   U+FF8E   FF8E     EFBE8E       [Î]
-      CF 20012  4F   8ECF   CF   CF   A4   AA   U+FF8F   FF8F     EFBE8F       [Ï]
-      D0 20012  50   8ED0   D0   D0   A5   AB   U+FF90   FF90     EFBE90       [Ð]
-      D1 20012  51   8ED1   D1   D1   A6   AC   U+FF91   FF91     EFBE91       [Ñ]
-      D2 20012  52   8ED2   D2   D2   A7   AE   U+FF92   FF92     EFBE92       [Ò]
-      D3 20012  53   8ED3   D3   D3   A8   AF   U+FF93   FF93     EFBE93       [Ó]
-      D4 20012  54   8ED4   D4   D4   A9   B3   U+FF94   FF94     EFBE94       [Ô]
-      D5 20012  55   8ED5   D5   D5   AA   B4   U+FF95   FF95     EFBE95       [Õ]
-      D6 20012  56   8ED6   D6   D6   AC   B5   U+FF96   FF96     EFBE96       [Ö]
-      D7 20012  57   8ED7   D7   D7   AD   B6   U+FF97   FF97     EFBE97       [×]
-      D8 20012  58   8ED8   D8   D8   AE   B7   U+FF98   FF98     EFBE98       [Ø]
-      D9 20012  59   8ED9   D9   D9   AF   B8   U+FF99   FF99     EFBE99       [Ù]
-      DA 20012  5A   8EDA   DA   DA   BA   B9   U+FF9A   FF9A     EFBE9A       [Ú]
-      DB 20012  5B   8EDB   DB   DB   BB   BA   U+FF9B   FF9B     EFBE9B       [Û]
-      DC 20012  5C   8EDC   DC   DC   BC   BB   U+FF9C   FF9C     EFBE9C       [Ü]
-      DD 20012  5D   8EDD   DD   DD   BD   BC   U+FF9D   FF9D     EFBE9D       [Ý]
-      DE 20012  5E   8EDE   DE   DE   BE   BE   U+FF9E   FF9E     EFBE9E       [Þ]
-      DF 20012  5F   8EDF   DF   DF   BF   BF   U+FF9F   FF9F     EFBE9F       [ß]
+      A1 20012  21   8EA1   A1   A1   41   42   U+FF61   FF61     EFBDA1       [¡] -> 3002 [B] (NFKC)
+      A2 20012  22   8EA2   A2   A2   42   43   U+FF62   FF62     EFBDA2       [¢] -> 300C [u] (NFKC)
+      A3 20012  23   8EA3   A3   A3   43   44   U+FF63   FF63     EFBDA3       [£] -> 300D [v] (NFKC)
+      A4 20012  24   8EA4   A4   A4   44   45   U+FF64   FF64     EFBDA4       [¤] -> 3001 [A] (NFKC)
+      A5 20012  25   8EA5   A5   A5   45   46   U+FF65   FF65     EFBDA5       [¥] -> 30FB [E] (NFKC)
+      A6 20012  26   8EA6   A6   A6   46   47   U+FF66   FF66     EFBDA6       [¦] -> 30F2 [ƒ’] (NFKC)
+      A7 20012  27   8EA7   A7   A7   47   48   U+FF67   FF67     EFBDA7       [§] -> 30A1 [ƒ@] (NFKC)
+      A8 20012  28   8EA8   A8   A8   48   49   U+FF68   FF68     EFBDA8       [¨] -> 30A3 [ƒB] (NFKC)
+      A9 20012  29   8EA9   A9   A9   49   51   U+FF69   FF69     EFBDA9       [©] -> 30A5 [ƒD] (NFKC)
+      AA 20012  2A   8EAA   AA   AA   51   52   U+FF6A   FF6A     EFBDAA       [ª] -> 30A7 [ƒF] (NFKC)
+      AB 20012  2B   8EAB   AB   AB   52   53   U+FF6B   FF6B     EFBDAB       [«] -> 30A9 [ƒH] (NFKC)
+      AC 20012  2C   8EAC   AC   AC   53   54   U+FF6C   FF6C     EFBDAC       [¬] -> 30E3 [ƒƒ] (NFKC)
+      AD 20012  2D   8EAD   AD   AD   54   55   U+FF6D   FF6D     EFBDAD       [­] -> 30E5 [ƒ…] (NFKC)
+      AE 20012  2E   8EAE   AE   AE   55   56   U+FF6E   FF6E     EFBDAE       [®] -> 30E7 [ƒ‡] (NFKC)
+      AF 20012  2F   8EAF   AF   AF   56   57   U+FF6F   FF6F     EFBDAF       [¯] -> 30C3 [ƒb] (NFKC)
+      B0 20012  30   8EB0   B0   B0   58   58   U+FF70   FF70     EFBDB0       [°] -> 30FC [[] (NFKC)
+      B1 20012  31   8EB1   B1   B1   81   59   U+FF71   FF71     EFBDB1       [±] -> 30A2 [ƒA] (NFKC)
+      B2 20012  32   8EB2   B2   B2   82   62   U+FF72   FF72     EFBDB2       [²] -> 30A4 [ƒC] (NFKC)
+      B3 20012  33   8EB3   B3   B3   83   63   U+FF73   FF73     EFBDB3       [³] -> 30A6 [ƒE] (NFKC)
+      B4 20012  34   8EB4   B4   B4   84   64   U+FF74   FF74     EFBDB4       [´] -> 30A8 [ƒG] (NFKC)
+      B5 20012  35   8EB5   B5   B5   85   65   U+FF75   FF75     EFBDB5       [µ] -> 30AA [ƒI] (NFKC)
+      B6 20012  36   8EB6   B6   B6   86   66   U+FF76   FF76     EFBDB6       [¶] -> 30AB [ƒJ] (NFKC)
+      B7 20012  37   8EB7   B7   B7   87   67   U+FF77   FF77     EFBDB7       [·] -> 30AD [ƒL] (NFKC)
+      B8 20012  38   8EB8   B8   B8   88   68   U+FF78   FF78     EFBDB8       [¸] -> 30AF [ƒN] (NFKC)
+      B9 20012  39   8EB9   B9   B9   89   69   U+FF79   FF79     EFBDB9       [¹] -> 30B1 [ƒP] (NFKC)
+      BA 20012  3A   8EBA   BA   BA   8A   70   U+FF7A   FF7A     EFBDBA       [º] -> 30B3 [ƒR] (NFKC)
+      BB 20012  3B   8EBB   BB   BB   8C   71   U+FF7B   FF7B     EFBDBB       [»] -> 30B5 [ƒT] (NFKC)
+      BC 20012  3C   8EBC   BC   BC   8D   72   U+FF7C   FF7C     EFBDBC       [¼] -> 30B7 [ƒV] (NFKC)
+      BD 20012  3D   8EBD   BD   BD   8E   73   U+FF7D   FF7D     EFBDBD       [½] -> 30B9 [ƒX] (NFKC)
+      BE 20012  3E   8EBE   BE   BE   8F   74   U+FF7E   FF7E     EFBDBE       [¾] -> 30BB [ƒZ] (NFKC)
+      BF 20012  3F   8EBF   BF   BF   90   75   U+FF7F   FF7F     EFBDBF       [¿] -> 30BD [ƒ\] (NFKC)
+      C0 20012  40   8EC0   C0   C0   91   76   U+FF80   FF80     EFBE80       [À] -> 30BF [ƒ^] (NFKC)
+      C1 20012  41   8EC1   C1   C1   92   77   U+FF81   FF81     EFBE81       [Á] -> 30C1 [ƒ`] (NFKC)
+      C2 20012  42   8EC2   C2   C2   93   78   U+FF82   FF82     EFBE82       [Â] -> 30C4 [ƒc] (NFKC)
+      C3 20012  43   8EC3   C3   C3   94   8A   U+FF83   FF83     EFBE83       [Ã] -> 30C6 [ƒe] (NFKC)
+      C4 20012  44   8EC4   C4   C4   95   8B   U+FF84   FF84     EFBE84       [Ä] -> 30C8 [ƒg] (NFKC)
+      C5 20012  45   8EC5   C5   C5   96   8C   U+FF85   FF85     EFBE85       [Å] -> 30CA [ƒi] (NFKC)
+      C6 20012  46   8EC6   C6   C6   97   8D   U+FF86   FF86     EFBE86       [Æ] -> 30CB [ƒj] (NFKC)
+      C7 20012  47   8EC7   C7   C7   98   8E   U+FF87   FF87     EFBE87       [Ç] -> 30CC [ƒk] (NFKC)
+      C8 20012  48   8EC8   C8   C8   99   8F   U+FF88   FF88     EFBE88       [È] -> 30CD [ƒl] (NFKC)
+      C9 20012  49   8EC9   C9   C9   9A   9A   U+FF89   FF89     EFBE89       [É] -> 30CE [ƒm] (NFKC)
+      CA 20012  4A   8ECA   CA   CA   9D   9B   U+FF8A   FF8A     EFBE8A       [Ê] -> 30CF [ƒn] (NFKC)
+      CB 20012  4B   8ECB   CB   CB   9E   9C   U+FF8B   FF8B     EFBE8B       [Ë] -> 30D2 [ƒq] (NFKC)
+      CC 20012  4C   8ECC   CC   CC   9F   9D   U+FF8C   FF8C     EFBE8C       [Ì] -> 30D5 [ƒt] (NFKC)
+      CD 20012  4D   8ECD   CD   CD   A2   9E   U+FF8D   FF8D     EFBE8D       [Í] -> 30D8 [ƒw] (NFKC)
+      CE 20012  4E   8ECE   CE   CE   A3   9F   U+FF8E   FF8E     EFBE8E       [Î] -> 30DB [ƒz] (NFKC)
+      CF 20012  4F   8ECF   CF   CF   A4   AA   U+FF8F   FF8F     EFBE8F       [Ï] -> 30DE [ƒ}] (NFKC)
+      D0 20012  50   8ED0   D0   D0   A5   AB   U+FF90   FF90     EFBE90       [Ð] -> 30DF [ƒ~] (NFKC)
+      D1 20012  51   8ED1   D1   D1   A6   AC   U+FF91   FF91     EFBE91       [Ñ] -> 30E0 [ƒ€] (NFKC)
+      D2 20012  52   8ED2   D2   D2   A7   AE   U+FF92   FF92     EFBE92       [Ò] -> 30E1 [ƒ] (NFKC)
+      D3 20012  53   8ED3   D3   D3   A8   AF   U+FF93   FF93     EFBE93       [Ó] -> 30E2 [ƒ‚] (NFKC)
+      D4 20012  54   8ED4   D4   D4   A9   B3   U+FF94   FF94     EFBE94       [Ô] -> 30E4 [ƒ„] (NFKC)
+      D5 20012  55   8ED5   D5   D5   AA   B4   U+FF95   FF95     EFBE95       [Õ] -> 30E6 [ƒ†] (NFKC)
+      D6 20012  56   8ED6   D6   D6   AC   B5   U+FF96   FF96     EFBE96       [Ö] -> 30E8 [ƒˆ] (NFKC)
+      D7 20012  57   8ED7   D7   D7   AD   B6   U+FF97   FF97     EFBE97       [×] -> 30E9 [ƒ‰] (NFKC)
+      D8 20012  58   8ED8   D8   D8   AE   B7   U+FF98   FF98     EFBE98       [Ø] -> 30EA [ƒŠ] (NFKC)
+      D9 20012  59   8ED9   D9   D9   AF   B8   U+FF99   FF99     EFBE99       [Ù] -> 30EB [ƒ‹] (NFKC)
+      DA 20012  5A   8EDA   DA   DA   BA   B9   U+FF9A   FF9A     EFBE9A       [Ú] -> 30EC [ƒŒ] (NFKC)
+      DB 20012  5B   8EDB   DB   DB   BB   BA   U+FF9B   FF9B     EFBE9B       [Û] -> 30ED [ƒ] (NFKC)
+      DC 20012  5C   8EDC   DC   DC   BC   BB   U+FF9C   FF9C     EFBE9C       [Ü] -> 30EF [ƒ] (NFKC)
+      DD 20012  5D   8EDD   DD   DD   BD   BC   U+FF9D   FF9D     EFBE9D       [Ý] -> 30F3 [ƒ“] (NFKC)
+      DE 20012  5E   8EDE   DE   DE   BE   BE   U+FF9E   FF9E     EFBE9E       [Þ] -> 3099 (NFKC)
+      DF 20012  5F   8EDF   DF   DF   BF   BF   U+FF9F   FF9F     EFBE9F       [ß] -> 309A (NFKC)
 -------- ------ ---- ------ ---- ---- ---- ---- -------- -------- ------------ ----
       E0 99999  -    -      -    E0   -    -    U+FFFD   FFFD     EFBFBD       
       E1 99999  -    -      -    E1   -    -    U+FFFD   FFFD     EFBFBD       
@@ -293,17 +293,17 @@
    01-29 30910  213D A1BD   815C -    -    -    U+2014   2014     E28094       [\] -> 444A (I930) -> 444A (I939)
    01-29 77010  -    -      -    815C 444A 444A U+2015   2015     E28095       [\]
    01-33 30910  2141 A1C1   8160 -    -    -    U+301C   301C     E3809C       [`] -> 43A1 (I930) -> 43A1 (I939)
-   01-33 77012  -    -      81B0 8160 43A1 43A1 U+FF5E   FF5E     EFBD9E       [`]
+   01-33 77012  -    -      81B0 8160 43A1 43A1 U+FF5E   FF5E     EFBD9E       [`] -> 007E [~] (NFKC)
    01-34 30910  2142 A1C2   8161 -    -    -    U+2016   2016     E28096       [a] -> 447C (I930) -> 447C (I939)
    01-34 77010  -    -      81D2 8161 447C 447C U+2225   2225     E288A5       [a]
    01-61 30910  215D A1DD   817C -    4260 -    U+2212   2212     E28892       [|] -> 4260 (I939)
-   01-61 77012  -    -      81AF 817C -    4260 U+FF0D   FF0D     EFBC8D       [|] -> 4260 (I930)
+   01-61 77012  -    -      81AF 817C -    4260 U+FF0D   FF0D     EFBC8D       [|] -> 4260 (I930) -> 002D [-] (NFKC)
    01-81 30710  2171 A1F1   8191 -    B1   4A   U+00A2   00A2     C2A2         [‘] -> 8191 (W31J)
-   01-81 77012  -    -      -    8191 434A 434A U+FFE0   FFE0     EFBFA0       [‘]
+   01-81 77012  -    -      -    8191 434A 434A U+FFE0   FFE0     EFBFA0       [‘] -> 00A2 [‘] (NFKC)
    01-82 30710  2172 A1F2   8192 -    4A   B1   U+00A3   00A3     C2A3         [’] -> 8192 (W31J)
-   01-82 77012  -    -      -    8192 424A 424A U+FFE1   FFE1     EFBFA1       [’]
+   01-82 77012  -    -      -    8192 424A 424A U+FFE1   FFE1     EFBFA1       [’] -> 00A3 [’] (NFKC)
    02-44 30710  224C A2CC   81CA -    5F   5F   U+00AC   00AC     C2AC         [Ê] -> 81CA (W31J)
-   02-44 77012  -    -      -    81CA 425F 425F U+FFE2   FFE2     EFBFA2       [Ê]
+   02-44 77012  -    -      -    81CA 425F 425F U+FFE2   FFE2     EFBFA2       [Ê] -> 00AC [Ê] (NFKC)
 
 # JIS X 0208 - ”ñŠ¿Žš
 
@@ -312,21 +312,21 @@
    01-01 30012  2121 A1A1   8140 8140 4040 4040 U+3000   3000     E38080       [@]
    01-02 30010  2122 A1A2   8141 8141 4344 4344 U+3001   3001     E38081       [A]
    01-03 30010  2123 A1A3   8142 8142 4341 4341 U+3002   3002     E38082       [B]
-   01-04 30012  2124 A1A4   8143 8143 426B 426B U+FF0C   FF0C     EFBC8C       [C]
-   01-05 30012  2125 A1A5   8144 8144 424B 424B U+FF0E   FF0E     EFBC8E       [D]
+   01-04 30012  2124 A1A4   8143 8143 426B 426B U+FF0C   FF0C     EFBC8C       [C] -> 002C [,] (NFKC)
+   01-05 30012  2125 A1A5   8144 8144 424B 424B U+FF0E   FF0E     EFBC8E       [D] -> 002E [.] (NFKC)
    01-06 30010  2126 A1A6   8145 8145 4345 4345 U+30FB   30FB     E383BB       [E]
-   01-07 30012  2127 A1A7   8146 8146 427A 427A U+FF1A   FF1A     EFBC9A       [F]
-   01-08 30012  2128 A1A8   8147 8147 425E 425E U+FF1B   FF1B     EFBC9B       [G]
-   01-09 30012  2129 A1A9   8148 8148 426F 426F U+FF1F   FF1F     EFBC9F       [H]
-   01-10 30012  212A A1AA   8149 8149 425A 425A U+FF01   FF01     EFBC81       [I]
+   01-07 30012  2127 A1A7   8146 8146 427A 427A U+FF1A   FF1A     EFBC9A       [F] -> 003A [:] (NFKC)
+   01-08 30012  2128 A1A8   8147 8147 425E 425E U+FF1B   FF1B     EFBC9B       [G] -> 003B [;] (NFKC)
+   01-09 30012  2129 A1A9   8148 8148 426F 426F U+FF1F   FF1F     EFBC9F       [H] -> 003F [?] (NFKC)
+   01-10 30012  212A A1AA   8149 8149 425A 425A U+FF01   FF01     EFBC81       [I] -> 0021 [!] (NFKC)
    01-11 30012  212B A1AB   814A 814A 43BE 43BE U+309B   309B     E3829B       [J]
    01-12 30012  212C A1AC   814B 814B 43BF 43BF U+309C   309C     E3829C       [K]
    01-13 30012  212D A1AD   814C 814C 4450 4450 U+00B4   00B4     C2B4         [L]
-   01-14 30012  212E A1AE   814D 814D 4279 4279 U+FF40   FF40     EFBD80       [M]
+   01-14 30012  212E A1AE   814D 814D 4279 4279 U+FF40   FF40     EFBD80       [M] -> 0060 [`] (NFKC)
    01-15 30012  212F A1AF   814E 814E 4460 4460 U+00A8   00A8     C2A8         [N]
-   01-16 30012  2130 A1B0   814F 814F 4470 4470 U+FF3E   FF3E     EFBCBE       [O]
-   01-17 30012  2131 A1B1   8150 8150 42A1 42A1 U+FFE3   FFE3     EFBFA3       [P]
-   01-18 30012  2132 A1B2   8151 8151 426D 426D U+FF3F   FF3F     EFBCBF       [Q]
+   01-16 30012  2130 A1B0   814F 814F 4470 4470 U+FF3E   FF3E     EFBCBE       [O] -> 005E [^] (NFKC)
+   01-17 30012  2131 A1B1   8150 8150 42A1 42A1 U+FFE3   FFE3     EFBFA3       [P] -> 00200304 [ ?] (NFKC)
+   01-18 30012  2132 A1B2   8151 8151 426D 426D U+FF3F   FF3F     EFBCBF       [Q] -> 005F [_] (NFKC)
    01-19 30010  2133 A1B3   8152 8152 43DC 43DC U+30FD   30FD     E383BD       [R]
    01-20 30011  2134 A1B4   8153 8153 43DD 43DD U+30FE   30FE     E383BE       [S]
    01-21 30010  2135 A1B5   8154 8154 44DC 44DC U+309D   309D     E3829D       [T]
@@ -340,27 +340,27 @@
    01-29 30910  213D A1BD   815C -    -    -    U+2014   2014     E28094       [\] -> 444A (I930) -> 444A (I939)
    01-29 77010  -    -      -    815C 444A 444A U+2015   2015     E28095       [\]
    01-30 30010  213E A1BE   815D 815D 445A 445A U+2010   2010     E28090       []]
-   01-31 30012  213F A1BF   815E 815E 4261 4261 U+FF0F   FF0F     EFBC8F       [^]
-   01-32 30012  2140 A1C0   815F 815F 43E0 43E0 U+FF3C   FF3C     EFBCBC       [_]
+   01-31 30012  213F A1BF   815E 815E 4261 4261 U+FF0F   FF0F     EFBC8F       [^] -> 002F [/] (NFKC)
+   01-32 30012  2140 A1C0   815F 815F 43E0 43E0 U+FF3C   FF3C     EFBCBC       [_] -> 005C [\] (NFKC)
    01-33 30910  2141 A1C1   8160 -    -    -    U+301C   301C     E3809C       [`] -> 43A1 (I930) -> 43A1 (I939)
-   01-33 77012  -    -      81B0 8160 43A1 43A1 U+FF5E   FF5E     EFBD9E       [`]
+   01-33 77012  -    -      81B0 8160 43A1 43A1 U+FF5E   FF5E     EFBD9E       [`] -> 007E [~] (NFKC)
    01-34 30910  2142 A1C2   8161 -    -    -    U+2016   2016     E28096       [a] -> 447C (I930) -> 447C (I939)
    01-34 77010  -    -      81D2 8161 447C 447C U+2225   2225     E288A5       [a]
-   01-35 30012  2143 A1C3   8162 8162 424F 424F U+FF5C   FF5C     EFBD9C       [b]
+   01-35 30012  2143 A1C3   8162 8162 424F 424F U+FF5C   FF5C     EFBD9C       [b] -> 007C [|] (NFKC)
    01-36 30012  2144 A1C4   8163 8163 447F 447F U+2026   2026     E280A6       [c]
    01-37 30012  2145 A1C5   8164 8164 447E 447E U+2025   2025     E280A5       [d]
    01-38 30010  2146 A1C6   8165 8165 4461 4461 U+2018   2018     E28098       [e]
    01-39 30010  2147 A1C7   8166 8166 4471 4471 U+2019   2019     E28099       [f]
    01-40 30010  2148 A1C8   8167 8167 4462 4462 U+201C   201C     E2809C       [g]
    01-41 30010  2149 A1C9   8168 8168 4472 4472 U+201D   201D     E2809D       [h]
-   01-42 30012  214A A1CA   8169 8169 424D 424D U+FF08   FF08     EFBC88       [i]
-   01-43 30012  214B A1CB   816A 816A 425D 425D U+FF09   FF09     EFBC89       [j]
+   01-42 30012  214A A1CA   8169 8169 424D 424D U+FF08   FF08     EFBC88       [i] -> 0028 [(] (NFKC)
+   01-43 30012  214B A1CB   816A 816A 425D 425D U+FF09   FF09     EFBC89       [j] -> 0029 [)] (NFKC)
    01-44 30010  214C A1CC   816B 816B 4463 4463 U+3014   3014     E38094       [k]
    01-45 30010  214D A1CD   816C 816C 4473 4473 U+3015   3015     E38095       [l]
-   01-46 30012  214E A1CE   816D 816D 4444 4444 U+FF3B   FF3B     EFBCBB       [m]
-   01-47 30012  214F A1CF   816E 816E 4445 4445 U+FF3D   FF3D     EFBCBD       [n]
-   01-48 30012  2150 A1D0   816F 816F 42C0 42C0 U+FF5B   FF5B     EFBD9B       [o]
-   01-49 30012  2151 A1D1   8170 8170 42D0 42D0 U+FF5D   FF5D     EFBD9D       [p]
+   01-46 30012  214E A1CE   816D 816D 4444 4444 U+FF3B   FF3B     EFBCBB       [m] -> 005B [[] (NFKC)
+   01-47 30012  214F A1CF   816E 816E 4445 4445 U+FF3D   FF3D     EFBCBD       [n] -> 005D []] (NFKC)
+   01-48 30012  2150 A1D0   816F 816F 42C0 42C0 U+FF5B   FF5B     EFBD9B       [o] -> 007B [{] (NFKC)
+   01-49 30012  2151 A1D1   8170 8170 42D0 42D0 U+FF5D   FF5D     EFBD9D       [p] -> 007D [}] (NFKC)
    01-50 30010  2152 A1D2   8171 8171 4464 4464 U+3008   3008     E38088       [q]
    01-51 30010  2153 A1D3   8172 8172 4474 4474 U+3009   3009     E38089       [r]
    01-52 30010  2154 A1D4   8173 8173 4465 4465 U+300A   300A     E3808A       [s]
@@ -371,16 +371,16 @@
    01-57 30010  2159 A1D9   8178 8178 4443 4443 U+300F   300F     E3808F       [x]
    01-58 30010  215A A1DA   8179 8179 4466 4466 U+3010   3010     E38090       [y]
    01-59 30010  215B A1DB   817A 817A 4476 4476 U+3011   3011     E38091       [z]
-   01-60 30012  215C A1DC   817B 817B 424E 424E U+FF0B   FF0B     EFBC8B       [{]
+   01-60 30012  215C A1DC   817B 817B 424E 424E U+FF0B   FF0B     EFBC8B       [{] -> 002B [+] (NFKC)
    01-61 30910  215D A1DD   817C -    4260 -    U+2212   2212     E28892       [|] -> 4260 (I939)
-   01-61 77012  -    -      81AF 817C -    4260 U+FF0D   FF0D     EFBC8D       [|] -> 4260 (I930)
+   01-61 77012  -    -      81AF 817C -    4260 U+FF0D   FF0D     EFBC8D       [|] -> 4260 (I930) -> 002D [-] (NFKC)
    01-62 30010  215E A1DE   817D 817D 444B 444B U+00B1   00B1     C2B1         [}]
    01-63 30010  215F A1DF   817E 817E 447A 447A U+00D7   00D7     C397         [~]
    01-64 30010  2160 A1E0   8180 8180 447B 447B U+00F7   00F7     C3B7         [€]
-   01-65 30012  2161 A1E1   8181 8181 427E 427E U+FF1D   FF1D     EFBC9D       []
+   01-65 30012  2161 A1E1   8181 8181 427E 427E U+FF1D   FF1D     EFBC9D       [] -> 003D [=] (NFKC)
    01-66 30011  2162 A1E2   8182 8182 444C 444C U+2260   2260     E289A0       [‚]
-   01-67 30012  2163 A1E3   8183 8183 424C 424C U+FF1C   FF1C     EFBC9C       [ƒ]
-   01-68 30012  2164 A1E4   8184 8184 426E 426E U+FF1E   FF1E     EFBC9E       [„]
+   01-67 30012  2163 A1E3   8183 8183 424C 424C U+FF1C   FF1C     EFBC9C       [ƒ] -> 003C [<] (NFKC)
+   01-68 30012  2164 A1E4   8184 8184 426E 426E U+FF1E   FF1E     EFBC9E       [„] -> 003E [>] (NFKC)
    01-69 30010  2165 A1E5   8185 8185 4467 4467 U+2266   2266     E289A6       […]
    01-70 30010  2166 A1E6   8186 8186 4477 4477 U+2267   2267     E289A7       [†]
    01-71 30010  2167 A1E7   8187 8187 444D 444D U+221E   221E     E2889E       [‡]
@@ -391,17 +391,17 @@
    01-76 30010  216C A1EC   818C 818C 44EE 44EE U+2032   2032     E280B2       [Œ]
    01-77 30012  216D A1ED   818D 818D 44EF 44EF U+2033   2033     E280B3       []
    01-78 30012  216E A1EE   818E 818E 444E 444E U+2103   2103     E28483       [Ž]
-   01-79 30012  216F A1EF   818F 818F 425B 425B U+FFE5   FFE5     EFBFA5       []
-   01-80 30012  2170 A1F0   8190 8190 42E0 42E0 U+FF04   FF04     EFBC84       []
+   01-79 30012  216F A1EF   818F 818F 425B 425B U+FFE5   FFE5     EFBFA5       [] -> 00A5 [\] (NFKC)
+   01-80 30012  2170 A1F0   8190 8190 42E0 42E0 U+FF04   FF04     EFBC84       [] -> 0024 [$] (NFKC)
    01-81 30710  2171 A1F1   8191 -    B1   4A   U+00A2   00A2     C2A2         [‘] -> 8191 (W31J)
-   01-81 77012  -    -      -    8191 434A 434A U+FFE0   FFE0     EFBFA0       [‘]
+   01-81 77012  -    -      -    8191 434A 434A U+FFE0   FFE0     EFBFA0       [‘] -> 00A2 [‘] (NFKC)
    01-82 30710  2172 A1F2   8192 -    4A   B1   U+00A3   00A3     C2A3         [’] -> 8192 (W31J)
-   01-82 77012  -    -      -    8192 424A 424A U+FFE1   FFE1     EFBFA1       [’]
-   01-83 30012  2173 A1F3   8193 8193 426C 426C U+FF05   FF05     EFBC85       [“]
-   01-84 30012  2174 A1F4   8194 8194 427B 427B U+FF03   FF03     EFBC83       [”]
-   01-85 30012  2175 A1F5   8195 8195 4250 4250 U+FF06   FF06     EFBC86       [•]
-   01-86 30012  2176 A1F6   8196 8196 425C 425C U+FF0A   FF0A     EFBC8A       [–]
-   01-87 30012  2177 A1F7   8197 8197 427C 427C U+FF20   FF20     EFBCA0       [—]
+   01-82 77012  -    -      -    8192 424A 424A U+FFE1   FFE1     EFBFA1       [’] -> 00A3 [’] (NFKC)
+   01-83 30012  2173 A1F3   8193 8193 426C 426C U+FF05   FF05     EFBC85       [“] -> 0025 [%] (NFKC)
+   01-84 30012  2174 A1F4   8194 8194 427B 427B U+FF03   FF03     EFBC83       [”] -> 0023 [#] (NFKC)
+   01-85 30012  2175 A1F5   8195 8195 4250 4250 U+FF06   FF06     EFBC86       [•] -> 0026 [&] (NFKC)
+   01-86 30012  2176 A1F6   8196 8196 425C 425C U+FF0A   FF0A     EFBC8A       [–] -> 002A [*] (NFKC)
+   01-87 30012  2177 A1F7   8197 8197 427C 427C U+FF20   FF20     EFBCA0       [—] -> 0040 [@] (NFKC)
    01-88 30010  2178 A1F8   8198 8198 446A 446A U+00A7   00A7     C2A7         [˜]
    01-89 30010  2179 A1F9   8199 8199 44E5 44E5 U+2606   2606     E29886       [™]
    01-90 30010  217A A1FA   819A 819A 44E6 44E6 U+2605   2605     E29885       [š]
@@ -454,7 +454,7 @@
    02-42 30010  224A A2CA   81C8 81C8 436C 436C U+2227   2227     E288A7       [È]
    02-43 30010  224B A2CB   81C9 81C9 436D 436D U+2228   2228     E288A8       [É]
    02-44 30710  224C A2CC   81CA -    5F   5F   U+00AC   00AC     C2AC         [Ê] -> 81CA (W31J)
-   02-44 77012  -    -      -    81CA 425F 425F U+FFE2   FFE2     EFBFA2       [Ê]
+   02-44 77012  -    -      -    81CA 425F 425F U+FFE2   FFE2     EFBFA2       [Ê] -> 00AC [Ê] (NFKC)
    02-45 30010  224D A2CD   81CB 81CB 436E 436E U+21D2   21D2     E28792       [Ë]
    02-46 30010  224E A2CE   81CC 81CC 436F 436F U+21D4   21D4     E28794       [Ì]
    02-47 30010  224F A2CF   81CD 81CD 4370 4370 U+2200   2200     E28880       [Í]
@@ -521,16 +521,16 @@
    03-13 99999  -    -      -    824C -    -    U+FFFD   FFFD     EFBFBD       
    03-14 99999  -    -      -    824D -    -    U+FFFD   FFFD     EFBFBD       
    03-15 99999  -    -      -    824E -    -    U+FFFD   FFFD     EFBFBD       
-   03-16 30012  2330 A3B0   824F 824F 42F0 42F0 U+FF10   FF10     EFBC90       [‚O]
-   03-17 30012  2331 A3B1   8250 8250 42F1 42F1 U+FF11   FF11     EFBC91       [‚P]
-   03-18 30012  2332 A3B2   8251 8251 42F2 42F2 U+FF12   FF12     EFBC92       [‚Q]
-   03-19 30012  2333 A3B3   8252 8252 42F3 42F3 U+FF13   FF13     EFBC93       [‚R]
-   03-20 30012  2334 A3B4   8253 8253 42F4 42F4 U+FF14   FF14     EFBC94       [‚S]
-   03-21 30012  2335 A3B5   8254 8254 42F5 42F5 U+FF15   FF15     EFBC95       [‚T]
-   03-22 30012  2336 A3B6   8255 8255 42F6 42F6 U+FF16   FF16     EFBC96       [‚U]
-   03-23 30012  2337 A3B7   8256 8256 42F7 42F7 U+FF17   FF17     EFBC97       [‚V]
-   03-24 30012  2338 A3B8   8257 8257 42F8 42F8 U+FF18   FF18     EFBC98       [‚W]
-   03-25 30012  2339 A3B9   8258 8258 42F9 42F9 U+FF19   FF19     EFBC99       [‚X]
+   03-16 30012  2330 A3B0   824F 824F 42F0 42F0 U+FF10   FF10     EFBC90       [‚O] -> 0030 [0] (NFKC)
+   03-17 30012  2331 A3B1   8250 8250 42F1 42F1 U+FF11   FF11     EFBC91       [‚P] -> 0031 [1] (NFKC)
+   03-18 30012  2332 A3B2   8251 8251 42F2 42F2 U+FF12   FF12     EFBC92       [‚Q] -> 0032 [2] (NFKC)
+   03-19 30012  2333 A3B3   8252 8252 42F3 42F3 U+FF13   FF13     EFBC93       [‚R] -> 0033 [3] (NFKC)
+   03-20 30012  2334 A3B4   8253 8253 42F4 42F4 U+FF14   FF14     EFBC94       [‚S] -> 0034 [4] (NFKC)
+   03-21 30012  2335 A3B5   8254 8254 42F5 42F5 U+FF15   FF15     EFBC95       [‚T] -> 0035 [5] (NFKC)
+   03-22 30012  2336 A3B6   8255 8255 42F6 42F6 U+FF16   FF16     EFBC96       [‚U] -> 0036 [6] (NFKC)
+   03-23 30012  2337 A3B7   8256 8256 42F7 42F7 U+FF17   FF17     EFBC97       [‚V] -> 0037 [7] (NFKC)
+   03-24 30012  2338 A3B8   8257 8257 42F8 42F8 U+FF18   FF18     EFBC98       [‚W] -> 0038 [8] (NFKC)
+   03-25 30012  2339 A3B9   8258 8258 42F9 42F9 U+FF19   FF19     EFBC99       [‚X] -> 0039 [9] (NFKC)
    03-26 99999  -    -      -    8259 -    -    U+FFFD   FFFD     EFBFBD       
    03-27 99999  -    -      -    825A -    -    U+FFFD   FFFD     EFBFBD       
    03-28 99999  -    -      -    825B -    -    U+FFFD   FFFD     EFBFBD       
@@ -538,64 +538,64 @@
    03-30 99999  -    -      -    825D -    -    U+FFFD   FFFD     EFBFBD       
    03-31 99999  -    -      -    825E -    -    U+FFFD   FFFD     EFBFBD       
    03-32 99999  -    -      -    825F -    -    U+FFFD   FFFD     EFBFBD       
-   03-33 30012  2341 A3C1   8260 8260 42C1 42C1 U+FF21   FF21     EFBCA1       [‚`]
-   03-34 30012  2342 A3C2   8261 8261 42C2 42C2 U+FF22   FF22     EFBCA2       [‚a]
-   03-35 30012  2343 A3C3   8262 8262 42C3 42C3 U+FF23   FF23     EFBCA3       [‚b]
-   03-36 30012  2344 A3C4   8263 8263 42C4 42C4 U+FF24   FF24     EFBCA4       [‚c]
-   03-37 30012  2345 A3C5   8264 8264 42C5 42C5 U+FF25   FF25     EFBCA5       [‚d]
-   03-38 30012  2346 A3C6   8265 8265 42C6 42C6 U+FF26   FF26     EFBCA6       [‚e]
-   03-39 30012  2347 A3C7   8266 8266 42C7 42C7 U+FF27   FF27     EFBCA7       [‚f]
-   03-40 30012  2348 A3C8   8267 8267 42C8 42C8 U+FF28   FF28     EFBCA8       [‚g]
-   03-41 30012  2349 A3C9   8268 8268 42C9 42C9 U+FF29   FF29     EFBCA9       [‚h]
-   03-42 30012  234A A3CA   8269 8269 42D1 42D1 U+FF2A   FF2A     EFBCAA       [‚i]
-   03-43 30012  234B A3CB   826A 826A 42D2 42D2 U+FF2B   FF2B     EFBCAB       [‚j]
-   03-44 30012  234C A3CC   826B 826B 42D3 42D3 U+FF2C   FF2C     EFBCAC       [‚k]
-   03-45 30012  234D A3CD   826C 826C 42D4 42D4 U+FF2D   FF2D     EFBCAD       [‚l]
-   03-46 30012  234E A3CE   826D 826D 42D5 42D5 U+FF2E   FF2E     EFBCAE       [‚m]
-   03-47 30012  234F A3CF   826E 826E 42D6 42D6 U+FF2F   FF2F     EFBCAF       [‚n]
-   03-48 30012  2350 A3D0   826F 826F 42D7 42D7 U+FF30   FF30     EFBCB0       [‚o]
-   03-49 30012  2351 A3D1   8270 8270 42D8 42D8 U+FF31   FF31     EFBCB1       [‚p]
-   03-50 30012  2352 A3D2   8271 8271 42D9 42D9 U+FF32   FF32     EFBCB2       [‚q]
-   03-51 30012  2353 A3D3   8272 8272 42E2 42E2 U+FF33   FF33     EFBCB3       [‚r]
-   03-52 30012  2354 A3D4   8273 8273 42E3 42E3 U+FF34   FF34     EFBCB4       [‚s]
-   03-53 30012  2355 A3D5   8274 8274 42E4 42E4 U+FF35   FF35     EFBCB5       [‚t]
-   03-54 30012  2356 A3D6   8275 8275 42E5 42E5 U+FF36   FF36     EFBCB6       [‚u]
-   03-55 30012  2357 A3D7   8276 8276 42E6 42E6 U+FF37   FF37     EFBCB7       [‚v]
-   03-56 30012  2358 A3D8   8277 8277 42E7 42E7 U+FF38   FF38     EFBCB8       [‚w]
-   03-57 30012  2359 A3D9   8278 8278 42E8 42E8 U+FF39   FF39     EFBCB9       [‚x]
-   03-58 30012  235A A3DA   8279 8279 42E9 42E9 U+FF3A   FF3A     EFBCBA       [‚y]
+   03-33 30012  2341 A3C1   8260 8260 42C1 42C1 U+FF21   FF21     EFBCA1       [‚`] -> 0041 [A] (NFKC)
+   03-34 30012  2342 A3C2   8261 8261 42C2 42C2 U+FF22   FF22     EFBCA2       [‚a] -> 0042 [B] (NFKC)
+   03-35 30012  2343 A3C3   8262 8262 42C3 42C3 U+FF23   FF23     EFBCA3       [‚b] -> 0043 [C] (NFKC)
+   03-36 30012  2344 A3C4   8263 8263 42C4 42C4 U+FF24   FF24     EFBCA4       [‚c] -> 0044 [D] (NFKC)
+   03-37 30012  2345 A3C5   8264 8264 42C5 42C5 U+FF25   FF25     EFBCA5       [‚d] -> 0045 [E] (NFKC)
+   03-38 30012  2346 A3C6   8265 8265 42C6 42C6 U+FF26   FF26     EFBCA6       [‚e] -> 0046 [F] (NFKC)
+   03-39 30012  2347 A3C7   8266 8266 42C7 42C7 U+FF27   FF27     EFBCA7       [‚f] -> 0047 [G] (NFKC)
+   03-40 30012  2348 A3C8   8267 8267 42C8 42C8 U+FF28   FF28     EFBCA8       [‚g] -> 0048 [H] (NFKC)
+   03-41 30012  2349 A3C9   8268 8268 42C9 42C9 U+FF29   FF29     EFBCA9       [‚h] -> 0049 [I] (NFKC)
+   03-42 30012  234A A3CA   8269 8269 42D1 42D1 U+FF2A   FF2A     EFBCAA       [‚i] -> 004A [J] (NFKC)
+   03-43 30012  234B A3CB   826A 826A 42D2 42D2 U+FF2B   FF2B     EFBCAB       [‚j] -> 004B [K] (NFKC)
+   03-44 30012  234C A3CC   826B 826B 42D3 42D3 U+FF2C   FF2C     EFBCAC       [‚k] -> 004C [L] (NFKC)
+   03-45 30012  234D A3CD   826C 826C 42D4 42D4 U+FF2D   FF2D     EFBCAD       [‚l] -> 004D [M] (NFKC)
+   03-46 30012  234E A3CE   826D 826D 42D5 42D5 U+FF2E   FF2E     EFBCAE       [‚m] -> 004E [N] (NFKC)
+   03-47 30012  234F A3CF   826E 826E 42D6 42D6 U+FF2F   FF2F     EFBCAF       [‚n] -> 004F [O] (NFKC)
+   03-48 30012  2350 A3D0   826F 826F 42D7 42D7 U+FF30   FF30     EFBCB0       [‚o] -> 0050 [P] (NFKC)
+   03-49 30012  2351 A3D1   8270 8270 42D8 42D8 U+FF31   FF31     EFBCB1       [‚p] -> 0051 [Q] (NFKC)
+   03-50 30012  2352 A3D2   8271 8271 42D9 42D9 U+FF32   FF32     EFBCB2       [‚q] -> 0052 [R] (NFKC)
+   03-51 30012  2353 A3D3   8272 8272 42E2 42E2 U+FF33   FF33     EFBCB3       [‚r] -> 0053 [S] (NFKC)
+   03-52 30012  2354 A3D4   8273 8273 42E3 42E3 U+FF34   FF34     EFBCB4       [‚s] -> 0054 [T] (NFKC)
+   03-53 30012  2355 A3D5   8274 8274 42E4 42E4 U+FF35   FF35     EFBCB5       [‚t] -> 0055 [U] (NFKC)
+   03-54 30012  2356 A3D6   8275 8275 42E5 42E5 U+FF36   FF36     EFBCB6       [‚u] -> 0056 [V] (NFKC)
+   03-55 30012  2357 A3D7   8276 8276 42E6 42E6 U+FF37   FF37     EFBCB7       [‚v] -> 0057 [W] (NFKC)
+   03-56 30012  2358 A3D8   8277 8277 42E7 42E7 U+FF38   FF38     EFBCB8       [‚w] -> 0058 [X] (NFKC)
+   03-57 30012  2359 A3D9   8278 8278 42E8 42E8 U+FF39   FF39     EFBCB9       [‚x] -> 0059 [Y] (NFKC)
+   03-58 30012  235A A3DA   8279 8279 42E9 42E9 U+FF3A   FF3A     EFBCBA       [‚y] -> 005A [Z] (NFKC)
    03-59 99999  -    -      -    827A -    -    U+FFFD   FFFD     EFBFBD       
    03-60 99999  -    -      -    827B -    -    U+FFFD   FFFD     EFBFBD       
    03-61 99999  -    -      -    827C -    -    U+FFFD   FFFD     EFBFBD       
    03-62 99999  -    -      -    827D -    -    U+FFFD   FFFD     EFBFBD       
    03-63 99999  -    -      -    827E -    -    U+FFFD   FFFD     EFBFBD       
    03-64 99999  -    -      -    8280 -    -    U+FFFD   FFFD     EFBFBD       
-   03-65 30012  2361 A3E1   8281 8281 4281 4281 U+FF41   FF41     EFBD81       [‚]
-   03-66 30012  2362 A3E2   8282 8282 4282 4282 U+FF42   FF42     EFBD82       [‚‚]
-   03-67 30012  2363 A3E3   8283 8283 4283 4283 U+FF43   FF43     EFBD83       [‚ƒ]
-   03-68 30012  2364 A3E4   8284 8284 4284 4284 U+FF44   FF44     EFBD84       [‚„]
-   03-69 30012  2365 A3E5   8285 8285 4285 4285 U+FF45   FF45     EFBD85       [‚…]
-   03-70 30012  2366 A3E6   8286 8286 4286 4286 U+FF46   FF46     EFBD86       [‚†]
-   03-71 30012  2367 A3E7   8287 8287 4287 4287 U+FF47   FF47     EFBD87       [‚‡]
-   03-72 30012  2368 A3E8   8288 8288 4288 4288 U+FF48   FF48     EFBD88       [‚ˆ]
-   03-73 30012  2369 A3E9   8289 8289 4289 4289 U+FF49   FF49     EFBD89       [‚‰]
-   03-74 30012  236A A3EA   828A 828A 4291 4291 U+FF4A   FF4A     EFBD8A       [‚Š]
-   03-75 30012  236B A3EB   828B 828B 4292 4292 U+FF4B   FF4B     EFBD8B       [‚‹]
-   03-76 30012  236C A3EC   828C 828C 4293 4293 U+FF4C   FF4C     EFBD8C       [‚Œ]
-   03-77 30012  236D A3ED   828D 828D 4294 4294 U+FF4D   FF4D     EFBD8D       [‚]
-   03-78 30012  236E A3EE   828E 828E 4295 4295 U+FF4E   FF4E     EFBD8E       [‚Ž]
-   03-79 30012  236F A3EF   828F 828F 4296 4296 U+FF4F   FF4F     EFBD8F       [‚]
-   03-80 30012  2370 A3F0   8290 8290 4297 4297 U+FF50   FF50     EFBD90       [‚]
-   03-81 30012  2371 A3F1   8291 8291 4298 4298 U+FF51   FF51     EFBD91       [‚‘]
-   03-82 30012  2372 A3F2   8292 8292 4299 4299 U+FF52   FF52     EFBD92       [‚’]
-   03-83 30012  2373 A3F3   8293 8293 42A2 42A2 U+FF53   FF53     EFBD93       [‚“]
-   03-84 30012  2374 A3F4   8294 8294 42A3 42A3 U+FF54   FF54     EFBD94       [‚”]
-   03-85 30012  2375 A3F5   8295 8295 42A4 42A4 U+FF55   FF55     EFBD95       [‚•]
-   03-86 30012  2376 A3F6   8296 8296 42A5 42A5 U+FF56   FF56     EFBD96       [‚–]
-   03-87 30012  2377 A3F7   8297 8297 42A6 42A6 U+FF57   FF57     EFBD97       [‚—]
-   03-88 30012  2378 A3F8   8298 8298 42A7 42A7 U+FF58   FF58     EFBD98       [‚˜]
-   03-89 30012  2379 A3F9   8299 8299 42A8 42A8 U+FF59   FF59     EFBD99       [‚™]
-   03-90 30012  237A A3FA   829A 829A 42A9 42A9 U+FF5A   FF5A     EFBD9A       [‚š]
+   03-65 30012  2361 A3E1   8281 8281 4281 4281 U+FF41   FF41     EFBD81       [‚] -> 0061 [a] (NFKC)
+   03-66 30012  2362 A3E2   8282 8282 4282 4282 U+FF42   FF42     EFBD82       [‚‚] -> 0062 [b] (NFKC)
+   03-67 30012  2363 A3E3   8283 8283 4283 4283 U+FF43   FF43     EFBD83       [‚ƒ] -> 0063 [c] (NFKC)
+   03-68 30012  2364 A3E4   8284 8284 4284 4284 U+FF44   FF44     EFBD84       [‚„] -> 0064 [d] (NFKC)
+   03-69 30012  2365 A3E5   8285 8285 4285 4285 U+FF45   FF45     EFBD85       [‚…] -> 0065 [e] (NFKC)
+   03-70 30012  2366 A3E6   8286 8286 4286 4286 U+FF46   FF46     EFBD86       [‚†] -> 0066 [f] (NFKC)
+   03-71 30012  2367 A3E7   8287 8287 4287 4287 U+FF47   FF47     EFBD87       [‚‡] -> 0067 [g] (NFKC)
+   03-72 30012  2368 A3E8   8288 8288 4288 4288 U+FF48   FF48     EFBD88       [‚ˆ] -> 0068 [h] (NFKC)
+   03-73 30012  2369 A3E9   8289 8289 4289 4289 U+FF49   FF49     EFBD89       [‚‰] -> 0069 [i] (NFKC)
+   03-74 30012  236A A3EA   828A 828A 4291 4291 U+FF4A   FF4A     EFBD8A       [‚Š] -> 006A [j] (NFKC)
+   03-75 30012  236B A3EB   828B 828B 4292 4292 U+FF4B   FF4B     EFBD8B       [‚‹] -> 006B [k] (NFKC)
+   03-76 30012  236C A3EC   828C 828C 4293 4293 U+FF4C   FF4C     EFBD8C       [‚Œ] -> 006C [l] (NFKC)
+   03-77 30012  236D A3ED   828D 828D 4294 4294 U+FF4D   FF4D     EFBD8D       [‚] -> 006D [m] (NFKC)
+   03-78 30012  236E A3EE   828E 828E 4295 4295 U+FF4E   FF4E     EFBD8E       [‚Ž] -> 006E [n] (NFKC)
+   03-79 30012  236F A3EF   828F 828F 4296 4296 U+FF4F   FF4F     EFBD8F       [‚] -> 006F [o] (NFKC)
+   03-80 30012  2370 A3F0   8290 8290 4297 4297 U+FF50   FF50     EFBD90       [‚] -> 0070 [p] (NFKC)
+   03-81 30012  2371 A3F1   8291 8291 4298 4298 U+FF51   FF51     EFBD91       [‚‘] -> 0071 [q] (NFKC)
+   03-82 30012  2372 A3F2   8292 8292 4299 4299 U+FF52   FF52     EFBD92       [‚’] -> 0072 [r] (NFKC)
+   03-83 30012  2373 A3F3   8293 8293 42A2 42A2 U+FF53   FF53     EFBD93       [‚“] -> 0073 [s] (NFKC)
+   03-84 30012  2374 A3F4   8294 8294 42A3 42A3 U+FF54   FF54     EFBD94       [‚”] -> 0074 [t] (NFKC)
+   03-85 30012  2375 A3F5   8295 8295 42A4 42A4 U+FF55   FF55     EFBD95       [‚•] -> 0075 [u] (NFKC)
+   03-86 30012  2376 A3F6   8296 8296 42A5 42A5 U+FF56   FF56     EFBD96       [‚–] -> 0076 [v] (NFKC)
+   03-87 30012  2377 A3F7   8297 8297 42A6 42A6 U+FF57   FF57     EFBD97       [‚—] -> 0077 [w] (NFKC)
+   03-88 30012  2378 A3F8   8298 8298 42A7 42A7 U+FF58   FF58     EFBD98       [‚˜] -> 0078 [x] (NFKC)
+   03-89 30012  2379 A3F9   8299 8299 42A8 42A8 U+FF59   FF59     EFBD99       [‚™] -> 0079 [y] (NFKC)
+   03-90 30012  237A A3FA   829A 829A 42A9 42A9 U+FF5A   FF5A     EFBD9A       [‚š] -> 007A [z] (NFKC)
    03-91 99999  -    -      -    829B -    -    U+FFFD   FFFD     EFBFBD       
    03-92 99999  -    -      -    829C -    -    U+FFFD   FFFD     EFBFBD       
    03-93 99999  -    -      -    829D -    -    U+FFFD   FFFD     EFBFBD       
@@ -11191,9 +11191,9 @@
   115-19 77372  -    -      -    FA52 -    -    U+2168   2168     E285A8       [úR] => 875C
   115-20 77372  -    -      -    FA53 -    -    U+2169   2169     E285A9       [úS] => 875D
   115-21 77372  -    -      -    FA54 -    -    U+FFE2   FFE2     EFBFA2       [úT] => 81CA
-  115-22 77312  -    -      -    FA55 426A 426A U+FFE4   FFE4     EFBFA4       [úU]
-  115-23 77312  -    -      81AD FA56 427D 427D U+FF07   FF07     EFBC87       [úV]
-  115-24 77312  -    -      81AE FA57 427F 427F U+FF02   FF02     EFBC82       [úW]
+  115-22 77312  -    -      -    FA55 426A 426A U+FFE4   FFE4     EFBFA4       [úU] -> 00A6 [?] (NFKC)
+  115-23 77312  -    -      81AD FA56 427D 427D U+FF07   FF07     EFBC87       [úV] -> 0027 ['] (NFKC)
+  115-24 77312  -    -      81AE FA57 427F 427F U+FF02   FF02     EFBC82       [úW] -> 0022 ["] (NFKC)
   115-25 77372  -    -      -    FA58 -    -    U+3231   3231     E388B1       [úX] => 878A
   115-26 77372  -    -      -    FA59 -    -    U+2116   2116     E28496       [úY] => 8782
   115-27 77372  -    -      -    FA5A -    -    U+2121   2121     E284A1       [úZ] => 8784
@@ -11744,10 +11744,10 @@
 
 –Ê-‹æ-“_ ‹æ•ª   JIS  EUC    SJIS W31J I930 I939 Unicode  UTF-16   UTF-8        ”õl
 -------- ------ ---- ------ ---- ---- ---- ---- -------- -------- ------------ ----
- 1-02-15 40712  222F A2AF   81AD FA56 427D 427D U+FF07   FF07     EFBC87       [úV]
- 1-02-16 40712  2230 A2B0   81AE FA57 427F 427F U+FF02   FF02     EFBC82       [úW]
- 1-02-17 40712  2231 A2B1   81AF 817C -    4260 U+FF0D   FF0D     EFBC8D       [|] -> 4260 (I930)
- 1-02-18 40712  2232 A2B2   81B0 8160 43A1 43A1 U+FF5E   FF5E     EFBD9E       [`]
+ 1-02-15 40712  222F A2AF   81AD FA56 427D 427D U+FF07   FF07     EFBC87       [úV] -> 0027 ['] (NFKC)
+ 1-02-16 40712  2230 A2B0   81AE FA57 427F 427F U+FF02   FF02     EFBC82       [úW] -> 0022 ["] (NFKC)
+ 1-02-17 40712  2231 A2B1   81AF 817C -    4260 U+FF0D   FF0D     EFBC8D       [|] -> 4260 (I930) -> 002D [-] (NFKC)
+ 1-02-18 40712  2232 A2B2   81B0 8160 43A1 43A1 U+FF5E   FF5E     EFBD9E       [`] -> 007E [~] (NFKC)
  1-02-19 40910  2233 A2B3   81B1 -    -    -    U+3033   3033     E380B3       [?]
  1-02-20 40910  2234 A2B4   81B2 -    -    -    U+3034   3034     E380B4       [?]
  1-02-21 40910  2235 A2B5   81B3 -    -    -    U+3035   3035     E380B5       [?]
@@ -11768,8 +11768,8 @@
  1-02-51 40910  2253 A2D3   81D1 -    -    -    U+2297   2297     E28A97       [?]
  1-02-52 40710  2254 A2D4   81D2 8161 447C 447C U+2225   2225     E288A5       [a]
  1-02-53 40911  2255 A2D5   81D3 -    -    -    U+2226   2226     E288A6       [?]
- 1-02-54 40912  2256 A2D6   81D4 -    -    -    U+FF5F   FF5F     EFBD9F       [?]
- 1-02-55 40912  2257 A2D7   81D5 -    -    -    U+FF60   FF60     EFBDA0       [?]
+ 1-02-54 40912  2256 A2D6   81D4 -    -    -    U+FF5F   FF5F     EFBD9F       [?] -> 2985 [?] (NFKC)
+ 1-02-55 40912  2257 A2D7   81D5 -    -    -    U+FF60   FF60     EFBDA0       [?] -> 2986 [?] (NFKC)
  1-02-56 40910  2258 A2D8   81D6 -    -    -    U+3018   3018     E38098       [?]
  1-02-57 40910  2259 A2D9   81D7 -    -    -    U+3019   3019     E38099       [?]
  1-02-58 40910  225A A2DA   81D8 -    -    -    U+3016   3016     E38096       [?]
