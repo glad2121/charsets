@@ -3,7 +3,9 @@ import static java.text.Normalizer.*;
 import static java.text.Normalizer.Form.*;
 import java.io.*;
 import java.nio.charset.*;
+import java.nio.file.*;
 import java.util.*;
+import java.util.regex.*;
 
 class Charsets {
 
@@ -17,6 +19,24 @@ class Charsets {
 
     static final byte[] EMPTY_BYTES = {};
     static final byte[] BYTES_3F = {(byte) 0x3F};
+
+    static final Map<String, String> VARIANT_MAP;
+    static {
+        Pattern p = Pattern.compile(" *U\\+(\\S+) +U\\+(\\S+).*");
+        Map<String, String> variantMap = new HashMap<>();
+        try (BufferedReader in = Files.newBufferedReader(Paths.get("variants.txt"), UTF_8)) {
+            String line;
+            while ((line = in.readLine()) != null) {
+                Matcher m = p.matcher(line);
+                if (m.matches()) {
+                    variantMap.put(cpToString(m.group(1)), cpToString(m.group(2)));
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        VARIANT_MAP = variantMap;
+    }
 
     final String option;
     final Charset encoding;
@@ -428,6 +448,10 @@ class Charsets {
         return toHexString(s.toCharArray());
     }
 
+    static String cpToString(String cp) {
+        return new StringBuilder().appendCodePoint(Integer.parseInt(cp, 16)).toString();
+    }
+
     static boolean isEbcdicKanji(byte[] ebcdic) {
         int length = ebcdic.length;
         return length == 4 && ebcdic[0] == 0x0E && ebcdic[length - 1] == 0x0F;
@@ -462,6 +486,7 @@ class Charsets {
         String nfc;
         String nfkc;
         String nfd;
+        String variant;
 
         void initUnicode(String s) {
             this.s = s;
@@ -474,6 +499,7 @@ class Charsets {
             this.nfc  = normalize(s, NFC);
             this.nfkc = normalize(s, NFKC);
             this.nfd  = normalize(s, NFD);
+            this.variant = VARIANT_MAP.get(s);
         }
 
         boolean undefined() {
@@ -662,6 +688,8 @@ class Charsets {
                         } else {
                             bab.append(" -> %s [%s] (NFKC)", toHexString(nfkc), nfkc);
                         }
+                    } else if (variant != null && !variant.isEmpty()) {
+                        bab.append(" -> %s [%s]", toHexString(variant), variant);
                     }
                 }
             }
@@ -767,6 +795,8 @@ class Charsets {
                         bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
                     } else if (!nfkc.equals(s) && (cp & 0xFF00) == 0xFF00) {
                         bab.append(" -> %s [%s] (NFKC)", toHexString(nfkc), nfkc);
+                    } else if (variant != null && !variant.isEmpty()) {
+                        bab.append(" -> %s [%s]", toHexString(variant), variant);
                     }
                 }
             }
@@ -906,6 +936,8 @@ class Charsets {
                         bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
                     } else if (!nfkc.equals(s) && (cp & 0xFF00) == 0xFF00) {
                         bab.append(" -> %s [%s] (NFKC)", toHexString(nfkc), nfkc);
+                    } else if (variant != null && !variant.isEmpty()) {
+                        bab.append(" -> %s [%s]", toHexString(variant), variant);
                     }
                 }
             }
@@ -1059,6 +1091,8 @@ class Charsets {
                         bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
                     } else if (!nfkc.equals(s) && (cp & 0xFF00) == 0xFF00) {
                         bab.append(" -> %s [%s] (NFKC)", toHexString(nfkc), nfkc);
+                    } else if (variant != null && !variant.isEmpty()) {
+                        bab.append(" -> %s [%s]", toHexString(variant), variant);
                     }
                 }
             }
