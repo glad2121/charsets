@@ -610,7 +610,11 @@ class Charsets {
                 bab.append("%02X   ", c);
             } else {
                 // ISO-2022-JP
-                bab.append("%02X   ", jis);
+                if (0x80 <= c) {
+                    bab.append("-    ");
+                } else {
+                    bab.append("%02X   ", jis);
+                }
                 // EUC-JP
                 if (euc < 0) {
                     bab.append("-      ");
