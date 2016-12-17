@@ -674,21 +674,35 @@ class Charsets {
                     if (!decodableFromSjis2004()) {
                         bab.append(" -> %s (SJIS2004)", toHexString(bx2));
                     }
+                    String sI930 = null;
+                    String sI939 = null;
                     if (encodableToI930() && !decodableFromI930()) {
-                        bab.append(" -> %s (I930)", i930());
+                        sI930 = i930();
                     }
                     if (encodableToI939() && !decodableFromI939()) {
-                        bab.append(" -> %s (I939)", i939());
+                        sI939 = i939();
+                    }
+                    if (sI930 != null && sI930.equals(sI939)) {
+                        bab.append(" -> %s (I930, I939)", sI930);
+                    } else {
+                        if (sI930 != null) {
+                            bab.append(" -> %s (I930)", sI930);
+                        }
+                        if (sI939 != null) {
+                            bab.append(" -> %s (I939)", sI939);
+                        }
                     }
                     if (!nfc.equals(s)) {
                         bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
-                    } else if (!nfkc.equals(s) && (cp & 0xFF00) == 0xFF00) {
+                    } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                         if ("\u3099".equals(nfkc) || "\u309A".equals(nfkc)) {
                             bab.append(" -> %s (NFKC)", toHexString(nfkc));
                         } else {
                             bab.append(" -> %s [%s] (NFKC)", toHexString(nfkc), nfkc);
                         }
-                    } else if (variant != null && !variant.isEmpty()) {
+                    }
+                    if (variant != null && !variant.isEmpty()
+                            && !variant.equals(nfc) && !variant.equals(nfkc)) {
                         bab.append(" -> %s [%s]", toHexString(variant), variant);
                     }
                 }
@@ -785,17 +799,31 @@ class Charsets {
                     if (!Arrays.equals(bw2, BYTES_3F)) {
                         bab.append(" -> %s (W31J)", toHexString(bw2));
                     }
+                    String sI930 = null;
+                    String sI939 = null;
                     if (encodableToI930() && !decodableFromI930()) {
-                        bab.append(" -> %s (I930)", i930());
+                        sI930 = i930();
                     }
                     if (encodableToI939() && !decodableFromI939()) {
-                        bab.append(" -> %s (I939)", i939());
+                        sI939 = i939();
+                    }
+                    if (sI930 != null && sI930.equals(sI939)) {
+                        bab.append(" -> %s (I930, I939)", sI930);
+                    } else {
+                        if (sI930 != null) {
+                            bab.append(" -> %s (I930)", sI930);
+                        }
+                        if (sI939 != null) {
+                            bab.append(" -> %s (I939)", sI939);
+                        }
                     }
                     if (!nfc.equals(s)) {
                         bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
-                    } else if (!nfkc.equals(s) && (cp & 0xFF00) == 0xFF00) {
+                    } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                         bab.append(" -> %s [%s] (NFKC)", toHexString(nfkc), nfkc);
-                    } else if (variant != null && !variant.isEmpty()) {
+                    }
+                    if (variant != null && !variant.isEmpty()
+                            && !variant.equals(nfc) && !variant.equals(nfkc)) {
                         bab.append(" -> %s [%s]", toHexString(variant), variant);
                     }
                 }
@@ -926,17 +954,32 @@ class Charsets {
                             && !Arrays.equals(bx2, BYTES_3F) && !decodableFromSjis2004()) {
                         bab.append(" -> %s (SJIS2004)", toHexString(bx2));
                     }
+                    String sI930 = null;
+                    String sI939 = null;
                     if (encodableToI930() && !decodableFromI930()) {
-                        bab.append(" -> %s (I930)", i930());
+                        sI930 = i930();
                     }
                     if (encodableToI939() && !decodableFromI939()) {
-                        bab.append(" -> %s (I939)", i939());
+                        sI939 = i939();
+                    }
+                    if (sI930 != null && sI930.equals(sI939)) {
+                        bab.append(" -> %s (I930, I939)", sI930);
+                    } else {
+                        if (sI930 != null) {
+                            bab.append(" -> %s (I930)", sI930);
+                        }
+                        if (sI939 != null) {
+                            bab.append(" -> %s (I939)", sI939);
+                        }
                     }
                     if (!nfc.equals(s)) {
                         bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
-                    } else if (!nfkc.equals(s) && (cp & 0xFF00) == 0xFF00) {
+                    } else if (!nfkc.equals(s) && nfkc.length() == 1
+                            && !(0x2160 <= cp && cp <= 0x217F)) {
                         bab.append(" -> %s [%s] (NFKC)", toHexString(nfkc), nfkc);
-                    } else if (variant != null && !variant.isEmpty()) {
+                    }
+                    if (variant != null && !variant.isEmpty()
+                            && !variant.equals(nfc) && !variant.equals(nfkc)) {
                         bab.append(" -> %s [%s]", toHexString(variant), variant);
                     }
                 }
@@ -1081,17 +1124,32 @@ class Charsets {
                             && !Arrays.equals(bw2, BYTES_3F) && !decodableFromW31j()) {
                         bab.append(" -> %s (W31J)", toHexString(bw2));
                     }
+                    String sI930 = null;
+                    String sI939 = null;
                     if (encodableToI930() && !decodableFromI930()) {
-                        bab.append(" -> %s (I930)", i930());
+                        sI930 = i930();
                     }
                     if (encodableToI939() && !decodableFromI939()) {
-                        bab.append(" -> %s (I939)", i939());
+                        sI939 = i939();
+                    }
+                    if (sI930 != null && sI930.equals(sI939)) {
+                        bab.append(" -> %s (I930, I939)", sI930);
+                    } else {
+                        if (sI930 != null) {
+                            bab.append(" -> %s (I930)", sI930);
+                        }
+                        if (sI939 != null) {
+                            bab.append(" -> %s (I939)", sI939);
+                        }
                     }
                     if (!nfc.equals(s)) {
                         bab.append(" -> %s [%s] (NFC)", toHexString(nfc), nfc);
-                    } else if (!nfkc.equals(s) && (cp & 0xFF00) == 0xFF00) {
+                    } else if (!nfkc.equals(s) && nfkc.length() == 1
+                            && !(0x2160 <= cp && cp <= 0x217F)) {
                         bab.append(" -> %s [%s] (NFKC)", toHexString(nfkc), nfkc);
-                    } else if (variant != null && !variant.isEmpty()) {
+                    }
+                    if (variant != null && !variant.isEmpty()
+                            && !variant.equals(nfc) && !variant.equals(nfkc)) {
                         bab.append(" -> %s [%s]", toHexString(variant), variant);
                     }
                 }
