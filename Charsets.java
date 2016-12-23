@@ -655,7 +655,11 @@ class Charsets {
             }
             
             // Unicode
-            bab.append("U+%04X   ", cp);
+            if (cp < 0) {
+                bab.append("-        ");
+            } else {
+                bab.append("U+%04X   ", cp);
+            }
             // UTF-16
             bab.append("%-8s ", utf16());
             // UTF-8
@@ -784,7 +788,11 @@ class Charsets {
                 }
             }
             // Unicode
-            bab.append("U+%04X   ", cp);
+            if (cp < 0) {
+                bab.append("-        ");
+            } else {
+                bab.append("U+%04X   ", cp);
+            }
             // UTF-16
             bab.append("%-8s ", utf16());
             // UTF-8
@@ -938,7 +946,11 @@ class Charsets {
             }
             
             // Unicode
-            bab.append("U+%04X   ", cp);
+            if (cp < 0) {
+                bab.append("-        ");
+            } else {
+                bab.append("U+%04X   ", cp);
+            }
             // UTF-16
             bab.append("%-8s ", utf16());
             // UTF-8
