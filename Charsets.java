@@ -260,6 +260,15 @@ class Charsets {
                 printLines(encodedLinesX0213(2, k, t, option));
             }
         }
+        
+        println();
+        println("# JIS X 0213 - 結合文字");
+        printHeaderX0213();
+        printSeparator();
+        printLines(encodedLinesCombining('\u0300'));
+        printLines(encodedLinesCombining('\u0301'));
+        printLines(encodedLinesCombining('\u3099'));
+        printLines(encodedLinesCombining('\u309A'));
     }
 
     void printKubunDesc() {
@@ -384,6 +393,46 @@ class Charsets {
             return Collections.emptyList();
         }
         return Collections.singletonList(info.encodedLine());
+    }
+
+    List<byte[]> encodedLinesCombining(int cp) {
+        ByteArrayBuilder bab = new ByteArrayBuilder();
+
+        String s = new String(new int[] {cp}, 0, 1);
+
+        // Unicode
+        bab.append("U+%04X  " + sep, cp);
+        if (csv()) {
+            bab.append("1" + sep);
+        }
+        if (csv1()) {
+            return Collections.singletonList(bab.toByteArray());
+        }
+        // 区分。
+        bab.append("%-6s" + sep, "40407");
+        // UTF-16
+        bab.append("%-8s" + sep, toHexString(s));
+        // UTF-8
+        bab.append("%-12s" + sep, toHexString(s.getBytes(UTF_8)));
+        // VARIANT
+        bab.append("-   " + sep);
+
+        // JIS
+        bab.append("       -" + sep);
+        // ISO-2022-JP
+        bab.append("-   " + sep);
+        // EUC-JP
+        bab.append("-     " + sep);
+        // Shift_JIS
+        bab.append("-   " + sep);
+        // Windows-31J
+        bab.append("-   " + sep);
+        bab.append("-   " + sep);
+
+        // EBCDIC
+        bab.append("-   %1$s-   %1$s-   %1$s", sep);
+
+        return Collections.singletonList(bab.toByteArray());
     }
 
     static int kutenToJis(int k, int t) {
