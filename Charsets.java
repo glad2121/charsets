@@ -90,6 +90,10 @@ class Charsets {
         return "-csv1".equals(option);
     }
 
+    boolean csv2() {
+        return "-csv2".equals(option);
+    }
+
     void printEncodedLines() {
         println("#");
         println("# encoding%s.txt", option);
@@ -186,7 +190,7 @@ class Charsets {
             }
         }
         
-        if (!csv1()) {
+        if (!csv1() && !csv2()) {
             println();
             println("# NEC選定IBM拡張文字");
             printHeaderX0208();
@@ -270,7 +274,7 @@ class Charsets {
         printLines(encodedLinesCombining('\u3099'));
         printLines(encodedLinesCombining('\u309A'));
         
-        if (!csv1()) {
+        if (!csv1() && !csv2()) {
             println();
             println("# JIS X 0212 - 非漢字");
             printHeaderX0213();
@@ -379,7 +383,7 @@ class Charsets {
 
     List<byte[]> encodedLines(int c, String option) {
         JisX0201Info info = new JisX0201Info(c);
-        if (csv1() && info.kubun().charAt(0) >= '7') {
+        if ((csv1() || csv2()) && info.kubun().charAt(0) >= '7') {
             return Collections.emptyList();
         }
         if (c == 0x5C) {
@@ -393,7 +397,7 @@ class Charsets {
 
     List<byte[]> encodedLines(int k, int t, String option) {
         Windows31jInfo info = new Windows31jInfo(k, t, option);
-        if (csv1() && info.kubun().charAt(0) >= '7') {
+        if ((csv1() || csv2()) && info.kubun().charAt(0) >= '7') {
             return Collections.emptyList();
         }
         if (info.showSjis) {
@@ -412,7 +416,7 @@ class Charsets {
         }
         
         JisX0213Info info = new JisX0213Info(m, k, t);
-        if (csv1() && info.kubun().charAt(4) != '9') {
+        if ((csv1() || csv2()) && info.kubun().charAt(4) != '9') {
             return Collections.emptyList();
         }
         if (info.undefined() || info.s.equals(info.ss)) {
@@ -434,8 +438,13 @@ class Charsets {
         if (csv1()) {
             return Collections.singletonList(bab.toByteArray());
         }
+
         // 区分。
         bab.append("%-6s" + sep, "40407");
+        if (csv2()) {
+            return Collections.singletonList(bab.toByteArray());
+        }
+
         // UTF-16
         bab.append("%-8s" + sep, toHexString(s));
         // UTF-8
@@ -472,7 +481,8 @@ class Charsets {
         }
         
         JisX0212Info info = new JisX0212Info(m, k, t);
-        if (csv1() && (info.kubun().charAt(3) != '5' || info.kubun().charAt(4) != '9')) {
+        if ((csv1() || csv2())
+                && (info.kubun().charAt(3) != '5' || info.kubun().charAt(4) != '9')) {
             return Collections.emptyList();
         }
         if (info.undefined() /*|| info.s.equals(info.ss)*/) {
@@ -788,8 +798,15 @@ class Charsets {
                 }
                 return bab.toByteArray();
             }
+
             // 区分。
             bab.append("%-6s" + sep, kubun());
+            if (csv2()) {
+                if (0x20 <= c && c != 0x7F) {
+                    bab.append("[%s]", s);
+                }
+                return bab.toByteArray();
+            }
 
             // UTF-16
             bab.append("%-8s" + sep, utf16());
@@ -967,8 +984,14 @@ class Charsets {
                 bab.append("[%s]", s);
                 return bab.toByteArray();
             }
+
             // 区分。
             bab.append("%-6s" + sep, kubun());
+            if (csv2()) {
+                bab.append("[%s]", s);
+                return bab.toByteArray();
+            }
+
             // UTF-16
             bab.append("%-8s" + sep, utf16());
             // UTF-8
@@ -1126,8 +1149,14 @@ class Charsets {
                 bab.append("[%s]", s);
                 return bab.toByteArray();
             }
+
             // 区分。
             bab.append("%-6s" + sep, kubun());
+            if (csv2()) {
+                bab.append("[%s]", s);
+                return bab.toByteArray();
+            }
+
             // UTF-16
             bab.append("%-8s" + sep, utf16());
             // UTF-8
@@ -1353,8 +1382,14 @@ class Charsets {
                 bab.append("[%s]", s);
                 return bab.toByteArray();
             }
+
             // 区分。
             bab.append("%-6s" + sep, kubun());
+            if (csv2()) {
+                bab.append("[%s]", s);
+                return bab.toByteArray();
+            }
+
             // UTF-16
             bab.append("%-8s" + sep, utf16());
             // UTF-8
@@ -1551,8 +1586,14 @@ class Charsets {
                 bab.append("[%s]", s);
                 return bab.toByteArray();
             }
+
             // 区分。
             bab.append("%-6s" + sep, kubun());
+            if (csv2()) {
+                bab.append("[%s]", s);
+                return bab.toByteArray();
+            }
+
             // UTF-16
             bab.append("%-8s" + sep, utf16());
             // UTF-8
