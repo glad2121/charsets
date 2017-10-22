@@ -269,6 +269,32 @@ class Charsets {
         printLines(encodedLinesCombining('\u0301'));
         printLines(encodedLinesCombining('\u3099'));
         printLines(encodedLinesCombining('\u309A'));
+        
+        if (!csv1()) {
+            println();
+            println("# JIS X 0212 - 非漢字");
+            printHeaderX0213();
+            for (int k = 2; k <= 11; ++k) {
+                // 第4水準漢字。
+                if (3 <= k && k <= 5) continue;
+                if (k == 8) continue;
+                
+                printSeparator();
+                for (int t = 1; t <= 94; ++t) {
+                    printLines(encodedLinesX0212(2, k, t, option));
+                }
+            }
+            
+            println();
+            println("# JIS X 0212 - 補助漢字");
+            printHeaderX0213();
+            for (int k = 16; k <= 77; ++k) {
+                printSeparator();
+                for (int t = 1; t <= 94; ++t) {
+                    printLines(encodedLinesX0212(2, k, t, option));
+                }
+            }
+        }
     }
 
     void printKubunDesc() {
@@ -436,6 +462,25 @@ class Charsets {
         return Collections.singletonList(bab.toByteArray());
     }
 
+    List<byte[]> encodedLinesX0212(int m, int k, int t, String option) {
+        // 第4水準漢字。
+        if (m != 2 || (k != 2
+                && !( 6 <= k && k <=  7)
+                && !( 9 <= k && k <= 11)
+                && !(16 <= k && k <= 77))) {
+            return Collections.emptyList();
+        }
+        
+        JisX0212Info info = new JisX0212Info(m, k, t);
+        if (csv1() && (info.kubun().charAt(3) != '5' || info.kubun().charAt(4) != '9')) {
+            return Collections.emptyList();
+        }
+        if (info.undefined() /*|| info.s.equals(info.ss)*/) {
+            return Collections.emptyList();
+        }
+        return Collections.singletonList(info.encodedLine());
+    }
+
     static int kutenToJis(int k, int t) {
         assertRange("k", k, 1, 94);
         assertRange("t", t, 1, 94);
@@ -482,6 +527,27 @@ class Charsets {
             : ((k + 0x19B) / 2);
         int c2 = t + (k % 2 == 1 ? (t <= 63 ? 0x3F : 0x40) : 0x9E);
         return word(c1, c2);
+    }
+
+    static int[] sjis2004ToKuten(byte[] sjis2004) {
+        int c1 = sjis2004[0] & 0xFF;
+        int c2 = sjis2004[1] & 0xFF;
+        int word = word(c1, c2);
+
+        int m = c1 < 0xF0 ? 1 : 2;
+        int k = (c1 - (c1 < 0xE0 ? 0x80 : (c1 < 0xF0 ? 0xC0 :
+                (word < 0xF09F ? 0xEF :
+                (word < 0xF140 ? 0xEC :
+                (word < 0xF29F ? 0xEF :
+                (word < 0xF49F ? 0xEC : 0xCD))))))) * 2
+                - (c2 < 0x9F ? 1 : 0);
+        int t = c2 - (c2 < 0x80 ? 0x3F : (c2 < 0x9F ? 0x40 : 0x9E));
+        return new int[] {m, k, t};
+    }
+
+    static int sjis2004ToEuc(byte[] sjis2004) {
+        int[] kuten = sjis2004ToKuten(sjis2004);
+        return kutenToEuc(kuten[0], kuten[1], kuten[2]);
     }
 
     static void assertRange(String name, int value, int min, int max) {
@@ -1438,6 +1504,204 @@ class Charsets {
             } else {
                 return '1';
             }
+        }
+
+    }
+
+    class JisX0212Info extends CodeInfo {
+
+        int m;
+        int k;
+        int t;
+
+        String ss;
+        String sw;
+
+        JisX0212Info(int m, int k, int t) {
+            this.m = m;
+            this.k = k;
+            this.t = t;
+            this.jis = kutenToJis(k, t);
+            this.euc = kutenToEuc(m, k, t);
+            this.sjis = -1;
+            this.b = bytes(euc, 3);
+            initUnicode(Charsets.toString(b, EUC_JP));
+        }
+
+        byte[] encodedLine() {
+            ByteArrayBuilder bab = new ByteArrayBuilder();
+
+            // Unicode
+            if (cp < 0) {
+                bab.append("-       " + sep);
+            } else if (cp <= 0xFFFF) {
+                bab.append("U+%04X  " + sep, cp);
+            } else {
+                bab.append("U+%06X" + sep, cp);
+            }
+            if (csv()) {
+                if (undefined() || "378".indexOf(kubun().charAt(0)) != -1
+                        || kubun().charAt(3) != '5' || kubun().charAt(4) != '9') {
+                    bab.append("0" + sep);
+                } else {
+                    bab.append("0" + sep);
+                }
+            }
+            if (csv1()) {
+                bab.append("[%s]", s);
+                return bab.toByteArray();
+            }
+            // 区分。
+            bab.append("%-6s" + sep, kubun());
+            // UTF-16
+            bab.append("%-8s" + sep, utf16());
+            // UTF-8
+            bab.append("%-12s" + sep, utf8());
+            // VARIANT
+            if (!nfc.equals(s)) {
+                bab.append("%-4s" + sep, toHexString(nfc));
+            } else if (!nfkc.equals(s) && nfkc.length() == 1
+                    /*&& !(0x2160 <= cp && cp <= 0x217F)*/) {
+                bab.append("%-4s" + sep, toHexString(nfkc));
+            } else if (variant != null && !variant.isEmpty()) {
+                bab.append("%-4s" + sep, toHexString(variant));
+            } else {
+                bab.append("-   " + sep);
+            }
+
+            // JIS
+            bab.append("%2d-%02d-%02d" + sep, m, k, t);
+            // ISO-2022-JP
+            bab.append("%04X" + sep, jis);
+            // EUC-JP
+            if (euc <= 0xFFFF) {
+                bab.append("%04X  " + sep, euc);
+            } else {
+                bab.append("%06X" + sep, euc);
+            }
+            if (!encodableToSjis2004() || !decodableFromSjis2004()) {
+                bab.append("-     " + sep);
+            } else {
+                int euc2004 = sjis2004ToEuc(bx2);
+                if (euc2004 <= 0xFFFF) {
+                    bab.append("%04X  " + sep, euc2004);
+                } else {
+                    bab.append("%06X" + sep, euc2004);
+                }
+            }
+            // Shift_JIS
+            if (!encodableToSjis2004() || !decodableFromSjis2004()) {
+                bab.append("-   " + sep);
+            } else {
+                bab.append("%-4s" + sep, toHexString(bx2));
+            }
+            // Windows-31J
+            if (!encodableToW31j() || !decodableFromW31j()) {
+                bab.append("-   " + sep);
+            } else {
+                bab.append("%-4s" + sep, toHexString(bw2));
+            }
+            if (encodableToW31j() || !decodableFromW31j()) {
+                bab.append("-   " + sep);
+            } else {
+                bab.append("%-4s" + sep, toHexString(bw2));
+            }
+
+            // EBCDIC
+            if (undefined() /*|| !encodableToSjis2004()*/) {
+                bab.append("-   %1$s-   %1$s-   %1$s", sep);
+            } else {
+                // IBM 930
+                if (!encodableToI930() || !decodableFromI930()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, i930());
+                }
+                // IBM 939
+                if (!encodableToI939() || !decodableFromI939()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, i939());
+                }
+                if (encodableToI930() && !decodableFromI930()) {
+                    bab.append("%-4s" + sep, i930());
+                } else if (encodableToI939() && !decodableFromI939()) {
+                    bab.append("%-4s" + sep, i939());
+                } else {
+                    bab.append("-   " + sep);
+                }
+            }
+
+            // 備考。
+            if (!undefined()) {
+                bab.append("[%s]", s);
+                if (encodableToSjis2004()) {
+                    if (!nfc.equals(s)) {
+                        bab.append(" -> [%s] (NFC)", nfc);
+                    } else if (!nfkc.equals(s) && nfkc.length() == 1
+                            /*&& !(0x2160 <= cp && cp <= 0x217F)*/) {
+                        bab.append(" -> [%s] (NFKC)", nfkc);
+                    }
+                    if (variant != null && !variant.isEmpty()
+                            && !variant.equals(nfc) && !variant.equals(nfkc)) {
+                        bab.append(" -> [%s]", variant);
+                    }
+                }
+            }
+            return bab.toByteArray();
+        }
+
+        String kubun() {
+            if (undefined()) {
+                // 未定義文字。
+                return "99999";
+            }
+            StringBuilder sb = new StringBuilder();
+            sb.append(kubunUnicode());
+            sb.append(kubunNormalization());
+            if (decodableFromSjis2004()) {
+                String sjis2004 = toHexString(bx2);
+                if (sjis2004.compareTo("879F") < 0) {
+                    sb.append("50");
+                } else if (sjis2004.compareTo("F000") < 0) {
+                    sb.append("53");
+                } else {
+                    sb.append("54");
+                }
+            } else {
+                // 補助漢字。
+                sb.append("55");
+            }
+            if (contains(bw2, 0x3F)) {
+                sb.append('9');
+            } else {
+                sb.append('7');
+            }
+            return sb.toString();
+        }
+
+        char kubunUnicode() {
+            if (!encodableToEuc()) {
+                return '7';
+            } else if (cp < 0) {
+                return '3';
+            } else if (s.length() > 1) {
+                return '2';
+            } else {
+                return '1';
+            }
+        }
+
+        boolean encodableToEuc() {
+            return Arrays.equals(be2, b);
+        }
+
+        boolean encodableToSjis2004() {
+            return s.equals("?") || !contains(bx2, 0x3F);
+        }
+
+        boolean encodableToW31j() {
+            return s.equals("?") || !contains(bw2, 0x3F);
         }
 
     }
