@@ -1092,8 +1092,7 @@ class Charsets {
                     bab.append("%-6s" + sep, toHexString(be2));
                 }
                 bab.append("-     " + sep);
-                if (!encodableToW31j()
-                        || contains(bx2, 0x3F) || !decodableFromSjis2004()) {
+                if (contains(bx2, 0x3F) || !decodableFromSjis2004()) {
                     bab.append("-   " + sep);
                 } else {
                     bab.append("%-4s" + sep, toHexString(bx2));
@@ -1205,13 +1204,39 @@ class Charsets {
                 sb.append("320");
             } else if (k < 95) {
                 // NEC選定IBM拡張文字。
-                sb.append("772");
+                if (decodableFromSjis2004()) {
+                    String sjis2004 = toHexString(bx2);
+                    if (sjis2004.compareTo("879F") < 0) {
+                        sb.append("702");
+                    } else if (sjis2004.compareTo("F000") < 0) {
+                        sb.append("732");
+                    } else {
+                        sb.append("742");
+                    }
+                } else if (decodableFromEuc()) {
+                    sb.append("752");
+                } else {
+                    sb.append("772");
+                }
             } else if (k < 115) {
                 // ユーザー外字領域。
                 return "88888";
             } else {
                 // IBM拡張漢字。
-                sb.append("773");
+                if (decodableFromSjis2004()) {
+                    String sjis2004 = toHexString(bx2);
+                    if (sjis2004.compareTo("879F") < 0) {
+                        sb.append("703");
+                    } else if (sjis2004.compareTo("F000") < 0) {
+                        sb.append("733");
+                    } else {
+                        sb.append("743");
+                    }
+                } else if (decodableFromEuc()) {
+                    sb.append("753");
+                } else {
+                    sb.append("773");
+                }
             }
             return sb.toString();
         }
