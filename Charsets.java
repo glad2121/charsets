@@ -14,6 +14,8 @@ class Charsets {
     static final Charset SHIFT_JIS = Charset.forName("Shift_JIS");
     static final Charset SHIFT_JIS_2004 = Charset.forName("x-SJIS_0213");
     static final Charset WINDOWS_31J = Charset.forName("Windows-31J");
+    static final Charset IBM_942 = Charset.forName("x-IBM942");
+    static final Charset IBM_943 = Charset.forName("x-IBM943");
     static final Charset IBM_930 = Charset.forName("x-IBM930");
     static final Charset IBM_939 = Charset.forName("x-IBM939");
 
@@ -325,7 +327,7 @@ class Charsets {
             return;
         }
         println();
-        println("Unicode  区分   UTF-16   UTF-8        VAR      CODE JIS  EUC    2004   SJIS W31J ALT  I930 I939 ALT  備考");
+        println("Unicode  区分   UTF-16   UTF-8        VAR      CODE JIS  EUC    2004   SJIS W31J ALT  I942 I943 I930 I939 ALT  備考");
     }
 
     void printHeaderX0208() {
@@ -333,7 +335,7 @@ class Charsets {
             return;
         }
         println();
-        println("Unicode  区分   UTF-16   UTF-8        VAR     区-点 JIS  EUC    2004   SJIS W31J ALT  I930 I939 ALT  備考");
+        println("Unicode  区分   UTF-16   UTF-8        VAR     区-点 JIS  EUC    2004   SJIS W31J ALT  I942 I943 I930 I939 ALT  備考");
     }
 
     void printHeaderX0213() {
@@ -341,7 +343,7 @@ class Charsets {
             return;
         }
         println();
-        println("Unicode  区分   UTF-16   UTF-8        VAR  面-区-点 JIS  EUC    2004   SJIS W31J ALT  I930 I939 ALT  備考");
+        println("Unicode  区分   UTF-16   UTF-8        VAR  面-区-点 JIS  EUC    2004   SJIS W31J ALT  I942 I943 I930 I939 ALT  備考");
     }
 
     void printSeparator() {
@@ -349,7 +351,7 @@ class Charsets {
             println();
             return;
         }
-        println("-------- ------ -------- ------------ ---- -------- ---- ------ ------ ---- ---- ---- ---- ---- ---- ----");
+        println("-------- ------ -------- ------------ ---- -------- ---- ------ ------ ---- ---- ---- ---- ---- ---- ---- ---- ----");
     }
 
     void println() {
@@ -464,6 +466,7 @@ class Charsets {
         // Windows-31J
         bab.append("-   " + sep);
         bab.append("-   " + sep);
+        bab.append("-   %1$s-   %1$s", sep);
 
         // EBCDIC
         bab.append("-   %1$s-   %1$s-   %1$s", sep);
@@ -654,6 +657,9 @@ class Charsets {
         byte[] bx2;
         byte[] bw2;
 
+        byte[] i942;
+        byte[] i943;
+
         byte[] i930;
         byte[] i939;
 
@@ -668,6 +674,8 @@ class Charsets {
             this.bs2 = s.getBytes(SHIFT_JIS);
             this.bx2 = s.getBytes(SHIFT_JIS_2004);
             this.bw2 = s.getBytes(WINDOWS_31J);
+            this.i942 = s.getBytes(IBM_942);
+            this.i943 = s.getBytes(IBM_943);
             this.i930 = s.getBytes(IBM_930);
             this.i939 = s.getBytes(IBM_939);
         }
@@ -692,6 +700,14 @@ class Charsets {
             return Arrays.equals(bw2, b);
         }
 
+        boolean encodableToI942() {
+            return s.equals("?") || !contains(i942, 0x3F);
+        }
+
+        boolean encodableToI943() {
+            return s.equals("?") || !contains(i943, 0x3F);
+        }
+
         boolean encodableToI930() {
             return s.equals("?") || !contains(i930, 0x6F) || isEbcdicKanji(i930);
         }
@@ -714,6 +730,14 @@ class Charsets {
 
         boolean decodableFromW31j() {
             return Charsets.toString(bw2, WINDOWS_31J).equals(s);
+        }
+
+        boolean decodableFromI942() {
+            return Charsets.toString(i942, IBM_942).equals(s);
+        }
+
+        boolean decodableFromI943() {
+            return Charsets.toString(i943, IBM_943).equals(s);
         }
 
         boolean decodableFromI930() {
@@ -871,6 +895,23 @@ class Charsets {
                 }
             }
 
+            if (undefined()) {
+                bab.append("-   %1$s-   %1$s", sep);
+            } else {
+                // IBM 942
+                if (!encodableToI942() || !decodableFromI942()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i942));
+                }
+                // IBM 943
+                if (!encodableToI943() || !decodableFromI943()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i943));
+                }
+            }
+
             // EBCDIC
             if (undefined() /*|| !encodableToSjis()*/) {
                 bab.append("-   %1$s-   %1$s-   %1$s", sep);
@@ -1024,6 +1065,23 @@ class Charsets {
                 bab.append("%-4s" + sep, toHexString(bw2));
             } else {
                 bab.append("-   " + sep);
+            }
+
+            if (undefined()) {
+                bab.append("-   %1$s-   %1$s", sep);
+            } else {
+                // IBM 942
+                if (!encodableToI942() || !decodableFromI942()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i942));
+                }
+                // IBM 943
+                if (!encodableToI943() || !decodableFromI943()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i943));
+                }
             }
 
             // EBCDIC
@@ -1210,6 +1268,23 @@ class Charsets {
                     bab.append("%-4s" + sep, toHexString(bw2));
                 } else {
                     bab.append("-   " + sep);
+                }
+            }
+
+            if (undefined()) {
+                bab.append("-   %1$s-   %1$s", sep);
+            } else {
+                // IBM 942
+                if (!encodableToI942() || !decodableFromI942()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i942));
+                }
+                // IBM 943
+                if (!encodableToI943() || !decodableFromI943()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i943));
                 }
             }
 
@@ -1447,6 +1522,23 @@ class Charsets {
                 }
             }
 
+            if (undefined()) {
+                bab.append("-   %1$s-   %1$s", sep);
+            } else {
+                // IBM 942
+                if (!encodableToI942() || !decodableFromI942()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i942));
+                }
+                // IBM 943
+                if (!encodableToI943() || !decodableFromI943()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i943));
+                }
+            }
+
             // EBCDIC
             if (undefined() /*|| !encodableToSjis2004()*/) {
                 bab.append("-   %1$s-   %1$s-   %1$s", sep);
@@ -1646,6 +1738,23 @@ class Charsets {
                 bab.append("-   " + sep);
             } else {
                 bab.append("%-4s" + sep, toHexString(bw2));
+            }
+
+            if (undefined()) {
+                bab.append("-   %1$s-   %1$s", sep);
+            } else {
+                // IBM 942
+                if (!encodableToI942() || !decodableFromI942()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i942));
+                }
+                // IBM 943
+                if (!encodableToI943() || !decodableFromI943()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i943));
+                }
             }
 
             // EBCDIC
