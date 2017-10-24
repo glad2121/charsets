@@ -60,7 +60,7 @@ class Charsets {
         this.sep = optionToSeparator(option);
     }
 
-    static Charset optionToEncoding(String option) {
+    Charset optionToEncoding(String option) {
         if ("-utf8".equals(option)) {
             return UTF_8;
         } else if ("-jis".equals(option)) {
@@ -76,7 +76,7 @@ class Charsets {
         }
     }
 
-    static String optionToSeparator(String option) {
+    String optionToSeparator(String option) {
         if (option.startsWith("-csv")) {
             return ",";
         } else {
@@ -108,12 +108,12 @@ class Charsets {
         printHeader();
         printSeparator();
         for (int c = 0x00; c <= 0x1F; ++c) {
-            printLines(encodedLines(c, option));
+            printLines(encodedLines(c));
         }
         List<byte[]> laters = new ArrayList<>();
         printSeparator();
         for (int c = 0x20; c <= 0x7F; ++c) {
-            List<byte[]> lines = encodedLines(c, option);
+            List<byte[]> lines = encodedLines(c);
             printLine(lines.get(0));
             if (lines.size() > 1) {
                 laters.addAll(lines.subList(1, lines.size()));
@@ -127,15 +127,15 @@ class Charsets {
         printLines(laters);
         printSeparator();
         for (int c = 0x80; c <= 0x9F; ++c) {
-            printLines(encodedLines(c, option));
+            printLines(encodedLines(c));
         }
         printSeparator();
         for (int c = 0xA0; c <= 0xDF; ++c) {
-            printLines(encodedLines(c, option));
+            printLines(encodedLines(c));
         }
         printSeparator();
         for (int c = 0xE0; c <= 0xFF; ++c) {
-            printLines(encodedLines(c, option));
+            printLines(encodedLines(c));
         }
         
         if (!csv()) {
@@ -143,13 +143,13 @@ class Charsets {
             println("# JIS X 0208 - マッピングが異なるもの");
             printHeaderX0208();
             printSeparator();
-            printLines(encodedLines(1, 29, option));
-            printLines(encodedLines(1, 33, option));
-            printLines(encodedLines(1, 34, option));
-            printLines(encodedLines(1, 61, option));
-            printLines(encodedLines(1, 81, option));
-            printLines(encodedLines(1, 82, option));
-            printLines(encodedLines(2, 44, option));
+            printLines(encodedLines(1, 29));
+            printLines(encodedLines(1, 33));
+            printLines(encodedLines(1, 34));
+            printLines(encodedLines(1, 61));
+            printLines(encodedLines(1, 81));
+            printLines(encodedLines(1, 82));
+            printLines(encodedLines(2, 44));
         }
         
         println();
@@ -158,7 +158,7 @@ class Charsets {
         for (int k = 1; k <= 12; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodedLines(k, t, option));
+                printLines(encodedLines(k, t));
             }
         }
         
@@ -168,7 +168,7 @@ class Charsets {
         for (int k = 13; k <= 15; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodedLines(k, t, option));
+                printLines(encodedLines(k, t));
             }
         }
         
@@ -178,7 +178,7 @@ class Charsets {
         for (int k = 16; k <= 47; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodedLines(k, t, option));
+                printLines(encodedLines(k, t));
             }
         }
         
@@ -188,7 +188,7 @@ class Charsets {
         for (int k = 48; k <= 88; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodedLines(k, t, option));
+                printLines(encodedLines(k, t));
             }
         }
         
@@ -199,7 +199,7 @@ class Charsets {
             for (int k = 89; k <= 94; ++k) {
                 printSeparator();
                 for (int t = 1; t <= 94; ++t) {
-                    printLines(encodedLines(k, t, option));
+                    printLines(encodedLines(k, t));
                 }
             }
             
@@ -209,7 +209,7 @@ class Charsets {
             for (int k = 95; k <= 114; ++k) {
                 printSeparator();
                 for (int t = 1; t <= 94; ++t) {
-                    printLines(encodedLines(k, t, option));
+                    printLines(encodedLines(k, t));
                 }
             }
         }
@@ -220,7 +220,7 @@ class Charsets {
         for (int k = 115; k <= 120; ++k) {
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodedLines(k, t, option));
+                printLines(encodedLines(k, t));
             }
         }
         
@@ -232,7 +232,7 @@ class Charsets {
             
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodedLinesX0213(1, k, t, option));
+                printLines(encodedLinesX0213(1, k, t));
             }
         }
         
@@ -247,7 +247,7 @@ class Charsets {
             
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodedLinesX0213(1, k, t, option));
+                printLines(encodedLinesX0213(1, k, t));
             }
         }
         
@@ -263,7 +263,7 @@ class Charsets {
             
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
-                printLines(encodedLinesX0213(2, k, t, option));
+                printLines(encodedLinesX0213(2, k, t));
             }
         }
         
@@ -287,7 +287,7 @@ class Charsets {
                 
                 printSeparator();
                 for (int t = 1; t <= 94; ++t) {
-                    printLines(encodedLinesX0212(2, k, t, option));
+                    printLines(encodedLinesX0212(2, k, t));
                 }
             }
             
@@ -297,16 +297,14 @@ class Charsets {
             for (int k = 16; k <= 77; ++k) {
                 printSeparator();
                 for (int t = 1; t <= 94; ++t) {
-                    printLines(encodedLinesX0212(2, k, t, option));
+                    printLines(encodedLinesX0212(2, k, t));
                 }
             }
         }
     }
 
     void printKubunDesc() {
-        if (csv()) {
-            return;
-        }
+        if (csv()) return;
         println();
         println("# 区分:");
         println("# No Unicode      正規化       規格等       水準         Windows-31J       ");
@@ -323,25 +321,19 @@ class Charsets {
     }
 
     void printHeader() {
-        if (csv()) {
-            return;
-        }
+        if (csv()) return;
         println();
         println("Unicode  区分   UTF-16   UTF-8        VAR      CODE JIS  EUC    2004   SJIS W31J ALT  I942 I943 I930 I939 ALT  備考");
     }
 
     void printHeaderX0208() {
-        if (csv()) {
-            return;
-        }
+        if (csv()) return;
         println();
         println("Unicode  区分   UTF-16   UTF-8        VAR     区-点 JIS  EUC    2004   SJIS W31J ALT  I942 I943 I930 I939 ALT  備考");
     }
 
     void printHeaderX0213() {
-        if (csv()) {
-            return;
-        }
+        if (csv()) return;
         println();
         println("Unicode  区分   UTF-16   UTF-8        VAR  面-区-点 JIS  EUC    2004   SJIS W31J ALT  I942 I943 I930 I939 ALT  備考");
     }
@@ -383,7 +375,7 @@ class Charsets {
         }
     }
 
-    List<byte[]> encodedLines(int c, String option) {
+    List<byte[]> encodedLines(int c) {
         JisX0201Info info = new JisX0201Info(c);
         if ((csv1() || csv2()) && info.kubun().charAt(0) >= '7') {
             return Collections.emptyList();
@@ -397,8 +389,8 @@ class Charsets {
         return Collections.singletonList(info.encodedLine());
     }
 
-    List<byte[]> encodedLines(int k, int t, String option) {
-        Windows31jInfo info = new Windows31jInfo(k, t, option);
+    List<byte[]> encodedLines(int k, int t) {
+        Windows31jInfo info = new Windows31jInfo(k, t);
         if ((csv1() || csv2()) && info.kubun().charAt(0) >= '7') {
             return Collections.emptyList();
         }
@@ -408,7 +400,7 @@ class Charsets {
         return Collections.singletonList(info.encodedLine());
     }
 
-    List<byte[]> encodedLinesX0213(int m, int k, int t, String option) {
+    List<byte[]> encodedLinesX0213(int m, int k, int t) {
         // 補助漢字。
         if (m == 2 && (k == 2
                 || ( 6 <= k && k <=  7)
@@ -459,13 +451,12 @@ class Charsets {
         // ISO-2022-JP
         bab.append("-   " + sep);
         // EUC-JP
-        bab.append("-     " + sep);
-        bab.append("-     " + sep);
+        bab.append("-     %1$s-     %1$s", sep);
         // Shift_JIS
         bab.append("-   " + sep);
         // Windows-31J
-        bab.append("-   " + sep);
-        bab.append("-   " + sep);
+        bab.append("-   %1$s-   %1$s", sep);
+        // IBM 94X
         bab.append("-   %1$s-   %1$s", sep);
 
         // EBCDIC
@@ -474,7 +465,7 @@ class Charsets {
         return Collections.singletonList(bab.toByteArray());
     }
 
-    List<byte[]> encodedLinesX0212(int m, int k, int t, String option) {
+    List<byte[]> encodedLinesX0212(int m, int k, int t) {
         // 第4水準漢字。
         if (m != 2 || (k != 2
                 && !( 6 <= k && k <=  7)
@@ -488,7 +479,7 @@ class Charsets {
                 && (info.kubun().charAt(3) != '5' || info.kubun().charAt(4) != '9')) {
             return Collections.emptyList();
         }
-        if (info.undefined() /*|| info.s.equals(info.ss)*/) {
+        if (info.undefined()) {
             return Collections.emptyList();
         }
         return Collections.singletonList(info.encodedLine());
@@ -637,8 +628,6 @@ class Charsets {
 
     class CodeInfo {
 
-        String option;
-
         String s;
         int cp;
 
@@ -764,6 +753,63 @@ class Charsets {
             return ebcdicToHexString(i939);
         }
 
+        void appendVariant(ByteArrayBuilder bab) {
+            if (!nfc.equals(s)) {
+                bab.append("%-4s" + sep, toHexString(nfc));
+            } else if (!nfkc.equals(s) && nfkc.length() == 1) {
+                bab.append("%-4s" + sep, toHexString(nfkc));
+            } else if (variant != null && !variant.isEmpty()) {
+                bab.append("%-4s" + sep, toHexString(variant));
+            } else {
+                bab.append("-   " + sep);
+            }
+        }
+
+        void appendIbm94x(ByteArrayBuilder bab) {
+            if (undefined()) {
+                bab.append("-   %1$s-   %1$s", sep);
+            } else {
+                // IBM 942
+                if (!encodableToI942() || !decodableFromI942()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i942));
+                }
+                // IBM 943
+                if (!encodableToI943() || !decodableFromI943()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, toHexString(i943));
+                }
+            }
+        }
+
+        void appendIbm93x(ByteArrayBuilder bab) {
+            if (undefined()) {
+                bab.append("-   %1$s-   %1$s-   %1$s", sep);
+            } else {
+                // IBM 930
+                if (!encodableToI930() || !decodableFromI930()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, i930());
+                }
+                // IBM 939
+                if (!encodableToI939() || !decodableFromI939()) {
+                    bab.append("-   " + sep);
+                } else {
+                    bab.append("%-4s" + sep, i939());
+                }
+                if (encodableToI930() && !decodableFromI930()) {
+                    bab.append("%-4s" + sep, i930());
+                } else if (encodableToI939() && !decodableFromI939()) {
+                    bab.append("%-4s" + sep, i939());
+                } else {
+                    bab.append("-   " + sep);
+                }
+            }
+        }
+
         char kubunNormalization() {
             if (!nfc.equals(s)) {
                 return '3';
@@ -837,15 +883,7 @@ class Charsets {
             // UTF-8
             bab.append("%-12s" + sep, utf8());
             // VARIANT
-            if (!nfc.equals(s)) {
-                bab.append("%-4s" + sep, toHexString(nfc));
-            } else if (!nfkc.equals(s) && nfkc.length() == 1) {
-                bab.append("%-4s" + sep, toHexString(nfkc));
-            } else if (variant != null && !variant.isEmpty()) {
-                bab.append("%-4s" + sep, toHexString(variant));
-            } else {
-                bab.append("-   " + sep);
-            }
+            appendVariant(bab);
 
             // JIS
             bab.append("      %02X" + sep, c);
@@ -895,47 +933,10 @@ class Charsets {
                 }
             }
 
-            if (undefined()) {
-                bab.append("-   %1$s-   %1$s", sep);
-            } else {
-                // IBM 942
-                if (!encodableToI942() || !decodableFromI942()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, toHexString(i942));
-                }
-                // IBM 943
-                if (!encodableToI943() || !decodableFromI943()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, toHexString(i943));
-                }
-            }
+            appendIbm94x(bab);
 
             // EBCDIC
-            if (undefined() /*|| !encodableToSjis()*/) {
-                bab.append("-   %1$s-   %1$s-   %1$s", sep);
-            } else {
-                // IBM 930
-                if (!encodableToI930() || !decodableFromI930()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, i930());
-                }
-                // IBM 939
-                if (!encodableToI939() || !decodableFromI939()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, i939());
-                }
-                if (encodableToI930() && !decodableFromI930()) {
-                    bab.append("%-4s" + sep, i930());
-                } else if (encodableToI939() && !decodableFromI939()) {
-                    bab.append("%-4s" + sep, i939());
-                } else {
-                    bab.append("-   " + sep);
-                }
-            }
+            appendIbm93x(bab);
 
             // 備考。
             if (!undefined()) {
@@ -995,7 +996,6 @@ class Charsets {
         int t;
 
         JisX0208Info(Windows31jInfo w31j) {
-            this.option = w31j.option;
             this.k = w31j.k;
             this.t = w31j.t;
             this.jis = w31j.jis;
@@ -1038,15 +1038,7 @@ class Charsets {
             // UTF-8
             bab.append("%-12s" + sep, utf8());
             // VARIANT
-            if (!nfc.equals(s)) {
-                bab.append("%-4s" + sep, toHexString(nfc));
-            } else if (!nfkc.equals(s) && nfkc.length() == 1) {
-                bab.append("%-4s" + sep, toHexString(nfkc));
-            } else if (variant != null && !variant.isEmpty()) {
-                bab.append("%-4s" + sep, toHexString(variant));
-            } else {
-                bab.append("-   " + sep);
-            }
+            appendVariant(bab);
 
             // JIS
             bab.append("   %02d-%02d" + sep, k, t);
@@ -1067,47 +1059,10 @@ class Charsets {
                 bab.append("-   " + sep);
             }
 
-            if (undefined()) {
-                bab.append("-   %1$s-   %1$s", sep);
-            } else {
-                // IBM 942
-                if (!encodableToI942() || !decodableFromI942()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, toHexString(i942));
-                }
-                // IBM 943
-                if (!encodableToI943() || !decodableFromI943()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, toHexString(i943));
-                }
-            }
+            appendIbm94x(bab);
 
             // EBCDIC
-            if (undefined() /*|| !encodableToSjis()*/) {
-                bab.append("-   %1$s-   %1$s-   %1$s", sep);
-            } else {
-                // IBM 930
-                if (!encodableToI930() || !decodableFromI930()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, i930());
-                }
-                // IBM 939
-                if (!encodableToI939() || !decodableFromI939()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, i939());
-                }
-                if (encodableToI930() && !decodableFromI930()) {
-                    bab.append("%-4s" + sep, i930());
-                } else if (encodableToI939() && !decodableFromI939()) {
-                    bab.append("%-4s" + sep, i939());
-                } else {
-                    bab.append("-   " + sep);
-                }
-            }
+            appendIbm93x(bab);
 
             // 備考。
             if (!undefined()) {
@@ -1170,8 +1125,7 @@ class Charsets {
         String ss;
         boolean showSjis;
 
-        Windows31jInfo(int k, int t, String option) {
-            this.option = option;
+        Windows31jInfo(int k, int t) {
             this.k = k;
             this.t = t;
             this.jis = (94 < k) ? -1 : kutenToJis(k, t);
@@ -1220,16 +1174,7 @@ class Charsets {
             // UTF-8
             bab.append("%-12s" + sep, utf8());
             // VARIANT
-            if (!nfc.equals(s)) {
-                bab.append("%-4s" + sep, toHexString(nfc));
-            } else if (!nfkc.equals(s) && nfkc.length() == 1
-                    /*&& !(0x2160 <= cp && cp <= 0x217F)*/) {
-                bab.append("%-4s" + sep, toHexString(nfkc));
-            } else if (variant != null && !variant.isEmpty()) {
-                bab.append("%-4s" + sep, toHexString(variant));
-            } else {
-                bab.append("-   " + sep);
-            }
+            appendVariant(bab);
 
             // JIS
             if (k < 100) {
@@ -1271,47 +1216,10 @@ class Charsets {
                 }
             }
 
-            if (undefined()) {
-                bab.append("-   %1$s-   %1$s", sep);
-            } else {
-                // IBM 942
-                if (!encodableToI942() || !decodableFromI942()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, toHexString(i942));
-                }
-                // IBM 943
-                if (!encodableToI943() || !decodableFromI943()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, toHexString(i943));
-                }
-            }
+            appendIbm94x(bab);
 
             // EBCDIC
-            if (undefined() /*|| !encodableToW31j()*/) {
-                bab.append("-   %1$s-   %1$s-   %1$s", sep);
-            } else {
-                // IBM 930
-                if (!encodableToI930() || !decodableFromI930()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, i930());
-                }
-                // IBM 939
-                if (!encodableToI939() || !decodableFromI939()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, i939());
-                }
-                if (encodableToI930() && !decodableFromI930()) {
-                    bab.append("%-4s" + sep, i930());
-                } else if (encodableToI939() && !decodableFromI939()) {
-                    bab.append("%-4s" + sep, i939());
-                } else {
-                    bab.append("-   " + sep);
-                }
-            }
+            appendIbm93x(bab);
 
             // 備考。
             if (!undefined()) {
@@ -1327,8 +1235,7 @@ class Charsets {
                     }
                     if (!nfc.equals(s)) {
                         bab.append(" -> [%s] (NFC)", nfc);
-                    } else if (!nfkc.equals(s) && nfkc.length() == 1
-                            /*&& !(0x2160 <= cp && cp <= 0x217F)*/) {
+                    } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
                     if (variant != null && !variant.isEmpty()
@@ -1470,16 +1377,7 @@ class Charsets {
             // UTF-8
             bab.append("%-12s" + sep, utf8());
             // VARIANT
-            if (!nfc.equals(s)) {
-                bab.append("%-4s" + sep, toHexString(nfc));
-            } else if (!nfkc.equals(s) && nfkc.length() == 1
-                    /*&& !(0x2160 <= cp && cp <= 0x217F)*/) {
-                bab.append("%-4s" + sep, toHexString(nfkc));
-            } else if (variant != null && !variant.isEmpty()) {
-                bab.append("%-4s" + sep, toHexString(variant));
-            } else {
-                bab.append("-   " + sep);
-            }
+            appendVariant(bab);
 
             // JIS
             bab.append("%2d-%02d-%02d" + sep, m, k, t);
@@ -1522,47 +1420,10 @@ class Charsets {
                 }
             }
 
-            if (undefined()) {
-                bab.append("-   %1$s-   %1$s", sep);
-            } else {
-                // IBM 942
-                if (!encodableToI942() || !decodableFromI942()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, toHexString(i942));
-                }
-                // IBM 943
-                if (!encodableToI943() || !decodableFromI943()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, toHexString(i943));
-                }
-            }
+            appendIbm94x(bab);
 
             // EBCDIC
-            if (undefined() /*|| !encodableToSjis2004()*/) {
-                bab.append("-   %1$s-   %1$s-   %1$s", sep);
-            } else {
-                // IBM 930
-                if (!encodableToI930() || !decodableFromI930()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, i930());
-                }
-                // IBM 939
-                if (!encodableToI939() || !decodableFromI939()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, i939());
-                }
-                if (encodableToI930() && !decodableFromI930()) {
-                    bab.append("%-4s" + sep, i930());
-                } else if (encodableToI939() && !decodableFromI939()) {
-                    bab.append("%-4s" + sep, i939());
-                } else {
-                    bab.append("-   " + sep);
-                }
-            }
+            appendIbm93x(bab);
 
             // 備考。
             if (!undefined()) {
@@ -1570,8 +1431,7 @@ class Charsets {
                 if (encodableToSjis2004()) {
                     if (!nfc.equals(s)) {
                         bab.append(" -> [%s] (NFC)", nfc);
-                    } else if (!nfkc.equals(s) && nfkc.length() == 1
-                            /*&& !(0x2160 <= cp && cp <= 0x217F)*/) {
+                    } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
                     if (variant != null && !variant.isEmpty()
@@ -1641,9 +1501,6 @@ class Charsets {
         int k;
         int t;
 
-        String ss;
-        String sw;
-
         JisX0212Info(int m, int k, int t) {
             this.m = m;
             this.k = k;
@@ -1653,6 +1510,21 @@ class Charsets {
             this.sjis = -1;
             this.b = bytes(euc, 3);
             initUnicode(Charsets.toString(b, EUC_JP));
+        }
+
+        @Override
+        boolean encodableToEuc() {
+            return Arrays.equals(be2, b);
+        }
+
+        @Override
+        boolean encodableToSjis2004() {
+            return s.equals("?") || !contains(bx2, 0x3F);
+        }
+
+        @Override
+        boolean encodableToW31j() {
+            return s.equals("?") || !contains(bw2, 0x3F);
         }
 
         byte[] encodedLine() {
@@ -1691,16 +1563,7 @@ class Charsets {
             // UTF-8
             bab.append("%-12s" + sep, utf8());
             // VARIANT
-            if (!nfc.equals(s)) {
-                bab.append("%-4s" + sep, toHexString(nfc));
-            } else if (!nfkc.equals(s) && nfkc.length() == 1
-                    /*&& !(0x2160 <= cp && cp <= 0x217F)*/) {
-                bab.append("%-4s" + sep, toHexString(nfkc));
-            } else if (variant != null && !variant.isEmpty()) {
-                bab.append("%-4s" + sep, toHexString(variant));
-            } else {
-                bab.append("-   " + sep);
-            }
+            appendVariant(bab);
 
             // JIS
             bab.append("%2d-%02d-%02d" + sep, m, k, t);
@@ -1740,47 +1603,10 @@ class Charsets {
                 bab.append("%-4s" + sep, toHexString(bw2));
             }
 
-            if (undefined()) {
-                bab.append("-   %1$s-   %1$s", sep);
-            } else {
-                // IBM 942
-                if (!encodableToI942() || !decodableFromI942()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, toHexString(i942));
-                }
-                // IBM 943
-                if (!encodableToI943() || !decodableFromI943()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, toHexString(i943));
-                }
-            }
+            appendIbm94x(bab);
 
             // EBCDIC
-            if (undefined() /*|| !encodableToSjis2004()*/) {
-                bab.append("-   %1$s-   %1$s-   %1$s", sep);
-            } else {
-                // IBM 930
-                if (!encodableToI930() || !decodableFromI930()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, i930());
-                }
-                // IBM 939
-                if (!encodableToI939() || !decodableFromI939()) {
-                    bab.append("-   " + sep);
-                } else {
-                    bab.append("%-4s" + sep, i939());
-                }
-                if (encodableToI930() && !decodableFromI930()) {
-                    bab.append("%-4s" + sep, i930());
-                } else if (encodableToI939() && !decodableFromI939()) {
-                    bab.append("%-4s" + sep, i939());
-                } else {
-                    bab.append("-   " + sep);
-                }
-            }
+            appendIbm93x(bab);
 
             // 備考。
             if (!undefined()) {
@@ -1788,8 +1614,7 @@ class Charsets {
                 if (encodableToSjis2004()) {
                     if (!nfc.equals(s)) {
                         bab.append(" -> [%s] (NFC)", nfc);
-                    } else if (!nfkc.equals(s) && nfkc.length() == 1
-                            /*&& !(0x2160 <= cp && cp <= 0x217F)*/) {
+                    } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
                     if (variant != null && !variant.isEmpty()
@@ -1840,18 +1665,6 @@ class Charsets {
             } else {
                 return '1';
             }
-        }
-
-        boolean encodableToEuc() {
-            return Arrays.equals(be2, b);
-        }
-
-        boolean encodableToSjis2004() {
-            return s.equals("?") || !contains(bx2, 0x3F);
-        }
-
-        boolean encodableToW31j() {
-            return s.equals("?") || !contains(bw2, 0x3F);
         }
 
     }
