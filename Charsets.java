@@ -347,6 +347,10 @@ class Charsets {
     }
 
     void println() {
+        if (csv()) {
+            println(" ");
+            return;
+        }
         printLine(EMPTY_BYTES);
     }
 
@@ -810,15 +814,73 @@ class Charsets {
             }
         }
 
-        char kubunNormalization() {
-            if (!nfc.equals(s)) {
+        char kubunUnicode() {
+            if (cp < 0) {
                 return '3';
-            } else if (!nfkc.equals(s)) {
+            } else if (0x10000 <= cp) {
                 return '2';
-            } else if (!nfd.equals(s)) {
+            } else {
+                return '1';
+            }
+        }
+
+        char kubunNormalization() {
+            if (!s.equals(nfc)) {
+                return '3';
+            } else if (!s.equals(nfkc)) {
+                return '2';
+            } else if (!s.equals(nfd)) {
                 return '1';
             } else {
                 return '0';
+            }
+        }
+
+        char kubunLevel() {
+            if (decodableFromSjis2004()) {
+                String sjis2004 = toHexString(bx2);
+                if (sjis2004.compareTo("879F") < 0) {
+                    return '0';
+                } else if (sjis2004.compareTo("889F") < 0) {
+                    return '3';
+                } else if (sjis2004.compareTo("9873") < 0) {
+                    return '1';
+                } else if (sjis2004.compareTo("989F") < 0) {
+                    return '3';
+                } else if (sjis2004.compareTo("EAA5") < 0) {
+                    return '2';
+                } else if (sjis2004.compareTo("F040") < 0) {
+                    return '3';
+                } else {
+                    return '4';
+                }
+            } else if (decodableFromEuc()) {
+                return '5';
+            } else {
+                return '7';
+            }
+        }
+
+        char kubunW31j() {
+            if (decodableFromW31j()) {
+                String w31j = toHexString(bw2);
+                if (w31j.compareTo("8740") < 0) {
+                    return '0';
+                } else if (w31j.compareTo("889F") < 0) {
+                    return '1';
+                } else if (w31j.compareTo("ED40") < 0) {
+                    return '0';
+                } else if (w31j.compareTo("F040") < 0) {
+                    return '2';
+                } else if (w31j.compareTo("FA40") < 0) {
+                    return '8';
+                } else {
+                    return '3';
+                }
+            } else if (!contains(bw2, 0x3F)) {
+                return '7';
+            } else {
+                return '9';
             }
         }
 
@@ -1268,11 +1330,16 @@ class Charsets {
                 }
             } else if (k < 16) {
                 // NEC特殊文字。
+                sb.append('7');
+                sb.append(kubunLevel());
+                sb.append('1');
+                /*
                 if (!encodableToSjis2004()) {
                     sb.append("771");
                 } else {
                     sb.append("701");
                 }
+                */
             } else if (k < 48) {
                 // 第1水準漢字。
                 sb.append("310");
@@ -1281,6 +1348,10 @@ class Charsets {
                 sb.append("320");
             } else if (k < 95) {
                 // NEC選定IBM拡張文字。
+                sb.append('7');
+                sb.append(kubunLevel());
+                sb.append('2');
+                /*
                 if (decodableFromSjis2004()) {
                     String sjis2004 = toHexString(bx2);
                     if (sjis2004.compareTo("879F") < 0) {
@@ -1295,11 +1366,16 @@ class Charsets {
                 } else {
                     sb.append("772");
                 }
+                */
             } else if (k < 115) {
                 // ユーザー外字領域。
                 return "88888";
             } else {
                 // IBM拡張漢字。
+                sb.append('7');
+                sb.append(kubunLevel());
+                sb.append('3');
+                /*
                 if (decodableFromSjis2004()) {
                     String sjis2004 = toHexString(bx2);
                     if (sjis2004.compareTo("879F") < 0) {
@@ -1314,6 +1390,7 @@ class Charsets {
                 } else {
                     sb.append("773");
                 }
+                */
             }
             return sb.toString();
         }
@@ -1454,14 +1531,17 @@ class Charsets {
             if (m == 2) {
                 // 第4水準漢字。
                 sb.append("44");
+                /*
                 if (contains(bw2, 0x3F)) {
                     sb.append('9');
                 } else {
                     sb.append('7');
                 }
+                */
             } else if (k < 14) {
                 // 非漢字。
                 sb.append("40");
+                /*
                 if (contains(bw2, 0x3F)) {
                     sb.append('9');
                 } else if (encodableToW31j()) {
@@ -1469,21 +1549,28 @@ class Charsets {
                 } else {
                     sb.append('7');
                 }
+                */
             } else {
                 // 第3水準漢字。
                 sb.append("43");
+                /*
                 if (contains(bw2, 0x3F)) {
                     sb.append('9');
                 } else {
                     sb.append('7');
                 }
+                */
             }
+            sb.append(kubunW31j());
             return sb.toString();
         }
 
         char kubunUnicode() {
             if (!encodableToSjis2004()) {
                 return '7';
+            }
+            return super.kubunUnicode();
+            /*
             } else if (cp < 0) {
                 return '3';
             } else if (s.length() > 1) {
@@ -1491,6 +1578,7 @@ class Charsets {
             } else {
                 return '1';
             }
+            */
         }
 
     }
@@ -1634,6 +1722,10 @@ class Charsets {
             StringBuilder sb = new StringBuilder();
             sb.append(kubunUnicode());
             sb.append(kubunNormalization());
+            sb.append('5');
+            sb.append(kubunLevel());
+            sb.append(kubunW31j());
+            /*
             if (decodableFromSjis2004()) {
                 String sjis2004 = toHexString(bx2);
                 if (sjis2004.compareTo("879F") < 0) {
@@ -1652,12 +1744,16 @@ class Charsets {
             } else {
                 sb.append('7');
             }
+            */
             return sb.toString();
         }
 
         char kubunUnicode() {
             if (!encodableToEuc()) {
                 return '7';
+            }
+            return super.kubunUnicode();
+            /*
             } else if (cp < 0) {
                 return '3';
             } else if (s.length() > 1) {
@@ -1665,6 +1761,7 @@ class Charsets {
             } else {
                 return '1';
             }
+            */
         }
 
     }
