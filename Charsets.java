@@ -1,3 +1,8 @@
+/*
+ * Charsets.java
+ *
+ * https://github.com/glad2121/charsets
+ */
 import static java.nio.charset.StandardCharsets.*;
 import static java.text.Normalizer.*;
 import static java.text.Normalizer.Form.*;
@@ -438,7 +443,7 @@ class Charsets {
         }
 
         // 区分。
-        bab.append("%-6s" + sep, "40407");
+        bab.append("%-6s" + sep, "40409");
         if (csv2()) {
             return Collections.singletonList(bab.toByteArray());
         }
@@ -920,8 +925,10 @@ class Charsets {
             if (csv()) {
                 if (undefined() || cp < 0x20 || cp == 0x7F) {
                     bab.append("0" + sep);
-                } else {
+                } else if (cp < 0x80) {
                     bab.append("1" + sep);
+                } else {
+                    bab.append("2" + sep);
                 }
             }
             if (csv1()) {
@@ -1080,7 +1087,7 @@ class Charsets {
                 if (undefined()) {
                     bab.append("0" + sep);
                 } else {
-                    bab.append("1" + sep);
+                    bab.append("3" + sep);
                 }
             }
             if (csv1()) {
@@ -1215,8 +1222,18 @@ class Charsets {
             if (csv()) {
                 if (undefined() || "78".indexOf(kubun().charAt(0)) != -1) {
                     bab.append("0" + sep);
+                } else if (k < 13) {
+                    // 非漢字。
+                    bab.append("3" + sep);
+                } else if (k < 16) {
+                    // NEC特殊文字。
+                    bab.append("4" + sep);
+                } else if (k < 89) {
+                    // 第1・2水準漢字。
+                    bab.append("3" + sep);
                 } else {
-                    bab.append("1" + sep);
+                    // IBM拡張漢字。
+                    bab.append("5" + sep);
                 }
             }
             if (csv1()) {
@@ -1324,22 +1341,17 @@ class Charsets {
             if (k < 13) {
                 // 非漢字。
                 if (!ss.equals(s)) {
-                    sb.append("770");
+                    sb.append('7');
                 } else {
-                    sb.append("300");
+                    sb.append('3');
                 }
+                sb.append(kubunLevel());
+                sb.append('0');
             } else if (k < 16) {
                 // NEC特殊文字。
                 sb.append('7');
                 sb.append(kubunLevel());
                 sb.append('1');
-                /*
-                if (!encodableToSjis2004()) {
-                    sb.append("771");
-                } else {
-                    sb.append("701");
-                }
-                */
             } else if (k < 48) {
                 // 第1水準漢字。
                 sb.append("310");
@@ -1351,22 +1363,6 @@ class Charsets {
                 sb.append('7');
                 sb.append(kubunLevel());
                 sb.append('2');
-                /*
-                if (decodableFromSjis2004()) {
-                    String sjis2004 = toHexString(bx2);
-                    if (sjis2004.compareTo("879F") < 0) {
-                        sb.append("702");
-                    } else if (sjis2004.compareTo("F000") < 0) {
-                        sb.append("732");
-                    } else {
-                        sb.append("742");
-                    }
-                } else if (decodableFromEuc()) {
-                    sb.append("752");
-                } else {
-                    sb.append("772");
-                }
-                */
             } else if (k < 115) {
                 // ユーザー外字領域。
                 return "88888";
@@ -1375,22 +1371,6 @@ class Charsets {
                 sb.append('7');
                 sb.append(kubunLevel());
                 sb.append('3');
-                /*
-                if (decodableFromSjis2004()) {
-                    String sjis2004 = toHexString(bx2);
-                    if (sjis2004.compareTo("879F") < 0) {
-                        sb.append("703");
-                    } else if (sjis2004.compareTo("F000") < 0) {
-                        sb.append("733");
-                    } else {
-                        sb.append("743");
-                    }
-                } else if (decodableFromEuc()) {
-                    sb.append("753");
-                } else {
-                    sb.append("773");
-                }
-                */
             }
             return sb.toString();
         }
@@ -1434,7 +1414,7 @@ class Charsets {
                 if (undefined() || "378".indexOf(kubun().charAt(0)) != -1 || kubun().charAt(4) != '9') {
                     bab.append("0" + sep);
                 } else {
-                    bab.append("1" + sep);
+                    bab.append("6" + sep);
                 }
             }
             if (csv1()) {
@@ -1531,35 +1511,12 @@ class Charsets {
             if (m == 2) {
                 // 第4水準漢字。
                 sb.append("44");
-                /*
-                if (contains(bw2, 0x3F)) {
-                    sb.append('9');
-                } else {
-                    sb.append('7');
-                }
-                */
             } else if (k < 14) {
                 // 非漢字。
                 sb.append("40");
-                /*
-                if (contains(bw2, 0x3F)) {
-                    sb.append('9');
-                } else if (encodableToW31j()) {
-                    sb.append('1');
-                } else {
-                    sb.append('7');
-                }
-                */
             } else {
                 // 第3水準漢字。
                 sb.append("43");
-                /*
-                if (contains(bw2, 0x3F)) {
-                    sb.append('9');
-                } else {
-                    sb.append('7');
-                }
-                */
             }
             sb.append(kubunW31j());
             return sb.toString();
@@ -1570,15 +1527,6 @@ class Charsets {
                 return '7';
             }
             return super.kubunUnicode();
-            /*
-            } else if (cp < 0) {
-                return '3';
-            } else if (s.length() > 1) {
-                return '2';
-            } else {
-                return '1';
-            }
-            */
         }
 
     }
@@ -1725,26 +1673,6 @@ class Charsets {
             sb.append('5');
             sb.append(kubunLevel());
             sb.append(kubunW31j());
-            /*
-            if (decodableFromSjis2004()) {
-                String sjis2004 = toHexString(bx2);
-                if (sjis2004.compareTo("879F") < 0) {
-                    sb.append("50");
-                } else if (sjis2004.compareTo("F000") < 0) {
-                    sb.append("53");
-                } else {
-                    sb.append("54");
-                }
-            } else {
-                // 補助漢字。
-                sb.append("55");
-            }
-            if (contains(bw2, 0x3F)) {
-                sb.append('9');
-            } else {
-                sb.append('7');
-            }
-            */
             return sb.toString();
         }
 
@@ -1753,15 +1681,6 @@ class Charsets {
                 return '7';
             }
             return super.kubunUnicode();
-            /*
-            } else if (cp < 0) {
-                return '3';
-            } else if (s.length() > 1) {
-                return '2';
-            } else {
-                return '1';
-            }
-            */
         }
 
     }
