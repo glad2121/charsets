@@ -27,16 +27,18 @@ class Charsets {
     static final byte[] EMPTY_BYTES = {};
     static final byte[] BYTES_3F = {(byte) 0x3F};
 
-    static final Map<String, String> VARIANT_MAP;
+    static final Map<String, String[]> VARIANT_MAP;
     static {
-        Pattern p = Pattern.compile(" *U\\+(\\S+) +U\\+(\\S+).*");
-        Map<String, String> variantMap = new HashMap<>();
+        Pattern p = Pattern.compile(" *U\\+(\\S+) +U\\+(\\S+)(?: +([^#\\s]+))?.*");
+        Map<String, String[]> variantMap = new HashMap<>();
         try (BufferedReader in = Files.newBufferedReader(Paths.get("variants.txt"), UTF_8)) {
             String line;
             while ((line = in.readLine()) != null) {
                 Matcher m = p.matcher(line);
                 if (m.matches()) {
-                    variantMap.put(cpToString(m.group(1)), cpToString(m.group(2)));
+                    String key = cpToString(m.group(1));
+                    String[] value = {cpToString(m.group(2)), m.group(3)};
+                    variantMap.put(key, value);
                 }
             }
         } catch (IOException e) {
@@ -643,7 +645,7 @@ class Charsets {
         String nfc;
         String nfkc;
         String nfd;
-        String variant;
+        String[] variant;
 
         int jis;
         int euc;
@@ -767,8 +769,8 @@ class Charsets {
                 bab.append("%-4s" + sep, toHexString(nfc));
             } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                 bab.append("%-4s" + sep, toHexString(nfkc));
-            } else if (variant != null && !variant.isEmpty()) {
-                bab.append("%-4s" + sep, toHexString(variant));
+            } else if (variant != null) {
+                bab.append("%-4s" + sep, toHexString(variant[0]));
             } else {
                 bab.append("-   " + sep);
             }
@@ -1028,9 +1030,12 @@ class Charsets {
                             bab.append(" -> [%s] (NFKC)", nfkc);
                         }
                     }
-                    if (variant != null && !variant.isEmpty()
-                            && !variant.equals(nfc) && !variant.equals(nfkc)) {
-                        bab.append(" -> [%s]", variant);
+                    if (variant != null
+                            && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
+                        bab.append(" -> [%s]", variant[0]);
+                        if (variant[1] != null) {
+                            bab.append(" (%s)", variant[1]);
+                        }
                     }
                 }
             }
@@ -1146,9 +1151,12 @@ class Charsets {
                     } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
-                    if (variant != null && !variant.isEmpty()
-                            && !variant.equals(nfc) && !variant.equals(nfkc)) {
-                        bab.append(" -> [%s]", variant);
+                    if (variant != null
+                            && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
+                        bab.append(" -> [%s]", variant[0]);
+                        if (variant[1] != null) {
+                            bab.append(" (%s)", variant[1]);
+                        }
                     }
                 }
             }
@@ -1317,9 +1325,12 @@ class Charsets {
                     } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
-                    if (variant != null && !variant.isEmpty()
-                            && !variant.equals(nfc) && !variant.equals(nfkc)) {
-                        bab.append(" -> [%s]", variant);
+                    if (variant != null
+                            && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
+                        bab.append(" -> [%s]", variant[0]);
+                        if (variant[1] != null) {
+                            bab.append(" (%s)", variant[1]);
+                        }
                     }
                 }
             }
@@ -1491,9 +1502,12 @@ class Charsets {
                     } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
-                    if (variant != null && !variant.isEmpty()
-                            && !variant.equals(nfc) && !variant.equals(nfkc)) {
-                        bab.append(" -> [%s]", variant);
+                    if (variant != null
+                            && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
+                        bab.append(" -> [%s]", variant[0]);
+                        if (variant[1] != null) {
+                            bab.append(" (%s)", variant[1]);
+                        }
                     }
                 }
             }
@@ -1653,9 +1667,12 @@ class Charsets {
                     } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
-                    if (variant != null && !variant.isEmpty()
-                            && !variant.equals(nfc) && !variant.equals(nfkc)) {
-                        bab.append(" -> [%s]", variant);
+                    if (variant != null
+                            && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
+                        bab.append(" -> [%s]", variant[0]);
+                        if (variant[1] != null) {
+                            bab.append(" (%s)", variant[1]);
+                        }
                     }
                 }
             }
