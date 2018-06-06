@@ -47,6 +47,31 @@ class Charsets {
         VARIANT_MAP = variantMap;
     }
 
+    static final Map<String, Character> KANJI_MAP;
+    static {
+        Pattern p = Pattern.compile("(\\d) (\\S+)");
+        Map<String, Character> kanjiMap = new HashMap<>();
+        try (BufferedReader in = Files.newBufferedReader(Paths.get("kanji.txt"), UTF_8)) {
+            String line;
+            while ((line = in.readLine()) != null) {
+                Matcher m = p.matcher(line);
+                if (m.matches()) {
+                    char kubun = m.group(1).charAt(0);
+                    String g = m.group(2);
+                    for (int i = 0; i < g.length(); ++i) {
+                        String s = g.substring(i, i + 1);
+                        if (kubun == '3' || !kanjiMap.containsKey(s)) {
+                            kanjiMap.put(s, kubun);
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        KANJI_MAP = kanjiMap;
+    }
+
     final String option;
     final Charset encoding;
     final String sep;
@@ -278,8 +303,6 @@ class Charsets {
         println("# JIS X 0213 - 結合文字");
         printHeaderX0213();
         printSeparator();
-        printLines(encodedLinesCombining('\u0300'));
-        printLines(encodedLinesCombining('\u0301'));
         printLines(encodedLinesCombining('\u3099'));
         printLines(encodedLinesCombining('\u309A'));
         
@@ -314,17 +337,18 @@ class Charsets {
         if (csv()) return;
         println();
         println("# 区分:");
-        println("# No Unicode      正規化       規格等       水準         Windows-31J       ");
-        println("# -- ------------ ------------ ------------ ------------ ------------------");
-        println("#  0 -            変換なし     -            非漢字       標準規格          ");
-        println("#  1 基本多言語面 NFDで変換    US-ASCII     第1水準漢字  NEC特殊文字       ");
-        println("#  2 追加面       NFKCで変換   JIS X 0201   第2水準漢字  NEC選定IBM拡張文字");
-        println("#  3 結合文字列   NFCで変換    JIS X 0208   第3水準漢字  IBM拡張文字       ");
-        println("#  4 結合文字     -            JIS X 0213   第4水準漢字  -                 ");
-        println("#  5 -            -            JIS X 0212   補助漢字     -                 ");
-        println("#  7 Decodeのみ可 -            ベンダー外字 ベンダー外字 Encodeのみ可      ");
-        println("#  8 ユーザー外字 ユーザー外字 ユーザー外字 ユーザー外字 ユーザー外字      ");
-        println("#  9 未定義       未定義       未定義       未定義       未定義            ");
+        println("# No Unicode      正規化       規格等       水準         Windows-31J        文部省等      ");
+        println("# -- ------------ ------------ ------------ ------------ ------------------ --------------");
+        println("#  0 -            変換なし     -            非漢字       標準規格           非漢字        ");
+        println("#  1 基本多言語面 NFDで変換    US-ASCII     第1水準漢字  NEC特殊文字        常用漢字      ");
+        println("#  2 追加面       NFKCで変換   JIS X 0201   第2水準漢字  NEC選定IBM拡張文字 常用漢字(旧字)");
+        println("#  3 結合文字     NFCで変換    JIS X 0208   第3水準漢字  IBM拡張文字        人名用漢字(二)");
+        println("#  4 結合文字列   -            JIS X 0213   第4水準漢字  -                  人名用漢字(一)");
+        println("#  5 -            -            JIS X 0212   補助漢字     -                  表外漢字(印標)");
+        println("#  6 -            -            -            -            -                  表外漢字(簡慣)");
+        println("#  7 Decodeのみ可 -            ベンダー外字 ベンダー外字 Encodeのみ可       その他        ");
+        println("#  8 ユーザー外字 ユーザー外字 ユーザー外字 ユーザー外字 ユーザー外字       ユーザー外字  ");
+        println("#  9 未定義       未定義       未定義       未定義       未定義             未定義        ");
     }
 
     void printHeader() {
@@ -438,14 +462,14 @@ class Charsets {
         // Unicode
         bab.append("U+%04X  " + sep, cp);
         if (csv()) {
-            bab.append("1" + sep);
+            bab.append("0" + sep);
         }
         if (csv1()) {
             return Collections.singletonList(bab.toByteArray());
         }
 
         // 区分。
-        bab.append("%-6s" + sep, "40409");
+        bab.append("%-6s" + sep, "304090");
         if (csv2()) {
             return Collections.singletonList(bab.toByteArray());
         }
@@ -823,6 +847,8 @@ class Charsets {
 
         char kubunUnicode() {
             if (cp < 0) {
+                return '4';
+            } else if (0x0300 <= cp && cp <= 0x036F) {
                 return '3';
             } else if (0x10000 <= cp) {
                 return '2';
@@ -888,6 +914,21 @@ class Charsets {
                 return '7';
             } else {
                 return '9';
+            }
+        }
+
+        char kubunKanji() {
+            Character c = KANJI_MAP.get(s);
+            if (c != null) {
+                return c;
+            } else if (0x3400 <= cp && cp <= 0x9FFF) {
+                return '7';
+            } else if (0xF900 <= cp && cp <= 0xFAFF) {
+                return '7';
+            } else if (0x20000 <= cp && cp <= 0x2FA1F) {
+                return '7';
+            } else {
+                return '0';
             }
         }
 
@@ -1045,7 +1086,7 @@ class Charsets {
         String kubun() {
             if (undefined()) {
                 // 未定義文字。
-                return "99999";
+                return "999999";
             }
             StringBuilder sb = new StringBuilder();
             sb.append('1');
@@ -1059,6 +1100,7 @@ class Charsets {
                 // JIS X 0201
                 sb.append("200");
             }
+            sb.append('0');
             return sb.toString();
         }
 
@@ -1166,7 +1208,7 @@ class Charsets {
         String kubun() {
             if (undefined()) {
                 // 未定義文字。
-                return "99999";
+                return "999999";
             }
             StringBuilder sb = new StringBuilder();
             if (!encodableToSjis()) {
@@ -1189,6 +1231,7 @@ class Charsets {
                 // 第2水準漢字。
                 sb.append("320");
             }
+            sb.append(kubunKanji());
             return sb.toString();
         }
 
@@ -1340,7 +1383,7 @@ class Charsets {
         String kubun() {
             if (undefined()) {
                 // 未定義文字。
-                return "99999";
+                return "999999";
             }
             StringBuilder sb = new StringBuilder();
             if (!encodableToW31j()) {
@@ -1376,13 +1419,14 @@ class Charsets {
                 sb.append('2');
             } else if (k < 115) {
                 // ユーザー外字領域。
-                return "88888";
+                return "888888";
             } else {
                 // IBM拡張漢字。
                 sb.append('7');
                 sb.append(kubunLevel());
                 sb.append('3');
             }
+            sb.append(kubunKanji());
             return sb.toString();
         }
 
@@ -1422,7 +1466,7 @@ class Charsets {
                 bab.append("U+%06X" + sep, cp);
             }
             if (csv()) {
-                if (undefined() || "378".indexOf(kubun().charAt(0)) != -1 || kubun().charAt(4) != '9') {
+                if (undefined() || "3478".indexOf(kubun().charAt(0)) != -1 || kubun().charAt(4) != '9') {
                     bab.append("0" + sep);
                 } else {
                     bab.append("6" + sep);
@@ -1517,7 +1561,7 @@ class Charsets {
         String kubun() {
             if (undefined()) {
                 // 未定義文字。
-                return "99999";
+                return "999999";
             }
             StringBuilder sb = new StringBuilder();
             sb.append(kubunUnicode());
@@ -1533,6 +1577,7 @@ class Charsets {
                 sb.append("43");
             }
             sb.append(kubunW31j());
+            sb.append(kubunKanji());
             return sb.toString();
         }
 
@@ -1682,7 +1727,7 @@ class Charsets {
         String kubun() {
             if (undefined()) {
                 // 未定義文字。
-                return "99999";
+                return "999999";
             }
             StringBuilder sb = new StringBuilder();
             sb.append(kubunUnicode());
@@ -1690,6 +1735,7 @@ class Charsets {
             sb.append('5');
             sb.append(kubunLevel());
             sb.append(kubunW31j());
+            sb.append(kubunKanji());
             return sb.toString();
         }
 
