@@ -87,7 +87,7 @@ class Charsets {
     }
 
     Charsets(String[] args) {
-        this.option = (args.length == 0) ? "" : args[0];
+        this.option = (args.length == 0) ? "-utf8" : args[0];
         this.encoding = optionToEncoding(option);
         this.sep = optionToSeparator(option);
     }
@@ -132,9 +132,9 @@ class Charsets {
         println("#");
         println("# encoding%s.txt", option);
         println("#");
-        
+
         printKubunDesc();
-        
+
         println();
         println("# US-ASCII");
         printHeader();
@@ -151,7 +151,7 @@ class Charsets {
                 laters.addAll(lines.subList(1, lines.size()));
             }
         }
-        
+
         println();
         println("# JIS X 0201");
         printHeader();
@@ -169,7 +169,7 @@ class Charsets {
         for (int c = 0xE0; c <= 0xFF; ++c) {
             printLines(encodedLines(c));
         }
-        
+
         if (!csv()) {
             println();
             println("# JIS X 0208 - マッピングが異なるもの");
@@ -183,7 +183,7 @@ class Charsets {
             printLines(encodedLines(1, 82));
             printLines(encodedLines(2, 44));
         }
-        
+
         println();
         println("# JIS X 0208 - 非漢字");
         printHeaderX0208();
@@ -193,7 +193,7 @@ class Charsets {
                 printLines(encodedLines(k, t));
             }
         }
-        
+
         println();
         println("# NEC特殊文字");
         printHeaderX0208();
@@ -203,7 +203,7 @@ class Charsets {
                 printLines(encodedLines(k, t));
             }
         }
-        
+
         println();
         println("# JIS X 0208 - 第1水準漢字");
         printHeaderX0208();
@@ -213,7 +213,7 @@ class Charsets {
                 printLines(encodedLines(k, t));
             }
         }
-        
+
         println();
         println("# JIS X 0208 - 第2水準漢字");
         printHeaderX0208();
@@ -223,7 +223,7 @@ class Charsets {
                 printLines(encodedLines(k, t));
             }
         }
-        
+
         if (!csv1() && !csv2()) {
             println();
             println("# NEC選定IBM拡張文字");
@@ -234,7 +234,7 @@ class Charsets {
                     printLines(encodedLines(k, t));
                 }
             }
-            
+
             println();
             println("# ユーザー外字領域");
             printHeaderX0208();
@@ -245,7 +245,7 @@ class Charsets {
                 }
             }
         }
-        
+
         println();
         println("# IBM拡張文字");
         printHeaderX0208();
@@ -255,19 +255,19 @@ class Charsets {
                 printLines(encodedLines(k, t));
             }
         }
-        
+
         println();
         println("# JIS X 0213 - 非漢字");
         printHeaderX0213();
         for (int k = 1; k <= 13; ++k) {
             if (k == 1) continue;
-            
+
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
                 printLines(encodedLinesX0213(1, k, t));
             }
         }
-        
+
         println();
         println("# JIS X 0213 - 第3水準漢字");
         printHeaderX0213();
@@ -276,13 +276,13 @@ class Charsets {
             if (16 <= k && k <= 46) continue;
             // 第2水準漢字。
             if (48 <= k && k <= 83) continue;
-            
+
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
                 printLines(encodedLinesX0213(1, k, t));
             }
         }
-        
+
         println();
         println("# JIS X 0213 - 第4水準漢字");
         printHeaderX0213();
@@ -292,20 +292,20 @@ class Charsets {
             if ( 6 <= k && k <=  7) continue;
             if ( 9 <= k && k <= 11) continue;
             if (16 <= k && k <= 77) continue;
-            
+
             printSeparator();
             for (int t = 1; t <= 94; ++t) {
                 printLines(encodedLinesX0213(2, k, t));
             }
         }
-        
+
         println();
         println("# JIS X 0213 - 結合文字");
         printHeaderX0213();
         printSeparator();
         printLines(encodedLinesCombining('\u3099'));
         printLines(encodedLinesCombining('\u309A'));
-        
+
         if (!csv1() && !csv2()) {
             println();
             println("# JIS X 0212 - 非漢字");
@@ -314,13 +314,13 @@ class Charsets {
                 // 第4水準漢字。
                 if (3 <= k && k <= 5) continue;
                 if (k == 8) continue;
-                
+
                 printSeparator();
                 for (int t = 1; t <= 94; ++t) {
                     printLines(encodedLinesX0212(2, k, t));
                 }
             }
-            
+
             println();
             println("# JIS X 0212 - 補助漢字");
             printHeaderX0213();
@@ -396,8 +396,9 @@ class Charsets {
     void printLine(byte[] bytes) {
         try {
             System.out.write(bytes);
-            System.out.write((byte) '\r');
-            System.out.write((byte) '\n');
+            //System.out.write((byte) '\r');
+            //System.out.write((byte) '\n');
+            System.out.println();
             System.out.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -443,7 +444,7 @@ class Charsets {
                 || (16 <= k && k <= 77))) {
             return Collections.emptyList();
         }
-        
+
         JisX0213Info info = new JisX0213Info(m, k, t);
         if ((csv1() || csv2()) && info.kubun().charAt(4) != '9') {
             return Collections.emptyList();
@@ -508,7 +509,7 @@ class Charsets {
                 && !(16 <= k && k <= 77))) {
             return Collections.emptyList();
         }
-        
+
         JisX0212Info info = new JisX0212Info(m, k, t);
         if ((csv1() || csv2())
                 && (info.kubun().charAt(3) != '5' || info.kubun().charAt(4) != '9')) {
@@ -554,7 +555,7 @@ class Charsets {
         if (m == 1) {
             return kutenToSjis(k, t);
         }
-        
+
         if (k == 2
                 || ( 6 <= k && k <=  7)
                 || ( 9 <= k && k <= 11)
@@ -622,7 +623,11 @@ class Charsets {
     }
 
     static String toString(byte[] bytes, Charset encoding) {
-        return new String(bytes, encoding);
+        String s = new String(bytes, encoding);
+        if (s.startsWith("\uFFFD")) {
+            return "\uFFFD";
+        }
+        return s;
     }
 
     static String toHexString(byte[] bytes) {
