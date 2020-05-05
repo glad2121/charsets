@@ -135,6 +135,10 @@ class Charsets {
         return "-csv2".equals(option);
     }
 
+    boolean corrects() {
+        return !"-utf8-2".equals(option);
+    }
+
     void printEncodedLines() {
         println("#");
         println("# encoding%s.txt", option);
@@ -629,11 +633,7 @@ class Charsets {
     }
 
     static String toString(byte[] bytes, Charset encoding) {
-        String s = new String(bytes, encoding);
-        if (s.startsWith("\uFFFD")) {
-            return "\uFFFD";
-        }
-        return s;
+        return new String(bytes, encoding);
     }
 
     static String toHexString(byte[] bytes) {
@@ -709,6 +709,9 @@ class Charsets {
         byte[] i939;
 
         void initUnicode(String s) {
+            if (corrects() && s.startsWith("\uFFFD")) {
+                s = "\uFFFD";
+            }
             this.s = s;
             this.cp = (s.codePointCount(0, s.length()) != 1) ? -1 : s.codePointAt(0);
             this.nfc  = normalize(s, NFC);
