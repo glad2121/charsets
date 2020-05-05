@@ -345,9 +345,21 @@ class Charsets {
     }
 
     void printKubunDesc() {
-        if (csv()) return;
+        if (csv1()) return;
+        if (csv2()) {
+            println();
+            println("# コード区分:");
+            println("# 0: 制御文字");
+            println("# 1: US-ASCII");
+            println("# 2: JIS X 0201");
+            println("# 3: JIS X 0208");
+            println("# 4: NEC特殊文字");
+            println("# 5: IBM拡張文字");
+            println("# 6: JIS X 0213 (第3水準)");
+            println("# 7: JIS X 0213 (第4水準)");
+        }
         println();
-        println("# 区分:");
+        println("# 詳細区分:");
         println("# No Unicode      正規化       規格等       水準         Windows-31J        文部省等      ");
         println("# -- ------------ ------------ ------------ ------------ ------------------ --------------");
         println("#  0 -            変換なし     制御文字     非漢字       制御文字           非漢字        ");
@@ -1422,17 +1434,31 @@ class Charsets {
             sb.append(kubunNormalization());
             if (k < 13) {
                 // 非漢字。
-                if (!ss.equals(s)) {
-                    sb.append('7');
-                } else {
+                char level = kubunLevel();
+                if (ss.equals(s)) {
                     sb.append('3');
+                } else if (!csv()) {
+                    sb.append('7');
+                } else if (level <= '4') {
+                    sb.append('4');
+                } else if (level == '5') {
+                    sb.append('5');
+                } else {
+                    sb.append('7');
                 }
-                sb.append(kubunLevel());
+                sb.append(level);
                 sb.append('3');
             } else if (k < 16) {
                 // NEC特殊文字。
-                sb.append('7');
-                sb.append(kubunLevel());
+                char level = kubunLevel();
+                if (!csv()) {
+                    sb.append('7');
+                } else if (level <= '4') {
+                    sb.append('4');
+                } else {
+                    sb.append('7');
+                }
+                sb.append(level);
                 sb.append('4');
             } else if (k < 48) {
                 // 第1水準漢字。
@@ -1450,8 +1476,17 @@ class Charsets {
                 return "888888";
             } else {
                 // IBM拡張漢字。
-                sb.append('7');
-                sb.append(kubunLevel());
+                char level = kubunLevel();
+                if (!csv()) {
+                    sb.append('7');
+                } else if (level <= '4') {
+                    sb.append('4');
+                } else if (level == '5') {
+                    sb.append('5');
+                } else {
+                    sb.append('7');
+                }
+                sb.append(level);
                 sb.append('6');
             }
             sb.append(kubunKanji());
