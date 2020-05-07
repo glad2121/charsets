@@ -1441,8 +1441,6 @@ class Charsets {
                     sb.append('7');
                 } else if (level <= '4') {
                     sb.append('4');
-                } else if (level == '5') {
-                    sb.append('5');
                 } else {
                     sb.append('7');
                 }
@@ -1481,8 +1479,6 @@ class Charsets {
                     sb.append('7');
                 } else if (level <= '4') {
                     sb.append('4');
-                } else if (level == '5') {
-                    sb.append('5');
                 } else {
                     sb.append('7');
                 }
