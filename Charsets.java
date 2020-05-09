@@ -271,6 +271,7 @@ class Charsets {
         println("# JIS X 0213 - 非漢字");
         printHeaderX0213();
         for (int k = 1; k <= 13; ++k) {
+            // JIS X 0208 で充填。
             if (k == 1) continue;
 
             printSeparator();
@@ -283,9 +284,9 @@ class Charsets {
         println("# JIS X 0213 - 第3水準漢字");
         printHeaderX0213();
         for (int k = 14; k <= 94; ++k) {
-            // 第1水準漢字。
+            // 第1水準漢字で充填。
             if (16 <= k && k <= 46) continue;
-            // 第2水準漢字。
+            // 第2水準漢字で充填。
             if (48 <= k && k <= 83) continue;
 
             printSeparator();
@@ -298,7 +299,7 @@ class Charsets {
         println("# JIS X 0213 - 第4水準漢字");
         printHeaderX0213();
         for (int k = 1; k <= 94; ++k) {
-            // 補助漢字。
+            // 補助漢字の領域。
             if (k == 2) continue;
             if ( 6 <= k && k <=  7) continue;
             if ( 9 <= k && k <= 11) continue;
@@ -322,7 +323,7 @@ class Charsets {
             println("# JIS X 0212 - 非漢字");
             printHeaderX0213();
             for (int k = 2; k <= 11; ++k) {
-                // 第4水準漢字。
+                // 第4水準漢字の領域。
                 if (3 <= k && k <= 5) continue;
                 if (k == 8) continue;
 
@@ -436,6 +437,7 @@ class Charsets {
 
     List<byte[]> encodedLines(int c) {
         JisX0201Info info = new JisX0201Info(c);
+        // 簡易 CSV は相互変換可能な文字のみ。
         if ((csv1() || csv2()) && info.kubun().charAt(0) >= '7') {
             return Collections.emptyList();
         }
@@ -450,6 +452,7 @@ class Charsets {
 
     List<byte[]> encodedLines(int k, int t) {
         Windows31jInfo info = new Windows31jInfo(k, t);
+        // 簡易 CSV は相互変換可能な文字のみ。
         if ((csv1() || csv2()) && info.kubun().charAt(0) >= '7') {
             return Collections.emptyList();
         }
@@ -460,7 +463,7 @@ class Charsets {
     }
 
     List<byte[]> encodedLinesX0213(int m, int k, int t) {
-        // 補助漢字。
+        // 補助漢字の領域。
         if (m == 2 && (k == 2
                 || ( 6 <= k && k <=  7)
                 || ( 9 <= k && k <= 11)
@@ -469,7 +472,8 @@ class Charsets {
         }
 
         JisX0213Info info = new JisX0213Info(m, k, t);
-        if ((csv1() || csv2()) && info.kubun().charAt(4) != '9') {
+        // 簡易 CSV は Windows-31J で未定義な文字のみ。
+        if ((csv1() || csv2()) && info.kubun().charAt(4) < '7') {
             return Collections.emptyList();
         }
         if (info.undefined() || info.s.equals(info.ss)) {
@@ -487,15 +491,15 @@ class Charsets {
         bab.append("U+%04X  " + sep, cp);
         if (csv()) {
             bab.append("6" + sep);
-        }
-        if (csv1()) {
-            return Collections.singletonList(bab.toByteArray());
+            if (csv1()) {
+                return Collections.singletonList(bab.toByteArray());
+            }
         }
 
         // 区分。
         bab.append("%-6s" + sep, "304090");
 
-        if (!csv()) {
+        if (!csv2()) {
             // UTF-16
             bab.append("%-8s" + sep, toHexString(s));
             // UTF-8
@@ -524,7 +528,7 @@ class Charsets {
     }
 
     List<byte[]> encodedLinesX0212(int m, int k, int t) {
-        // 第4水準漢字。
+        // 第4水準漢字の領域。
         if (m != 2 || (k != 2
                 && !( 6 <= k && k <=  7)
                 && !( 9 <= k && k <= 11)
@@ -533,8 +537,9 @@ class Charsets {
         }
 
         JisX0212Info info = new JisX0212Info(m, k, t);
+        // 簡易 CSV は Windows-31J で未定義な文字のみ。
         if ((csv1() || csv2())
-                && (info.kubun().charAt(3) != '5' || info.kubun().charAt(4) != '9')) {
+                && (info.kubun().charAt(3) != '5' || info.kubun().charAt(4) < '7')) {
             return Collections.emptyList();
         }
         if (info.undefined()) {
@@ -644,7 +649,7 @@ class Charsets {
         return false;
     }
 
-    static String toString(byte[] bytes, Charset encoding) {
+    static String decode(byte[] bytes, Charset encoding) {
         return new String(bytes, encoding);
     }
 
@@ -721,6 +726,7 @@ class Charsets {
         byte[] i939;
 
         void initUnicode(String s) {
+            // Java 8 の変更点を吸収。
             if (corrects() && s.startsWith("\uFFFD")) {
                 s = "\uFFFD";
             }
@@ -777,35 +783,35 @@ class Charsets {
         }
 
         boolean decodableFromEuc() {
-            return Charsets.toString(be2, EUC_JP).equals(s);
+            return decode(be2, EUC_JP).equals(s);
         }
 
         boolean decodableFromSjis() {
-            return Charsets.toString(bs2, SHIFT_JIS_2004).equals(s);
+            return decode(bs2, SHIFT_JIS_2004).equals(s);
         }
 
         boolean decodableFromSjis2004() {
-            return Charsets.toString(bx2, SHIFT_JIS_2004).equals(s);
+            return decode(bx2, SHIFT_JIS_2004).equals(s);
         }
 
         boolean decodableFromW31j() {
-            return Charsets.toString(bw2, WINDOWS_31J).equals(s);
+            return decode(bw2, WINDOWS_31J).equals(s);
         }
 
         boolean decodableFromI942() {
-            return Charsets.toString(i942, IBM_942).equals(s);
+            return decode(i942, IBM_942).equals(s);
         }
 
         boolean decodableFromI943() {
-            return Charsets.toString(i943, IBM_943).equals(s);
+            return decode(i943, IBM_943).equals(s);
         }
 
         boolean decodableFromI930() {
-            return Charsets.toString(i930, IBM_930).equals(s);
+            return decode(i930, IBM_930).equals(s);
         }
 
         boolean decodableFromI939() {
-            return Charsets.toString(i939, IBM_939).equals(s);
+            return decode(i939, IBM_939).equals(s);
         }
 
         String utf16() {
@@ -883,24 +889,32 @@ class Charsets {
 
         char kubunUnicode() {
             if (cp < 0) {
+                // 結合文字列。
                 return '4';
             } else if (0x0300 <= cp && cp <= 0x036F) {
+                // 結合文字。
                 return '3';
             } else if (0x10000 <= cp) {
+                // 追加面。
                 return '2';
             } else {
+                // 基本多言語面。
                 return '1';
             }
         }
 
         char kubunNormalization() {
             if (!s.equals(nfc)) {
+                // NFC で変換 (非正規形)。
                 return '3';
             } else if (!s.equals(nfkc)) {
+                // NFKC で変換 (互換文字)。
                 return '2';
             } else if (!s.equals(nfd)) {
+                // NFD で変換 (合成済み)。
                 return '1';
             } else {
+                // 変換なし。
                 return '0';
             }
         }
@@ -909,23 +923,32 @@ class Charsets {
             if (decodableFromSjis2004()) {
                 String sjis2004 = toHexString(bx2);
                 if (sjis2004.compareTo("879F") < 0) {
+                    // 非漢字。
                     return '0';
                 } else if (sjis2004.compareTo("889F") < 0) {
+                    // 第3水準漢字。
                     return '3';
                 } else if (sjis2004.compareTo("9873") < 0) {
+                    // 第1水準漢字。
                     return '1';
                 } else if (sjis2004.compareTo("989F") < 0) {
+                    // 第3水準漢字。
                     return '3';
                 } else if (sjis2004.compareTo("EAA5") < 0) {
+                    // 第2水準漢字。
                     return '2';
                 } else if (sjis2004.compareTo("F040") < 0) {
+                    // 第3水準漢字。
                     return '3';
                 } else {
+                    // 第4水準漢字。
                     return '4';
                 }
             } else if (decodableFromEuc()) {
+                // 補助漢字。
                 return '5';
             } else {
+                // ベンダー外字。
                 return '7';
             }
         }
@@ -934,21 +957,29 @@ class Charsets {
             if (decodableFromW31j()) {
                 String w31j = toHexString(bw2);
                 if (w31j.compareTo("8740") < 0) {
+                    // JIS S 0208 (非漢字)
                     return '3';
                 } else if (w31j.compareTo("889F") < 0) {
+                    // NEC特殊文字。
                     return '4';
                 } else if (w31j.compareTo("ED40") < 0) {
+                    // JIS S 0208 (第1水準・第2水準漢字)
                     return '3';
                 } else if (w31j.compareTo("F040") < 0) {
+                    // NEC選定IBM拡張文字。
                     return '5';
                 } else if (w31j.compareTo("FA40") < 0) {
+                    // ユーザー外字。
                     return '8';
                 } else {
+                    // IBM拡張文字。
                     return '6';
                 }
             } else if (!contains(bw2, 0x3F)) {
+                // コンコードのみ可。
                 return '7';
             } else {
+                // 未定義。
                 return '9';
             }
         }
@@ -956,14 +987,19 @@ class Charsets {
         char kubunKanji() {
             Character c = KANJI_MAP.get(s);
             if (c != null) {
+                // 常用漢字、人名用漢字、表外漢字。
                 return c;
             } else if (0x3400 <= cp && cp <= 0x9FFF) {
+                // CJK統合漢字。
                 return '7';
             } else if (0xF900 <= cp && cp <= 0xFAFF) {
+                // CJK互換漢字。
                 return '7';
             } else if (0x20000 <= cp && cp <= 0x2FA1F) {
+                // CJK統合漢字拡張、CJK互換漢字補助。
                 return '7';
             } else {
+                // 非漢字。
                 return '0';
             }
         }
@@ -980,7 +1016,7 @@ class Charsets {
             this.euc = (c < 0x80) ? c : (0x8E00 | c);
             this.sjis = (c == 0x5C || c == 0x7E) ? -1 : c;
             this.b = new byte[] {(byte) c};
-            initUnicode(Charsets.toString(b, SHIFT_JIS));
+            initUnicode(decode(b, SHIFT_JIS));
         }
 
         JisX0201Info(int c, String s) {
@@ -1004,12 +1040,16 @@ class Charsets {
 
             if (csv()) {
                 if (undefined()) {
+                    // 未定義。
                     bab.append("9" + sep);
                 } else if (cp < 0x20 || cp == 0x7F) {
+                    // 制御文字。
                     bab.append("0" + sep);
                 } else if (cp < 0x80) {
+                    // US-ASCII
                     bab.append("1" + sep);
                 } else {
+                    // JIS X 0201
                     bab.append("2" + sep);
                 }
                 if (csv1()) {
@@ -1025,7 +1065,7 @@ class Charsets {
             // 区分。
             bab.append("%-6s" + sep, kubun());
 
-            if (!csv()) {
+            if (!csv2()) {
                 // UTF-16
                 bab.append("%-8s" + sep, utf16());
                 // UTF-8
@@ -1128,20 +1168,23 @@ class Charsets {
                 return "999999";
             }
             StringBuilder sb = new StringBuilder();
+            // 基本多言語面。
             sb.append('1');
             sb.append(kubunNormalization());
             if (s.equals("\u00A5") || s.equals("\u203E")) {
+                // JIS X 0201 (ラテン文字)
                 sb.append("207");
             } else if (c < 0x20 || c == 0x7F) {
-                // 制御文字
+                // 制御文字。
                 sb.append("000");
             } else if (c < 0x80) {
                 // US-ASCII
                 sb.append("101");
             } else {
-                // JIS X 0201
+                // JIS X 0201 (半角カナ)
                 sb.append("202");
             }
+            // 非漢字。
             sb.append('0');
             return sb.toString();
         }
@@ -1160,7 +1203,7 @@ class Charsets {
             this.euc = w31j.euc;
             this.sjis = w31j.sjis;
             this.b = w31j.b;
-            initUnicode(Charsets.toString(b, SHIFT_JIS));
+            initUnicode(decode(b, SHIFT_JIS));
         }
 
         byte[] encodedLine() {
@@ -1175,8 +1218,10 @@ class Charsets {
 
             if (csv()) {
                 if (undefined()) {
-                    bab.append("0" + sep);
+                    // 未定義。
+                    bab.append("9" + sep);
                 } else {
+                    // JIS X 0208
                     bab.append("3" + sep);
                 }
                 if (csv1()) {
@@ -1188,7 +1233,7 @@ class Charsets {
             // 区分。
             bab.append("%-6s" + sep, kubun());
 
-            if (!csv()) {
+            if (!csv2()) {
                 // UTF-16
                 bab.append("%-8s" + sep, utf16());
                 // UTF-8
@@ -1253,16 +1298,20 @@ class Charsets {
             }
             StringBuilder sb = new StringBuilder();
             if (!encodableToSjis()) {
+                // デコードのみ可。
                 sb.append('7');
             } else {
+                // 基本多言語面。
                 sb.append('1');
             }
             sb.append(kubunNormalization());
             if (k < 16) {
                 // 非漢字。
                 if (contains(bw2, 0x3F)) {
+                    // Windows-31J 未定義。
                     sb.append("309");
                 } else {
+                    // Windows-31J エンコードのみ可。
                     sb.append("307");
                 }
             } else if (k < 48) {
@@ -1293,8 +1342,8 @@ class Charsets {
             this.euc = (94 < k) ? -1 : kutenToEuc(k, t);
             this.sjis = kutenToSjis(k, t);
             this.b = bytes(sjis, 2);
-            this.ss = Charsets.toString(b, SHIFT_JIS);
-            initUnicode(Charsets.toString(b, WINDOWS_31J));
+            this.ss = decode(b, SHIFT_JIS);
+            initUnicode(decode(b, WINDOWS_31J));
             this.showSjis = showSjis();
         }
 
@@ -1314,7 +1363,8 @@ class Charsets {
 
             if (csv()) {
                 if (undefined() || "78".indexOf(kubun().charAt(0)) != -1) {
-                    bab.append("0" + sep);
+                    // 未定義。
+                    bab.append("9" + sep);
                 } else if (k < 13) {
                     // 非漢字。
                     bab.append("3" + sep);
@@ -1337,7 +1387,7 @@ class Charsets {
             // 区分。
             bab.append("%-6s" + sep, kubun());
 
-            if (!csv()) {
+            if (!csv2()) {
                 // UTF-16
                 bab.append("%-8s" + sep, utf16());
                 // UTF-8
@@ -1427,8 +1477,10 @@ class Charsets {
             }
             StringBuilder sb = new StringBuilder();
             if (!encodableToW31j()) {
+                // デコードのみ可。
                 sb.append('7');
             } else {
+                // 基本多言語面。
                 sb.append('1');
             }
             sb.append(kubunNormalization());
@@ -1436,27 +1488,33 @@ class Charsets {
                 // 非漢字。
                 char level = kubunLevel();
                 if (ss.equals(s)) {
+                    // JIS X 0208
                     sb.append('3');
                 } else if (!csv()) {
+                    // ベンダー外字。
                     sb.append('7');
                 } else if (level <= '4') {
+                    // JIS X 0213
                     sb.append('4');
                 } else {
+                    // ベンダー外字。
                     sb.append('7');
                 }
                 sb.append(level);
+                // JIS X 0208
                 sb.append('3');
             } else if (k < 16) {
                 // NEC特殊文字。
                 char level = kubunLevel();
-                if (!csv()) {
-                    sb.append('7');
-                } else if (level <= '4') {
+                if (csv() && level <= '4') {
+                    // JIS X 0213
                     sb.append('4');
                 } else {
+                    // ベンダー外字。
                     sb.append('7');
                 }
                 sb.append(level);
+                // NEC特殊文字。
                 sb.append('4');
             } else if (k < 48) {
                 // 第1水準漢字。
@@ -1466,8 +1524,10 @@ class Charsets {
                 sb.append("323");
             } else if (k < 95) {
                 // NEC選定IBM拡張文字。
+                // ベンダー外字。
                 sb.append('7');
                 sb.append(kubunLevel());
+                // NEC選定IBM拡張文字。
                 sb.append('5');
             } else if (k < 115) {
                 // ユーザー外字領域。
@@ -1475,14 +1535,15 @@ class Charsets {
             } else {
                 // IBM拡張漢字。
                 char level = kubunLevel();
-                if (!csv()) {
-                    sb.append('7');
-                } else if (level <= '4') {
+                if (csv() && level <= '4') {
+                    // JIS X 0213
                     sb.append('4');
                 } else {
+                    // ベンダー外字。
                     sb.append('7');
                 }
                 sb.append(level);
+                // IBM拡張文字。
                 sb.append('6');
             }
             sb.append(kubunKanji());
@@ -1508,9 +1569,9 @@ class Charsets {
             this.euc = kutenToEuc(m, k, t);
             this.sjis = kutenToSjis(m, k, t);
             this.b = bytes(sjis, 2);
-            this.ss = Charsets.toString(b, SHIFT_JIS);
-            this.sw = Charsets.toString(b, WINDOWS_31J);
-            initUnicode(Charsets.toString(b, SHIFT_JIS_2004));
+            this.ss = decode(b, SHIFT_JIS);
+            this.sw = decode(b, WINDOWS_31J);
+            initUnicode(decode(b, SHIFT_JIS_2004));
         }
 
         byte[] encodedLine() {
@@ -1526,11 +1587,15 @@ class Charsets {
             }
 
             if (csv()) {
-                if (undefined() || "478".indexOf(kubun().charAt(0)) != -1 || kubun().charAt(4) != '9') {
+                if (undefined() || "478".indexOf(kubun().charAt(0)) != -1
+                        || kubun().charAt(4) < '7') {
+                    // 未定義。
                     bab.append("9" + sep);
                 } else if (kubun().charAt(3) == '4') {
+                    // JIS X 0213 (第4水準)
                     bab.append("7" + sep);
                 } else {
+                    // JIS X 0213 (第3水準)
                     bab.append("6" + sep);
                 }
                 if (csv1()) {
@@ -1542,7 +1607,7 @@ class Charsets {
             // 区分。
             bab.append("%-6s" + sep, kubun());
 
-            if (!csv()) {
+            if (!csv2()) {
                 // UTF-16
                 bab.append("%-8s" + sep, utf16());
                 // UTF-8
@@ -1605,6 +1670,8 @@ class Charsets {
                         bab.append(" -> [%s] (NFC)", nfc);
                     } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
+                    } else if (!contains(bw2, 0x3F) && !decodableFromW31j()) {
+                        bab.append(" -> [%s] (W31J)", decode(bw2, WINDOWS_31J));
                     }
                     if (variant != null
                             && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
@@ -1643,6 +1710,7 @@ class Charsets {
 
         char kubunUnicode() {
             if (!encodableToSjis2004()) {
+                // デコードのみ可。
                 return '7';
             }
             return super.kubunUnicode();
@@ -1664,7 +1732,7 @@ class Charsets {
             this.euc = kutenToEuc(m, k, t);
             this.sjis = -1;
             this.b = bytes(euc, 3);
-            initUnicode(Charsets.toString(b, EUC_JP));
+            initUnicode(decode(b, EUC_JP));
         }
 
         @Override
@@ -1696,9 +1764,11 @@ class Charsets {
 
             if (csv()) {
                 if (undefined() || "78".indexOf(kubun().charAt(0)) != -1
-                        || kubun().charAt(3) != '5' || kubun().charAt(4) != '9') {
+                        || kubun().charAt(3) != '5' || kubun().charAt(4) < '7') {
+                    // 未定義。
                     bab.append("9" + sep);
                 } else {
+                    // 未定義。
                     bab.append("9" + sep);
                 }
                 if (csv1()) {
@@ -1710,7 +1780,7 @@ class Charsets {
             // 区分。
             bab.append("%-6s" + sep, kubun());
 
-            if (!csv()) {
+            if (!csv2()) {
                 // UTF-16
                 bab.append("%-8s" + sep, utf16());
                 // UTF-8
@@ -1791,6 +1861,7 @@ class Charsets {
             StringBuilder sb = new StringBuilder();
             sb.append(kubunUnicode());
             sb.append(kubunNormalization());
+            // JIS X 0202
             sb.append('5');
             sb.append(kubunLevel());
             sb.append(kubunW31j());
@@ -1800,6 +1871,7 @@ class Charsets {
 
         char kubunUnicode() {
             if (!encodableToEuc()) {
+                // デコードのみ可。
                 return '7';
             }
             return super.kubunUnicode();
