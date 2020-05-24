@@ -361,7 +361,7 @@ class Charsets {
         }
         println();
         println("# 詳細区分:");
-        println("# No Unicode      正規化       規格等       水準         Windows-31J        文部省等      ");
+        println("# No Unicode      正規化       規格等       水準         Windows-31J        法令等        ");
         println("# -- ------------ ------------ ------------ ------------ ------------------ --------------");
         println("#  0 -            変換なし     制御文字     非漢字       制御文字           非漢字        ");
         println("#  1 基本多言語面 NFDで変換    US-ASCII     第1水準漢字  US-ASCII           常用漢字      ");
