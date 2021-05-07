@@ -64,9 +64,9 @@ class Charsets {
                 Matcher m = p.matcher(line);
                 if (m.matches()) {
                     char kubun = m.group(1).charAt(0);
-                    String g = m.group(2);
-                    for (int i = 0; i < g.length(); ++i) {
-                        String s = g.substring(i, i + 1);
+                    int[] codePoints = m.group(2).codePoints().toArray();
+                    for (int i = 0; i < codePoints.length; ++i) {
+                        String s = new String(codePoints, i, 1);
                         if (kubun == '3' || !kanjiMap.containsKey(s)) {
                             kanjiMap.put(s, kubun);
                         }
