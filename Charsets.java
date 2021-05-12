@@ -360,8 +360,8 @@ class Charsets {
             println("# 3: JIS X 0208");
             println("# 4: NEC特殊文字");
             println("# 5: IBM拡張文字");
-            println("# 6: JIS X 0213 (第3水準)");
-            println("# 7: JIS X 0213 (第4水準)");
+            println("# 6: JIS X 0213 1面");
+            println("# 7: JIS X 0213 2面");
         }
         println();
         println("# 詳細区分:");
@@ -370,8 +370,8 @@ class Charsets {
         println("#  0 -            変換なし     制御文字     非漢字       制御文字           非漢字        ");
         println("#  1 基本多言語面 NFDで変換    US-ASCII     第1水準漢字  US-ASCII           常用漢字      ");
         println("#  2 追加面       NFKCで変換   JIS X 0201   第2水準漢字  JIS X 0201         常用漢字(旧字)");
-        println("#  3 結合文字     NFCで変換    JIS X 0208   第3水準漢字  JIS X 0208         人名用漢字(二)");
-        println("#  4 結合文字列   -            JIS X 0213   第4水準漢字  NEC特殊文字        人名用漢字(一)");
+        println("#  3 結合文字     半角・全角形 JIS X 0208   第3水準漢字  JIS X 0208         人名用漢字(二)");
+        println("#  4 結合文字列   NFCで変換    JIS X 0213   第4水準漢字  NEC特殊文字        人名用漢字(一)");
         println("#  5 -            -            JIS X 0212   補助漢字     NEC選定IBM拡張文字 表外漢字(印標)");
         println("#  6 -            -            -            -            IBM拡張文字        表外漢字(簡慣)");
         println("#  7 Decodeのみ可 -            ベンダー外字 ベンダー外字 Encodeのみ可       その他        ");
@@ -693,6 +693,10 @@ class Charsets {
         return toHexString(ebcdic);
     }
 
+    static boolean isHalfwidthAndFullwidthForms(int c) {
+        return (0xFF00 <= c) && (c <= 0xFFEF);
+    }
+
     static String getCharName(int c) {
         if (c < 0x20) {
             return CHAR_NAMES[c];
@@ -910,10 +914,14 @@ class Charsets {
         char kubunNormalization() {
             if (!s.equals(nfc)) {
                 // NFC で変換 (非正規形)。
-                return '3';
+                return '4';
             } else if (!s.equals(nfkc)) {
                 // NFKC で変換 (互換文字)。
-                return '2';
+                if (isHalfwidthAndFullwidthForms(s.charAt(0))) {
+                    return '3';
+                } else {
+                    return '2';
+                }
             } else if (!s.equals(nfd)) {
                 // NFD で変換 (合成済み)。
                 return '1';

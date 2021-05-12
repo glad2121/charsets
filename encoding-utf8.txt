@@ -8,8 +8,8 @@
 #  0 -            変換なし     制御文字     非漢字       制御文字           非漢字        
 #  1 基本多言語面 NFDで変換    US-ASCII     第1水準漢字  US-ASCII           常用漢字      
 #  2 追加面       NFKCで変換   JIS X 0201   第2水準漢字  JIS X 0201         常用漢字(旧字)
-#  3 結合文字     NFCで変換    JIS X 0208   第3水準漢字  JIS X 0208         人名用漢字(二)
-#  4 結合文字列   -            JIS X 0213   第4水準漢字  NEC特殊文字        人名用漢字(一)
+#  3 結合文字     半角・全角形 JIS X 0208   第3水準漢字  JIS X 0208         人名用漢字(二)
+#  4 結合文字列   NFCで変換    JIS X 0213   第4水準漢字  NEC特殊文字        人名用漢字(一)
 #  5 -            -            JIS X 0212   補助漢字     NEC選定IBM拡張文字 表外漢字(印標)
 #  6 -            -            -            -            IBM拡張文字        表外漢字(簡慣)
 #  7 Decodeのみ可 -            ベンダー外字 ベンダー外字 Encodeのみ可       その他        
@@ -191,69 +191,69 @@ U+FFFD   999999 FFFD     EFBFBD       -          9E -    -      -      -    9E  
 U+FFFD   999999 FFFD     EFBFBD       -          9F -    -      -      -    9F   -    -    -    -    -    -    
 -------- ------ -------- ------------ ---- -------- ---- ------ ------ ---- ---- ---- ---- ---- ---- ---- ---- ----
 U+FFFD   999999 FFFD     EFBFBD       -          A0 -    -      -      -    A0   -    -    -    -    -    -    
-U+FF61   122020 FF61     EFBDA1       3002       A1 -    8EA1   8EA1   A1   A1   -    A1   A1   41   42   -    [｡] -> [。] (NFKC)
-U+FF62   122020 FF62     EFBDA2       300C       A2 -    8EA2   8EA2   A2   A2   -    A2   A2   42   43   -    [｢] -> [「] (NFKC)
-U+FF63   122020 FF63     EFBDA3       300D       A3 -    8EA3   8EA3   A3   A3   -    A3   A3   43   44   -    [｣] -> [」] (NFKC)
-U+FF64   122020 FF64     EFBDA4       3001       A4 -    8EA4   8EA4   A4   A4   -    A4   A4   44   45   -    [､] -> [、] (NFKC)
-U+FF65   122020 FF65     EFBDA5       30FB       A5 -    8EA5   8EA5   A5   A5   -    A5   A5   45   46   -    [･] -> [・] (NFKC)
-U+FF66   122020 FF66     EFBDA6       30F2       A6 -    8EA6   8EA6   A6   A6   -    A6   A6   46   47   -    [ｦ] -> [ヲ] (NFKC)
-U+FF67   122020 FF67     EFBDA7       30A1       A7 -    8EA7   8EA7   A7   A7   -    A7   A7   47   48   -    [ｧ] -> [ァ] (NFKC)
-U+FF68   122020 FF68     EFBDA8       30A3       A8 -    8EA8   8EA8   A8   A8   -    A8   A8   48   49   -    [ｨ] -> [ィ] (NFKC)
-U+FF69   122020 FF69     EFBDA9       30A5       A9 -    8EA9   8EA9   A9   A9   -    A9   A9   49   51   -    [ｩ] -> [ゥ] (NFKC)
-U+FF6A   122020 FF6A     EFBDAA       30A7       AA -    8EAA   8EAA   AA   AA   -    AA   AA   51   52   -    [ｪ] -> [ェ] (NFKC)
-U+FF6B   122020 FF6B     EFBDAB       30A9       AB -    8EAB   8EAB   AB   AB   -    AB   AB   52   53   -    [ｫ] -> [ォ] (NFKC)
-U+FF6C   122020 FF6C     EFBDAC       30E3       AC -    8EAC   8EAC   AC   AC   -    AC   AC   53   54   -    [ｬ] -> [ャ] (NFKC)
-U+FF6D   122020 FF6D     EFBDAD       30E5       AD -    8EAD   8EAD   AD   AD   -    AD   AD   54   55   -    [ｭ] -> [ュ] (NFKC)
-U+FF6E   122020 FF6E     EFBDAE       30E7       AE -    8EAE   8EAE   AE   AE   -    AE   AE   55   56   -    [ｮ] -> [ョ] (NFKC)
-U+FF6F   122020 FF6F     EFBDAF       30C3       AF -    8EAF   8EAF   AF   AF   -    AF   AF   56   57   -    [ｯ] -> [ッ] (NFKC)
-U+FF70   122020 FF70     EFBDB0       30FC       B0 -    8EB0   8EB0   B0   B0   -    B0   B0   58   58   -    [ｰ] -> [ー] (NFKC)
-U+FF71   122020 FF71     EFBDB1       30A2       B1 -    8EB1   8EB1   B1   B1   -    B1   B1   81   59   -    [ｱ] -> [ア] (NFKC)
-U+FF72   122020 FF72     EFBDB2       30A4       B2 -    8EB2   8EB2   B2   B2   -    B2   B2   82   62   -    [ｲ] -> [イ] (NFKC)
-U+FF73   122020 FF73     EFBDB3       30A6       B3 -    8EB3   8EB3   B3   B3   -    B3   B3   83   63   -    [ｳ] -> [ウ] (NFKC)
-U+FF74   122020 FF74     EFBDB4       30A8       B4 -    8EB4   8EB4   B4   B4   -    B4   B4   84   64   -    [ｴ] -> [エ] (NFKC)
-U+FF75   122020 FF75     EFBDB5       30AA       B5 -    8EB5   8EB5   B5   B5   -    B5   B5   85   65   -    [ｵ] -> [オ] (NFKC)
-U+FF76   122020 FF76     EFBDB6       30AB       B6 -    8EB6   8EB6   B6   B6   -    B6   B6   86   66   -    [ｶ] -> [カ] (NFKC)
-U+FF77   122020 FF77     EFBDB7       30AD       B7 -    8EB7   8EB7   B7   B7   -    B7   B7   87   67   -    [ｷ] -> [キ] (NFKC)
-U+FF78   122020 FF78     EFBDB8       30AF       B8 -    8EB8   8EB8   B8   B8   -    B8   B8   88   68   -    [ｸ] -> [ク] (NFKC)
-U+FF79   122020 FF79     EFBDB9       30B1       B9 -    8EB9   8EB9   B9   B9   -    B9   B9   89   69   -    [ｹ] -> [ケ] (NFKC)
-U+FF7A   122020 FF7A     EFBDBA       30B3       BA -    8EBA   8EBA   BA   BA   -    BA   BA   8A   70   -    [ｺ] -> [コ] (NFKC)
-U+FF7B   122020 FF7B     EFBDBB       30B5       BB -    8EBB   8EBB   BB   BB   -    BB   BB   8C   71   -    [ｻ] -> [サ] (NFKC)
-U+FF7C   122020 FF7C     EFBDBC       30B7       BC -    8EBC   8EBC   BC   BC   -    BC   BC   8D   72   -    [ｼ] -> [シ] (NFKC)
-U+FF7D   122020 FF7D     EFBDBD       30B9       BD -    8EBD   8EBD   BD   BD   -    BD   BD   8E   73   -    [ｽ] -> [ス] (NFKC)
-U+FF7E   122020 FF7E     EFBDBE       30BB       BE -    8EBE   8EBE   BE   BE   -    BE   BE   8F   74   -    [ｾ] -> [セ] (NFKC)
-U+FF7F   122020 FF7F     EFBDBF       30BD       BF -    8EBF   8EBF   BF   BF   -    BF   BF   90   75   -    [ｿ] -> [ソ] (NFKC)
-U+FF80   122020 FF80     EFBE80       30BF       C0 -    8EC0   8EC0   C0   C0   -    C0   C0   91   76   -    [ﾀ] -> [タ] (NFKC)
-U+FF81   122020 FF81     EFBE81       30C1       C1 -    8EC1   8EC1   C1   C1   -    C1   C1   92   77   -    [ﾁ] -> [チ] (NFKC)
-U+FF82   122020 FF82     EFBE82       30C4       C2 -    8EC2   8EC2   C2   C2   -    C2   C2   93   78   -    [ﾂ] -> [ツ] (NFKC)
-U+FF83   122020 FF83     EFBE83       30C6       C3 -    8EC3   8EC3   C3   C3   -    C3   C3   94   8A   -    [ﾃ] -> [テ] (NFKC)
-U+FF84   122020 FF84     EFBE84       30C8       C4 -    8EC4   8EC4   C4   C4   -    C4   C4   95   8B   -    [ﾄ] -> [ト] (NFKC)
-U+FF85   122020 FF85     EFBE85       30CA       C5 -    8EC5   8EC5   C5   C5   -    C5   C5   96   8C   -    [ﾅ] -> [ナ] (NFKC)
-U+FF86   122020 FF86     EFBE86       30CB       C6 -    8EC6   8EC6   C6   C6   -    C6   C6   97   8D   -    [ﾆ] -> [ニ] (NFKC)
-U+FF87   122020 FF87     EFBE87       30CC       C7 -    8EC7   8EC7   C7   C7   -    C7   C7   98   8E   -    [ﾇ] -> [ヌ] (NFKC)
-U+FF88   122020 FF88     EFBE88       30CD       C8 -    8EC8   8EC8   C8   C8   -    C8   C8   99   8F   -    [ﾈ] -> [ネ] (NFKC)
-U+FF89   122020 FF89     EFBE89       30CE       C9 -    8EC9   8EC9   C9   C9   -    C9   C9   9A   9A   -    [ﾉ] -> [ノ] (NFKC)
-U+FF8A   122020 FF8A     EFBE8A       30CF       CA -    8ECA   8ECA   CA   CA   -    CA   CA   9D   9B   -    [ﾊ] -> [ハ] (NFKC)
-U+FF8B   122020 FF8B     EFBE8B       30D2       CB -    8ECB   8ECB   CB   CB   -    CB   CB   9E   9C   -    [ﾋ] -> [ヒ] (NFKC)
-U+FF8C   122020 FF8C     EFBE8C       30D5       CC -    8ECC   8ECC   CC   CC   -    CC   CC   9F   9D   -    [ﾌ] -> [フ] (NFKC)
-U+FF8D   122020 FF8D     EFBE8D       30D8       CD -    8ECD   8ECD   CD   CD   -    CD   CD   A2   9E   -    [ﾍ] -> [ヘ] (NFKC)
-U+FF8E   122020 FF8E     EFBE8E       30DB       CE -    8ECE   8ECE   CE   CE   -    CE   CE   A3   9F   -    [ﾎ] -> [ホ] (NFKC)
-U+FF8F   122020 FF8F     EFBE8F       30DE       CF -    8ECF   8ECF   CF   CF   -    CF   CF   A4   AA   -    [ﾏ] -> [マ] (NFKC)
-U+FF90   122020 FF90     EFBE90       30DF       D0 -    8ED0   8ED0   D0   D0   -    D0   D0   A5   AB   -    [ﾐ] -> [ミ] (NFKC)
-U+FF91   122020 FF91     EFBE91       30E0       D1 -    8ED1   8ED1   D1   D1   -    D1   D1   A6   AC   -    [ﾑ] -> [ム] (NFKC)
-U+FF92   122020 FF92     EFBE92       30E1       D2 -    8ED2   8ED2   D2   D2   -    D2   D2   A7   AE   -    [ﾒ] -> [メ] (NFKC)
-U+FF93   122020 FF93     EFBE93       30E2       D3 -    8ED3   8ED3   D3   D3   -    D3   D3   A8   AF   -    [ﾓ] -> [モ] (NFKC)
-U+FF94   122020 FF94     EFBE94       30E4       D4 -    8ED4   8ED4   D4   D4   -    D4   D4   A9   B3   -    [ﾔ] -> [ヤ] (NFKC)
-U+FF95   122020 FF95     EFBE95       30E6       D5 -    8ED5   8ED5   D5   D5   -    D5   D5   AA   B4   -    [ﾕ] -> [ユ] (NFKC)
-U+FF96   122020 FF96     EFBE96       30E8       D6 -    8ED6   8ED6   D6   D6   -    D6   D6   AC   B5   -    [ﾖ] -> [ヨ] (NFKC)
-U+FF97   122020 FF97     EFBE97       30E9       D7 -    8ED7   8ED7   D7   D7   -    D7   D7   AD   B6   -    [ﾗ] -> [ラ] (NFKC)
-U+FF98   122020 FF98     EFBE98       30EA       D8 -    8ED8   8ED8   D8   D8   -    D8   D8   AE   B7   -    [ﾘ] -> [リ] (NFKC)
-U+FF99   122020 FF99     EFBE99       30EB       D9 -    8ED9   8ED9   D9   D9   -    D9   D9   AF   B8   -    [ﾙ] -> [ル] (NFKC)
-U+FF9A   122020 FF9A     EFBE9A       30EC       DA -    8EDA   8EDA   DA   DA   -    DA   DA   BA   B9   -    [ﾚ] -> [レ] (NFKC)
-U+FF9B   122020 FF9B     EFBE9B       30ED       DB -    8EDB   8EDB   DB   DB   -    DB   DB   BB   BA   -    [ﾛ] -> [ロ] (NFKC)
-U+FF9C   122020 FF9C     EFBE9C       30EF       DC -    8EDC   8EDC   DC   DC   -    DC   DC   BC   BB   -    [ﾜ] -> [ワ] (NFKC)
-U+FF9D   122020 FF9D     EFBE9D       30F3       DD -    8EDD   8EDD   DD   DD   -    DD   DD   BD   BC   -    [ﾝ] -> [ン] (NFKC)
-U+FF9E   122020 FF9E     EFBE9E       3099       DE -    8EDE   8EDE   DE   DE   -    DE   DE   BE   BE   -    [ﾞ] -> (NFKC)
-U+FF9F   122020 FF9F     EFBE9F       309A       DF -    8EDF   8EDF   DF   DF   -    DF   DF   BF   BF   -    [ﾟ] -> (NFKC)
+U+FF61   132020 FF61     EFBDA1       3002       A1 -    8EA1   8EA1   A1   A1   -    A1   A1   41   42   -    [｡] -> [。] (NFKC)
+U+FF62   132020 FF62     EFBDA2       300C       A2 -    8EA2   8EA2   A2   A2   -    A2   A2   42   43   -    [｢] -> [「] (NFKC)
+U+FF63   132020 FF63     EFBDA3       300D       A3 -    8EA3   8EA3   A3   A3   -    A3   A3   43   44   -    [｣] -> [」] (NFKC)
+U+FF64   132020 FF64     EFBDA4       3001       A4 -    8EA4   8EA4   A4   A4   -    A4   A4   44   45   -    [､] -> [、] (NFKC)
+U+FF65   132020 FF65     EFBDA5       30FB       A5 -    8EA5   8EA5   A5   A5   -    A5   A5   45   46   -    [･] -> [・] (NFKC)
+U+FF66   132020 FF66     EFBDA6       30F2       A6 -    8EA6   8EA6   A6   A6   -    A6   A6   46   47   -    [ｦ] -> [ヲ] (NFKC)
+U+FF67   132020 FF67     EFBDA7       30A1       A7 -    8EA7   8EA7   A7   A7   -    A7   A7   47   48   -    [ｧ] -> [ァ] (NFKC)
+U+FF68   132020 FF68     EFBDA8       30A3       A8 -    8EA8   8EA8   A8   A8   -    A8   A8   48   49   -    [ｨ] -> [ィ] (NFKC)
+U+FF69   132020 FF69     EFBDA9       30A5       A9 -    8EA9   8EA9   A9   A9   -    A9   A9   49   51   -    [ｩ] -> [ゥ] (NFKC)
+U+FF6A   132020 FF6A     EFBDAA       30A7       AA -    8EAA   8EAA   AA   AA   -    AA   AA   51   52   -    [ｪ] -> [ェ] (NFKC)
+U+FF6B   132020 FF6B     EFBDAB       30A9       AB -    8EAB   8EAB   AB   AB   -    AB   AB   52   53   -    [ｫ] -> [ォ] (NFKC)
+U+FF6C   132020 FF6C     EFBDAC       30E3       AC -    8EAC   8EAC   AC   AC   -    AC   AC   53   54   -    [ｬ] -> [ャ] (NFKC)
+U+FF6D   132020 FF6D     EFBDAD       30E5       AD -    8EAD   8EAD   AD   AD   -    AD   AD   54   55   -    [ｭ] -> [ュ] (NFKC)
+U+FF6E   132020 FF6E     EFBDAE       30E7       AE -    8EAE   8EAE   AE   AE   -    AE   AE   55   56   -    [ｮ] -> [ョ] (NFKC)
+U+FF6F   132020 FF6F     EFBDAF       30C3       AF -    8EAF   8EAF   AF   AF   -    AF   AF   56   57   -    [ｯ] -> [ッ] (NFKC)
+U+FF70   132020 FF70     EFBDB0       30FC       B0 -    8EB0   8EB0   B0   B0   -    B0   B0   58   58   -    [ｰ] -> [ー] (NFKC)
+U+FF71   132020 FF71     EFBDB1       30A2       B1 -    8EB1   8EB1   B1   B1   -    B1   B1   81   59   -    [ｱ] -> [ア] (NFKC)
+U+FF72   132020 FF72     EFBDB2       30A4       B2 -    8EB2   8EB2   B2   B2   -    B2   B2   82   62   -    [ｲ] -> [イ] (NFKC)
+U+FF73   132020 FF73     EFBDB3       30A6       B3 -    8EB3   8EB3   B3   B3   -    B3   B3   83   63   -    [ｳ] -> [ウ] (NFKC)
+U+FF74   132020 FF74     EFBDB4       30A8       B4 -    8EB4   8EB4   B4   B4   -    B4   B4   84   64   -    [ｴ] -> [エ] (NFKC)
+U+FF75   132020 FF75     EFBDB5       30AA       B5 -    8EB5   8EB5   B5   B5   -    B5   B5   85   65   -    [ｵ] -> [オ] (NFKC)
+U+FF76   132020 FF76     EFBDB6       30AB       B6 -    8EB6   8EB6   B6   B6   -    B6   B6   86   66   -    [ｶ] -> [カ] (NFKC)
+U+FF77   132020 FF77     EFBDB7       30AD       B7 -    8EB7   8EB7   B7   B7   -    B7   B7   87   67   -    [ｷ] -> [キ] (NFKC)
+U+FF78   132020 FF78     EFBDB8       30AF       B8 -    8EB8   8EB8   B8   B8   -    B8   B8   88   68   -    [ｸ] -> [ク] (NFKC)
+U+FF79   132020 FF79     EFBDB9       30B1       B9 -    8EB9   8EB9   B9   B9   -    B9   B9   89   69   -    [ｹ] -> [ケ] (NFKC)
+U+FF7A   132020 FF7A     EFBDBA       30B3       BA -    8EBA   8EBA   BA   BA   -    BA   BA   8A   70   -    [ｺ] -> [コ] (NFKC)
+U+FF7B   132020 FF7B     EFBDBB       30B5       BB -    8EBB   8EBB   BB   BB   -    BB   BB   8C   71   -    [ｻ] -> [サ] (NFKC)
+U+FF7C   132020 FF7C     EFBDBC       30B7       BC -    8EBC   8EBC   BC   BC   -    BC   BC   8D   72   -    [ｼ] -> [シ] (NFKC)
+U+FF7D   132020 FF7D     EFBDBD       30B9       BD -    8EBD   8EBD   BD   BD   -    BD   BD   8E   73   -    [ｽ] -> [ス] (NFKC)
+U+FF7E   132020 FF7E     EFBDBE       30BB       BE -    8EBE   8EBE   BE   BE   -    BE   BE   8F   74   -    [ｾ] -> [セ] (NFKC)
+U+FF7F   132020 FF7F     EFBDBF       30BD       BF -    8EBF   8EBF   BF   BF   -    BF   BF   90   75   -    [ｿ] -> [ソ] (NFKC)
+U+FF80   132020 FF80     EFBE80       30BF       C0 -    8EC0   8EC0   C0   C0   -    C0   C0   91   76   -    [ﾀ] -> [タ] (NFKC)
+U+FF81   132020 FF81     EFBE81       30C1       C1 -    8EC1   8EC1   C1   C1   -    C1   C1   92   77   -    [ﾁ] -> [チ] (NFKC)
+U+FF82   132020 FF82     EFBE82       30C4       C2 -    8EC2   8EC2   C2   C2   -    C2   C2   93   78   -    [ﾂ] -> [ツ] (NFKC)
+U+FF83   132020 FF83     EFBE83       30C6       C3 -    8EC3   8EC3   C3   C3   -    C3   C3   94   8A   -    [ﾃ] -> [テ] (NFKC)
+U+FF84   132020 FF84     EFBE84       30C8       C4 -    8EC4   8EC4   C4   C4   -    C4   C4   95   8B   -    [ﾄ] -> [ト] (NFKC)
+U+FF85   132020 FF85     EFBE85       30CA       C5 -    8EC5   8EC5   C5   C5   -    C5   C5   96   8C   -    [ﾅ] -> [ナ] (NFKC)
+U+FF86   132020 FF86     EFBE86       30CB       C6 -    8EC6   8EC6   C6   C6   -    C6   C6   97   8D   -    [ﾆ] -> [ニ] (NFKC)
+U+FF87   132020 FF87     EFBE87       30CC       C7 -    8EC7   8EC7   C7   C7   -    C7   C7   98   8E   -    [ﾇ] -> [ヌ] (NFKC)
+U+FF88   132020 FF88     EFBE88       30CD       C8 -    8EC8   8EC8   C8   C8   -    C8   C8   99   8F   -    [ﾈ] -> [ネ] (NFKC)
+U+FF89   132020 FF89     EFBE89       30CE       C9 -    8EC9   8EC9   C9   C9   -    C9   C9   9A   9A   -    [ﾉ] -> [ノ] (NFKC)
+U+FF8A   132020 FF8A     EFBE8A       30CF       CA -    8ECA   8ECA   CA   CA   -    CA   CA   9D   9B   -    [ﾊ] -> [ハ] (NFKC)
+U+FF8B   132020 FF8B     EFBE8B       30D2       CB -    8ECB   8ECB   CB   CB   -    CB   CB   9E   9C   -    [ﾋ] -> [ヒ] (NFKC)
+U+FF8C   132020 FF8C     EFBE8C       30D5       CC -    8ECC   8ECC   CC   CC   -    CC   CC   9F   9D   -    [ﾌ] -> [フ] (NFKC)
+U+FF8D   132020 FF8D     EFBE8D       30D8       CD -    8ECD   8ECD   CD   CD   -    CD   CD   A2   9E   -    [ﾍ] -> [ヘ] (NFKC)
+U+FF8E   132020 FF8E     EFBE8E       30DB       CE -    8ECE   8ECE   CE   CE   -    CE   CE   A3   9F   -    [ﾎ] -> [ホ] (NFKC)
+U+FF8F   132020 FF8F     EFBE8F       30DE       CF -    8ECF   8ECF   CF   CF   -    CF   CF   A4   AA   -    [ﾏ] -> [マ] (NFKC)
+U+FF90   132020 FF90     EFBE90       30DF       D0 -    8ED0   8ED0   D0   D0   -    D0   D0   A5   AB   -    [ﾐ] -> [ミ] (NFKC)
+U+FF91   132020 FF91     EFBE91       30E0       D1 -    8ED1   8ED1   D1   D1   -    D1   D1   A6   AC   -    [ﾑ] -> [ム] (NFKC)
+U+FF92   132020 FF92     EFBE92       30E1       D2 -    8ED2   8ED2   D2   D2   -    D2   D2   A7   AE   -    [ﾒ] -> [メ] (NFKC)
+U+FF93   132020 FF93     EFBE93       30E2       D3 -    8ED3   8ED3   D3   D3   -    D3   D3   A8   AF   -    [ﾓ] -> [モ] (NFKC)
+U+FF94   132020 FF94     EFBE94       30E4       D4 -    8ED4   8ED4   D4   D4   -    D4   D4   A9   B3   -    [ﾔ] -> [ヤ] (NFKC)
+U+FF95   132020 FF95     EFBE95       30E6       D5 -    8ED5   8ED5   D5   D5   -    D5   D5   AA   B4   -    [ﾕ] -> [ユ] (NFKC)
+U+FF96   132020 FF96     EFBE96       30E8       D6 -    8ED6   8ED6   D6   D6   -    D6   D6   AC   B5   -    [ﾖ] -> [ヨ] (NFKC)
+U+FF97   132020 FF97     EFBE97       30E9       D7 -    8ED7   8ED7   D7   D7   -    D7   D7   AD   B6   -    [ﾗ] -> [ラ] (NFKC)
+U+FF98   132020 FF98     EFBE98       30EA       D8 -    8ED8   8ED8   D8   D8   -    D8   D8   AE   B7   -    [ﾘ] -> [リ] (NFKC)
+U+FF99   132020 FF99     EFBE99       30EB       D9 -    8ED9   8ED9   D9   D9   -    D9   D9   AF   B8   -    [ﾙ] -> [ル] (NFKC)
+U+FF9A   132020 FF9A     EFBE9A       30EC       DA -    8EDA   8EDA   DA   DA   -    DA   DA   BA   B9   -    [ﾚ] -> [レ] (NFKC)
+U+FF9B   132020 FF9B     EFBE9B       30ED       DB -    8EDB   8EDB   DB   DB   -    DB   DB   BB   BA   -    [ﾛ] -> [ロ] (NFKC)
+U+FF9C   132020 FF9C     EFBE9C       30EF       DC -    8EDC   8EDC   DC   DC   -    DC   DC   BC   BB   -    [ﾜ] -> [ワ] (NFKC)
+U+FF9D   132020 FF9D     EFBE9D       30F3       DD -    8EDD   8EDD   DD   DD   -    DD   DD   BD   BC   -    [ﾝ] -> [ン] (NFKC)
+U+FF9E   132020 FF9E     EFBE9E       3099       DE -    8EDE   8EDE   DE   DE   -    DE   DE   BE   BE   -    [ﾞ] -> (NFKC)
+U+FF9F   132020 FF9F     EFBE9F       309A       DF -    8EDF   8EDF   DF   DF   -    DF   DF   BF   BF   -    [ﾟ] -> (NFKC)
 -------- ------ -------- ------------ ---- -------- ---- ------ ------ ---- ---- ---- ---- ---- ---- ---- ---- ----
 U+FFFD   999999 FFFD     EFBFBD       -          E0 -    -      -      -    E0   -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -          E1 -    -      -      -    E1   -    -    -    -    -    -    
@@ -295,17 +295,17 @@ Unicode  区分   UTF-16   UTF-8        VAR     区-点 JIS  EUC    2004   SJIS 
 U+2014   103090 2014     E28094       -       01-29 213D A1BD   A1BD   815C -    -    815C 815C -    -    444A [—]
 U+2015   107730 2015     E28095       -       01-29 -    -      -      -    815C -    -    -    444A 444A -    [―]
 U+301C   103090 301C     E3809C       -       01-33 2141 A1C1   A1C1   8160 -    -    8160 8160 -    -    43A1 [〜]
-U+FF5E   127030 FF5E     EFBD9E       007E    01-33 -    8FA2B7 -      81B0 8160 -    -    -    43A1 43A1 -    [～] -> [~] (NFKC)
+U+FF5E   137030 FF5E     EFBD9E       007E    01-33 -    8FA2B7 -      81B0 8160 -    -    -    43A1 43A1 -    [～] -> [~] (NFKC)
 U+2016   103090 2016     E28096       -       01-34 2142 A1C2   A1C2   8161 -    -    8161 8161 -    -    447C [‖]
 U+2225   107030 2225     E288A5       -       01-34 -    -      -      81D2 8161 -    -    -    447C 447C -    [∥]
 U+2212   103090 2212     E28892       -       01-61 215D A1DD   A1DD   817C -    -    817C 817C 4260 -    4260 [−]
-U+FF0D   127030 FF0D     EFBC8D       002D    01-61 -    -      -      81AF 817C -    -    -    -    4260 4260 [－] -> [-] (NFKC)
+U+FF0D   137030 FF0D     EFBC8D       002D    01-61 -    -      -      81AF 817C -    -    -    -    4260 4260 [－] -> [-] (NFKC)
 U+00A2   103070 00A2     C2A2         -       01-81 2171 A1F1   A1F1   8191 -    8191 80   -    B1   4A   -    [¢]
-U+FFE0   127730 FFE0     EFBFA0       00A2    01-81 -    -      -      -    8191 -    8191 8191 434A 434A -    [￠] -> [¢] (NFKC)
+U+FFE0   137730 FFE0     EFBFA0       00A2    01-81 -    -      -      -    8191 -    8191 8191 434A 434A -    [￠] -> [¢] (NFKC)
 U+00A3   103070 00A3     C2A3         -       01-82 2172 A1F2   A1F2   8192 -    8192 A0   -    4A   B1   -    [£]
-U+FFE1   127730 FFE1     EFBFA1       00A3    01-82 -    -      -      -    8192 -    8192 8192 424A 424A -    [￡] -> [£] (NFKC)
+U+FFE1   137730 FFE1     EFBFA1       00A3    01-82 -    -      -      -    8192 -    8192 8192 424A 424A -    [￡] -> [£] (NFKC)
 U+00AC   103070 00AC     C2AC         -       02-44 224C A2CC   A2CC   81CA -    81CA FD   -    5F   5F   -    [¬]
-U+FFE2   127730 FFE2     EFBFA2       00AC    02-44 -    -      -      -    81CA -    FA54 81CA 425F 425F -    [￢] -> [¬] (NFKC)
+U+FFE2   137730 FFE2     EFBFA2       00AC    02-44 -    -      -      -    81CA -    FA54 81CA 425F 425F -    [￢] -> [¬] (NFKC)
 
 # JIS X 0208 - 非漢字
 
@@ -314,21 +314,21 @@ Unicode  区分   UTF-16   UTF-8        VAR     区-点 JIS  EUC    2004   SJIS 
 U+3000   123030 3000     E38080       0020    01-01 2121 A1A1   A1A1   8140 8140 -    8140 8140 4040 4040 -    [　] -> [ ] (NFKC)
 U+3001   103030 3001     E38081       -       01-02 2122 A1A2   A1A2   8141 8141 -    8141 8141 4344 4344 -    [、]
 U+3002   103030 3002     E38082       -       01-03 2123 A1A3   A1A3   8142 8142 -    8142 8142 4341 4341 -    [。]
-U+FF0C   123030 FF0C     EFBC8C       002C    01-04 2124 A1A4   A1A4   8143 8143 -    8143 8143 426B 426B -    [，] -> [,] (NFKC)
-U+FF0E   123030 FF0E     EFBC8E       002E    01-05 2125 A1A5   A1A5   8144 8144 -    8144 8144 424B 424B -    [．] -> [.] (NFKC)
+U+FF0C   133030 FF0C     EFBC8C       002C    01-04 2124 A1A4   A1A4   8143 8143 -    8143 8143 426B 426B -    [，] -> [,] (NFKC)
+U+FF0E   133030 FF0E     EFBC8E       002E    01-05 2125 A1A5   A1A5   8144 8144 -    8144 8144 424B 424B -    [．] -> [.] (NFKC)
 U+30FB   103030 30FB     E383BB       -       01-06 2126 A1A6   A1A6   8145 8145 -    8145 8145 4345 4345 -    [・]
-U+FF1A   123030 FF1A     EFBC9A       003A    01-07 2127 A1A7   A1A7   8146 8146 -    8146 8146 427A 427A -    [：] -> [:] (NFKC)
-U+FF1B   123030 FF1B     EFBC9B       003B    01-08 2128 A1A8   A1A8   8147 8147 -    8147 8147 425E 425E -    [；] -> [;] (NFKC)
-U+FF1F   123030 FF1F     EFBC9F       003F    01-09 2129 A1A9   A1A9   8148 8148 -    8148 8148 426F 426F -    [？] -> [?] (NFKC)
-U+FF01   123030 FF01     EFBC81       0021    01-10 212A A1AA   A1AA   8149 8149 -    8149 8149 425A 425A -    [！] -> [!] (NFKC)
+U+FF1A   133030 FF1A     EFBC9A       003A    01-07 2127 A1A7   A1A7   8146 8146 -    8146 8146 427A 427A -    [：] -> [:] (NFKC)
+U+FF1B   133030 FF1B     EFBC9B       003B    01-08 2128 A1A8   A1A8   8147 8147 -    8147 8147 425E 425E -    [；] -> [;] (NFKC)
+U+FF1F   133030 FF1F     EFBC9F       003F    01-09 2129 A1A9   A1A9   8148 8148 -    8148 8148 426F 426F -    [？] -> [?] (NFKC)
+U+FF01   133030 FF01     EFBC81       0021    01-10 212A A1AA   A1AA   8149 8149 -    8149 8149 425A 425A -    [！] -> [!] (NFKC)
 U+309B   123030 309B     E3829B       -       01-11 212B A1AB   A1AB   814A 814A -    814A 814A 43BE 43BE -    [゛]
 U+309C   123030 309C     E3829C       -       01-12 212C A1AC   A1AC   814B 814B -    814B 814B 43BF 43BF -    [゜]
 U+00B4   123030 00B4     C2B4         -       01-13 212D A1AD   A1AD   814C 814C -    814C 814C 4450 4450 -    [´]
-U+FF40   123030 FF40     EFBD80       0060    01-14 212E A1AE   A1AE   814D 814D -    814D 814D 4279 4279 -    [｀] -> [`] (NFKC)
+U+FF40   133030 FF40     EFBD80       0060    01-14 212E A1AE   A1AE   814D 814D -    814D 814D 4279 4279 -    [｀] -> [`] (NFKC)
 U+00A8   123030 00A8     C2A8         -       01-15 212F A1AF   A1AF   814E 814E -    814E 814E 4460 4460 -    [¨]
-U+FF3E   123030 FF3E     EFBCBE       005E    01-16 2130 A1B0   A1B0   814F 814F -    814F 814F 4470 4470 -    [＾] -> [^] (NFKC)
-U+FFE3   123030 FFE3     EFBFA3       00AF    01-17 2131 A1B1   A1B1   8150 8150 -    8150 8150 42A1 42A1 -    [￣] -> [¯] (半角形)
-U+FF3F   123030 FF3F     EFBCBF       005F    01-18 2132 A1B2   A1B2   8151 8151 -    8151 8151 426D 426D -    [＿] -> [_] (NFKC)
+U+FF3E   133030 FF3E     EFBCBE       005E    01-16 2130 A1B0   A1B0   814F 814F -    814F 814F 4470 4470 -    [＾] -> [^] (NFKC)
+U+FFE3   133030 FFE3     EFBFA3       00AF    01-17 2131 A1B1   A1B1   8150 8150 -    8150 8150 42A1 42A1 -    [￣] -> [¯] (半角形)
+U+FF3F   133030 FF3F     EFBCBF       005F    01-18 2132 A1B2   A1B2   8151 8151 -    8151 8151 426D 426D -    [＿] -> [_] (NFKC)
 U+30FD   103030 30FD     E383BD       -       01-19 2133 A1B3   A1B3   8152 8152 -    8152 8152 43DC 43DC -    [ヽ]
 U+30FE   113030 30FE     E383BE       -       01-20 2134 A1B4   A1B4   8153 8153 -    8153 8153 43DD 43DD -    [ヾ]
 U+309D   103030 309D     E3829D       -       01-21 2135 A1B5   A1B5   8154 8154 -    8154 8154 44DC 44DC -    [ゝ]
@@ -342,27 +342,27 @@ U+30FC   103030 30FC     E383BC       -       01-28 213C A1BC   A1BC   815B 815B
 U+2014   103090 2014     E28094       -       01-29 213D A1BD   A1BD   815C -    -    815C 815C -    -    444A [—]
 U+2015   107730 2015     E28095       -       01-29 -    -      -      -    815C -    -    -    444A 444A -    [―]
 U+2010   103030 2010     E28090       -       01-30 213E A1BE   A1BE   815D 815D -    815D 815D 445A 445A -    [‐]
-U+FF0F   123030 FF0F     EFBC8F       002F    01-31 213F A1BF   A1BF   815E 815E -    815E 815E 4261 4261 -    [／] -> [/] (NFKC)
-U+FF3C   123030 FF3C     EFBCBC       005C    01-32 2140 A1C0   A1C0   815F 815F -    815F 815F 43E0 43E0 -    [＼] -> [\] (NFKC)
+U+FF0F   133030 FF0F     EFBC8F       002F    01-31 213F A1BF   A1BF   815E 815E -    815E 815E 4261 4261 -    [／] -> [/] (NFKC)
+U+FF3C   133030 FF3C     EFBCBC       005C    01-32 2140 A1C0   A1C0   815F 815F -    815F 815F 43E0 43E0 -    [＼] -> [\] (NFKC)
 U+301C   103090 301C     E3809C       -       01-33 2141 A1C1   A1C1   8160 -    -    8160 8160 -    -    43A1 [〜]
-U+FF5E   127030 FF5E     EFBD9E       007E    01-33 -    8FA2B7 -      81B0 8160 -    -    -    43A1 43A1 -    [～] -> [~] (NFKC)
+U+FF5E   137030 FF5E     EFBD9E       007E    01-33 -    8FA2B7 -      81B0 8160 -    -    -    43A1 43A1 -    [～] -> [~] (NFKC)
 U+2016   103090 2016     E28096       -       01-34 2142 A1C2   A1C2   8161 -    -    8161 8161 -    -    447C [‖]
 U+2225   107030 2225     E288A5       -       01-34 -    -      -      81D2 8161 -    -    -    447C 447C -    [∥]
-U+FF5C   123030 FF5C     EFBD9C       007C    01-35 2143 A1C3   A1C3   8162 8162 -    8162 8162 424F 424F -    [｜] -> [|] (NFKC)
+U+FF5C   133030 FF5C     EFBD9C       007C    01-35 2143 A1C3   A1C3   8162 8162 -    8162 8162 424F 424F -    [｜] -> [|] (NFKC)
 U+2026   123030 2026     E280A6       -       01-36 2144 A1C4   A1C4   8163 8163 -    8163 8163 447F 447F -    […]
 U+2025   123030 2025     E280A5       -       01-37 2145 A1C5   A1C5   8164 8164 -    8164 8164 447E 447E -    [‥]
 U+2018   103030 2018     E28098       -       01-38 2146 A1C6   A1C6   8165 8165 -    8165 8165 4461 4461 -    [‘]
 U+2019   103030 2019     E28099       -       01-39 2147 A1C7   A1C7   8166 8166 -    8166 8166 4471 4471 -    [’]
 U+201C   103030 201C     E2809C       -       01-40 2148 A1C8   A1C8   8167 8167 -    8167 8167 4462 4462 -    [“]
 U+201D   103030 201D     E2809D       -       01-41 2149 A1C9   A1C9   8168 8168 -    8168 8168 4472 4472 -    [”]
-U+FF08   123030 FF08     EFBC88       0028    01-42 214A A1CA   A1CA   8169 8169 -    8169 8169 424D 424D -    [（] -> [(] (NFKC)
-U+FF09   123030 FF09     EFBC89       0029    01-43 214B A1CB   A1CB   816A 816A -    816A 816A 425D 425D -    [）] -> [)] (NFKC)
+U+FF08   133030 FF08     EFBC88       0028    01-42 214A A1CA   A1CA   8169 8169 -    8169 8169 424D 424D -    [（] -> [(] (NFKC)
+U+FF09   133030 FF09     EFBC89       0029    01-43 214B A1CB   A1CB   816A 816A -    816A 816A 425D 425D -    [）] -> [)] (NFKC)
 U+3014   103030 3014     E38094       -       01-44 214C A1CC   A1CC   816B 816B -    816B 816B 4463 4463 -    [〔]
 U+3015   103030 3015     E38095       -       01-45 214D A1CD   A1CD   816C 816C -    816C 816C 4473 4473 -    [〕]
-U+FF3B   123030 FF3B     EFBCBB       005B    01-46 214E A1CE   A1CE   816D 816D -    816D 816D 4444 4444 -    [［] -> [[] (NFKC)
-U+FF3D   123030 FF3D     EFBCBD       005D    01-47 214F A1CF   A1CF   816E 816E -    816E 816E 4445 4445 -    [］] -> []] (NFKC)
-U+FF5B   123030 FF5B     EFBD9B       007B    01-48 2150 A1D0   A1D0   816F 816F -    816F 816F 42C0 42C0 -    [｛] -> [{] (NFKC)
-U+FF5D   123030 FF5D     EFBD9D       007D    01-49 2151 A1D1   A1D1   8170 8170 -    8170 8170 42D0 42D0 -    [｝] -> [}] (NFKC)
+U+FF3B   133030 FF3B     EFBCBB       005B    01-46 214E A1CE   A1CE   816D 816D -    816D 816D 4444 4444 -    [［] -> [[] (NFKC)
+U+FF3D   133030 FF3D     EFBCBD       005D    01-47 214F A1CF   A1CF   816E 816E -    816E 816E 4445 4445 -    [］] -> []] (NFKC)
+U+FF5B   133030 FF5B     EFBD9B       007B    01-48 2150 A1D0   A1D0   816F 816F -    816F 816F 42C0 42C0 -    [｛] -> [{] (NFKC)
+U+FF5D   133030 FF5D     EFBD9D       007D    01-49 2151 A1D1   A1D1   8170 8170 -    8170 8170 42D0 42D0 -    [｝] -> [}] (NFKC)
 U+3008   103030 3008     E38088       -       01-50 2152 A1D2   A1D2   8171 8171 -    8171 8171 4464 4464 -    [〈]
 U+3009   103030 3009     E38089       -       01-51 2153 A1D3   A1D3   8172 8172 -    8172 8172 4474 4474 -    [〉]
 U+300A   103030 300A     E3808A       -       01-52 2154 A1D4   A1D4   8173 8173 -    8173 8173 4465 4465 -    [《]
@@ -373,16 +373,16 @@ U+300E   103030 300E     E3808E       -       01-56 2158 A1D8   A1D8   8177 8177
 U+300F   103030 300F     E3808F       -       01-57 2159 A1D9   A1D9   8178 8178 -    8178 8178 4443 4443 -    [』]
 U+3010   103030 3010     E38090       -       01-58 215A A1DA   A1DA   8179 8179 -    8179 8179 4466 4466 -    [【]
 U+3011   103030 3011     E38091       -       01-59 215B A1DB   A1DB   817A 817A -    817A 817A 4476 4476 -    [】]
-U+FF0B   123030 FF0B     EFBC8B       002B    01-60 215C A1DC   A1DC   817B 817B -    817B 817B 424E 424E -    [＋] -> [+] (NFKC)
+U+FF0B   133030 FF0B     EFBC8B       002B    01-60 215C A1DC   A1DC   817B 817B -    817B 817B 424E 424E -    [＋] -> [+] (NFKC)
 U+2212   103090 2212     E28892       -       01-61 215D A1DD   A1DD   817C -    -    817C 817C 4260 -    4260 [−]
-U+FF0D   127030 FF0D     EFBC8D       002D    01-61 -    -      -      81AF 817C -    -    -    -    4260 4260 [－] -> [-] (NFKC)
+U+FF0D   137030 FF0D     EFBC8D       002D    01-61 -    -      -      81AF 817C -    -    -    -    4260 4260 [－] -> [-] (NFKC)
 U+00B1   103030 00B1     C2B1         -       01-62 215E A1DE   A1DE   817D 817D -    817D 817D 444B 444B -    [±]
 U+00D7   103030 00D7     C397         -       01-63 215F A1DF   A1DF   817E 817E -    817E 817E 447A 447A -    [×]
 U+00F7   103030 00F7     C3B7         -       01-64 2160 A1E0   A1E0   8180 8180 -    8180 8180 447B 447B -    [÷]
-U+FF1D   123030 FF1D     EFBC9D       003D    01-65 2161 A1E1   A1E1   8181 8181 -    8181 8181 427E 427E -    [＝] -> [=] (NFKC)
+U+FF1D   133030 FF1D     EFBC9D       003D    01-65 2161 A1E1   A1E1   8181 8181 -    8181 8181 427E 427E -    [＝] -> [=] (NFKC)
 U+2260   113030 2260     E289A0       -       01-66 2162 A1E2   A1E2   8182 8182 -    8182 8182 444C 444C -    [≠]
-U+FF1C   123030 FF1C     EFBC9C       003C    01-67 2163 A1E3   A1E3   8183 8183 -    8183 8183 424C 424C -    [＜] -> [<] (NFKC)
-U+FF1E   123030 FF1E     EFBC9E       003E    01-68 2164 A1E4   A1E4   8184 8184 -    8184 8184 426E 426E -    [＞] -> [>] (NFKC)
+U+FF1C   133030 FF1C     EFBC9C       003C    01-67 2163 A1E3   A1E3   8183 8183 -    8183 8183 424C 424C -    [＜] -> [<] (NFKC)
+U+FF1E   133030 FF1E     EFBC9E       003E    01-68 2164 A1E4   A1E4   8184 8184 -    8184 8184 426E 426E -    [＞] -> [>] (NFKC)
 U+2266   103030 2266     E289A6       -       01-69 2165 A1E5   A1E5   8185 8185 -    8185 8185 4467 4467 -    [≦]
 U+2267   103030 2267     E289A7       -       01-70 2166 A1E6   A1E6   8186 8186 -    8186 8186 4477 4477 -    [≧]
 U+221E   103030 221E     E2889E       -       01-71 2167 A1E7   A1E7   8187 8187 -    8187 8187 444D 444D -    [∞]
@@ -393,17 +393,17 @@ U+00B0   103030 00B0     C2B0         -       01-75 216B A1EB   A1EB   818B 818B
 U+2032   103030 2032     E280B2       -       01-76 216C A1EC   A1EC   818C 818C -    818C 818C 44EE 44EE -    [′]
 U+2033   123030 2033     E280B3       -       01-77 216D A1ED   A1ED   818D 818D -    818D 818D 44EF 44EF -    [″]
 U+2103   123030 2103     E28483       -       01-78 216E A1EE   A1EE   818E 818E -    818E 818E 444E 444E -    [℃]
-U+FFE5   123030 FFE5     EFBFA5       00A5    01-79 216F A1EF   A1EF   818F 818F -    818F 818F 425B 425B -    [￥] -> [¥] (NFKC)
-U+FF04   123030 FF04     EFBC84       0024    01-80 2170 A1F0   A1F0   8190 8190 -    8190 8190 42E0 42E0 -    [＄] -> [$] (NFKC)
+U+FFE5   133030 FFE5     EFBFA5       00A5    01-79 216F A1EF   A1EF   818F 818F -    818F 818F 425B 425B -    [￥] -> [¥] (NFKC)
+U+FF04   133030 FF04     EFBC84       0024    01-80 2170 A1F0   A1F0   8190 8190 -    8190 8190 42E0 42E0 -    [＄] -> [$] (NFKC)
 U+00A2   103070 00A2     C2A2         -       01-81 2171 A1F1   A1F1   8191 -    8191 80   -    B1   4A   -    [¢]
-U+FFE0   127730 FFE0     EFBFA0       00A2    01-81 -    -      -      -    8191 -    8191 8191 434A 434A -    [￠] -> [¢] (NFKC)
+U+FFE0   137730 FFE0     EFBFA0       00A2    01-81 -    -      -      -    8191 -    8191 8191 434A 434A -    [￠] -> [¢] (NFKC)
 U+00A3   103070 00A3     C2A3         -       01-82 2172 A1F2   A1F2   8192 -    8192 A0   -    4A   B1   -    [£]
-U+FFE1   127730 FFE1     EFBFA1       00A3    01-82 -    -      -      -    8192 -    8192 8192 424A 424A -    [￡] -> [£] (NFKC)
-U+FF05   123030 FF05     EFBC85       0025    01-83 2173 A1F3   A1F3   8193 8193 -    8193 8193 426C 426C -    [％] -> [%] (NFKC)
-U+FF03   123030 FF03     EFBC83       0023    01-84 2174 A1F4   A1F4   8194 8194 -    8194 8194 427B 427B -    [＃] -> [#] (NFKC)
-U+FF06   123030 FF06     EFBC86       0026    01-85 2175 A1F5   A1F5   8195 8195 -    8195 8195 4250 4250 -    [＆] -> [&] (NFKC)
-U+FF0A   123030 FF0A     EFBC8A       002A    01-86 2176 A1F6   A1F6   8196 8196 -    8196 8196 425C 425C -    [＊] -> [*] (NFKC)
-U+FF20   123030 FF20     EFBCA0       0040    01-87 2177 A1F7   A1F7   8197 8197 -    8197 8197 427C 427C -    [＠] -> [@] (NFKC)
+U+FFE1   137730 FFE1     EFBFA1       00A3    01-82 -    -      -      -    8192 -    8192 8192 424A 424A -    [￡] -> [£] (NFKC)
+U+FF05   133030 FF05     EFBC85       0025    01-83 2173 A1F3   A1F3   8193 8193 -    8193 8193 426C 426C -    [％] -> [%] (NFKC)
+U+FF03   133030 FF03     EFBC83       0023    01-84 2174 A1F4   A1F4   8194 8194 -    8194 8194 427B 427B -    [＃] -> [#] (NFKC)
+U+FF06   133030 FF06     EFBC86       0026    01-85 2175 A1F5   A1F5   8195 8195 -    8195 8195 4250 4250 -    [＆] -> [&] (NFKC)
+U+FF0A   133030 FF0A     EFBC8A       002A    01-86 2176 A1F6   A1F6   8196 8196 -    8196 8196 425C 425C -    [＊] -> [*] (NFKC)
+U+FF20   133030 FF20     EFBCA0       0040    01-87 2177 A1F7   A1F7   8197 8197 -    8197 8197 427C 427C -    [＠] -> [@] (NFKC)
 U+00A7   103030 00A7     C2A7         -       01-88 2178 A1F8   A1F8   8198 8198 -    8198 8198 446A 446A -    [§]
 U+2606   103030 2606     E29886       -       01-89 2179 A1F9   A1F9   8199 8199 -    8199 8199 44E5 44E5 -    [☆]
 U+2605   103030 2605     E29885       -       01-90 217A A1FA   A1FA   819A 819A -    819A 819A 44E6 44E6 -    [★]
@@ -456,7 +456,7 @@ U+FFFD   999999 FFFD     EFBFBD       -       02-41 -    -      -      -    81C7
 U+2227   103030 2227     E288A7       -       02-42 224A A2CA   A2CA   81C8 81C8 -    81C8 81C8 436C 436C -    [∧]
 U+2228   103030 2228     E288A8       -       02-43 224B A2CB   A2CB   81C9 81C9 -    81C9 81C9 436D 436D -    [∨]
 U+00AC   103070 00AC     C2AC         -       02-44 224C A2CC   A2CC   81CA -    81CA FD   -    5F   5F   -    [¬]
-U+FFE2   127730 FFE2     EFBFA2       00AC    02-44 -    -      -      -    81CA -    FA54 81CA 425F 425F -    [￢] -> [¬] (NFKC)
+U+FFE2   137730 FFE2     EFBFA2       00AC    02-44 -    -      -      -    81CA -    FA54 81CA 425F 425F -    [￢] -> [¬] (NFKC)
 U+21D2   103030 21D2     E28792       -       02-45 224D A2CD   A2CD   81CB 81CB -    81CB 81CB 436E 436E -    [⇒]
 U+21D4   103030 21D4     E28794       -       02-46 224E A2CE   A2CE   81CC 81CC -    81CC 81CC 436F 436F -    [⇔]
 U+2200   103030 2200     E28880       -       02-47 224F A2CF   A2CF   81CD 81CD -    81CD 81CD 4370 4370 -    [∀]
@@ -494,7 +494,7 @@ U+FFFD   999999 FFFD     EFBFBD       -       02-78 -    -      -      -    81EC
 U+FFFD   999999 FFFD     EFBFBD       -       02-79 -    -      -      -    81ED -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       02-80 -    -      -      -    81EE -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       02-81 -    -      -      -    81EF -    -    -    -    -    -    
-U+212B   133030 212B     E284AB       00C5    02-82 2272 A2F2   A2F2   81F0 81F0 -    81F0 81F0 4372 4372 -    [Å] -> [Å] (NFC)
+U+212B   143030 212B     E284AB       00C5    02-82 2272 A2F2   A2F2   81F0 81F0 -    81F0 81F0 4372 4372 -    [Å] -> [Å] (NFC)
 U+2030   103030 2030     E280B0       -       02-83 2273 A2F3   A2F3   81F1 81F1 -    81F1 81F1 4373 4373 -    [‰]
 U+266F   103030 266F     E299AF       -       02-84 2274 A2F4   A2F4   81F2 81F2 -    81F2 81F2 4374 4374 -    [♯]
 U+266D   103030 266D     E299AD       -       02-85 2275 A2F5   A2F5   81F3 81F3 -    81F3 81F3 4375 4375 -    [♭]
@@ -523,16 +523,16 @@ U+FFFD   999999 FFFD     EFBFBD       -       03-12 -    -      -      -    824B
 U+FFFD   999999 FFFD     EFBFBD       -       03-13 -    -      -      -    824C -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-14 -    -      -      -    824D -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-15 -    -      -      -    824E -    -    -    -    -    -    
-U+FF10   123030 FF10     EFBC90       0030    03-16 2330 A3B0   A3B0   824F 824F -    824F 824F 42F0 42F0 -    [０] -> [0] (NFKC)
-U+FF11   123030 FF11     EFBC91       0031    03-17 2331 A3B1   A3B1   8250 8250 -    8250 8250 42F1 42F1 -    [１] -> [1] (NFKC)
-U+FF12   123030 FF12     EFBC92       0032    03-18 2332 A3B2   A3B2   8251 8251 -    8251 8251 42F2 42F2 -    [２] -> [2] (NFKC)
-U+FF13   123030 FF13     EFBC93       0033    03-19 2333 A3B3   A3B3   8252 8252 -    8252 8252 42F3 42F3 -    [３] -> [3] (NFKC)
-U+FF14   123030 FF14     EFBC94       0034    03-20 2334 A3B4   A3B4   8253 8253 -    8253 8253 42F4 42F4 -    [４] -> [4] (NFKC)
-U+FF15   123030 FF15     EFBC95       0035    03-21 2335 A3B5   A3B5   8254 8254 -    8254 8254 42F5 42F5 -    [５] -> [5] (NFKC)
-U+FF16   123030 FF16     EFBC96       0036    03-22 2336 A3B6   A3B6   8255 8255 -    8255 8255 42F6 42F6 -    [６] -> [6] (NFKC)
-U+FF17   123030 FF17     EFBC97       0037    03-23 2337 A3B7   A3B7   8256 8256 -    8256 8256 42F7 42F7 -    [７] -> [7] (NFKC)
-U+FF18   123030 FF18     EFBC98       0038    03-24 2338 A3B8   A3B8   8257 8257 -    8257 8257 42F8 42F8 -    [８] -> [8] (NFKC)
-U+FF19   123030 FF19     EFBC99       0039    03-25 2339 A3B9   A3B9   8258 8258 -    8258 8258 42F9 42F9 -    [９] -> [9] (NFKC)
+U+FF10   133030 FF10     EFBC90       0030    03-16 2330 A3B0   A3B0   824F 824F -    824F 824F 42F0 42F0 -    [０] -> [0] (NFKC)
+U+FF11   133030 FF11     EFBC91       0031    03-17 2331 A3B1   A3B1   8250 8250 -    8250 8250 42F1 42F1 -    [１] -> [1] (NFKC)
+U+FF12   133030 FF12     EFBC92       0032    03-18 2332 A3B2   A3B2   8251 8251 -    8251 8251 42F2 42F2 -    [２] -> [2] (NFKC)
+U+FF13   133030 FF13     EFBC93       0033    03-19 2333 A3B3   A3B3   8252 8252 -    8252 8252 42F3 42F3 -    [３] -> [3] (NFKC)
+U+FF14   133030 FF14     EFBC94       0034    03-20 2334 A3B4   A3B4   8253 8253 -    8253 8253 42F4 42F4 -    [４] -> [4] (NFKC)
+U+FF15   133030 FF15     EFBC95       0035    03-21 2335 A3B5   A3B5   8254 8254 -    8254 8254 42F5 42F5 -    [５] -> [5] (NFKC)
+U+FF16   133030 FF16     EFBC96       0036    03-22 2336 A3B6   A3B6   8255 8255 -    8255 8255 42F6 42F6 -    [６] -> [6] (NFKC)
+U+FF17   133030 FF17     EFBC97       0037    03-23 2337 A3B7   A3B7   8256 8256 -    8256 8256 42F7 42F7 -    [７] -> [7] (NFKC)
+U+FF18   133030 FF18     EFBC98       0038    03-24 2338 A3B8   A3B8   8257 8257 -    8257 8257 42F8 42F8 -    [８] -> [8] (NFKC)
+U+FF19   133030 FF19     EFBC99       0039    03-25 2339 A3B9   A3B9   8258 8258 -    8258 8258 42F9 42F9 -    [９] -> [9] (NFKC)
 U+FFFD   999999 FFFD     EFBFBD       -       03-26 -    -      -      -    8259 -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-27 -    -      -      -    825A -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-28 -    -      -      -    825B -    -    -    -    -    -    
@@ -540,64 +540,64 @@ U+FFFD   999999 FFFD     EFBFBD       -       03-29 -    -      -      -    825C
 U+FFFD   999999 FFFD     EFBFBD       -       03-30 -    -      -      -    825D -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-31 -    -      -      -    825E -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-32 -    -      -      -    825F -    -    -    -    -    -    
-U+FF21   123030 FF21     EFBCA1       0041    03-33 2341 A3C1   A3C1   8260 8260 -    8260 8260 42C1 42C1 -    [Ａ] -> [A] (NFKC)
-U+FF22   123030 FF22     EFBCA2       0042    03-34 2342 A3C2   A3C2   8261 8261 -    8261 8261 42C2 42C2 -    [Ｂ] -> [B] (NFKC)
-U+FF23   123030 FF23     EFBCA3       0043    03-35 2343 A3C3   A3C3   8262 8262 -    8262 8262 42C3 42C3 -    [Ｃ] -> [C] (NFKC)
-U+FF24   123030 FF24     EFBCA4       0044    03-36 2344 A3C4   A3C4   8263 8263 -    8263 8263 42C4 42C4 -    [Ｄ] -> [D] (NFKC)
-U+FF25   123030 FF25     EFBCA5       0045    03-37 2345 A3C5   A3C5   8264 8264 -    8264 8264 42C5 42C5 -    [Ｅ] -> [E] (NFKC)
-U+FF26   123030 FF26     EFBCA6       0046    03-38 2346 A3C6   A3C6   8265 8265 -    8265 8265 42C6 42C6 -    [Ｆ] -> [F] (NFKC)
-U+FF27   123030 FF27     EFBCA7       0047    03-39 2347 A3C7   A3C7   8266 8266 -    8266 8266 42C7 42C7 -    [Ｇ] -> [G] (NFKC)
-U+FF28   123030 FF28     EFBCA8       0048    03-40 2348 A3C8   A3C8   8267 8267 -    8267 8267 42C8 42C8 -    [Ｈ] -> [H] (NFKC)
-U+FF29   123030 FF29     EFBCA9       0049    03-41 2349 A3C9   A3C9   8268 8268 -    8268 8268 42C9 42C9 -    [Ｉ] -> [I] (NFKC)
-U+FF2A   123030 FF2A     EFBCAA       004A    03-42 234A A3CA   A3CA   8269 8269 -    8269 8269 42D1 42D1 -    [Ｊ] -> [J] (NFKC)
-U+FF2B   123030 FF2B     EFBCAB       004B    03-43 234B A3CB   A3CB   826A 826A -    826A 826A 42D2 42D2 -    [Ｋ] -> [K] (NFKC)
-U+FF2C   123030 FF2C     EFBCAC       004C    03-44 234C A3CC   A3CC   826B 826B -    826B 826B 42D3 42D3 -    [Ｌ] -> [L] (NFKC)
-U+FF2D   123030 FF2D     EFBCAD       004D    03-45 234D A3CD   A3CD   826C 826C -    826C 826C 42D4 42D4 -    [Ｍ] -> [M] (NFKC)
-U+FF2E   123030 FF2E     EFBCAE       004E    03-46 234E A3CE   A3CE   826D 826D -    826D 826D 42D5 42D5 -    [Ｎ] -> [N] (NFKC)
-U+FF2F   123030 FF2F     EFBCAF       004F    03-47 234F A3CF   A3CF   826E 826E -    826E 826E 42D6 42D6 -    [Ｏ] -> [O] (NFKC)
-U+FF30   123030 FF30     EFBCB0       0050    03-48 2350 A3D0   A3D0   826F 826F -    826F 826F 42D7 42D7 -    [Ｐ] -> [P] (NFKC)
-U+FF31   123030 FF31     EFBCB1       0051    03-49 2351 A3D1   A3D1   8270 8270 -    8270 8270 42D8 42D8 -    [Ｑ] -> [Q] (NFKC)
-U+FF32   123030 FF32     EFBCB2       0052    03-50 2352 A3D2   A3D2   8271 8271 -    8271 8271 42D9 42D9 -    [Ｒ] -> [R] (NFKC)
-U+FF33   123030 FF33     EFBCB3       0053    03-51 2353 A3D3   A3D3   8272 8272 -    8272 8272 42E2 42E2 -    [Ｓ] -> [S] (NFKC)
-U+FF34   123030 FF34     EFBCB4       0054    03-52 2354 A3D4   A3D4   8273 8273 -    8273 8273 42E3 42E3 -    [Ｔ] -> [T] (NFKC)
-U+FF35   123030 FF35     EFBCB5       0055    03-53 2355 A3D5   A3D5   8274 8274 -    8274 8274 42E4 42E4 -    [Ｕ] -> [U] (NFKC)
-U+FF36   123030 FF36     EFBCB6       0056    03-54 2356 A3D6   A3D6   8275 8275 -    8275 8275 42E5 42E5 -    [Ｖ] -> [V] (NFKC)
-U+FF37   123030 FF37     EFBCB7       0057    03-55 2357 A3D7   A3D7   8276 8276 -    8276 8276 42E6 42E6 -    [Ｗ] -> [W] (NFKC)
-U+FF38   123030 FF38     EFBCB8       0058    03-56 2358 A3D8   A3D8   8277 8277 -    8277 8277 42E7 42E7 -    [Ｘ] -> [X] (NFKC)
-U+FF39   123030 FF39     EFBCB9       0059    03-57 2359 A3D9   A3D9   8278 8278 -    8278 8278 42E8 42E8 -    [Ｙ] -> [Y] (NFKC)
-U+FF3A   123030 FF3A     EFBCBA       005A    03-58 235A A3DA   A3DA   8279 8279 -    8279 8279 42E9 42E9 -    [Ｚ] -> [Z] (NFKC)
+U+FF21   133030 FF21     EFBCA1       0041    03-33 2341 A3C1   A3C1   8260 8260 -    8260 8260 42C1 42C1 -    [Ａ] -> [A] (NFKC)
+U+FF22   133030 FF22     EFBCA2       0042    03-34 2342 A3C2   A3C2   8261 8261 -    8261 8261 42C2 42C2 -    [Ｂ] -> [B] (NFKC)
+U+FF23   133030 FF23     EFBCA3       0043    03-35 2343 A3C3   A3C3   8262 8262 -    8262 8262 42C3 42C3 -    [Ｃ] -> [C] (NFKC)
+U+FF24   133030 FF24     EFBCA4       0044    03-36 2344 A3C4   A3C4   8263 8263 -    8263 8263 42C4 42C4 -    [Ｄ] -> [D] (NFKC)
+U+FF25   133030 FF25     EFBCA5       0045    03-37 2345 A3C5   A3C5   8264 8264 -    8264 8264 42C5 42C5 -    [Ｅ] -> [E] (NFKC)
+U+FF26   133030 FF26     EFBCA6       0046    03-38 2346 A3C6   A3C6   8265 8265 -    8265 8265 42C6 42C6 -    [Ｆ] -> [F] (NFKC)
+U+FF27   133030 FF27     EFBCA7       0047    03-39 2347 A3C7   A3C7   8266 8266 -    8266 8266 42C7 42C7 -    [Ｇ] -> [G] (NFKC)
+U+FF28   133030 FF28     EFBCA8       0048    03-40 2348 A3C8   A3C8   8267 8267 -    8267 8267 42C8 42C8 -    [Ｈ] -> [H] (NFKC)
+U+FF29   133030 FF29     EFBCA9       0049    03-41 2349 A3C9   A3C9   8268 8268 -    8268 8268 42C9 42C9 -    [Ｉ] -> [I] (NFKC)
+U+FF2A   133030 FF2A     EFBCAA       004A    03-42 234A A3CA   A3CA   8269 8269 -    8269 8269 42D1 42D1 -    [Ｊ] -> [J] (NFKC)
+U+FF2B   133030 FF2B     EFBCAB       004B    03-43 234B A3CB   A3CB   826A 826A -    826A 826A 42D2 42D2 -    [Ｋ] -> [K] (NFKC)
+U+FF2C   133030 FF2C     EFBCAC       004C    03-44 234C A3CC   A3CC   826B 826B -    826B 826B 42D3 42D3 -    [Ｌ] -> [L] (NFKC)
+U+FF2D   133030 FF2D     EFBCAD       004D    03-45 234D A3CD   A3CD   826C 826C -    826C 826C 42D4 42D4 -    [Ｍ] -> [M] (NFKC)
+U+FF2E   133030 FF2E     EFBCAE       004E    03-46 234E A3CE   A3CE   826D 826D -    826D 826D 42D5 42D5 -    [Ｎ] -> [N] (NFKC)
+U+FF2F   133030 FF2F     EFBCAF       004F    03-47 234F A3CF   A3CF   826E 826E -    826E 826E 42D6 42D6 -    [Ｏ] -> [O] (NFKC)
+U+FF30   133030 FF30     EFBCB0       0050    03-48 2350 A3D0   A3D0   826F 826F -    826F 826F 42D7 42D7 -    [Ｐ] -> [P] (NFKC)
+U+FF31   133030 FF31     EFBCB1       0051    03-49 2351 A3D1   A3D1   8270 8270 -    8270 8270 42D8 42D8 -    [Ｑ] -> [Q] (NFKC)
+U+FF32   133030 FF32     EFBCB2       0052    03-50 2352 A3D2   A3D2   8271 8271 -    8271 8271 42D9 42D9 -    [Ｒ] -> [R] (NFKC)
+U+FF33   133030 FF33     EFBCB3       0053    03-51 2353 A3D3   A3D3   8272 8272 -    8272 8272 42E2 42E2 -    [Ｓ] -> [S] (NFKC)
+U+FF34   133030 FF34     EFBCB4       0054    03-52 2354 A3D4   A3D4   8273 8273 -    8273 8273 42E3 42E3 -    [Ｔ] -> [T] (NFKC)
+U+FF35   133030 FF35     EFBCB5       0055    03-53 2355 A3D5   A3D5   8274 8274 -    8274 8274 42E4 42E4 -    [Ｕ] -> [U] (NFKC)
+U+FF36   133030 FF36     EFBCB6       0056    03-54 2356 A3D6   A3D6   8275 8275 -    8275 8275 42E5 42E5 -    [Ｖ] -> [V] (NFKC)
+U+FF37   133030 FF37     EFBCB7       0057    03-55 2357 A3D7   A3D7   8276 8276 -    8276 8276 42E6 42E6 -    [Ｗ] -> [W] (NFKC)
+U+FF38   133030 FF38     EFBCB8       0058    03-56 2358 A3D8   A3D8   8277 8277 -    8277 8277 42E7 42E7 -    [Ｘ] -> [X] (NFKC)
+U+FF39   133030 FF39     EFBCB9       0059    03-57 2359 A3D9   A3D9   8278 8278 -    8278 8278 42E8 42E8 -    [Ｙ] -> [Y] (NFKC)
+U+FF3A   133030 FF3A     EFBCBA       005A    03-58 235A A3DA   A3DA   8279 8279 -    8279 8279 42E9 42E9 -    [Ｚ] -> [Z] (NFKC)
 U+FFFD   999999 FFFD     EFBFBD       -       03-59 -    -      -      -    827A -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-60 -    -      -      -    827B -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-61 -    -      -      -    827C -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-62 -    -      -      -    827D -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-63 -    -      -      -    827E -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-64 -    -      -      -    8280 -    -    -    -    -    -    
-U+FF41   123030 FF41     EFBD81       0061    03-65 2361 A3E1   A3E1   8281 8281 -    8281 8281 4281 4281 -    [ａ] -> [a] (NFKC)
-U+FF42   123030 FF42     EFBD82       0062    03-66 2362 A3E2   A3E2   8282 8282 -    8282 8282 4282 4282 -    [ｂ] -> [b] (NFKC)
-U+FF43   123030 FF43     EFBD83       0063    03-67 2363 A3E3   A3E3   8283 8283 -    8283 8283 4283 4283 -    [ｃ] -> [c] (NFKC)
-U+FF44   123030 FF44     EFBD84       0064    03-68 2364 A3E4   A3E4   8284 8284 -    8284 8284 4284 4284 -    [ｄ] -> [d] (NFKC)
-U+FF45   123030 FF45     EFBD85       0065    03-69 2365 A3E5   A3E5   8285 8285 -    8285 8285 4285 4285 -    [ｅ] -> [e] (NFKC)
-U+FF46   123030 FF46     EFBD86       0066    03-70 2366 A3E6   A3E6   8286 8286 -    8286 8286 4286 4286 -    [ｆ] -> [f] (NFKC)
-U+FF47   123030 FF47     EFBD87       0067    03-71 2367 A3E7   A3E7   8287 8287 -    8287 8287 4287 4287 -    [ｇ] -> [g] (NFKC)
-U+FF48   123030 FF48     EFBD88       0068    03-72 2368 A3E8   A3E8   8288 8288 -    8288 8288 4288 4288 -    [ｈ] -> [h] (NFKC)
-U+FF49   123030 FF49     EFBD89       0069    03-73 2369 A3E9   A3E9   8289 8289 -    8289 8289 4289 4289 -    [ｉ] -> [i] (NFKC)
-U+FF4A   123030 FF4A     EFBD8A       006A    03-74 236A A3EA   A3EA   828A 828A -    828A 828A 4291 4291 -    [ｊ] -> [j] (NFKC)
-U+FF4B   123030 FF4B     EFBD8B       006B    03-75 236B A3EB   A3EB   828B 828B -    828B 828B 4292 4292 -    [ｋ] -> [k] (NFKC)
-U+FF4C   123030 FF4C     EFBD8C       006C    03-76 236C A3EC   A3EC   828C 828C -    828C 828C 4293 4293 -    [ｌ] -> [l] (NFKC)
-U+FF4D   123030 FF4D     EFBD8D       006D    03-77 236D A3ED   A3ED   828D 828D -    828D 828D 4294 4294 -    [ｍ] -> [m] (NFKC)
-U+FF4E   123030 FF4E     EFBD8E       006E    03-78 236E A3EE   A3EE   828E 828E -    828E 828E 4295 4295 -    [ｎ] -> [n] (NFKC)
-U+FF4F   123030 FF4F     EFBD8F       006F    03-79 236F A3EF   A3EF   828F 828F -    828F 828F 4296 4296 -    [ｏ] -> [o] (NFKC)
-U+FF50   123030 FF50     EFBD90       0070    03-80 2370 A3F0   A3F0   8290 8290 -    8290 8290 4297 4297 -    [ｐ] -> [p] (NFKC)
-U+FF51   123030 FF51     EFBD91       0071    03-81 2371 A3F1   A3F1   8291 8291 -    8291 8291 4298 4298 -    [ｑ] -> [q] (NFKC)
-U+FF52   123030 FF52     EFBD92       0072    03-82 2372 A3F2   A3F2   8292 8292 -    8292 8292 4299 4299 -    [ｒ] -> [r] (NFKC)
-U+FF53   123030 FF53     EFBD93       0073    03-83 2373 A3F3   A3F3   8293 8293 -    8293 8293 42A2 42A2 -    [ｓ] -> [s] (NFKC)
-U+FF54   123030 FF54     EFBD94       0074    03-84 2374 A3F4   A3F4   8294 8294 -    8294 8294 42A3 42A3 -    [ｔ] -> [t] (NFKC)
-U+FF55   123030 FF55     EFBD95       0075    03-85 2375 A3F5   A3F5   8295 8295 -    8295 8295 42A4 42A4 -    [ｕ] -> [u] (NFKC)
-U+FF56   123030 FF56     EFBD96       0076    03-86 2376 A3F6   A3F6   8296 8296 -    8296 8296 42A5 42A5 -    [ｖ] -> [v] (NFKC)
-U+FF57   123030 FF57     EFBD97       0077    03-87 2377 A3F7   A3F7   8297 8297 -    8297 8297 42A6 42A6 -    [ｗ] -> [w] (NFKC)
-U+FF58   123030 FF58     EFBD98       0078    03-88 2378 A3F8   A3F8   8298 8298 -    8298 8298 42A7 42A7 -    [ｘ] -> [x] (NFKC)
-U+FF59   123030 FF59     EFBD99       0079    03-89 2379 A3F9   A3F9   8299 8299 -    8299 8299 42A8 42A8 -    [ｙ] -> [y] (NFKC)
-U+FF5A   123030 FF5A     EFBD9A       007A    03-90 237A A3FA   A3FA   829A 829A -    829A 829A 42A9 42A9 -    [ｚ] -> [z] (NFKC)
+U+FF41   133030 FF41     EFBD81       0061    03-65 2361 A3E1   A3E1   8281 8281 -    8281 8281 4281 4281 -    [ａ] -> [a] (NFKC)
+U+FF42   133030 FF42     EFBD82       0062    03-66 2362 A3E2   A3E2   8282 8282 -    8282 8282 4282 4282 -    [ｂ] -> [b] (NFKC)
+U+FF43   133030 FF43     EFBD83       0063    03-67 2363 A3E3   A3E3   8283 8283 -    8283 8283 4283 4283 -    [ｃ] -> [c] (NFKC)
+U+FF44   133030 FF44     EFBD84       0064    03-68 2364 A3E4   A3E4   8284 8284 -    8284 8284 4284 4284 -    [ｄ] -> [d] (NFKC)
+U+FF45   133030 FF45     EFBD85       0065    03-69 2365 A3E5   A3E5   8285 8285 -    8285 8285 4285 4285 -    [ｅ] -> [e] (NFKC)
+U+FF46   133030 FF46     EFBD86       0066    03-70 2366 A3E6   A3E6   8286 8286 -    8286 8286 4286 4286 -    [ｆ] -> [f] (NFKC)
+U+FF47   133030 FF47     EFBD87       0067    03-71 2367 A3E7   A3E7   8287 8287 -    8287 8287 4287 4287 -    [ｇ] -> [g] (NFKC)
+U+FF48   133030 FF48     EFBD88       0068    03-72 2368 A3E8   A3E8   8288 8288 -    8288 8288 4288 4288 -    [ｈ] -> [h] (NFKC)
+U+FF49   133030 FF49     EFBD89       0069    03-73 2369 A3E9   A3E9   8289 8289 -    8289 8289 4289 4289 -    [ｉ] -> [i] (NFKC)
+U+FF4A   133030 FF4A     EFBD8A       006A    03-74 236A A3EA   A3EA   828A 828A -    828A 828A 4291 4291 -    [ｊ] -> [j] (NFKC)
+U+FF4B   133030 FF4B     EFBD8B       006B    03-75 236B A3EB   A3EB   828B 828B -    828B 828B 4292 4292 -    [ｋ] -> [k] (NFKC)
+U+FF4C   133030 FF4C     EFBD8C       006C    03-76 236C A3EC   A3EC   828C 828C -    828C 828C 4293 4293 -    [ｌ] -> [l] (NFKC)
+U+FF4D   133030 FF4D     EFBD8D       006D    03-77 236D A3ED   A3ED   828D 828D -    828D 828D 4294 4294 -    [ｍ] -> [m] (NFKC)
+U+FF4E   133030 FF4E     EFBD8E       006E    03-78 236E A3EE   A3EE   828E 828E -    828E 828E 4295 4295 -    [ｎ] -> [n] (NFKC)
+U+FF4F   133030 FF4F     EFBD8F       006F    03-79 236F A3EF   A3EF   828F 828F -    828F 828F 4296 4296 -    [ｏ] -> [o] (NFKC)
+U+FF50   133030 FF50     EFBD90       0070    03-80 2370 A3F0   A3F0   8290 8290 -    8290 8290 4297 4297 -    [ｐ] -> [p] (NFKC)
+U+FF51   133030 FF51     EFBD91       0071    03-81 2371 A3F1   A3F1   8291 8291 -    8291 8291 4298 4298 -    [ｑ] -> [q] (NFKC)
+U+FF52   133030 FF52     EFBD92       0072    03-82 2372 A3F2   A3F2   8292 8292 -    8292 8292 4299 4299 -    [ｒ] -> [r] (NFKC)
+U+FF53   133030 FF53     EFBD93       0073    03-83 2373 A3F3   A3F3   8293 8293 -    8293 8293 42A2 42A2 -    [ｓ] -> [s] (NFKC)
+U+FF54   133030 FF54     EFBD94       0074    03-84 2374 A3F4   A3F4   8294 8294 -    8294 8294 42A3 42A3 -    [ｔ] -> [t] (NFKC)
+U+FF55   133030 FF55     EFBD95       0075    03-85 2375 A3F5   A3F5   8295 8295 -    8295 8295 42A4 42A4 -    [ｕ] -> [u] (NFKC)
+U+FF56   133030 FF56     EFBD96       0076    03-86 2376 A3F6   A3F6   8296 8296 -    8296 8296 42A5 42A5 -    [ｖ] -> [v] (NFKC)
+U+FF57   133030 FF57     EFBD97       0077    03-87 2377 A3F7   A3F7   8297 8297 -    8297 8297 42A6 42A6 -    [ｗ] -> [w] (NFKC)
+U+FF58   133030 FF58     EFBD98       0078    03-88 2378 A3F8   A3F8   8298 8298 -    8298 8298 42A7 42A7 -    [ｘ] -> [x] (NFKC)
+U+FF59   133030 FF59     EFBD99       0079    03-89 2379 A3F9   A3F9   8299 8299 -    8299 8299 42A8 42A8 -    [ｙ] -> [y] (NFKC)
+U+FF5A   133030 FF5A     EFBD9A       007A    03-90 237A A3FA   A3FA   829A 829A -    829A 829A 42A9 42A9 -    [ｚ] -> [z] (NFKC)
 U+FFFD   999999 FFFD     EFBFBD       -       03-91 -    -      -      -    829B -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-92 -    -      -      -    829C -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       03-93 -    -      -      -    829D -    -    -    -    -    -    
@@ -8757,7 +8757,7 @@ U+57AC   707457 57AC     E59EAC       -       89-60 -    8FB7E4 -      F1EA ED7B
 U+57C8   707357 57C8     E59F88       -       89-61 -    8FB7E8 -      886E ED7C FA99 FA99 FA99 5870 5870 -    [埈]
 U+57C7   707357 57C7     E59F87       -       89-62 -    8FB7E7 -      886D ED7D FA9A FA9A FA9A 5873 5873 -    [埇]
 U+FA0F   707357 FA0F     EFA88F       -       89-63 -    -      -      886A ED7E FA9B FA9B FA9B 5877 5877 -    [﨏]
-U+FA10   737352 FA10     EFA890       585A    89-64 -    -      -      8876 ED80 FA9C FA9C FA9C 5882 5882 -    [塚]
+U+FA10   747352 FA10     EFA890       585A    89-64 -    -      -      8876 ED80 FA9C FA9C FA9C 5882 5882 -    [塚]
 U+589E   707353 589E     E5A29E       5897    89-65 -    -      -      887C ED81 FA9D FA9D FA9D 588A 588A -    [增]
 U+58B2   707557 58B2     E5A2B2       -       89-66 -    8FB8CE -      -    ED82 FA9E FA9E FA9E 588C 588C -    [墲]
 U+590B   707457 590B     E5A48B       -       89-67 -    8FB8E1 -      F259 ED83 FA9F FA9F FA9F 58A1 58A1 -    [夋]
@@ -8818,7 +8818,7 @@ U+6624   707357 6624     E698A4       -       90-26 -    8FC2A5 -      EB51 EDB8
 U+6665   707357 6665     E699A5       -       90-27 -    -      -      EB5D EDB9 FAD5 FAD5 FAD5 5BA7 5BA7 -    [晥]
 U+6657   707457 6657     E69997       -       90-28 -    8FC2B8 -      F39E EDBA FAD6 FAD6 FAD6 5BA8 5BA8 -    [晗]
 U+6659   707357 6659     E69999       -       90-29 -    8FC2BA -      EB5A EDBB FAD7 FAD7 FAD7 5BAB 5BAB -    [晙]
-U+FA12   737757 FA12     EFA892       6674    90-30 -    -      -      -    EDBC FAD8 FAD8 FAD8 5BAE 5BAE -    [晴]
+U+FA12   747757 FA12     EFA892       6674    90-30 -    -      -      -    EDBC FAD8 FAD8 FAD8 5BAE 5BAE -    [晴]
 U+6673   707357 6673     E699B3       6670    90-31 -    8FC2C4 -      EB5E EDBD FAD9 FAD9 FAD9 5BAF 5BAF -    [晳]
 U+6699   707457 6699     E69A99       -       90-32 -    8FC2D2 -      F3AB EDBE FADA FADA FADA 5BB4 5BB4 -    [暙]
 U+66A0   707357 66A0     E69AA0       -       90-33 -    8FC2D7 -      EB63 EDBF FADB FADB FADB 5BB6 5BB6 -    [暠]
@@ -8826,7 +8826,7 @@ U+66B2   707357 66B2     E69AB2       -       90-34 -    8FC2DB -      EB64 EDC0
 U+66BF   707457 66BF     E69ABF       -       90-35 -    8FC2DE -      F3B1 EDC1 FADD FADD FADD 5BBB 5BBB -    [暿]
 U+66FA   707357 66FA     E69BBA       66F9    90-36 -    8FC2ED -      EB6B EDC2 FADE FADE FADE 5BC7 5BC7 -    [曺]
 U+670E   707557 670E     E69C8E       -       90-37 -    8FC2F0 -      -    EDC3 FADF FADF FADF 5BC8 5BC8 -    [朎]
-U+F929   737353 F929     EFA4A9       6717    90-38 -    -      -      EB6D EDC4 FAE0 FAE0 FAE0 5BC9 5BC9 -    [朗]
+U+F929   747353 F929     EFA4A9       6717    90-38 -    -      -      EB6D EDC4 FAE0 FAE0 FAE0 5BC9 5BC9 -    [朗]
 U+6766   707357 6766     E69DA6       6749    90-39 -    8FC3A1 -      EB6F EDC5 FAE1 FAE1 FAE1 5BD8 5BD8 -    [杦]
 U+67BB   707357 67BB     E69EBB       -       90-40 -    8FC3B5 -      EB77 EDC6 FAE2 FAE2 FAE2 5BE3 5BE3 -    [枻]
 U+6852   707357 6852     E6A192       6851    90-41 -    8FC3C9 -      EB7D EDC7 FAE3 FAE3 FAE3 5BEC 5BEC -    [桒]
@@ -8879,14 +8879,14 @@ U+7104   707457 7104     E78484       -       90-87 -    8FC9E3 -      F58B EDF5
 U+715C   707357 715C     E7859C       -       90-88 -    8FC9FC -      EC76 EDF6 FB55 FB55 FB55 5DFB 5DFB -    [煜]
 U+7146   707357 7146     E78586       -       90-89 -    8FC9F4 -      EC71 EDF7 FB56 FB56 FB56 5DFC 5DFC -    [煆]
 U+7147   707357 7147     E78587       -       90-90 -    8FC9F5 -      EC72 EDF8 FB57 FB57 FB57 5DFD 5DFD -    [煇]
-U+FA15   737357 FA15     EFA895       51DE    90-91 -    -      -      EC79 EDF9 FB58 FB58 FB58 5E49 5E49 -    [凞]
+U+FA15   747357 FA15     EFA895       51DE    90-91 -    -      -      EC79 EDF9 FB58 FB58 FB58 5E49 5E49 -    [凞]
 U+71C1   707357 71C1     E78781       -       90-92 -    8FCAB3 -      EC7D EDFA FB59 FB59 FB59 5E4B 5E4B -    [燁]
 U+71FE   707357 71FE     E787BE       -       90-93 -    8FCABD -      EC81 EDFB FB5A FB5A FB5A 5E5A 5E5A -    [燾]
 U+72B1   707457 72B1     E78AB1       -       90-94 -    8FCAEF -      F5BB EDFC FB5B FB5B FB5B 5E73 5E73 -    [犱]
 -------- ------ -------- ------------ ---- -------- ---- ------ ------ ---- ---- ---- ---- ---- ---- ---- ---- ----
 U+72BE   707357 72BE     E78ABE       -       91-01 -    8FCAF1 -      EC89 EE40 FB5C FB5C FB5C 5E75 5E75 -    [犾]
 U+7324   707557 7324     E78CA4       -       91-02 -    8FCBAE -      -    EE41 FB5D FB5D FB5D 5E86 5E86 -    [猤]
-U+FA16   737354 FA16     EFA896       732A    91-03 -    -      -      EC8F EE42 FB5E FB5E FB5E 5E8A 5E8A -    [猪]
+U+FA16   747354 FA16     EFA896       732A    91-03 -    -      -      EC8F EE42 FB5E FB5E FB5E 5E8A 5E8A -    [猪]
 U+7377   707457 7377     E78DB7       -       91-04 -    8FCBCA -      F5D5 EE43 FB5F FB5F FB5F 5E94 5E94 -    [獷]
 U+73BD   707557 73BD     E78EBD       -       91-05 -    8FCBE6 -      -    EE44 FB60 FB60 FB60 5E99 5E99 -    [玽]
 U+73C9   707357 73C9     E78F89       -       91-06 -    8FCBEA -      EC99 EE45 FB61 FB61 FB61 5E9E 5E9E -    [珉]
@@ -8909,7 +8909,7 @@ U+769C   707457 769C     E79A9C       -       91-22 -    8FCEBB -      F68F EE55
 U+769E   707357 769E     E79A9E       -       91-23 -    -      -      ECE1 EE56 FB72 FB72 FB72 5F71 5F71 -    [皞]
 U+769B   707357 769B     E79A9B       -       91-24 -    8FCEBA -      ECDF EE57 FB73 FB73 FB73 5F72 5F72 -    [皛]
 U+76A6   707357 76A6     E79AA6       -       91-25 -    8FCEC3 -      ECE2 EE58 FB74 FB74 FB74 5F73 5F73 -    [皦]
-U+FA17   737752 FA17     EFA897       76CA    91-26 -    -      -      -    EE59 FB75 FB75 FB75 5F7A 5F7A -    [益]
+U+FA17   747752 FA17     EFA897       76CA    91-26 -    -      -      -    EE59 FB75 FB75 FB75 5F7A 5F7A -    [益]
 U+7746   707357 7746     E79D86       -       91-27 -    8FCEF2 -      ECF0 EE5A FB76 FB76 FB76 5F8E 5F8E -    [睆]
 U+52AF   707457 52AF     E58AAF       -       91-28 -    8FB3DD -      F163 EE5B FB77 FB77 FB77 5FAA 5FAA -    [劯]
 U+7821   707457 7821     E7A0A1       -       91-29 -    8FCFD5 -      F6C1 EE5C FB78 FB78 FB78 5FAE 5FAE -    [砡]
@@ -8917,18 +8917,18 @@ U+784E   707357 784E     E7A18E       7814    91-30 -    8FCFE2 -      ED41 EE5D
 U+7864   707457 7864     E7A1A4       -       91-31 -    8FCFE9 -      F6C4 EE5E FB7A FB7A FB7A 5FB3 5FB3 -    [硤]
 U+787A   707557 787A     E7A1BA       -       91-32 -    8FCFED -      -    EE5F FB7B FB7B FB7B 5FB6 5FB6 -    [硺]
 U+7930   707457 7930     E7A4B0       -       91-33 -    -      -      F6DC EE60 FB7C FB7C FB7C 5FD1 5FD1 -    [礰]
-U+FA18   737757 FA18     EFA898       793C    91-34 -    -      -      -    EE61 FB7D FB7D FB7D 5FD2 5FD2 -    [礼]
-U+FA19   737353 FA19     EFA899       795E    91-35 -    -      -      ED5B EE62 FB7E FB7E FB7E 5FD5 5FD5 -    [神]
-U+FA1A   737353 FA1A     EFA89A       7965    91-36 -    -      -      ED5C EE63 FB80 FB80 FB80 5FD9 5FD9 -    [祥]
+U+FA18   747757 FA18     EFA898       793C    91-34 -    -      -      -    EE61 FB7D FB7D FB7D 5FD2 5FD2 -    [礼]
+U+FA19   747353 FA19     EFA899       795E    91-35 -    -      -      ED5B EE62 FB7E FB7E FB7E 5FD5 5FD5 -    [神]
+U+FA1A   747353 FA1A     EFA89A       7965    91-36 -    -      -      ED5C EE63 FB80 FB80 FB80 5FD9 5FD9 -    [祥]
 U+7994   707457 7994     E7A694       -       91-37 -    8FD0E5 -      F6E5 EE64 FB81 FB81 FB81 5FDC 5FDC -    [禔]
-U+FA1B   737353 FA1B     EFA89B       798F    91-38 -    -      -      ED60 EE65 FB82 FB82 FB82 5FDD 5FDD -    [福]
+U+FA1B   747353 FA1B     EFA89B       798F    91-38 -    -      -      ED60 EE65 FB82 FB82 FB82 5FDD 5FDD -    [福]
 U+799B   707457 799B     E7A69B       -       91-39 -    8FD0E9 -      F6E8 EE66 FB83 FB83 FB83 5FDF 5FDF -    [禛]
 U+7AD1   707457 7AD1     E7AB91       -       91-40 -    8FD1E8 -      F758 EE67 FB84 FB84 FB84 604F 604F -    [竑]
 U+7AE7   707457 7AE7     E7ABA7       -       91-41 -    -      -      F759 EE68 FB85 FB85 FB85 6058 6058 -    [竧]
-U+FA1C   737757 FA1C     EFA89C       9756    91-42 -    -      -      -    EE69 FB86 FB86 FB86 6059 6059 -    [靖]
+U+FA1C   747757 FA1C     EFA89C       9756    91-42 -    -      -      -    EE69 FB86 FB86 FB86 6059 6059 -    [靖]
 U+7AEB   707357 7AEB     E7ABAB       -       91-43 -    8FD1EC -      ED77 EE6A FB87 FB87 FB87 605A 605A -    [竫]
 U+7B9E   707357 7B9E     E7AE9E       -       91-44 -    8FD2BB -      ED83 EE6B FB88 FB88 FB88 6082 6082 -    [箞]
-U+FA1D   737757 FA1D     EFA89D       7CBE    91-45 -    -      -      -    EE6C FB89 FB89 FB89 60AD 60AD -    [精]
+U+FA1D   747757 FA1D     EFA89D       7CBE    91-45 -    -      -      -    EE6C FB89 FB89 FB89 60AD 60AD -    [精]
 U+7D48   707357 7D48     E7B588       -       91-46 -    8FD3E1 -      EDA0 EE6D FB8A FB8A FB8A 60C4 60C4 -    [絈]
 U+7D5C   707357 7D5C     E7B59C       -       91-47 -    8FD3E8 -      EDA2 EE6E FB8B FB8B FB8B 60C6 60C6 -    [絜]
 U+7DB7   707457 7DB7     E7B6B7       -       91-48 -    8FD4A7 -      F7C5 EE6F FB8C FB8C FB8C 60D4 60D4 -    [綷]
@@ -8937,7 +8937,7 @@ U+7DD6   707353 7DD6     E7B796       7DD2    91-50 -    -      -      EDAA EE71
 U+7E52   707357 7E52     E7B992       -       91-51 -    8FD4D4 -      EDB3 EE72 FB8F FB8F FB8F 60FD 60FD -    [繒]
 U+7F47   707357 7F47     E7BD87       6A3D    91-52 -    8FD4F2 -      EDB7 EE73 FB90 FB90 FB90 6157 6157 -    [罇]
 U+7FA1   707557 7FA1     E7BEA1       7FA8    91-53 -    8FD5AE -      -    EE74 FB91 FB91 FB91 616E 616E -    [羡]
-U+FA1E   737752 FA1E     EFA89E       7FBD    91-54 -    -      -      -    EE75 FB92 FB92 FB92 6177 6177 -    [羽]
+U+FA1E   747752 FA1E     EFA89E       7FBD    91-54 -    -      -      -    EE75 FB92 FB92 FB92 6177 6177 -    [羽]
 U+8301   707357 8301     E88C81       -       91-55 -    8FD7DE -      EDEA EE76 FB93 FB93 FB93 61F8 61F8 -    [茁]
 U+8362   707357 8362     E88DA2       -       91-56 -    -      -      EDEB EE77 FB94 FB94 FB94 6248 6248 -    [荢]
 U+837F   707457 837F     E88DBF       -       91-57 -    8FD8A2 -      F8B1 EE78 FB95 FB95 FB95 625B 625B -    [荿]
@@ -8950,7 +8950,7 @@ U+8559   707357 8559     E89599       -       91-63 -    8FD9C8 -      EE57 EE7E
 U+856B   707557 856B     E895AB       -       91-64 -    8FD9D1 -      -    EE80 FB9C FB9C FB9C 62A8 62A8 -    [蕫]
 U+FA1F   707355 FA1F     EFA89F       81C8    91-65 -    -      -      EE59 EE81 FB9D FB9D FB9D 62B9 62B9 -    [﨟]
 U+85B0   707353 85B0     E896B0       85AB    91-66 -    -      -      EE5F EE82 FB9E FB9E FB9E 62BB 62BB -    [薰]
-U+FA20   737457 FA20     EFA8A0       8612    91-67 -    -      -      F957 EE83 FB9F FB9F FB9F 62CE 62CE -    [蘒]
+U+FA20   747457 FA20     EFA8A0       8612    91-67 -    -      -      F957 EE83 FB9F FB9F FB9F 62CE 62CE -    [蘒]
 U+FA21   707457 FA21     EFA8A1       -       91-68 -    -      -      F964 EE84 FBA0 FBA0 FBA0 62E2 62E2 -    [﨡]
 U+8807   707757 8807     E8A087       8823    91-69 -    -      -      -    EE85 FBA1 FBA1 FBA1 635E 635E -    [蠇]
 U+88F5   707357 88F5     E8A3B5       88F4    91-70 -    8FDCD3 -      EE8D EE86 FBA2 FBA2 FBA2 6390 6390 -    [裵]
@@ -8960,7 +8960,7 @@ U+8A79   707357 8A79     E8A9B9       -       91-73 -    8FDDEA -      EEA6 EE89
 U+8AA7   707357 8AA7     E8AAA7       -       91-74 -    8FDDFA -      EEA7 EE8A FBA6 FBA6 FBA6 63DF 63DF -    [誧]
 U+8ABE   707457 8ABE     E8AABE       -       91-75 -    8FDEA4 -      F9DE EE8B FBA7 FBA7 FBA7 63E1 63E1 -    [誾]
 U+8ADF   707357 8ADF     E8AB9F       -       91-76 -    8FDEB0 -      EEA9 EE8C FBA8 FBA8 FBA8 63ED 63ED -    [諟]
-U+FA22   737353 FA22     EFA8A2       8AF8    91-77 -    -      -      EEAC EE8D FBA9 FBA9 FBA9 63EE 63EE -    [諸]
+U+FA22   747353 FA22     EFA8A2       8AF8    91-77 -    -      -      EEAC EE8D FBA9 FBA9 FBA9 63EE 63EE -    [諸]
 U+8AF6   707357 8AF6     E8ABB6       -       91-78 -    8FDEB5 -      EEAB EE8E FBAA FBAA FBAA 63EF 63EF -    [諶]
 U+8B53   707557 8B53     E8AD93       -       91-79 -    8FDECB -      -    EE8F FBAB FBAB FBAB 6445 6445 -    [譓]
 U+8B7F   707457 8B7F     E8ADBF       -       91-80 -    -      -      F9ED EE90 FBAC FBAC FBAC 6450 6450 -    [譿]
@@ -8971,10 +8971,10 @@ U+8D76   707757 8D76     E8B5B6       -       91-84 -    -      -      -    EE94
 U+FA23   707757 FA23     EFA8A3       8D73    91-85 -    -      -      -    EE95 FBB1 FBB1 FBB1 648E 648E -    [﨣]
 U+8ECF   707557 8ECF     E8BB8F       -       91-86 -    8FE0D9 -      -    EE96 FBB2 FBB2 FBB2 64C9 64C9 -    [軏]
 U+FA24   707457 FA24     EFA8A4       -       91-87 -    -      -      FA8E EE97 FBB3 FBB3 FBB3 64F1 64F1 -    [﨤]
-U+FA25   737757 FA25     EFA8A5       9038    91-88 -    -      -      -    EE98 FBB4 FBB4 FBB4 6549 6549 -    [逸]
+U+FA25   747757 FA25     EFA8A5       9038    91-88 -    -      -      -    EE98 FBB4 FBB4 FBB4 6549 6549 -    [逸]
 U+9067   707557 9067     E981A7       -       91-89 -    8FE1E2 -      -    EE99 FBB5 FBB5 FBB5 6553 6553 -    [遧]
 U+90DE   707353 90DE     E9839E       90CE    91-90 -    -      -      EEE5 EE9A FBB6 FBB6 FBB6 6564 6564 -    [郞]
-U+FA26   737353 FA26     EFA8A6       90FD    91-91 -    -      -      EEE8 EE9B FBB7 FBB7 FBB7 6566 6566 -    [都]
+U+FA26   747353 FA26     EFA8A6       90FD    91-91 -    -      -      EEE8 EE9B FBB7 FBB7 FBB7 6566 6566 -    [都]
 U+9115   707352 9115     E98495       90F7    91-92 -    -      -      EEEA EE9C FBB8 FBB8 FBB8 6567 6567 -    [鄕]
 U+9127   707355 9127     E984A7       -       91-93 -    8FE2C7 -      EEEE EE9D FBB9 FBB9 FBB9 656B 656B -    [鄧]
 U+91DA   707457 91DA     E9879A       -       91-94 -    8FE3A8 -      FACC EE9E FBBA FBBA FBBA 6583 6583 -    [釚]
@@ -9025,7 +9025,7 @@ U+9431   707557 9431     E990B1       -       92-43 -    8FE5E2 -      -    EEC9
 U+9445   707457 9445     E99185       -       92-44 -    8FE5EA -      FB6C EECA FBE6 FBE6 FBE6 65F4 65F4 -    [鑅]
 U+9448   707557 9448     E99188       -       92-45 -    8FE5EB -      -    EECB FBE7 FBE7 FBE7 65F6 65F6 -    [鑈]
 U+9592   707757 9592     E99692       9593    92-46 -    -      -      -    EECC FBE8 FBE8 FBE8 664A 664A -    [閒]
-U+F9DC   737352 F9DC     EFA79C       9686    92-47 -    -      -      EF7C EECD FBE9 FBE9 FBE9 6674 6674 -    [隆]
+U+F9DC   747352 F9DC     EFA79C       9686    92-47 -    -      -      EF7C EECD FBE9 FBE9 FBE9 6674 6674 -    [隆]
 U+FA29   707757 FA29     EFA8A9       969D    92-48 -    -      -      -    EECE FBEA FBEA FBEA 6678 6678 -    [﨩]
 U+969D   707357 969D     E99A9D       FA29    92-49 -    8FE6E8 -      EF7D EECF FBEB FBEB FBEB 6679 6679 -    [隝]
 U+96AF   707457 96AF     E99AAF       -       92-50 -    8FE6EF -      FB8C EED0 FBEC FBEC FBEC 667F 667F -    [隯]
@@ -9038,10 +9038,10 @@ U+9751   707752 9751     E99D91       9752    92-56 -    -      -      -    EED6
 U+9755   707457 9755     E99D95       -       92-57 -    8FE7B2 -      FB9C EED7 FBF3 FBF3 FBF3 66A5 66A5 -    [靕]
 U+9857   707357 9857     E9A197       -       92-58 -    8FE8B1 -      EF9F EED8 FBF4 FBF4 FBF4 66CB 66CB -    [顗]
 U+9865   707357 9865     E9A1A5       -       92-59 -    8FE8B6 -      EFA3 EED9 FBF5 FBF5 FBF5 66CC 66CC -    [顥]
-U+FA2A   737757 FA2A     EFA8AA       98EF    92-60 -    -      -      -    EEDA FBF6 FBF6 FBF6 66DD 66DD -    [飯]
-U+FA2B   737757 FA2B     EFA8AB       98FC    92-61 -    -      -      -    EEDB FBF7 FBF7 FBF7 66DF 66DF -    [飼]
+U+FA2A   747757 FA2A     EFA8AA       98EF    92-60 -    -      -      -    EEDA FBF6 FBF6 FBF6 66DD 66DD -    [飯]
+U+FA2B   747757 FA2B     EFA8AB       98FC    92-61 -    -      -      -    EEDB FBF7 FBF7 FBF7 66DF 66DF -    [飼]
 U+9927   707557 9927     E9A4A7       -       92-62 -    8FE8DD -      -    EEDC FBF8 FBF8 FBF8 66E5 66E5 -    [餧]
-U+FA2C   737752 FA2C     EFA8AC       9928    92-63 -    -      -      -    EEDD FBF9 FBF9 FBF9 66E6 66E6 -    [館]
+U+FA2C   747752 FA2C     EFA8AC       9928    92-63 -    -      -      -    EEDD FBF9 FBF9 FBF9 66E6 66E6 -    [館]
 U+999E   707357 999E     E9A69E       -       92-64 -    -      -      EFA9 EEDE FBFA FBFA FBFA 66F9 66F9 -    [馞]
 U+9A4E   707357 9A4E     E9A98E       -       92-65 -    8FE9D1 -      EFB1 EEDF FBFB FBFB FBFB 6759 6759 -    [驎]
 U+9AD9   707757 9AD9     E9AB99       9AD8    92-66 -    -      -      -    EEE0 FBFC FBFC FBFC 676B 676B -    [髙]
@@ -9054,7 +9054,7 @@ U+9BBB   707557 9BBB     E9AEBB       -       92-72 -    8FEAEA -      -    EEE6
 U+9C00   707357 9C00     E9B080       -       92-73 -    8FEBA5 -      EFCD EEE7 FC46 FC46 FC46 67B1 67B1 -    [鰀]
 U+9D70   707357 9D70     E9B5B0       -       92-74 -    8FEBFB -      EFDC EEE8 FC47 FC47 FC47 67E2 67E2 -    [鵰]
 U+9D6B   707457 9D6B     E9B5AB       -       92-75 -    8FEBFA -      FCB2 EEE9 FC48 FC48 FC48 67E4 67E4 -    [鵫]
-U+FA2D   737757 FA2D     EFA8AD       9DB4    92-76 -    -      -      -    EEEA FC49 FC49 FC49 67F4 67F4 -    [鶴]
+U+FA2D   747757 FA2D     EFA8AD       9DB4    92-76 -    -      -      -    EEEA FC49 FC49 FC49 67F4 67F4 -    [鶴]
 U+9E19   707457 9E19     E9B899       -       92-77 -    8FECD6 -      FCCD EEEB FC4A FC4A FC4A 67FE 67FE -    [鸙]
 U+9ED1   707353 9ED1     E9BB91       9ED2    92-78 -    -      -      EFF0 EEEC FC4B FC4B FC4B 6856 6856 -    [黑]
 U+FFFD   999999 FFFD     EFBFBD       -       92-79 -    -      -      -    EEED -    -    -    -    -    -    
@@ -9069,10 +9069,10 @@ U+2176   727050 2176     E285B6       -       92-87 -    -      -      86B9 EEF5
 U+2177   727050 2177     E285B7       -       92-88 -    -      -      86BA EEF6 FA47 FA47 FA47 41B8 41B8 -    [ⅷ]
 U+2178   727050 2178     E285B8       -       92-89 -    -      -      86BB EEF7 FA48 FA48 FA48 41B9 41B9 -    [ⅸ]
 U+2179   727050 2179     E285B9       0078    92-90 -    -      -      86BC EEF8 FA49 FA49 FA49 41BA 41BA -    [ⅹ]
-U+FFE2   727750 FFE2     EFBFA2       00AC    92-91 -    -      -      -    EEF9 81CA FA54 81CA 425F 425F -    [￢]
-U+FFE4   727750 FFE4     EFBFA4       00A6    92-92 -    -      -      -    EEFA FA55 -    -    426A 426A -    [￤]
-U+FF07   727050 FF07     EFBC87       0027    92-93 -    -      -      81AD EEFB FA56 FA56 FA56 427D 427D -    [＇]
-U+FF02   727050 FF02     EFBC82       0022    92-94 -    -      -      81AE EEFC FA57 FA57 FA57 427F 427F -    [＂]
+U+FFE2   737750 FFE2     EFBFA2       00AC    92-91 -    -      -      -    EEF9 81CA FA54 81CA 425F 425F -    [￢]
+U+FFE4   737750 FFE4     EFBFA4       00A6    92-92 -    -      -      -    EEFA FA55 -    -    426A 426A -    [￤]
+U+FF07   737050 FF07     EFBC87       0027    92-93 -    -      -      81AD EEFB FA56 FA56 FA56 427D 427D -    [＇]
+U+FF02   737050 FF02     EFBC82       0022    92-94 -    -      -      81AE EEFC FA57 FA57 FA57 427F 427F -    [＂]
 -------- ------ -------- ------------ ---- -------- ---- ------ ------ ---- ---- ---- ---- ---- ---- ---- ---- ----
 U+FFFD   999999 FFFD     EFBFBD       -       93-01 -    -      -      -    EF40 -    -    -    -    -    -    
 U+FFFD   999999 FFFD     EFBFBD       -       93-02 -    -      -      -    EF41 -    -    -    -    -    -    
@@ -11192,10 +11192,10 @@ U+2166   727060 2166     E285A6       -      115-17 -    -      -      875A FA50
 U+2167   727060 2167     E285A7       -      115-18 -    -      -      875B FA51 875B FA51 FA51 41F8 41F8 -    [Ⅷ]
 U+2168   727060 2168     E285A8       -      115-19 -    -      -      875C FA52 875C FA52 FA52 41F9 41F9 -    [Ⅸ]
 U+2169   727060 2169     E285A9       0058   115-20 -    -      -      875D FA53 875D FA53 FA53 41FA 41FA -    [Ⅹ]
-U+FFE2   727760 FFE2     EFBFA2       00AC   115-21 -    -      -      -    FA54 81CA FA54 81CA 425F 425F -    [￢]
-U+FFE4   127760 FFE4     EFBFA4       00A6   115-22 -    -      -      -    FA55 -    -    -    426A 426A -    [￤] -> [¦] (NFKC)
-U+FF07   127060 FF07     EFBC87       0027   115-23 -    -      -      81AD FA56 -    FA56 FA56 427D 427D -    [＇] -> ['] (NFKC)
-U+FF02   127060 FF02     EFBC82       0022   115-24 -    -      -      81AE FA57 -    FA57 FA57 427F 427F -    [＂] -> ["] (NFKC)
+U+FFE2   737760 FFE2     EFBFA2       00AC   115-21 -    -      -      -    FA54 81CA FA54 81CA 425F 425F -    [￢]
+U+FFE4   137760 FFE4     EFBFA4       00A6   115-22 -    -      -      -    FA55 -    -    -    426A 426A -    [￤] -> [¦] (NFKC)
+U+FF07   137060 FF07     EFBC87       0027   115-23 -    -      -      81AD FA56 -    FA56 FA56 427D 427D -    [＇] -> ['] (NFKC)
+U+FF02   137060 FF02     EFBC82       0022   115-24 -    -      -      81AE FA57 -    FA57 FA57 427F 427F -    [＂] -> ["] (NFKC)
 U+3231   727060 3231     E388B1       -      115-25 -    -      -      878A FA58 878A FA58 FA58 446D 446D -    [㈱]
 U+2116   727060 2116     E28496       -      115-26 -    8FA2F1 -      8782 FA59 8782 FA59 FA59 446E 446E -    [№]
 U+2121   727060 2121     E284A1       -      115-27 -    -      -      8784 FA5A 8784 FA5A FA5A 446F 446F -    [℡]
@@ -11263,7 +11263,7 @@ U+57AC   107467 57AC     E59EAC       -      115-88 -    8FB7E4 -      F1EA FA98
 U+57C8   107367 57C8     E59F88       -      115-89 -    8FB7E8 -      886E FA99 -    FA99 FA99 5870 5870 -    [埈]
 U+57C7   107367 57C7     E59F87       -      115-90 -    8FB7E7 -      886D FA9A -    FA9A FA9A 5873 5873 -    [埇]
 U+FA0F   107367 FA0F     EFA88F       -      115-91 -    -      -      886A FA9B -    FA9B FA9B 5877 5877 -    [﨏]
-U+FA10   137362 FA10     EFA890       585A   115-92 -    -      -      8876 FA9C -    FA9C FA9C 5882 5882 -    [塚] -> [塚] (NFC)
+U+FA10   147362 FA10     EFA890       585A   115-92 -    -      -      8876 FA9C -    FA9C FA9C 5882 5882 -    [塚] -> [塚] (NFC)
 U+589E   107363 589E     E5A29E       5897   115-93 -    -      -      887C FA9D -    FA9D FA9D 588A 588A -    [增] -> [増] (JIS97)
 U+58B2   107567 58B2     E5A2B2       -      115-94 -    8FB8CE -      -    FA9E -    FA9E FA9E 588C 588C -    [墲]
 -------- ------ -------- ------------ ---- -------- ---- ------ ------ ---- ---- ---- ---- ---- ---- ---- ---- ----
@@ -11324,7 +11324,7 @@ U+6624   107367 6624     E698A4       -      116-54 -    8FC2A5 -      EB51 FAD4
 U+6665   107367 6665     E699A5       -      116-55 -    -      -      EB5D FAD5 -    FAD5 FAD5 5BA7 5BA7 -    [晥]
 U+6657   107467 6657     E69997       -      116-56 -    8FC2B8 -      F39E FAD6 -    FAD6 FAD6 5BA8 5BA8 -    [晗]
 U+6659   107367 6659     E69999       -      116-57 -    8FC2BA -      EB5A FAD7 -    FAD7 FAD7 5BAB 5BAB -    [晙]
-U+FA12   137767 FA12     EFA892       6674   116-58 -    -      -      -    FAD8 -    FAD8 FAD8 5BAE 5BAE -    [晴] -> [晴] (NFC)
+U+FA12   147767 FA12     EFA892       6674   116-58 -    -      -      -    FAD8 -    FAD8 FAD8 5BAE 5BAE -    [晴] -> [晴] (NFC)
 U+6673   107367 6673     E699B3       6670   116-59 -    8FC2C4 -      EB5E FAD9 -    FAD9 FAD9 5BAF 5BAF -    [晳] -> [晰] (戸籍統一)
 U+6699   107467 6699     E69A99       -      116-60 -    8FC2D2 -      F3AB FADA -    FADA FADA 5BB4 5BB4 -    [暙]
 U+66A0   107367 66A0     E69AA0       -      116-61 -    8FC2D7 -      EB63 FADB -    FADB FADB 5BB6 5BB6 -    [暠]
@@ -11332,7 +11332,7 @@ U+66B2   107367 66B2     E69AB2       -      116-62 -    8FC2DB -      EB64 FADC
 U+66BF   107467 66BF     E69ABF       -      116-63 -    8FC2DE -      F3B1 FADD -    FADD FADD 5BBB 5BBB -    [暿]
 U+66FA   107367 66FA     E69BBA       66F9   116-64 -    8FC2ED -      EB6B FADE -    FADE FADE 5BC7 5BC7 -    [曺] -> [曹]
 U+670E   107567 670E     E69C8E       -      116-65 -    8FC2F0 -      -    FADF -    FADF FADF 5BC8 5BC8 -    [朎]
-U+F929   137363 F929     EFA4A9       6717   116-66 -    -      -      EB6D FAE0 -    FAE0 FAE0 5BC9 5BC9 -    [朗] -> [朗] (NFC)
+U+F929   147363 F929     EFA4A9       6717   116-66 -    -      -      EB6D FAE0 -    FAE0 FAE0 5BC9 5BC9 -    [朗] -> [朗] (NFC)
 U+6766   107367 6766     E69DA6       6749   116-67 -    8FC3A1 -      EB6F FAE1 -    FAE1 FAE1 5BD8 5BD8 -    [杦] -> [杉]
 U+67BB   107367 67BB     E69EBB       -      116-68 -    8FC3B5 -      EB77 FAE2 -    FAE2 FAE2 5BE3 5BE3 -    [枻]
 U+6852   107367 6852     E6A192       6851   116-69 -    8FC3C9 -      EB7D FAE3 -    FAE3 FAE3 5BEC 5BEC -    [桒] -> [桑]
@@ -11386,13 +11386,13 @@ U+7104   107467 7104     E78484       -      117-21 -    8FC9E3 -      F58B FB54
 U+715C   107367 715C     E7859C       -      117-22 -    8FC9FC -      EC76 FB55 -    FB55 FB55 5DFB 5DFB -    [煜]
 U+7146   107367 7146     E78586       -      117-23 -    8FC9F4 -      EC71 FB56 -    FB56 FB56 5DFC 5DFC -    [煆]
 U+7147   107367 7147     E78587       -      117-24 -    8FC9F5 -      EC72 FB57 -    FB57 FB57 5DFD 5DFD -    [煇]
-U+FA15   137367 FA15     EFA895       51DE   117-25 -    -      -      EC79 FB58 -    FB58 FB58 5E49 5E49 -    [凞] -> [凞] (NFC)
+U+FA15   147367 FA15     EFA895       51DE   117-25 -    -      -      EC79 FB58 -    FB58 FB58 5E49 5E49 -    [凞] -> [凞] (NFC)
 U+71C1   107367 71C1     E78781       -      117-26 -    8FCAB3 -      EC7D FB59 -    FB59 FB59 5E4B 5E4B -    [燁]
 U+71FE   107367 71FE     E787BE       -      117-27 -    8FCABD -      EC81 FB5A -    FB5A FB5A 5E5A 5E5A -    [燾]
 U+72B1   107467 72B1     E78AB1       -      117-28 -    8FCAEF -      F5BB FB5B -    FB5B FB5B 5E73 5E73 -    [犱]
 U+72BE   107367 72BE     E78ABE       -      117-29 -    8FCAF1 -      EC89 FB5C -    FB5C FB5C 5E75 5E75 -    [犾]
 U+7324   107567 7324     E78CA4       -      117-30 -    8FCBAE -      -    FB5D -    FB5D FB5D 5E86 5E86 -    [猤]
-U+FA16   137364 FA16     EFA896       732A   117-31 -    -      -      EC8F FB5E -    FB5E FB5E 5E8A 5E8A -    [猪] -> [猪] (NFC)
+U+FA16   147364 FA16     EFA896       732A   117-31 -    -      -      EC8F FB5E -    FB5E FB5E 5E8A 5E8A -    [猪] -> [猪] (NFC)
 U+7377   107467 7377     E78DB7       -      117-32 -    8FCBCA -      F5D5 FB5F -    FB5F FB5F 5E94 5E94 -    [獷]
 U+73BD   107567 73BD     E78EBD       -      117-33 -    8FCBE6 -      -    FB60 -    FB60 FB60 5E99 5E99 -    [玽]
 U+73C9   107367 73C9     E78F89       -      117-34 -    8FCBEA -      EC99 FB61 -    FB61 FB61 5E9E 5E9E -    [珉]
@@ -11415,7 +11415,7 @@ U+769C   107467 769C     E79A9C       -      117-50 -    8FCEBB -      F68F FB71
 U+769E   107367 769E     E79A9E       -      117-51 -    -      -      ECE1 FB72 -    FB72 FB72 5F71 5F71 -    [皞]
 U+769B   107367 769B     E79A9B       -      117-52 -    8FCEBA -      ECDF FB73 -    FB73 FB73 5F72 5F72 -    [皛]
 U+76A6   107367 76A6     E79AA6       -      117-53 -    8FCEC3 -      ECE2 FB74 -    FB74 FB74 5F73 5F73 -    [皦]
-U+FA17   137762 FA17     EFA897       76CA   117-54 -    -      -      -    FB75 -    FB75 FB75 5F7A 5F7A -    [益] -> [益] (NFC)
+U+FA17   147762 FA17     EFA897       76CA   117-54 -    -      -      -    FB75 -    FB75 FB75 5F7A 5F7A -    [益] -> [益] (NFC)
 U+7746   107367 7746     E79D86       -      117-55 -    8FCEF2 -      ECF0 FB76 -    FB76 FB76 5F8E 5F8E -    [睆]
 U+52AF   107467 52AF     E58AAF       -      117-56 -    8FB3DD -      F163 FB77 -    FB77 FB77 5FAA 5FAA -    [劯]
 U+7821   107467 7821     E7A0A1       -      117-57 -    8FCFD5 -      F6C1 FB78 -    FB78 FB78 5FAE 5FAE -    [砡]
@@ -11423,18 +11423,18 @@ U+784E   107367 784E     E7A18E       7814   117-58 -    8FCFE2 -      ED41 FB79
 U+7864   107467 7864     E7A1A4       -      117-59 -    8FCFE9 -      F6C4 FB7A -    FB7A FB7A 5FB3 5FB3 -    [硤]
 U+787A   107567 787A     E7A1BA       -      117-60 -    8FCFED -      -    FB7B -    FB7B FB7B 5FB6 5FB6 -    [硺]
 U+7930   107467 7930     E7A4B0       -      117-61 -    -      -      F6DC FB7C -    FB7C FB7C 5FD1 5FD1 -    [礰]
-U+FA18   137767 FA18     EFA898       793C   117-62 -    -      -      -    FB7D -    FB7D FB7D 5FD2 5FD2 -    [礼] -> [礼] (NFC)
-U+FA19   137363 FA19     EFA899       795E   117-63 -    -      -      ED5B FB7E -    FB7E FB7E 5FD5 5FD5 -    [神] -> [神] (NFC)
-U+FA1A   137363 FA1A     EFA89A       7965   117-64 -    -      -      ED5C FB80 -    FB80 FB80 5FD9 5FD9 -    [祥] -> [祥] (NFC)
+U+FA18   147767 FA18     EFA898       793C   117-62 -    -      -      -    FB7D -    FB7D FB7D 5FD2 5FD2 -    [礼] -> [礼] (NFC)
+U+FA19   147363 FA19     EFA899       795E   117-63 -    -      -      ED5B FB7E -    FB7E FB7E 5FD5 5FD5 -    [神] -> [神] (NFC)
+U+FA1A   147363 FA1A     EFA89A       7965   117-64 -    -      -      ED5C FB80 -    FB80 FB80 5FD9 5FD9 -    [祥] -> [祥] (NFC)
 U+7994   107467 7994     E7A694       -      117-65 -    8FD0E5 -      F6E5 FB81 -    FB81 FB81 5FDC 5FDC -    [禔]
-U+FA1B   137363 FA1B     EFA89B       798F   117-66 -    -      -      ED60 FB82 -    FB82 FB82 5FDD 5FDD -    [福] -> [福] (NFC)
+U+FA1B   147363 FA1B     EFA89B       798F   117-66 -    -      -      ED60 FB82 -    FB82 FB82 5FDD 5FDD -    [福] -> [福] (NFC)
 U+799B   107467 799B     E7A69B       -      117-67 -    8FD0E9 -      F6E8 FB83 -    FB83 FB83 5FDF 5FDF -    [禛]
 U+7AD1   107467 7AD1     E7AB91       -      117-68 -    8FD1E8 -      F758 FB84 -    FB84 FB84 604F 604F -    [竑]
 U+7AE7   107467 7AE7     E7ABA7       -      117-69 -    -      -      F759 FB85 -    FB85 FB85 6058 6058 -    [竧]
-U+FA1C   137767 FA1C     EFA89C       9756   117-70 -    -      -      -    FB86 -    FB86 FB86 6059 6059 -    [靖] -> [靖] (NFC)
+U+FA1C   147767 FA1C     EFA89C       9756   117-70 -    -      -      -    FB86 -    FB86 FB86 6059 6059 -    [靖] -> [靖] (NFC)
 U+7AEB   107367 7AEB     E7ABAB       -      117-71 -    8FD1EC -      ED77 FB87 -    FB87 FB87 605A 605A -    [竫]
 U+7B9E   107367 7B9E     E7AE9E       -      117-72 -    8FD2BB -      ED83 FB88 -    FB88 FB88 6082 6082 -    [箞]
-U+FA1D   137767 FA1D     EFA89D       7CBE   117-73 -    -      -      -    FB89 -    FB89 FB89 60AD 60AD -    [精] -> [精] (NFC)
+U+FA1D   147767 FA1D     EFA89D       7CBE   117-73 -    -      -      -    FB89 -    FB89 FB89 60AD 60AD -    [精] -> [精] (NFC)
 U+7D48   107367 7D48     E7B588       -      117-74 -    8FD3E1 -      EDA0 FB8A -    FB8A FB8A 60C4 60C4 -    [絈]
 U+7D5C   107367 7D5C     E7B59C       -      117-75 -    8FD3E8 -      EDA2 FB8B -    FB8B FB8B 60C6 60C6 -    [絜]
 U+7DB7   107467 7DB7     E7B6B7       -      117-76 -    8FD4A7 -      F7C5 FB8C -    FB8C FB8C 60D4 60D4 -    [綷]
@@ -11443,7 +11443,7 @@ U+7DD6   107363 7DD6     E7B796       7DD2   117-78 -    -      -      EDAA FB8E
 U+7E52   107367 7E52     E7B992       -      117-79 -    8FD4D4 -      EDB3 FB8F -    FB8F FB8F 60FD 60FD -    [繒]
 U+7F47   107367 7F47     E7BD87       6A3D   117-80 -    8FD4F2 -      EDB7 FB90 -    FB90 FB90 6157 6157 -    [罇] -> [樽]
 U+7FA1   107567 7FA1     E7BEA1       7FA8   117-81 -    8FD5AE -      -    FB91 -    FB91 FB91 616E 616E -    [羡] -> [羨]
-U+FA1E   137762 FA1E     EFA89E       7FBD   117-82 -    -      -      -    FB92 -    FB92 FB92 6177 6177 -    [羽] -> [羽] (NFC)
+U+FA1E   147762 FA1E     EFA89E       7FBD   117-82 -    -      -      -    FB92 -    FB92 FB92 6177 6177 -    [羽] -> [羽] (NFC)
 U+8301   107367 8301     E88C81       -      117-83 -    8FD7DE -      EDEA FB93 -    FB93 FB93 61F8 61F8 -    [茁]
 U+8362   107367 8362     E88DA2       -      117-84 -    -      -      EDEB FB94 -    FB94 FB94 6248 6248 -    [荢]
 U+837F   107467 837F     E88DBF       -      117-85 -    8FD8A2 -      F8B1 FB95 -    FB95 FB95 625B 625B -    [荿]
@@ -11457,7 +11457,7 @@ U+856B   107567 856B     E895AB       -      117-92 -    8FD9D1 -      -    FB9C
 U+FA1F   107365 FA1F     EFA89F       81C8   117-93 -    -      -      EE59 FB9D -    FB9D FB9D 62B9 62B9 -    [﨟] -> [臈]
 U+85B0   107363 85B0     E896B0       85AB   117-94 -    -      -      EE5F FB9E -    FB9E FB9E 62BB 62BB -    [薰] -> [薫] (JIS97)
 -------- ------ -------- ------------ ---- -------- ---- ------ ------ ---- ---- ---- ---- ---- ---- ---- ---- ----
-U+FA20   137467 FA20     EFA8A0       8612   118-01 -    -      -      F957 FB9F -    FB9F FB9F 62CE 62CE -    [蘒] -> [蘒] (NFC)
+U+FA20   147467 FA20     EFA8A0       8612   118-01 -    -      -      F957 FB9F -    FB9F FB9F 62CE 62CE -    [蘒] -> [蘒] (NFC)
 U+FA21   107467 FA21     EFA8A1       -      118-02 -    -      -      F964 FBA0 -    FBA0 FBA0 62E2 62E2 -    [﨡]
 U+8807   107767 8807     E8A087       8823   118-03 -    -      -      -    FBA1 -    FBA1 FBA1 635E 635E -    [蠇] -> [蠣] (戸籍統一)
 U+88F5   107367 88F5     E8A3B5       88F4   118-04 -    8FDCD3 -      EE8D FBA2 -    FBA2 FBA2 6390 6390 -    [裵] -> [裴]
@@ -11467,7 +11467,7 @@ U+8A79   107367 8A79     E8A9B9       -      118-07 -    8FDDEA -      EEA6 FBA5
 U+8AA7   107367 8AA7     E8AAA7       -      118-08 -    8FDDFA -      EEA7 FBA6 -    FBA6 FBA6 63DF 63DF -    [誧]
 U+8ABE   107467 8ABE     E8AABE       -      118-09 -    8FDEA4 -      F9DE FBA7 -    FBA7 FBA7 63E1 63E1 -    [誾]
 U+8ADF   107367 8ADF     E8AB9F       -      118-10 -    8FDEB0 -      EEA9 FBA8 -    FBA8 FBA8 63ED 63ED -    [諟]
-U+FA22   137363 FA22     EFA8A2       8AF8   118-11 -    -      -      EEAC FBA9 -    FBA9 FBA9 63EE 63EE -    [諸] -> [諸] (NFC)
+U+FA22   147363 FA22     EFA8A2       8AF8   118-11 -    -      -      EEAC FBA9 -    FBA9 FBA9 63EE 63EE -    [諸] -> [諸] (NFC)
 U+8AF6   107367 8AF6     E8ABB6       -      118-12 -    8FDEB5 -      EEAB FBAA -    FBAA FBAA 63EF 63EF -    [諶]
 U+8B53   107567 8B53     E8AD93       -      118-13 -    8FDECB -      -    FBAB -    FBAB FBAB 6445 6445 -    [譓]
 U+8B7F   107467 8B7F     E8ADBF       -      118-14 -    -      -      F9ED FBAC -    FBAC FBAC 6450 6450 -    [譿]
@@ -11478,10 +11478,10 @@ U+8D76   107767 8D76     E8B5B6       -      118-18 -    -      -      -    FBB0
 U+FA23   107767 FA23     EFA8A3       8D73   118-19 -    -      -      -    FBB1 -    FBB1 FBB1 648E 648E -    [﨣] -> [赳] (5200号)
 U+8ECF   107567 8ECF     E8BB8F       -      118-20 -    8FE0D9 -      -    FBB2 -    FBB2 FBB2 64C9 64C9 -    [軏]
 U+FA24   107467 FA24     EFA8A4       -      118-21 -    -      -      FA8E FBB3 -    FBB3 FBB3 64F1 64F1 -    [﨤]
-U+FA25   137767 FA25     EFA8A5       9038   118-22 -    -      -      -    FBB4 -    FBB4 FBB4 6549 6549 -    [逸] -> [逸] (NFC)
+U+FA25   147767 FA25     EFA8A5       9038   118-22 -    -      -      -    FBB4 -    FBB4 FBB4 6549 6549 -    [逸] -> [逸] (NFC)
 U+9067   107567 9067     E981A7       -      118-23 -    8FE1E2 -      -    FBB5 -    FBB5 FBB5 6553 6553 -    [遧]
 U+90DE   107363 90DE     E9839E       90CE   118-24 -    -      -      EEE5 FBB6 -    FBB6 FBB6 6564 6564 -    [郞] -> [郎] (JIS97)
-U+FA26   137363 FA26     EFA8A6       90FD   118-25 -    -      -      EEE8 FBB7 -    FBB7 FBB7 6566 6566 -    [都] -> [都] (NFC)
+U+FA26   147363 FA26     EFA8A6       90FD   118-25 -    -      -      EEE8 FBB7 -    FBB7 FBB7 6566 6566 -    [都] -> [都] (NFC)
 U+9115   107362 9115     E98495       90F7   118-26 -    -      -      EEEA FBB8 -    FBB8 FBB8 6567 6567 -    [鄕] -> [郷] (JIS97)
 U+9127   107365 9127     E984A7       -      118-27 -    8FE2C7 -      EEEE FBB9 -    FBB9 FBB9 656B 656B -    [鄧]
 U+91DA   107467 91DA     E9879A       -      118-28 -    8FE3A8 -      FACC FBBA -    FBBA FBBA 6583 6583 -    [釚]
@@ -11531,7 +11531,7 @@ U+9431   107567 9431     E990B1       -      118-71 -    8FE5E2 -      -    FBE5
 U+9445   107467 9445     E99185       -      118-72 -    8FE5EA -      FB6C FBE6 -    FBE6 FBE6 65F4 65F4 -    [鑅]
 U+9448   107567 9448     E99188       -      118-73 -    8FE5EB -      -    FBE7 -    FBE7 FBE7 65F6 65F6 -    [鑈]
 U+9592   107767 9592     E99692       9593   118-74 -    -      -      -    FBE8 -    FBE8 FBE8 664A 664A -    [閒] -> [間] (包摂)
-U+F9DC   137362 F9DC     EFA79C       9686   118-75 -    -      -      EF7C FBE9 -    FBE9 FBE9 6674 6674 -    [隆] -> [隆] (NFC)
+U+F9DC   147362 F9DC     EFA79C       9686   118-75 -    -      -      EF7C FBE9 -    FBE9 FBE9 6674 6674 -    [隆] -> [隆] (NFC)
 U+FA29   107767 FA29     EFA8A9       969D   118-76 -    -      -      -    FBEA -    FBEA FBEA 6678 6678 -    [﨩] -> [隝]
 U+969D   107367 969D     E99A9D       FA29   118-77 -    8FE6E8 -      EF7D FBEB -    FBEB FBEB 6679 6679 -    [隝] -> [﨩]
 U+96AF   107467 96AF     E99AAF       -      118-78 -    8FE6EF -      FB8C FBEC -    FBEC FBEC 667F 667F -    [隯]
@@ -11544,10 +11544,10 @@ U+9751   107762 9751     E99D91       9752   118-84 -    -      -      -    FBF2
 U+9755   107467 9755     E99D95       -      118-85 -    8FE7B2 -      FB9C FBF3 -    FBF3 FBF3 66A5 66A5 -    [靕]
 U+9857   107367 9857     E9A197       -      118-86 -    8FE8B1 -      EF9F FBF4 -    FBF4 FBF4 66CB 66CB -    [顗]
 U+9865   107367 9865     E9A1A5       -      118-87 -    8FE8B6 -      EFA3 FBF5 -    FBF5 FBF5 66CC 66CC -    [顥]
-U+FA2A   137767 FA2A     EFA8AA       98EF   118-88 -    -      -      -    FBF6 -    FBF6 FBF6 66DD 66DD -    [飯] -> [飯] (NFC)
-U+FA2B   137767 FA2B     EFA8AB       98FC   118-89 -    -      -      -    FBF7 -    FBF7 FBF7 66DF 66DF -    [飼] -> [飼] (NFC)
+U+FA2A   147767 FA2A     EFA8AA       98EF   118-88 -    -      -      -    FBF6 -    FBF6 FBF6 66DD 66DD -    [飯] -> [飯] (NFC)
+U+FA2B   147767 FA2B     EFA8AB       98FC   118-89 -    -      -      -    FBF7 -    FBF7 FBF7 66DF 66DF -    [飼] -> [飼] (NFC)
 U+9927   107567 9927     E9A4A7       -      118-90 -    8FE8DD -      -    FBF8 -    FBF8 FBF8 66E5 66E5 -    [餧]
-U+FA2C   137762 FA2C     EFA8AC       9928   118-91 -    -      -      -    FBF9 -    FBF9 FBF9 66E6 66E6 -    [館] -> [館] (NFC)
+U+FA2C   147762 FA2C     EFA8AC       9928   118-91 -    -      -      -    FBF9 -    FBF9 FBF9 66E6 66E6 -    [館] -> [館] (NFC)
 U+999E   107367 999E     E9A69E       -      118-92 -    -      -      EFA9 FBFA -    FBFA FBFA 66F9 66F9 -    [馞]
 U+9A4E   107367 9A4E     E9A98E       -      118-93 -    8FE9D1 -      EFB1 FBFB -    FBFB FBFB 6759 6759 -    [驎]
 U+9AD9   107767 9AD9     E9AB99       9AD8   118-94 -    -      -      -    FBFC -    FBFC FBFC 676B 676B -    [髙] -> [高] (包摂)
@@ -11561,7 +11561,7 @@ U+9BBB   107567 9BBB     E9AEBB       -      119-06 -    8FEAEA -      -    FC45
 U+9C00   107367 9C00     E9B080       -      119-07 -    8FEBA5 -      EFCD FC46 -    FC46 FC46 67B1 67B1 -    [鰀]
 U+9D70   107367 9D70     E9B5B0       -      119-08 -    8FEBFB -      EFDC FC47 -    FC47 FC47 67E2 67E2 -    [鵰]
 U+9D6B   107467 9D6B     E9B5AB       -      119-09 -    8FEBFA -      FCB2 FC48 -    FC48 FC48 67E4 67E4 -    [鵫]
-U+FA2D   137767 FA2D     EFA8AD       9DB4   119-10 -    -      -      -    FC49 -    FC49 FC49 67F4 67F4 -    [鶴] -> [鶴] (NFC)
+U+FA2D   147767 FA2D     EFA8AD       9DB4   119-10 -    -      -      -    FC49 -    FC49 FC49 67F4 67F4 -    [鶴] -> [鶴] (NFC)
 U+9E19   107467 9E19     E9B899       -      119-11 -    8FECD6 -      FCCD FC4A -    FC4A FC4A 67FE 67FE -    [鸙]
 U+9ED1   107363 9ED1     E9BB91       9ED2   119-12 -    -      -      EFF0 FC4B -    FC4B FC4B 6856 6856 -    [黑] -> [黒] (JIS97)
 U+FFFD   999999 FFFD     EFBFBD       -      119-13 -    -      -      -    FC4C -    -    -    -    -    -    
@@ -11746,10 +11746,10 @@ U+FFFD   999999 FFFD     EFBFBD       -      120-94 -    -      -      -    FCFC
 
 Unicode  区分   UTF-16   UTF-8        VAR  面-区-点 JIS  EUC    2004   SJIS W31J ALT  I942 I943 I930 I939 ALT  備考
 -------- ------ -------- ------------ ---- -------- ---- ------ ------ ---- ---- ---- ---- ---- ---- ---- ---- ----
-U+FF07   124060 FF07     EFBC87       0027  1-02-15 222F -      A2AF   81AD FA56 -    FA56 FA56 427D 427D -    [＇] -> ['] (NFKC)
-U+FF02   124060 FF02     EFBC82       0022  1-02-16 2230 -      A2B0   81AE FA57 -    FA57 FA57 427F 427F -    [＂] -> ["] (NFKC)
-U+FF0D   124030 FF0D     EFBC8D       002D  1-02-17 2231 -      A2B1   81AF 817C -    -    -    -    4260 4260 [－] -> [-] (NFKC)
-U+FF5E   124030 FF5E     EFBD9E       007E  1-02-18 2232 8FA2B7 A2B2   81B0 8160 -    -    -    43A1 43A1 -    [～] -> [~] (NFKC)
+U+FF07   134060 FF07     EFBC87       0027  1-02-15 222F -      A2AF   81AD FA56 -    FA56 FA56 427D 427D -    [＇] -> ['] (NFKC)
+U+FF02   134060 FF02     EFBC82       0022  1-02-16 2230 -      A2B0   81AE FA57 -    FA57 FA57 427F 427F -    [＂] -> ["] (NFKC)
+U+FF0D   134030 FF0D     EFBC8D       002D  1-02-17 2231 -      A2B1   81AF 817C -    -    -    -    4260 4260 [－] -> [-] (NFKC)
+U+FF5E   134030 FF5E     EFBD9E       007E  1-02-18 2232 8FA2B7 A2B2   81B0 8160 -    -    -    43A1 43A1 -    [～] -> [~] (NFKC)
 U+3033   104090 3033     E380B3       -     1-02-19 2233 -      A2B3   81B1 -    -    -    -    -    -    -    [〳]
 U+3034   104090 3034     E380B4       -     1-02-20 2234 -      A2B4   81B2 -    -    -    -    -    -    -    [〴]
 U+3035   104090 3035     E380B5       -     1-02-21 2235 -      A2B5   81B3 -    -    -    -    -    -    -    [〵]
@@ -11770,8 +11770,8 @@ U+2296   104090 2296     E28A96       -     1-02-50 2252 -      A2D2   81D0 -   
 U+2297   104090 2297     E28A97       -     1-02-51 2253 -      A2D3   81D1 -    -    -    -    -    -    -    [⊗]
 U+2225   104030 2225     E288A5       -     1-02-52 2254 -      A2D4   81D2 8161 -    -    -    447C 447C -    [∥]
 U+2226   114090 2226     E288A6       -     1-02-53 2255 -      A2D5   81D3 -    -    -    -    -    -    -    [∦]
-U+FF5F   124090 FF5F     EFBD9F       2985  1-02-54 2256 -      A2D6   81D4 -    -    -    -    -    -    -    [｟] -> [⦅] (NFKC)
-U+FF60   124090 FF60     EFBDA0       2986  1-02-55 2257 -      A2D7   81D5 -    -    -    -    -    -    -    [｠] -> [⦆] (NFKC)
+U+FF5F   134090 FF5F     EFBD9F       2985  1-02-54 2256 -      A2D6   81D4 -    -    -    -    -    -    -    [｟] -> [⦅] (NFKC)
+U+FF60   134090 FF60     EFBDA0       2986  1-02-55 2257 -      A2D7   81D5 -    -    -    -    -    -    -    [｠] -> [⦆] (NFKC)
 U+3018   104090 3018     E38098       -     1-02-56 2258 -      A2D8   81D6 -    -    -    -    -    -    -    [〘]
 U+3019   104090 3019     E38099       -     1-02-57 2259 -      A2D9   81D7 -    -    -    -    -    -    -    [〙]
 U+3016   104090 3016     E38096       -     1-02-58 225A -      A2DA   81D8 -    -    -    -    -    -    -    [〖]
@@ -12196,7 +12196,7 @@ U+025A   104090 025A     C99A         -     1-11-35 2B43 -      ABC3   8662 -   
 -        404090 00E60300 C3A6CC80     -     1-11-36 2B44 -      ABC4   8663 -    -    -    -    -    -    -    [æ̀]
 U+01FD   114090 01FD     C7BD         -     1-11-37 2B45 -      ABC5   8664 -    -    -    -    -    -    -    [ǽ]
 U+1F70   114090 1F70     E1BDB0       -     1-11-38 2B46 -      ABC6   8665 -    -    -    -    -    -    -    [ὰ]
-U+1F71   134090 1F71     E1BDB1       03AC  1-11-39 2B47 -      ABC7   8666 -    -    -    -    -    -    -    [ά] -> [ά] (NFC)
+U+1F71   144090 1F71     E1BDB1       03AC  1-11-39 2B47 -      ABC7   8666 -    -    -    -    -    -    -    [ά] -> [ά] (NFC)
 -        404090 02540300 C994CC80     -     1-11-40 2B48 -      ABC8   8667 -    -    -    -    -    -    -    [ɔ̀]
 -        404090 02540301 C994CC81     -     1-11-41 2B49 -      ABC9   8668 -    -    -    -    -    -    -    [ɔ́]
 -        404090 028C0300 CA8CCC80     -     1-11-42 2B4A -      ABCA   8669 -    -    -    -    -    -    -    [ʌ̀]
@@ -12206,7 +12206,7 @@ U+1F71   134090 1F71     E1BDB1       03AC  1-11-39 2B47 -      ABC7   8666 -   
 -        404090 025A0300 C99ACC80     -     1-11-46 2B4E -      ABCE   866D -    -    -    -    -    -    -    [ɚ̀]
 -        404090 025A0301 C99ACC81     -     1-11-47 2B4F -      ABCF   866E -    -    -    -    -    -    -    [ɚ́]
 U+1F72   114090 1F72     E1BDB2       -     1-11-48 2B50 -      ABD0   866F -    -    -    -    -    -    -    [ὲ]
-U+1F73   134090 1F73     E1BDB3       03AD  1-11-49 2B51 -      ABD1   8670 -    -    -    -    -    -    -    [έ] -> [έ] (NFC)
+U+1F73   144090 1F73     E1BDB3       03AD  1-11-49 2B51 -      ABD1   8670 -    -    -    -    -    -    -    [έ] -> [έ] (NFC)
 U+0361   304090 0361     CDA1         -     1-11-50 2B52 -      ABD2   8671 -    -    -    -    -    -    -    [͡]
 U+02C8   104090 02C8     CB88         -     1-11-51 2B53 -      ABD3   8672 -    -    -    -    -    -    -    [ˈ]
 U+02CC   104090 02CC     CB8C         -     1-11-52 2B54 -      ABD4   8673 -    -    -    -    -    -    -    [ˌ]
@@ -12444,7 +12444,7 @@ U+4F7E   104397 4F7E     E4BDBE       -     1-14-20 2E34 8FB0FB AEB4   87B2 -   
 U+4F8A   104367 4F8A     E4BE8A       -     1-14-21 2E35 8FB1A3 AEB5   87B3 FA70 -    FA70 FA70 5671 5671 -    [侊]
 U+4F94   104367 4F94     E4BE94       -     1-14-22 2E36 8FB1A9 AEB6   87B4 FA72 -    FA72 FA72 567B 567B -    [侔]
 U+4F97   104397 4F97     E4BE97       -     1-14-23 2E37 8FB1AA AEB7   87B5 -    -    -    -    -    -    -    [侗]
-U+FA30   134393 FA30     EFA8B0       4FAE  1-14-24 2E38 -      AEB8   87B6 -    -    -    -    -    -    -    [侮] -> [侮] (NFC)
+U+FA30   144393 FA30     EFA8B0       4FAE  1-14-24 2E38 -      AEB8   87B6 -    -    -    -    -    -    -    [侮] -> [侮] (NFC)
 U+4FC9   104367 4FC9     E4BF89       -     1-14-25 2E39 8FB1BB AEB9   87B7 FA61 -    FA61 FA61 5294 5294 -    [俉]
 U+4FE0   104394 4FE0     E4BFA0       4FA0  1-14-26 2E3A 8FB1C2 AEBA   87B8 -    -    -    -    -    -    52EC [俠] -> [侠] (JIS83-97)
 U+5001   104397 5001     E58081       -     1-14-27 2E3B 8FB1CA AEBB   87B9 -    -    -    -    -    -    -    [倁]
@@ -12461,14 +12461,14 @@ U+50CC   104397 50CC     E5838C       -     1-14-37 2E45 8FB2B6 AEC5   87C3 -   
 U+50F2   104397 50F2     E583B2       -     1-14-38 2E46 8FB2D1 AEC6   87C4 -    -    -    -    -    -    -    [僲]
 U+50D0   104397 50D0     E58390       -     1-14-39 2E47 8FB2B8 AEC7   87C5 -    -    -    -    -    -    -    [僐]
 U+50E6   104397 50E6     E583A6       -     1-14-40 2E48 8FB2C1 AEC8   87C6 -    -    -    -    -    -    -    [僦]
-U+FA31   134393 FA31     EFA8B1       50E7  1-14-41 2E49 -      AEC9   87C7 -    -    -    -    -    -    -    [僧] -> [僧] (NFC)
+U+FA31   144393 FA31     EFA8B1       50E7  1-14-41 2E49 -      AEC9   87C7 -    -    -    -    -    -    -    [僧] -> [僧] (NFC)
 U+5106   104397 5106     E58486       -     1-14-42 2E4A 8FB2CA AECA   87C8 -    -    -    -    -    -    -    [儆]
 U+5103   104397 5103     E58483       -     1-14-43 2E4B 8FB2C9 AECB   87C9 -    -    -    -    -    -    -    [儃]
 U+510B   104397 510B     E5848B       -     1-14-44 2E4C 8FB2CD AECC   87CA -    -    -    -    -    -    -    [儋]
 U+511E   104397 511E     E5849E       -     1-14-45 2E4D 8FB2D8 AECD   87CB -    -    -    -    -    -    -    [儞]
 U+5135   104397 5135     E584B5       -     1-14-46 2E4E 8FB2E2 AECE   87CC -    -    -    -    -    -    -    [儵]
 U+514A   104367 514A     E5858A       514C  1-14-47 2E4F 8FB2E6 AECF   87CD FA7E -    FA7E FA7E 56C9 56C9 -    [兊] -> [兌] (同型異字)
-U+FA32   134392 FA32     EFA8B2       514D  1-14-48 2E50 -      AED0   87CE -    -    -    -    -    -    -    [免] -> [免] (NFC)
+U+FA32   144392 FA32     EFA8B2       514D  1-14-48 2E50 -      AED0   87CE -    -    -    -    -    -    -    [免] -> [免] (NFC)
 U+5155   104397 5155     E58595       -     1-14-49 2E51 8FB2E9 AED1   87CF -    -    -    -    -    -    -    [兕]
 U+5157   104397 5157     E58597       -     1-14-50 2E52 8FB2EA AED2   87D0 -    -    -    -    -    -    -    [兗]
 U+34B5   104397 34B5     E392B5       -     1-14-51 2E53 -      AED3   87D1 -    -    -    -    -    -    -    [㒵]
@@ -12487,18 +12487,18 @@ U+5257   104397 5257     E58997       -     1-14-63 2E5F 8FB3C1 AEDF   87DD -   
 U+5261   104397 5261     E589A1       -     1-14-64 2E60 8FB3C7 AEE0   87DE -    -    -    -    -    -    -    [剡]
 U+5293   104397 5293     E58A93       -     1-14-65 2E61 8FB3D2 AEE1   87DF -    -    -    -    -    -    -    [劓]
 U+52C8   104397 52C8     E58B88       -     1-14-66 2E62 8FB3E8 AEE2   87E0 -    -    -    -    -    -    -    [勈]
-U+FA33   134393 FA33     EFA8B3       52C9  1-14-67 2E63 -      AEE3   87E1 -    -    -    -    -    -    -    [勉] -> [勉] (NFC)
+U+FA33   144393 FA33     EFA8B3       52C9  1-14-67 2E63 -      AEE3   87E1 -    -    -    -    -    -    -    [勉] -> [勉] (NFC)
 U+52CC   104397 52CC     E58B8C       -     1-14-68 2E64 8FB3E9 AEE4   87E2 -    -    -    -    -    -    -    [勌]
 U+52D0   104397 52D0     E58B90       -     1-14-69 2E65 -      AEE5   87E3 -    -    -    -    -    -    -    [勐]
 U+52D6   104397 52D6     E58B96       52F2  1-14-70 2E66 8FB3ED AEE6   87E4 -    -    -    -    -    -    -    [勖] -> [勲]
 U+52DB   104367 52DB     E58B9B       -     1-14-71 2E67 8FB3EE AEE7   87E5 FA88 -    FA88 FA88 5758 5758 -    [勛]
-U+FA34   134393 FA34     EFA8B4       52E4  1-14-72 2E68 -      AEE8   87E6 -    -    -    -    -    -    -    [勤] -> [勤] (NFC)
+U+FA34   144393 FA34     EFA8B4       52E4  1-14-72 2E68 -      AEE8   87E6 -    -    -    -    -    -    -    [勤] -> [勤] (NFC)
 U+52F0   104397 52F0     E58BB0       -     1-14-73 2E69 8FB3F6 AEE9   87E7 -    -    -    -    -    -    -    [勰]
 U+52FB   104397 52FB     E58BBB       -     1-14-74 2E6A -      AEEA   87E8 -    -    -    -    -    -    -    [勻]
 U+5300   104367 5300     E58C80       -     1-14-75 2E6B 8FB3FB AEEB   87E9 FA89 -    FA89 FA89 5761 5761 -    [匀]
 U+5307   104367 5307     E58C87       5306  1-14-76 2E6C -      AEEC   87EA FA8A -    FA8A FA8A 5763 5763 -    [匇] -> [匆]
 U+531C   104397 531C     E58C9C       -     1-14-77 2E6D 8FB4A6 AEED   87EB -    -    -    -    -    -    -    [匜]
-U+FA35   134393 FA35     EFA8B5       5351  1-14-78 2E6E -      AEEE   87EC -    -    -    -    -    -    -    [卑] -> [卑] (NFC)
+U+FA35   144393 FA35     EFA8B5       5351  1-14-78 2E6E -      AEEE   87EC -    -    -    -    -    -    -    [卑] -> [卑] (NFC)
 U+5361   104397 5361     E58DA1       -     1-14-79 2E6F 8FB4BB AEEF   87ED -    -    -    -    -    -    -    [卡]
 U+5363   104397 5363     E58DA3       -     1-14-80 2E70 8FB4BC AEF0   87EE -    -    -    -    -    -    -    [卣]
 U+537D   104393 537D     E58DBD       5373  1-14-81 2E71 -      AEF1   87EF -    -    -    -    -    -    -    [卽] -> [即] (JIS97)
@@ -12527,17 +12527,17 @@ U+555E   104395 555E     E5959E       5516  1-15-08 2F28 8FB5E0 AFA8   8847 -   
 U+5581   104397 5581     E59681       -     1-15-09 2F29 8FB5E6 AFA9   8848 -    -    -    -    -    -    -    [喁]
 U+5586   104367 5586     E59686       54F2  1-15-10 2F2A 8FB5E8 AFAA   8849 FA95 -    FA95 FA95 57DE 57DE -    [喆] -> [哲] (戸籍統一)
 U+558E   104397 558E     E5968E       -     1-15-11 2F2B 8FB5EA AFAB   884A -    -    -    -    -    -    -    [喎]
-U+FA36   134392 FA36     EFA8B6       559D  1-15-12 2F2C -      AFAC   884B -    -    -    -    -    -    -    [喝] -> [喝] (NFC)
+U+FA36   144392 FA36     EFA8B6       559D  1-15-12 2F2C -      AFAC   884B -    -    -    -    -    -    -    [喝] -> [喝] (NFC)
 U+55AD   104397 55AD     E596AD       -     1-15-13 2F2D 8FB5F3 AFAD   884C -    -    -    -    -    -    -    [喭]
 U+55CE   104397 55CE     E5978E       -     1-15-14 2F2E 8FB5FC AFAE   884D -    -    -    -    -    -    -    [嗎]
-U+FA37   134393 FA37     EFA8B7       5606  1-15-15 2F2F -      AFAF   884E -    -    -    -    -    -    -    [嘆] -> [嘆] (NFC)
+U+FA37   144393 FA37     EFA8B7       5606  1-15-15 2F2F -      AFAF   884E -    -    -    -    -    -    -    [嘆] -> [嘆] (NFC)
 U+5608   104397 5608     E59888       -     1-15-16 2F30 8FB6AB AFB0   884F -    -    -    -    -    -    -    [嘈]
 U+560E   104397 560E     E5988E       -     1-15-17 2F31 8FB6AE AFB1   8850 -    -    -    -    -    -    -    [嘎]
 U+563B   104397 563B     E598BB       -     1-15-18 2F32 8FB6BA AFB2   8851 -    -    -    -    -    -    -    [嘻]
 U+5649   104397 5649     E59989       -     1-15-19 2F33 8FB6C3 AFB3   8852 -    -    -    -    -    -    -    [噉]
 U+5676   104397 5676     E599B6       -     1-15-20 2F34 -      AFB4   8853 -    -    -    -    -    -    -    [噶]
 U+5666   104397 5666     E599A6       -     1-15-21 2F35 8FB6CD AFB5   8854 -    -    -    -    -    -    -    [噦]
-U+FA38   134393 FA38     EFA8B8       5668  1-15-22 2F36 -      AFB6   8855 -    -    -    -    -    -    -    [器] -> [器] (NFC)
+U+FA38   144393 FA38     EFA8B8       5668  1-15-22 2F36 -      AFB6   8855 -    -    -    -    -    -    -    [器] -> [器] (NFC)
 U+566F   104397 566F     E599AF       -     1-15-23 2F37 8FB6D0 AFB7   8856 -    -    -    -    -    -    -    [噯]
 U+5671   104397 5671     E599B1       -     1-15-24 2F38 8FB6D1 AFB8   8857 -    -    -    -    -    -    -    [噱]
 U+5672   104397 5672     E599B2       -     1-15-25 2F39 8FB6D2 AFB9   8858 -    -    -    -    -    -    -    [噲]
@@ -12570,14 +12570,14 @@ U+57F5   104397 57F5     E59FB5       -     1-15-51 2F53 8FB7F4 AFD3   8872 -   
 U+57F6   104397 57F6     E59FB6       -     1-15-52 2F54 8FB7F5 AFD4   8873 -    -    -    -    -    -    -    [埶]
 U+57FF   104397 57FF     E59FBF       -     1-15-53 2F55 8FB7F9 AFD5   8874 -    -    -    -    -    -    -    [埿]
 U+5809   104397 5809     E5A089       -     1-15-54 2F56 8FB7FD AFD6   8875 -    -    -    -    -    -    -    [堉]
-U+FA10   134362 FA10     EFA890       585A  1-15-55 2F57 -      AFD7   8876 FA9C -    FA9C FA9C 5882 5882 -    [塚] -> [塚] (NFC)
+U+FA10   144362 FA10     EFA890       585A  1-15-55 2F57 -      AFD7   8876 FA9C -    FA9C FA9C 5882 5882 -    [塚] -> [塚] (NFC)
 U+5861   104391 5861     E5A1A1       586B  1-15-56 2F58 8FB8B4 AFD8   8877 -    -    -    -    -    -    4F5E [塡] -> [填] (JIS83-97)
 U+5864   104397 5864     E5A1A4       -     1-15-57 2F59 8FB8B5 AFD9   8878 -    -    -    -    -    -    -    [塤]
-U+FA39   134392 FA39     EFA8B9       5840  1-15-58 2F5A -      AFDA   8879 -    -    -    -    -    -    -    [塀] -> [塀] (NFC)
+U+FA39   144392 FA39     EFA8B9       5840  1-15-58 2F5A -      AFDA   8879 -    -    -    -    -    -    -    [塀] -> [塀] (NFC)
 U+587C   104397 587C     E5A1BC       -     1-15-59 2F5B 8FB8B9 AFDB   887A -    -    -    -    -    -    -    [塼]
 U+5889   104397 5889     E5A289       -     1-15-60 2F5C 8FB8BF AFDC   887B -    -    -    -    -    -    -    [墉]
 U+589E   104363 589E     E5A29E       5897  1-15-61 2F5D -      AFDD   887C FA9D -    FA9D FA9D 588A 588A -    [增] -> [増] (JIS97)
-U+FA3A   134393 FA3A     EFA8BA       58A8  1-15-62 2F5E -      AFDE   887D -    -    -    -    -    -    -    [墨] -> [墨] (NFC)
+U+FA3A   144393 FA3A     EFA8BA       58A8  1-15-62 2F5E -      AFDE   887D -    -    -    -    -    -    -    [墨] -> [墨] (NFC)
 U+58A9   104397 58A9     E5A2A9       -     1-15-63 2F5F 8FB8CC AFDF   887E -    -    -    -    -    -    -    [墩]
 U+02146E 204397 D845DC6E F0A191AE     -     1-15-64 2F60 -      AFE0   8880 -    -    -    -    -    -    -    [𡑮]
 U+58D2   104397 58D2     E5A392       -     1-15-65 2F61 8FB8D6 AFE1   8881 -    -    -    -    -    -    -    [壒]
@@ -12624,8 +12624,8 @@ U+5C23   104397 5C23     E5B0A3       -     1-47-61 4F5D 8FBAED CFDD   987C -   
 U+5C2B   104397 5C2B     E5B0AB       -     1-47-62 4F5E 8FBAF0 CFDE   987D -    -    -    -    -    -    -    [尫]
 U+378D   104397 378D     E39E8D       -     1-47-63 4F5F -      CFDF   987E -    -    -    -    -    -    -    [㞍]
 U+5C62   104395 5C62     E5B1A2       5C61  1-47-64 4F60 8FBAFA CFE0   9880 -    -    -    -    -    -    55C0 [屢] -> [屡] (JIS83-97)
-U+FA3B   134393 FA3B     EFA8BB       5C64  1-47-65 4F61 -      CFE1   9881 -    -    -    -    -    -    -    [層] -> [層] (NFC)
-U+FA3C   134397 FA3C     EFA8BC       5C6E  1-47-66 4F62 -      CFE2   9882 -    -    -    -    -    -    -    [屮] -> [屮] (NFC)
+U+FA3B   144393 FA3B     EFA8BB       5C64  1-47-65 4F61 -      CFE1   9881 -    -    -    -    -    -    -    [層] -> [層] (NFC)
+U+FA3C   144397 FA3C     EFA8BC       5C6E  1-47-66 4F62 -      CFE2   9882 -    -    -    -    -    -    -    [屮] -> [屮] (NFC)
 U+0216B4 204397 D845DEB4 F0A19AB4     -     1-47-67 4F63 -      CFE3   9883 -    -    -    -    -    -    -    [𡚴]
 U+5C7A   104397 5C7A     E5B1BA       -     1-47-68 4F64 8FBBA5 CFE4   9884 -    -    -    -    -    -    -    [屺]
 U+5C8F   104397 5C8F     E5B28F       -     1-47-69 4F65 8FBBAC CFE5   9885 -    -    -    -    -    -    -    [岏]
@@ -12662,7 +12662,7 @@ U+5E18   104397 5E18     E5B898       -     1-84-10 742A 8FBCAA F4AA   EAA8 -   
 U+5E58   104397 5E58     E5B998       -     1-84-11 742B 8FBCB7 F4AB   EAA9 -    -    -    -    -    -    -    [幘]
 U+5E5E   104397 5E5E     E5B99E       -     1-84-12 742C 8FBCBA F4AC   EAAA -    -    -    -    -    -    -    [幞]
 U+5EBE   104397 5EBE     E5BABE       -     1-84-13 742D 8FBCCE F4AD   EAAB -    -    -    -    -    -    -    [庾]
-U+F928   134393 F928     EFA4A8       5ECA  1-84-14 742E -      F4AE   EAAC -    -    -    -    -    -    -    [廊] -> [廊] (NFC)
+U+F928   144393 F928     EFA4A8       5ECA  1-84-14 742E -      F4AE   EAAC -    -    -    -    -    -    -    [廊] -> [廊] (NFC)
 U+5ECB   104397 5ECB     E5BB8B       -     1-84-15 742F 8FBCD2 F4AF   EAAD -    -    -    -    -    -    -    [廋]
 U+5EF9   104397 5EF9     E5BBB9       -     1-84-16 7430 -      F4B0   EAAE -    -    -    -    -    -    -    [廹]
 U+5F00   104397 5F00     E5BC80       -     1-84-17 7431 -      F4B1   EAAF -    -    -    -    -    -    -    [开]
@@ -12696,7 +12696,7 @@ U+6018   104397 6018     E68098       -     1-84-44 744C 8FBDD7 F4CC   EACA -   
 U+6033   104397 6033     E680B3       -     1-84-45 744D 8FBDDC F4CD   EACB -    -    -    -    -    -    -    [怳]
 U+6035   104397 6035     E680B5       -     1-84-46 744E 8FBDDD F4CE   EACC -    -    -    -    -    -    -    [怵]
 U+6047   104397 6047     E68187       -     1-84-47 744F 8FBDDF F4CF   EACD -    -    -    -    -    -    -    [恇]
-U+FA3D   134393 FA3D     EFA8BD       6094  1-84-48 7450 -      F4D0   EACE -    -    -    -    -    -    -    [悔] -> [悔] (NFC)
+U+FA3D   144393 FA3D     EFA8BD       6094  1-84-48 7450 -      F4D0   EACE -    -    -    -    -    -    -    [悔] -> [悔] (NFC)
 U+609D   104397 609D     E6829D       -     1-84-49 7451 8FBDF6 F4D1   EACF -    -    -    -    -    -    -    [悝]
 U+609E   104397 609E     E6829E       -     1-84-50 7452 8FBDF7 F4D2   EAD0 -    -    -    -    -    -    -    [悞]
 U+60CB   104397 60CB     E6838B       -     1-84-51 7453 8FBEA8 F4D3   EAD1 -    -    -    -    -    -    -    [惋]
@@ -12708,12 +12708,12 @@ U+611C   104397 611C     E6849C       -     1-84-56 7458 8FBEC4 F4D8   EAD6 -   
 U+612B   104397 612B     E684AB       -     1-84-57 7459 8FBEC8 F4D9   EAD7 -    -    -    -    -    -    -    [愫]
 U+6130   104367 6130     E684B0       -     1-84-58 745A 8FBEC9 F4DA   EAD8 FAC5 -    FAC5 FAC5 5A7E 5A7E -    [愰]
 U+6137   104367 6137     E684B7       -     1-84-59 745B 8FBECD F4DB   EAD9 FAC4 -    FAC4 FAC4 5A79 5A79 -    [愷]
-U+FA3E   134392 FA3E     EFA8BE       6168  1-84-60 745C -      F4DC   EADA -    -    -    -    -    -    -    [慨] -> [慨] (NFC)
+U+FA3E   144392 FA3E     EFA8BE       6168  1-84-60 745C -      F4DC   EADA -    -    -    -    -    -    -    [慨] -> [慨] (NFC)
 U+618D   104397 618D     E6868D       -     1-84-61 745D 8FBEE0 F4DD   EADB -    -    -    -    -    -    -    [憍]
-U+FA3F   134393 FA3F     EFA8BF       618E  1-84-62 745E -      F4DE   EADC -    -    -    -    -    -    -    [憎] -> [憎] (NFC)
+U+FA3F   144393 FA3F     EFA8BF       618E  1-84-62 745E -      F4DE   EADC -    -    -    -    -    -    -    [憎] -> [憎] (NFC)
 U+61BC   104397 61BC     E686BC       -     1-84-63 745F 8FBEEF F4DF   EADD -    -    -    -    -    -    -    [憼]
 U+61B9   104397 61B9     E686B9       -     1-84-64 7460 8FBEEE F4E0   EADE -    -    -    -    -    -    -    [憹]
-U+FA40   134393 FA40     EFA980       61F2  1-84-65 7461 -      F4E1   EADF -    -    -    -    -    -    -    [懲] -> [懲] (NFC)
+U+FA40   144393 FA40     EFA980       61F2  1-84-65 7461 -      F4E1   EADF -    -    -    -    -    -    -    [懲] -> [懲] (NFC)
 U+6222   104397 6222     E688A2       -     1-84-66 7462 8FBFAC F4E2   EAE0 -    -    -    -    -    -    -    [戢]
 U+623E   104392 623E     E688BE       623B  1-84-67 7463 -      F4E3   EAE1 -    -    -    -    -    -    -    [戾] -> [戻] (JIS97)
 U+6243   104397 6243     E68983       -     1-84-68 7464 8FBFB4 F4E4   EAE2 -    -    -    -    -    -    -    [扃]
@@ -12751,10 +12751,10 @@ U+64F7   104397 64F7     E693B7       -     1-85-04 7524 8FC1B2 F5A4   EB43 -   
 U+64FB   104397 64FB     E693BB       -     1-85-05 7525 8FC1B3 F5A5   EB44 -    -    -    -    -    -    -    [擻]
 U+6522   104395 6522     E694A2       6505  1-85-06 7526 8FC1C2 F5A6   EB45 -    -    -    -    -    -    5B72 [攢] -> [攅] (JIS83-97)
 U+6529   104397 6529     E694A9       -     1-85-07 7527 8FC1C4 F5A7   EB46 -    -    -    -    -    -    -    [攩]
-U+FA41   134393 FA41     EFA981       654F  1-85-08 7528 -      F5A8   EB47 -    -    -    -    -    -    -    [敏] -> [敏] (NFC)
+U+FA41   144393 FA41     EFA981       654F  1-85-08 7528 -      F5A8   EB47 -    -    -    -    -    -    -    [敏] -> [敏] (NFC)
 U+6567   104397 6567     E695A7       -     1-85-09 7529 8FC1D2 F5A9   EB48 -    -    -    -    -    -    -    [敧]
 U+659D   104397 659D     E6969D       -     1-85-10 752A 8FC1DC F5AA   EB49 -    -    -    -    -    -    -    [斝]
-U+FA42   134392 FA42     EFA982       65E2  1-85-11 752B -      F5AB   EB4A -    -    -    -    -    -    -    [既] -> [既] (NFC)
+U+FA42   144392 FA42     EFA982       65E2  1-85-11 752B -      F5AB   EB4A -    -    -    -    -    -    -    [既] -> [既] (NFC)
 U+6600   104367 6600     E69880       -     1-85-12 752C 8FC1F5 F5AC   EB4B FACE -    FACE FACE 5B97 5B97 -    [昀]
 U+6609   104367 6609     E69889       -     1-85-13 752D 8FC1F8 F5AD   EB4C FAD1 -    FAD1 FAD1 5B9D 5B9D -    [昉]
 U+6615   104367 6615     E69895       -     1-85-14 752E 8FC1FC F5AE   EB4D FACF -    FACF FACF 5B98 5B98 -    [昕]
@@ -12778,7 +12778,7 @@ U+6673   104367 6673     E699B3       6670  1-85-31 753F 8FC2C4 F5BF   EB5E FAD9
 U+6677   104397 6677     E699B7       -     1-85-32 7540 8FC2C7 F5C0   EB5F -    -    -    -    -    -    -    [晷]
 U+6678   104397 6678     E699B8       -     1-85-33 7541 8FC2C8 F5C1   EB60 -    -    -    -    -    -    -    [晸]
 U+668D   104397 668D     E69A8D       -     1-85-34 7542 8FC2CF F5C2   EB61 -    -    -    -    -    -    -    [暍]
-U+FA43   134393 FA43     EFA983       6691  1-85-35 7543 -      F5C3   EB62 -    -    -    -    -    -    -    [暑] -> [暑] (NFC)
+U+FA43   144393 FA43     EFA983       6691  1-85-35 7543 -      F5C3   EB62 -    -    -    -    -    -    -    [暑] -> [暑] (NFC)
 U+66A0   104367 66A0     E69AA0       -     1-85-36 7544 8FC2D7 F5C4   EB63 FADB -    FADB FADB 5BB6 5BB6 -    [暠]
 U+66B2   104367 66B2     E69AB2       -     1-85-37 7545 8FC2DB F5C5   EB64 FADC -    FADC FADC 5BB8 5BB8 -    [暲]
 U+66BB   104397 66BB     E69ABB       -     1-85-38 7546 8FC2DD F5C6   EB65 -    -    -    -    -    -    -    [暻]
@@ -12789,7 +12789,7 @@ U+66DB   104397 66DB     E69B9B       -     1-85-42 754A 8FC2E7 F5CA   EB69 -   
 U+66E8   104397 66E8     E69BA8       -     1-85-43 754B 8FC2E9 F5CB   EB6A -    -    -    -    -    -    -    [曨]
 U+66FA   104367 66FA     E69BBA       66F9  1-85-44 754C 8FC2ED F5CC   EB6B FADE -    FADE FADE 5BC7 5BC7 -    [曺] -> [曹]
 U+6713   104397 6713     E69C93       -     1-85-45 754D 8FC2F1 F5CD   EB6C -    -    -    -    -    -    -    [朓]
-U+F929   134363 F929     EFA4A9       6717  1-85-46 754E -      F5CE   EB6D FAE0 -    FAE0 FAE0 5BC9 5BC9 -    [朗] -> [朗] (NFC)
+U+F929   144363 F929     EFA4A9       6717  1-85-46 754E -      F5CE   EB6D FAE0 -    FAE0 FAE0 5BC9 5BC9 -    [朗] -> [朗] (NFC)
 U+6733   104397 6733     E69CB3       -     1-85-47 754F 8FC2F6 F5CF   EB6E -    -    -    -    -    -    -    [朳]
 U+6766   104367 6766     E69DA6       6749  1-85-48 7550 8FC3A1 F5D0   EB6F FAE1 -    FAE1 FAE1 5BD8 5BD8 -    [杦] -> [杉]
 U+6747   104397 6747     E69D87       -     1-85-49 7551 8FC2F9 F5D1   EB70 -    -    -    -    -    -    -    [杇]
@@ -12812,7 +12812,7 @@ U+6831   104397 6831     E6A0B1       -     1-85-65 7561 8FC3D4 F5E1   EB81 -   
 U+685B   104397 685B     E6A19B       -     1-85-66 7562 8FC3DF F5E2   EB82 -    -    -    -    -    -    -    [桛]
 U+6872   104397 6872     E6A1B2       -     1-85-67 7563 8FC3E5 F5E3   EB83 -    -    -    -    -    -    -    [桲]
 U+6875   104397 6875     E6A1B5       -     1-85-68 7564 8FC3E6 F5E4   EB84 -    -    -    -    -    -    -    [桵]
-U+FA44   134393 FA44     EFA984       6885  1-85-69 7565 -      F5E5   EB85 -    -    -    -    -    -    -    [梅] -> [梅] (NFC)
+U+FA44   144393 FA44     EFA984       6885  1-85-69 7565 -      F5E5   EB85 -    -    -    -    -    -    -    [梅] -> [梅] (NFC)
 U+68A3   104397 68A3     E6A2A3       -     1-85-70 7566 8FC3F4 F5E6   EB86 -    -    -    -    -    -    -    [梣]
 U+68A5   104397 68A5     E6A2A5       -     1-85-71 7567 8FC3F5 F5E7   EB87 -    -    -    -    -    -    -    [梥]
 U+68B2   104397 68B2     E6A2B2       -     1-85-72 7568 8FC3F9 F5E8   EB88 -    -    -    -    -    -    -    [梲]
@@ -12865,7 +12865,7 @@ U+6AA5   104397 6AA5     E6AAA5       -     1-86-23 7637 8FC5C2 F6B7   EBB5 -   
 U+6AE4   104367 6AE4     E6ABA4       -     1-86-24 7638 8FC5D5 F6B8   EBB6 FAF3 -    FAF3 FAF3 5CBC 5CBC -    [櫤]
 U+6AE7   104397 6AE7     E6ABA7       -     1-86-25 7639 8FC5D6 F6B9   EBB7 -    -    -    -    -    -    -    [櫧]
 U+3C0F   104397 3C0F     E3B08F       -     1-86-26 763A -      F6BA   EBB8 -    -    -    -    -    -    -    [㰏]
-U+F91D   134393 F91D     EFA49D       6B04  1-86-27 763B -      F6BB   EBB9 -    -    -    -    -    -    -    [欄] -> [欄] (NFC)
+U+F91D   144393 F91D     EFA49D       6B04  1-86-27 763B -      F6BB   EBB9 -    -    -    -    -    -    -    [欄] -> [欄] (NFC)
 U+6B1B   104397 6B1B     E6AC9B       -     1-86-28 763C 8FC5E6 F6BC   EBBA -    -    -    -    -    -    -    [欛]
 U+6B1E   104397 6B1E     E6AC9E       -     1-86-29 763D 8FC5E7 F6BD   EBBB -    -    -    -    -    -    -    [欞]
 U+6B2C   104397 6B2C     E6ACAC       -     1-86-30 763E 8FC5EB F6BE   EBBC -    -    -    -    -    -    -    [欬]
@@ -12879,7 +12879,7 @@ U+6B77   104393 6B77     E6ADB7       6B74  1-86-37 7645 -      F6C5   EBC3 -   
 U+6B82   104397 6B82     E6AE82       -     1-86-38 7646 8FC6A2 F6C6   EBC4 -    -    -    -    -    -    -    [殂]
 U+6BA9   104397 6BA9     E6AEA9       -     1-86-39 7647 8FC6AB F6C7   EBC5 -    -    -    -    -    -    -    [殩]
 U+6BAD   104397 6BAD     E6AEAD       -     1-86-40 7648 8FC6AD F6C8   EBC6 -    -    -    -    -    -    -    [殭]
-U+F970   134392 F970     EFA5B0       6BBA  1-86-41 7649 -      F6C9   EBC7 -    -    -    -    -    -    -    [殺] -> [殺] (NFC)
+U+F970   144392 F970     EFA5B0       6BBA  1-86-41 7649 -      F6C9   EBC7 -    -    -    -    -    -    -    [殺] -> [殺] (NFC)
 U+6BCF   104393 6BCF     E6AF8F       6BCE  1-86-42 764A -      F6CA   EBC8 -    -    -    -    -    -    -    [每] -> [毎] (JIS97)
 U+6BD6   104367 6BD6     E6AF96       -     1-86-43 764B 8FC6B8 F6CB   EBC9 FAF4 -    FAF4 FAF4 5CEA 5CEA -    [毖]
 U+6BD7   104397 6BD7     E6AF97       6BD8  1-86-44 764C -      F6CC   EBCA -    -    -    -    -    -    -    [毗] -> [毘]
@@ -12911,7 +12911,7 @@ U+6D39   104397 6D39     E6B4B9       -     1-86-69 7665 8FC7BA F6E5   EBE3 -   
 U+6D3F   104397 6D3F     E6B4BF       -     1-86-70 7666 8FC7BC F6E6   EBE4 -    -    -    -    -    -    -    [洿]
 U+6D58   104397 6D58     E6B598       -     1-86-71 7667 -      F6E7   EBE5 -    -    -    -    -    -    -    [浘]
 U+6D65   104397 6D65     E6B5A5       -     1-86-72 7668 8FC7C1 F6E8   EBE6 -    -    -    -    -    -    -    [浥]
-U+FA45   134393 FA45     EFA985       6D77  1-86-73 7669 -      F6E9   EBE7 -    -    -    -    -    -    -    [海] -> [海] (NFC)
+U+FA45   144393 FA45     EFA985       6D77  1-86-73 7669 -      F6E9   EBE7 -    -    -    -    -    -    -    [海] -> [海] (NFC)
 U+6D82   104397 6D82     E6B682       -     1-86-74 766A 8FC7C6 F6EA   EBE8 -    -    -    -    -    -    -    [涂]
 U+6D87   104367 6D87     E6B687       -     1-86-75 766B 8FC7C7 F6EB   EBE9 FAFB -    FAFB FAFB 5D60 5D60 -    [涇]
 U+6D89   104393 6D89     E6B689       6E09  1-86-76 766C -      F6EC   EBEA -    -    -    -    -    -    -    [涉] -> [渉] (JIS97)
@@ -12925,7 +12925,7 @@ U+6DDA   104393 6DDA     E6B79A       6D99  1-86-83 7673 -      F6F3   EBF1 -   
 U+6DDB   104397 6DDB     E6B79B       -     1-86-84 7674 8FC7DB F6F4   EBF2 -    -    -    -    -    -    -    [淛]
 U+6DDD   104397 6DDD     E6B79D       -     1-86-85 7675 8FC7DC F6F5   EBF3 -    -    -    -    -    -    -    [淝]
 U+6DFC   104367 6DFC     E6B7BC       -     1-86-86 7676 8FC7E6 F6F6   EBF4 FB45 -    FB45 FB45 5D80 5D80 -    [淼]
-U+FA46   134394 FA46     EFA986       6E1A  1-86-87 7677 -      F6F7   EBF5 -    -    -    -    -    -    -    [渚] -> [渚] (NFC)
+U+FA46   144394 FA46     EFA986       6E1A  1-86-87 7677 -      F6F7   EBF5 -    -    -    -    -    -    -    [渚] -> [渚] (NFC)
 U+6E34   104393 6E34     E6B8B4       6E07  1-86-88 7678 -      F6F8   EBF6 -    -    -    -    -    -    -    [渴] -> [渇] (JIS97)
 U+6E44   104397 6E44     E6B984       -     1-86-89 7679 8FC7F1 F6F9   EBF7 -    -    -    -    -    -    -    [湄]
 U+6E5C   104367 6E5C     E6B99C       -     1-86-90 767A 8FC7FC F6FA   EBF8 FB47 -    FB47 FB47 5D8E 5D8E -    [湜]
@@ -12938,7 +12938,7 @@ U+6EC7   104397 6EC7     E6BB87       -     1-87-01 7721 8FC8B5 F7A1   EC40 -   
 U+6ECE   104397 6ECE     E6BB8E       -     1-87-02 7722 8FC8B9 F7A2   EC41 -    -    -    -    -    -    -    [滎]
 U+6F10   104397 6F10     E6BC90       -     1-87-03 7723 -      F7A3   EC42 -    -    -    -    -    -    -    [漐]
 U+6F1A   104397 6F1A     E6BC9A       -     1-87-04 7724 8FC8C8 F7A4   EC43 -    -    -    -    -    -    -    [漚]
-U+FA47   134393 FA47     EFA987       6F22  1-87-05 7725 -      F7A5   EC44 -    -    -    -    -    -    -    [漢] -> [漢] (NFC)
+U+FA47   144393 FA47     EFA987       6F22  1-87-05 7725 -      F7A5   EC44 -    -    -    -    -    -    -    [漢] -> [漢] (NFC)
 U+6F2A   104397 6F2A     E6BCAA       -     1-87-06 7726 8FC8CC F7A6   EC45 -    -    -    -    -    -    -    [漪]
 U+6F2F   104397 6F2F     E6BCAF       -     1-87-07 7727 8FC8CD F7A7   EC46 -    -    -    -    -    -    -    [漯]
 U+6F33   104397 6F33     E6BCB3       -     1-87-08 7728 8FC8CF F7A8   EC47 -    -    -    -    -    -    -    [漳]
@@ -12986,12 +12986,12 @@ U+7130   104394 7130     E784B0       7114  1-87-49 7751 8FC9EF F7D1   EC70 -   
 U+7146   104367 7146     E78586       -     1-87-50 7752 8FC9F4 F7D2   EC71 FB56 -    FB56 FB56 5DFC 5DFC -    [煆]
 U+7147   104367 7147     E78587       -     1-87-51 7753 8FC9F5 F7D3   EC72 FB57 -    FB57 FB57 5DFD 5DFD -    [煇]
 U+7151   104397 7151     E78591       716E  1-87-52 7754 -      F7D4   EC73 -    -    -    -    -    -    -    [煑] -> [煮]
-U+FA48   134393 FA48     EFA988       716E  1-87-53 7755 -      F7D5   EC74 -    -    -    -    -    -    -    [煮] -> [煮] (NFC)
+U+FA48   144393 FA48     EFA988       716E  1-87-53 7755 -      F7D5   EC74 -    -    -    -    -    -    -    [煮] -> [煮] (NFC)
 U+7152   104397 7152     E78592       -     1-87-54 7756 8FC9F9 F7D6   EC75 -    -    -    -    -    -    -    [煒]
 U+715C   104367 715C     E7859C       -     1-87-55 7757 8FC9FC F7D7   EC76 FB55 -    FB55 FB55 5DFB 5DFB -    [煜]
 U+7160   104397 7160     E785A0       -     1-87-56 7758 8FC9FE F7D8   EC77 -    -    -    -    -    -    -    [煠]
 U+7168   104397 7168     E785A8       -     1-87-57 7759 8FCAA1 F7D9   EC78 -    -    -    -    -    -    -    [煨]
-U+FA15   134367 FA15     EFA895       51DE  1-87-58 775A -      F7DA   EC79 FB58 -    FB58 FB58 5E49 5E49 -    [凞] -> [凞] (NFC)
+U+FA15   144367 FA15     EFA895       51DE  1-87-58 775A -      F7DA   EC79 FB58 -    FB58 FB58 5E49 5E49 -    [凞] -> [凞] (NFC)
 U+7185   104397 7185     E78685       -     1-87-59 775B 8FCAA4 F7DB   EC7A -    -    -    -    -    -    -    [熅]
 U+7187   104397 7187     E78687       -     1-87-60 775C 8FCAA5 F7DC   EC7B -    -    -    -    -    -    -    [熇]
 U+7192   104397 7192     E78692       -     1-87-61 775D 8FCAA7 F7DD   EC7C -    -    -    -    -    -    -    [熒]
@@ -13012,7 +13012,7 @@ U+72FB   104397 72FB     E78BBB       -     1-87-75 776B 8FCAFE F7EB   EC8B -   
 U+0247F1 204397 D851DFF1 F0A49FB1     -     1-87-76 776C -      F7EC   EC8C -    -    -    -    -    -    -    [𤟱]
 U+7327   104397 7327     E78CA7       -     1-87-77 776D 8FCBAF F7ED   EC8D -    -    -    -    -    -    -    [猧]
 U+7328   104397 7328     E78CA8       -     1-87-78 776E 8FCBB0 F7EE   EC8E -    -    -    -    -    -    -    [猨]
-U+FA16   134364 FA16     EFA896       732A  1-87-79 776F -      F7EF   EC8F FB5E -    FB5E FB5E 5E8A 5E8A -    [猪] -> [猪] (NFC)
+U+FA16   144364 FA16     EFA896       732A  1-87-79 776F -      F7EF   EC8F FB5E -    FB5E FB5E 5E8A 5E8A -    [猪] -> [猪] (NFC)
 U+7350   104397 7350     E78D90       -     1-87-80 7770 8FCBBA F7F0   EC90 -    -    -    -    -    -    -    [獐]
 U+7366   104397 7366     E78DA6       -     1-87-81 7771 8FCBC2 F7F1   EC91 -    -    -    -    -    -    -    [獦]
 U+737C   104397 737C     E78DBC       -     1-87-82 7772 8FCBCC F7F2   EC92 -    -    -    -    -    -    -    [獼]
@@ -13033,7 +13033,7 @@ U+7407   104367 7407     E79087       -     1-88-01 7821 8FCCA5 F8A1   EC9F FB65
 U+740A   104397 740A     E7908A       -     1-88-02 7822 8FCCA6 F8A2   ECA0 -    -    -    -    -    -    -    [琊]
 U+741A   104397 741A     E7909A       -     1-88-03 7823 8FCCA8 F8A3   ECA1 -    -    -    -    -    -    -    [琚]
 U+741B   104397 741B     E7909B       -     1-88-04 7824 8FCCA9 F8A4   ECA2 -    -    -    -    -    -    -    [琛]
-U+FA4A   134394 FA4A     EFA98A       7422  1-88-05 7825 -      F8A5   ECA3 -    -    -    -    -    -    -    [琢] -> [琢] (NFC)
+U+FA4A   144394 FA4A     EFA98A       7422  1-88-05 7825 -      F8A5   ECA3 -    -    -    -    -    -    -    [琢] -> [琢] (NFC)
 U+7426   104367 7426     E790A6       -     1-88-06 7826 8FCCAB F8A6   ECA4 FB67 -    FB67 FB67 5EAA 5EAA -    [琦]
 U+7428   104397 7428     E790A8       -     1-88-07 7827 8FCCAC F8A7   ECA5 -    -    -    -    -    -    -    [琨]
 U+742A   104367 742A     E790AA       -     1-88-08 7828 8FCCAE F8A8   ECA6 FB68 -    FB68 FB68 5EAB 5EAB -    [琪]
@@ -13130,7 +13130,7 @@ U+784F   104392 784F     E7A18F       7814  1-89-03 7923 -      F9A3   ED42 -   
 U+7851   104397 7851     E7A191       -     1-89-04 7924 -      F9A4   ED43 -    -    -    -    -    -    -    [硑]
 U+7868   104397 7868     E7A1A8       -     1-89-05 7925 8FCFEA F9A5   ED44 -    -    -    -    -    -    -    [硨]
 U+786E   104397 786E     E7A1AE       -     1-89-06 7926 8FCFEC F9A6   ED45 -    -    -    -    -    -    -    [确]
-U+FA4B   134393 FA4B     EFA98B       7891  1-89-07 7927 -      F9A7   ED46 -    -    -    -    -    -    -    [碑] -> [碑] (NFC)
+U+FA4B   144393 FA4B     EFA98B       7891  1-89-07 7927 -      F9A7   ED46 -    -    -    -    -    -    -    [碑] -> [碑] (NFC)
 U+78B0   104397 78B0     E7A2B0       -     1-89-08 7928 8FCFFB F9A8   ED47 -    -    -    -    -    -    -    [碰]
 U+02550E 204397 D855DD0E F0A5948E     -     1-89-09 7929 -      F9A9   ED48 -    -    -    -    -    -    -    [𥔎]
 U+78AD   104397 78AD     E7A2AD       -     1-89-10 792A 8FCFFA F9AA   ED49 -    -    -    -    -    -    -    [碭]
@@ -13142,21 +13142,21 @@ U+791C   104397 791C     E7A49C       -     1-89-15 792F 8FD0C0 F9AF   ED4E -   
 U+792E   104397 792E     E7A4AE       70AE  1-89-16 7930 -      F9B0   ED4F -    -    -    -    -    -    -    [礮] -> [炮]
 U+7931   104397 7931     E7A4B1       -     1-89-17 7931 8FD0C8 F9B1   ED50 -    -    -    -    -    -    -    [礱]
 U+7934   104397 7934     E7A4B4       -     1-89-18 7932 8FD0C9 F9B2   ED51 -    -    -    -    -    -    -    [礴]
-U+FA4C   134393 FA4C     EFA98C       793E  1-89-19 7933 -      F9B3   ED52 -    -    -    -    -    -    -    [社] -> [社] (NFC)
-U+FA4D   134393 FA4D     EFA98D       7949  1-89-20 7934 -      F9B4   ED53 -    -    -    -    -    -    -    [祉] -> [祉] (NFC)
+U+FA4C   144393 FA4C     EFA98C       793E  1-89-19 7933 -      F9B3   ED52 -    -    -    -    -    -    -    [社] -> [社] (NFC)
+U+FA4D   144393 FA4D     EFA98D       7949  1-89-20 7934 -      F9B4   ED53 -    -    -    -    -    -    -    [祉] -> [祉] (NFC)
 U+7945   104397 7945     E7A585       -     1-89-21 7935 8FD0CF F9B5   ED54 -    -    -    -    -    -    -    [祅]
 U+7946   104397 7946     E7A586       -     1-89-22 7936 8FD0D0 F9B6   ED55 -    -    -    -    -    -    -    [祆]
-U+FA4E   134393 FA4E     EFA98E       7948  1-89-23 7937 -      F9B7   ED56 -    -    -    -    -    -    -    [祈] -> [祈] (NFC)
-U+FA4F   134394 FA4F     EFA98F       7950  1-89-24 7938 -      F9B8   ED57 -    -    -    -    -    -    -    [祐] -> [祐] (NFC)
-U+FA50   134393 FA50     EFA990       7956  1-89-25 7939 -      F9B9   ED58 -    -    -    -    -    -    -    [祖] -> [祖] (NFC)
+U+FA4E   144393 FA4E     EFA98E       7948  1-89-23 7937 -      F9B7   ED56 -    -    -    -    -    -    -    [祈] -> [祈] (NFC)
+U+FA4F   144394 FA4F     EFA98F       7950  1-89-24 7938 -      F9B8   ED57 -    -    -    -    -    -    -    [祐] -> [祐] (NFC)
+U+FA50   144393 FA50     EFA990       7956  1-89-25 7939 -      F9B9   ED58 -    -    -    -    -    -    -    [祖] -> [祖] (NFC)
 U+795C   104397 795C     E7A59C       -     1-89-26 793A 8FD0D8 F9BA   ED59 -    -    -    -    -    -    -    [祜]
-U+FA51   134393 FA51     EFA991       795D  1-89-27 793B -      F9BB   ED5A -    -    -    -    -    -    -    [祝] -> [祝] (NFC)
-U+FA19   134363 FA19     EFA899       795E  1-89-28 793C -      F9BC   ED5B FB7E -    FB7E FB7E 5FD5 5FD5 -    [神] -> [神] (NFC)
-U+FA1A   134363 FA1A     EFA89A       7965  1-89-29 793D -      F9BD   ED5C FB80 -    FB80 FB80 5FD9 5FD9 -    [祥] -> [祥] (NFC)
+U+FA51   144393 FA51     EFA991       795D  1-89-27 793B -      F9BB   ED5A -    -    -    -    -    -    -    [祝] -> [祝] (NFC)
+U+FA19   144363 FA19     EFA899       795E  1-89-28 793C -      F9BC   ED5B FB7E -    FB7E FB7E 5FD5 5FD5 -    [神] -> [神] (NFC)
+U+FA1A   144363 FA1A     EFA89A       7965  1-89-29 793D -      F9BD   ED5C FB80 -    FB80 FB80 5FD9 5FD9 -    [祥] -> [祥] (NFC)
 U+7979   104397 7979     E7A5B9       -     1-89-30 793E 8FD0DD F9BE   ED5D -    -    -    -    -    -    -    [祹]
-U+FA52   134393 FA52     EFA992       798D  1-89-31 793F -      F9BF   ED5E -    -    -    -    -    -    -    [禍] -> [禍] (NFC)
-U+FA53   134394 FA53     EFA993       798E  1-89-32 7940 -      F9C0   ED5F -    -    -    -    -    -    -    [禎] -> [禎] (NFC)
-U+FA1B   134363 FA1B     EFA89B       798F  1-89-33 7941 -      F9C1   ED60 FB82 -    FB82 FB82 5FDD 5FDD -    [福] -> [福] (NFC)
+U+FA52   144393 FA52     EFA992       798D  1-89-31 793F -      F9BF   ED5E -    -    -    -    -    -    -    [禍] -> [禍] (NFC)
+U+FA53   144394 FA53     EFA993       798E  1-89-32 7940 -      F9C0   ED5F -    -    -    -    -    -    -    [禎] -> [禎] (NFC)
+U+FA1B   144363 FA1B     EFA89B       798F  1-89-33 7941 -      F9C1   ED60 FB82 -    FB82 FB82 5FDD 5FDD -    [福] -> [福] (NFC)
 U+7998   104397 7998     E7A698       -     1-89-34 7942 8FD0E8 F9C2   ED61 -    -    -    -    -    -    -    [禘]
 U+79B1   104394 79B1     E7A6B1       7977  1-89-35 7943 8FD0F0 F9C3   ED62 -    -    -    -    -    -    5553 [禱] -> [祷] (JIS83-97)
 U+79B8   104397 79B8     E7A6B8       -     1-89-36 7944 8FD0F2 F9C4   ED63 -    -    -    -    -    -    -    [禸]
@@ -13168,11 +13168,11 @@ U+79DE   104397 79DE     E7A79E       -     1-89-41 7949 8FD0FE F9C9   ED68 -   
 U+79EB   104397 79EB     E7A7AB       -     1-89-42 794A 8FD1A5 F9CA   ED69 -    -    -    -    -    -    -    [秫]
 U+79ED   104397 79ED     E7A7AD       -     1-89-43 794B 8FD1A6 F9CB   ED6A -    -    -    -    -    -    -    [秭]
 U+7A03   104397 7A03     E7A883       -     1-89-44 794C 8FD1AB F9CC   ED6B -    -    -    -    -    -    -    [稃]
-U+FA54   134393 FA54     EFA994       7A40  1-89-45 794D -      F9CD   ED6C -    -    -    -    -    -    -    [穀] -> [穀] (NFC)
+U+FA54   144393 FA54     EFA994       7A40  1-89-45 794D -      F9CD   ED6C -    -    -    -    -    -    -    [穀] -> [穀] (NFC)
 U+7A39   104397 7A39     E7A8B9       -     1-89-46 794E 8FD1BD F9CE   ED6D -    -    -    -    -    -    -    [稹]
 U+7A5D   104397 7A5D     E7A99D       -     1-89-47 794F 8FD1C8 F9CF   ED6E -    -    -    -    -    -    -    [穝]
 U+7A6D   104397 7A6D     E7A9AD       -     1-89-48 7950 8FD1CE F9D0   ED6F -    -    -    -    -    -    -    [穭]
-U+FA55   134393 FA55     EFA995       7A81  1-89-49 7951 -      F9D1   ED70 -    -    -    -    -    -    -    [突] -> [突] (NFC)
+U+FA55   144393 FA55     EFA995       7A81  1-89-49 7951 -      F9D1   ED70 -    -    -    -    -    -    -    [突] -> [突] (NFC)
 U+7A85   104397 7A85     E7AA85       -     1-89-50 7952 8FD1D4 F9D2   ED71 -    -    -    -    -    -    -    [窅]
 U+7AA0   104397 7AA0     E7AAA0       -     1-89-51 7953 8FD1DC F9D3   ED72 -    -    -    -    -    -    -    [窠]
 U+0259C4 204397 D856DDC4 F0A5A784     -     1-89-52 7954 -      F9D4   ED73 -    -    -    -    -    -    -    [𥧄]
@@ -13191,7 +13191,7 @@ U+7B6D   104397 7B6D     E7ADAD       -     1-89-64 7960 8FD2AF F9E0   ED80 -   
 U+7B6F   104397 7B6F     E7ADAF       -     1-89-65 7961 8FD2B0 F9E1   ED81 -    -    -    -    -    -    -    [筯]
 U+7B72   104397 7B72     E7ADB2       -     1-89-66 7962 8FD2B1 F9E2   ED82 -    -    -    -    -    -    -    [筲]
 U+7B9E   104367 7B9E     E7AE9E       -     1-89-67 7963 8FD2BB F9E3   ED83 FB88 -    FB88 FB88 6082 6082 -    [箞]
-U+FA56   134393 FA56     EFA996       7BC0  1-89-68 7964 -      F9E4   ED84 -    -    -    -    -    -    -    [節] -> [節] (NFC)
+U+FA56   144393 FA56     EFA996       7BC0  1-89-68 7964 -      F9E4   ED84 -    -    -    -    -    -    -    [節] -> [節] (NFC)
 U+7BD7   104397 7BD7     E7AF97       -     1-89-69 7965 8FD2CE F9E5   ED85 -    -    -    -    -    -    -    [篗]
 U+7BD9   104397 7BD9     E7AF99       -     1-89-70 7966 8FD2CF F9E6   ED86 -    -    -    -    -    -    -    [篙]
 U+7C01   104397 7C01     E7B081       -     1-89-71 7967 8FD2DC F9E7   ED87 -    -    -    -    -    -    -    [簁]
@@ -13232,19 +13232,19 @@ U+7DC2   104397 7DC2     E7B782       -     1-90-10 7A2A 8FD4A9 FAAA   EDA8 -   
 U+7DCC   104397 7DCC     E7B78C       -     1-90-11 7A2B 8FD4AE FAAB   EDA9 -    -    -    -    -    -    -    [緌]
 U+7DD6   104363 7DD6     E7B796       7DD2  1-90-12 7A2C -      FAAC   EDAA FB8E -    FB8E FB8E 60E1 60E1 -    [緖] -> [緒] (JIS97)
 U+7DE3   104393 7DE3     E7B7A3       7E01  1-90-13 7A2D -      FAAD   EDAB -    -    -    -    -    -    -    [緣] -> [縁] (JIS97)
-U+FA57   134393 FA57     EFA997       7DF4  1-90-14 7A2E -      FAAE   EDAC -    -    -    -    -    -    -    [練] -> [練] (NFC)
+U+FA57   144393 FA57     EFA997       7DF4  1-90-14 7A2E -      FAAE   EDAC -    -    -    -    -    -    -    [練] -> [練] (NFC)
 U+7E28   104397 7E28     E7B8A8       -     1-90-15 7A2F 8FD4C8 FAAF   EDAD -    -    -    -    -    -    -    [縨]
 U+7E08   104397 7E08     E7B888       -     1-90-16 7A30 8FD4BF FAB0   EDAE -    -    -    -    -    -    -    [縈]
 U+7E11   104397 7E11     E7B891       -     1-90-17 7A31 8FD4C1 FAB1   EDAF -    -    -    -    -    -    -    [縑]
 U+7E15   104397 7E15     E7B895       -     1-90-18 7A32 8FD4C2 FAB2   EDB0 -    -    -    -    -    -    -    [縕]
-U+FA59   134393 FA59     EFA999       7E41  1-90-19 7A33 -      FAB3   EDB1 -    -    -    -    -    -    -    [繁] -> [繁] (NFC)
+U+FA59   144393 FA59     EFA999       7E41  1-90-19 7A33 -      FAB3   EDB1 -    -    -    -    -    -    -    [繁] -> [繁] (NFC)
 U+7E47   104397 7E47     E7B987       -     1-90-20 7A34 8FD4D1 FAB4   EDB2 -    -    -    -    -    -    -    [繇]
 U+7E52   104367 7E52     E7B992       -     1-90-21 7A35 8FD4D4 FAB5   EDB3 FB8F -    FB8F FB8F 60FD 60FD -    [繒]
 U+7E61   104394 7E61     E7B9A1       7E40  1-90-22 7A36 8FD4D7 FAB6   EDB4 -    -    -    -    -    -    52DA [繡] -> [繀] (JIS83-97)
 U+7E8A   104367 7E8A     E7BA8A       7D4B  1-90-23 7A37 8FD4E3 FAB7   EDB5 FA5C -    FA5C FA5C 51BF 51BF -    [纊] -> [絋] (拡張新旧)
 U+7E8D   104397 7E8D     E7BA8D       -     1-90-24 7A38 8FD4E4 FAB8   EDB6 -    -    -    -    -    -    -    [纍]
 U+7F47   104367 7F47     E7BD87       6A3D  1-90-25 7A39 8FD4F2 FAB9   EDB7 FB90 -    FB90 FB90 6157 6157 -    [罇] -> [樽]
-U+FA5A   134393 FA5A     EFA99A       7F72  1-90-26 7A3A -      FABA   EDB8 -    -    -    -    -    -    -    [署] -> [署] (NFC)
+U+FA5A   144393 FA5A     EFA99A       7F72  1-90-26 7A3A -      FABA   EDB8 -    -    -    -    -    -    -    [署] -> [署] (NFC)
 U+7F91   104397 7F91     E7BE91       -     1-90-27 7A3B 8FD5AA FABB   EDB9 -    -    -    -    -    -    -    [羑]
 U+7F97   104397 7F97     E7BE97       -     1-90-28 7A3C 8FD5AC FABC   EDBA -    -    -    -    -    -    -    [羗]
 U+7FBF   104397 7FBF     E7BEBF       -     1-90-29 7A3D 8FD5B5 FABD   EDBB -    -    -    -    -    -    -    [羿]
@@ -13254,7 +13254,7 @@ U+7FDF   104397 7FDF     E7BF9F       -     1-90-32 7A40 8FD5BC FAC0   EDBE -   
 U+7FEC   104397 7FEC     E7BFAC       -     1-90-33 7A41 8FD5C0 FAC1   EDBF -    -    -    -    -    -    -    [翬]
 U+7FEE   104397 7FEE     E7BFAE       -     1-90-34 7A42 8FD5C1 FAC2   EDC0 -    -    -    -    -    -    -    [翮]
 U+7FFA   104397 7FFA     E7BFBA       -     1-90-35 7A43 8FD5C4 FAC3   EDC1 -    -    -    -    -    -    -    [翺]
-U+FA5B   134393 FA5B     EFA99B       8005  1-90-36 7A44 -      FAC4   EDC2 -    -    -    -    -    -    -    [者] -> [者] (NFC)
+U+FA5B   144393 FA5B     EFA99B       8005  1-90-36 7A44 -      FAC4   EDC2 -    -    -    -    -    -    -    [者] -> [者] (NFC)
 U+8014   104397 8014     E88094       -     1-90-37 7A45 8FD5D0 FAC5   EDC3 -    -    -    -    -    -    -    [耔]
 U+8026   104397 8026     E880A6       -     1-90-38 7A46 8FD5D7 FAC6   EDC4 -    -    -    -    -    -    -    [耦]
 U+8035   104397 8035     E880B5       -     1-90-39 7A47 8FD5DC FAC7   EDC5 -    -    -    -    -    -    -    [耵]
@@ -13274,7 +13274,7 @@ U+81BB   104397 81BB     E886BB       -     1-90-52 7A54 8FD6D4 FAD4   EDD2 -   
 U+81CA   104397 81CA     E8878A       -     1-90-53 7A55 8FD6D8 FAD5   EDD3 -    -    -    -    -    -    -    [臊]
 U+81CF   104397 81CF     E8878F       -     1-90-54 7A56 8FD6DA FAD6   EDD4 -    -    -    -    -    -    -    [臏]
 U+81D7   104397 81D7     E88797       -     1-90-55 7A57 8FD6DC FAD7   EDD5 -    -    -    -    -    -    -    [臗]
-U+FA5C   134393 FA5C     EFA99C       81ED  1-90-56 7A58 -      FAD8   EDD6 -    -    -    -    -    -    -    [臭] -> [臭] (NFC)
+U+FA5C   144393 FA5C     EFA99C       81ED  1-90-56 7A58 -      FAD8   EDD6 -    -    -    -    -    -    -    [臭] -> [臭] (NFC)
 U+4453   104397 4453     E49193       -     1-90-57 7A59 -      FAD9   EDD7 -    -    -    -    -    -    -    [䑓]
 U+445B   104397 445B     E4919B       -     1-90-58 7A5A -      FADA   EDD8 -    -    -    -    -    -    -    [䑛]
 U+8260   104397 8260     E889A0       -     1-90-59 7A5B 8FD7A7 FADB   EDD9 -    -    -    -    -    -    -    [艠]
@@ -13320,7 +13320,7 @@ U+83EA   104397 83EA     E88FAA       -     1-91-03 7B23 8FD8C0 FBA3   EE42 -   
 U+8401   104397 8401     E89081       -     1-91-04 7B24 8FD8C5 FBA4   EE43 -    -    -    -    -    -    -    [萁]
 U+8406   104397 8406     E89086       853D  1-91-05 7B25 8FD8C6 FBA5   EE44 -    -    -    -    -    -    -    [萆] -> [蔽]
 U+840A   104394 840A     E8908A       83B1  1-91-06 7B26 8FD8C7 FBA6   EE45 -    -    -    -    -    -    52C9 [萊] -> [莱] (JIS83-97)
-U+FA5F   134393 FA5F     EFA99F       8457  1-91-07 7B27 -      FBA7   EE46 -    -    -    -    -    -    -    [著] -> [著] (NFC)
+U+FA5F   144393 FA5F     EFA99F       8457  1-91-07 7B27 -      FBA7   EE46 -    -    -    -    -    -    -    [著] -> [著] (NFC)
 U+8448   104367 8448     E89188       -     1-91-08 7B28 8FD8D1 FBA8   EE47 FB98 -    FB98 FB98 627E 627E -    [葈]
 U+845F   104397 845F     E8919F       -     1-91-09 7B29 -      FBA9   EE48 -    -    -    -    -    -    -    [葟]
 U+8470   104397 8470     E891B0       -     1-91-10 7B2A 8FD8E1 FBAA   EE49 -    -    -    -    -    -    -    [葰]
@@ -13360,7 +13360,7 @@ U+8629   104397 8629     E898A9       -     1-91-43 7B4B 8FDAB0 FBCB   EE6A -   
 U+8638   104397 8638     E898B8       -     1-91-44 7B4C 8FDAB2 FBCC   EE6B -    -    -    -    -    -    -    [蘸]
 U+8657   104397 8657     E89997       -     1-91-45 7B4D 8FDABC FBCD   EE6C -    -    -    -    -    -    -    [虗]
 U+865B   104393 865B     E8999B       865A  1-91-46 7B4E -      FBCE   EE6D -    -    -    -    -    -    -    [虛] -> [虚] (JIS97)
-U+F936   134393 F936     EFA4B6       865C  1-91-47 7B4F -      FBCF   EE6E -    -    -    -    -    -    -    [虜] -> [虜] (NFC)
+U+F936   144393 F936     EFA4B6       865C  1-91-47 7B4F -      FBCF   EE6E -    -    -    -    -    -    -    [虜] -> [虜] (NFC)
 U+8662   104397 8662     E899A2       -     1-91-48 7B50 8FDAC2 FBD0   EE6F -    -    -    -    -    -    -    [虢]
 U+459D   104397 459D     E4969D       -     1-91-49 7B51 -      FBD1   EE70 -    -    -    -    -    -    -    [䖝]
 U+866C   104397 866C     E899AC       -     1-91-50 7B52 8FDAC6 FBD2   EE71 -    -    -    -    -    -    -    [虬]
@@ -13392,7 +13392,7 @@ U+88CE   104397 88CE     E8A38E       -     1-91-75 7B6B 8FDCC9 FBEB   EE8B -   
 U+027684 204397 D85DDE84 F0A79A84     -     1-91-76 7B6C -      FBEC   EE8C -    -    -    -    -    -    -    [𧚄]
 U+88F5   104367 88F5     E8A3B5       88F4  1-91-77 7B6D 8FDCD3 FBED   EE8D FBA2 -    FBA2 FBA2 6390 6390 -    [裵] -> [裴]
 U+891C   104367 891C     E8A49C       -     1-91-78 7B6E 8FDCDF FBEE   EE8E FA5D -    FA5D FA5D 51DA 51DA -    [褜]
-U+FA60   134392 FA60     EFA9A0       8910  1-91-79 7B6F -      FBEF   EE8F -    -    -    -    -    -    -    [褐] -> [褐] (NFC)
+U+FA60   144392 FA60     EFA9A0       8910  1-91-79 7B6F -      FBEF   EE8F -    -    -    -    -    -    -    [褐] -> [褐] (NFC)
 U+8918   104397 8918     E8A498       -     1-91-80 7B70 8FDCDC FBF0   EE90 -    -    -    -    -    -    -    [褘]
 U+8919   104397 8919     E8A499       -     1-91-81 7B71 8FDCDD FBF1   EE91 -    -    -    -    -    -    -    [褙]
 U+891A   104397 891A     E8A49A       -     1-91-82 7B72 8FDCDE FBF2   EE92 -    -    -    -    -    -    -    [褚]
@@ -13402,7 +13402,7 @@ U+8932   104397 8932     E8A4B2       7DAF  1-91-85 7B75 8FDCE6 FBF5   EE95 -   
 U+8939   104397 8939     E8A4B9       -     1-91-86 7B76 8FDCE8 FBF6   EE96 -    -    -    -    -    -    -    [褹]
 U+8940   104397 8940     E8A580       -     1-91-87 7B77 8FDCEB FBF7   EE97 -    -    -    -    -    -    -    [襀]
 U+8994   104397 8994     E8A694       -     1-91-88 7B78 8FDDA7 FBF8   EE98 -    -    -    -    -    -    -    [覔]
-U+FA61   134393 FA61     EFA9A1       8996  1-91-89 7B79 -      FBF9   EE99 -    -    -    -    -    -    -    [視] -> [視] (NFC)
+U+FA61   144393 FA61     EFA9A1       8996  1-91-89 7B79 -      FBF9   EE99 -    -    -    -    -    -    -    [視] -> [視] (NFC)
 U+89D4   104397 89D4     E8A794       65A4  1-91-90 7B7A 8FDDB4 FBFA   EE9A -    -    -    -    -    -    -    [觔] -> [斤]
 U+89E5   104397 89E5     E8A7A5       -     1-91-91 7B7B 8FDDB9 FBFB   EE9B -    -    -    -    -    -    -    [觥]
 U+89F6   104397 89F6     E8A7B6       -     1-91-92 7B7C 8FDDBF FBFC   EE9C -    -    -    -    -    -    -    [觶]
@@ -13422,9 +13422,9 @@ U+8AD0   104397 8AD0     E8AB90       -     1-92-10 7C2A -      FCAA   EEA8 -   
 U+8ADF   104367 8ADF     E8AB9F       -     1-92-11 7C2B 8FDEB0 FCAB   EEA9 FBA8 -    FBA8 FBA8 63ED 63ED -    [諟]
 U+8AF4   104397 8AF4     E8ABB4       -     1-92-12 7C2C 8FDEB3 FCAC   EEAA -    -    -    -    -    -    -    [諴]
 U+8AF6   104367 8AF6     E8ABB6       -     1-92-13 7C2D 8FDEB5 FCAD   EEAB FBAA -    FBAA FBAA 63EF 63EF -    [諶]
-U+FA22   134363 FA22     EFA8A2       8AF8  1-92-14 7C2E -      FCAE   EEAC FBA9 -    FBA9 FBA9 63EE 63EE -    [諸] -> [諸] (NFC)
-U+FA62   134393 FA62     EFA9A2       8B01  1-92-15 7C2F -      FCAF   EEAD -    -    -    -    -    -    -    [謁] -> [謁] (NFC)
-U+FA63   134393 FA63     EFA9A3       8B39  1-92-16 7C30 -      FCB0   EEAE -    -    -    -    -    -    -    [謹] -> [謹] (NFC)
+U+FA22   144363 FA22     EFA8A2       8AF8  1-92-14 7C2E -      FCAE   EEAC FBA9 -    FBA9 FBA9 63EE 63EE -    [諸] -> [諸] (NFC)
+U+FA62   144393 FA62     EFA9A2       8B01  1-92-15 7C2F -      FCAF   EEAD -    -    -    -    -    -    -    [謁] -> [謁] (NFC)
+U+FA63   144393 FA63     EFA9A3       8B39  1-92-16 7C30 -      FCB0   EEAE -    -    -    -    -    -    -    [謹] -> [謹] (NFC)
 U+8B46   104397 8B46     E8AD86       -     1-92-17 7C31 8FDEC8 FCB1   EEAF -    -    -    -    -    -    -    [譆]
 U+8B54   104397 8B54     E8AD94       -     1-92-18 7C32 8FDECC FCB2   EEB0 -    -    -    -    -    -    -    [譔]
 U+8B59   104397 8B59     E8AD99       -     1-92-19 7C33 8FDECD FCB3   EEB1 -    -    -    -    -    -    -    [譙]
@@ -13432,12 +13432,12 @@ U+8B69   104397 8B69     E8ADA9       -     1-92-20 7C34 -      FCB4   EEB2 -   
 U+8B9D   104397 8B9D     E8AE9D       -     1-92-21 7C35 -      FCB5   EEB3 -    -    -    -    -    -    -    [讝]
 U+8C49   104397 8C49     E8B189       -     1-92-22 7C36 8FDEE8 FCB6   EEB4 -    -    -    -    -    -    -    [豉]
 U+8C68   104397 8C68     E8B1A8       -     1-92-23 7C37 8FDEF6 FCB7   EEB5 -    -    -    -    -    -    -    [豨]
-U+FA64   134393 FA64     EFA9A4       8CD3  1-92-24 7C38 -      FCB8   EEB6 -    -    -    -    -    -    -    [賓] -> [賓] (NFC)
+U+FA64   144393 FA64     EFA9A4       8CD3  1-92-24 7C38 -      FCB8   EEB6 -    -    -    -    -    -    -    [賓] -> [賓] (NFC)
 U+8CE1   104397 8CE1     E8B3A1       -     1-92-25 7C39 8FDFB5 FCB9   EEB7 -    -    -    -    -    -    -    [賡]
 U+8CF4   104363 8CF4     E8B3B4       983C  1-92-26 7C3A -      FCBA   EEB8 FBAE -    FBAE FBAE 647D 647D -    [賴] -> [頼] (JIS97)
 U+8CF8   104397 8CF8     E8B3B8       5269  1-92-27 7C3B 8FDFBD FCBB   EEB9 -    -    -    -    -    -    -    [賸] -> [剩]
 U+8CFE   104397 8CFE     E8B3BE       -     1-92-28 7C3C 8FDFBE FCBC   EEBA -    -    -    -    -    -    -    [賾]
-U+FA65   134393 FA65     EFA9A5       8D08  1-92-29 7C3D -      FCBD   EEBB -    -    -    -    -    -    -    [贈] -> [贈] (NFC)
+U+FA65   144393 FA65     EFA9A5       8D08  1-92-29 7C3D -      FCBD   EEBB -    -    -    -    -    -    -    [贈] -> [贈] (NFC)
 U+8D12   104367 8D12     E8B492       8CE2  1-92-30 7C3E 8FDFC3 FCBE   EEBC FBAF -    FBAF FBAF 6485 6485 -    [贒] -> [賢] (戸籍統一)
 U+8D1B   104397 8D1B     E8B49B       -     1-92-31 7C3F 8FDFC5 FCBF   EEBD -    -    -    -    -    -    -    [贛]
 U+8DAF   104397 8DAF     E8B6AF       -     1-92-32 7C40 8FDFD8 FCC0   EEBE -    -    -    -    -    -    -    [趯]
@@ -13465,7 +13465,7 @@ U+8FE8   104397 8FE8     E8BFA8       902E  1-92-53 7C55 8FE1C4 FCD5   EED3 -   
 U+8FEE   104397 8FEE     E8BFAE       -     1-92-54 7C56 8FE1C5 FCD6   EED4 -    -    -    -    -    -    -    [迮]
 U+9008   104397 9008     E98088       -     1-92-55 7C57 8FE1CD FCD7   EED5 -    -    -    -    -    -    -    [逈]
 U+902D   104397 902D     E980AD       -     1-92-56 7C58 8FE1D6 FCD8   EED6 -    -    -    -    -    -    -    [逭]
-U+FA67   134393 FA67     EFA9A7       9038  1-92-57 7C59 -      FCD9   EED7 -    -    -    -    -    -    -    [逸] -> [逸] (NFC)
+U+FA67   144393 FA67     EFA9A7       9038  1-92-57 7C59 -      FCD9   EED7 -    -    -    -    -    -    -    [逸] -> [逸] (NFC)
 U+9088   104397 9088     E98288       -     1-92-58 7C5A 8FE1E8 FCDA   EED8 -    -    -    -    -    -    -    [邈]
 U+9095   104397 9095     E98295       -     1-92-59 7C5B 8FE1ED FCDB   EED9 -    -    -    -    -    -    -    [邕]
 U+9097   104397 9097     E98297       -     1-92-60 7C5C 8FE1EE FCDC   EEDA -    -    -    -    -    -    -    [邗]
@@ -13482,7 +13482,7 @@ U+90DD   104397 90DD     E9839D       -     1-92-70 7C66 8FE2AA FCE6   EEE4 -   
 U+90DE   104363 90DE     E9839E       90CE  1-92-71 7C67 -      FCE7   EEE5 FBB6 -    FBB6 FBB6 6564 6564 -    [郞] -> [郎] (JIS97)
 U+90EF   104397 90EF     E983AF       -     1-92-72 7C68 8FE2B0 FCE8   EEE6 -    -    -    -    -    -    -    [郯]
 U+90F4   104397 90F4     E983B4       -     1-92-73 7C69 8FE2B2 FCE9   EEE7 -    -    -    -    -    -    -    [郴]
-U+FA26   134363 FA26     EFA8A6       90FD  1-92-74 7C6A -      FCEA   EEE8 FBB7 -    FBB7 FBB7 6566 6566 -    [都] -> [都] (NFC)
+U+FA26   144363 FA26     EFA8A6       90FD  1-92-74 7C6A -      FCEA   EEE8 FBB7 -    FBB7 FBB7 6566 6566 -    [都] -> [都] (NFC)
 U+9114   104397 9114     E98494       -     1-92-75 7C6B 8FE2BC FCEB   EEE9 -    -    -    -    -    -    -    [鄔]
 U+9115   104362 9115     E98495       90F7  1-92-76 7C6C -      FCEC   EEEA FBB8 -    FBB8 FBB8 6567 6567 -    [鄕] -> [郷] (JIS97)
 U+9116   104397 9116     E98496       -     1-92-77 7C6D 8FE2BD FCED   EEEB -    -    -    -    -    -    -    [鄖]
@@ -13564,13 +13564,13 @@ U+95DA   104397 95DA     E9979A       -     1-93-57 7D59 8FE6BD FDD9   EF78 -   
 U+95DE   104397 95DE     E9979E       -     1-93-58 7D5A 8FE6BF FDDA   EF79 -    -    -    -    -    -    -    [闞]
 U+9658   104397 9658     E99998       -     1-93-59 7D5B 8FE6D8 FDDB   EF7A -    -    -    -    -    -    -    [陘]
 U+9684   104397 9684     E99A84       -     1-93-60 7D5C 8FE6E3 FDDC   EF7B -    -    -    -    -    -    -    [隄]
-U+F9DC   134362 F9DC     EFA79C       9686  1-93-61 7D5D -      FDDD   EF7C FBE9 -    FBE9 FBE9 6674 6674 -    [隆] -> [隆] (NFC)
+U+F9DC   144362 F9DC     EFA79C       9686  1-93-61 7D5D -      FDDD   EF7C FBE9 -    FBE9 FBE9 6674 6674 -    [隆] -> [隆] (NFC)
 U+969D   104367 969D     E99A9D       FA29  1-93-62 7D5E 8FE6E8 FDDE   EF7D FBEB -    FBEB FBEB 6679 6679 -    [隝] -> [﨩]
 U+96A4   104397 96A4     E99AA4       -     1-93-63 7D5F 8FE6EA FDDF   EF7E -    -    -    -    -    -    -    [隤]
 U+96A5   104397 96A5     E99AA5       -     1-93-64 7D60 8FE6EB FDE0   EF80 -    -    -    -    -    -    -    [隥]
 U+96D2   104397 96D2     E99B92       -     1-93-65 7D61 8FE6F3 FDE1   EF81 -    -    -    -    -    -    -    [雒]
 U+96DE   104397 96DE     E99B9E       9DC4  1-93-66 7D62 8FE6F8 FDE2   EF82 -    -    -    -    -    -    -    [雞] -> [鷄]
-U+FA68   134393 FA68     EFA9A8       96E3  1-93-67 7D63 -      FDE3   EF83 -    -    -    -    -    -    -    [難] -> [難] (NFC)
+U+FA68   144393 FA68     EFA9A8       96E3  1-93-67 7D63 -      FDE3   EF83 -    -    -    -    -    -    -    [難] -> [難] (NFC)
 U+96E9   104397 96E9     E99BA9       -     1-93-68 7D64 8FE6FA FDE4   EF84 -    -    -    -    -    -    -    [雩]
 U+96EF   104397 96EF     E99BAF       -     1-93-69 7D65 8FE6FB FDE5   EF85 -    -    -    -    -    -    -    [雯]
 U+9733   104367 9733     E99CB3       -     1-93-70 7D66 8FE7AC FDE6   EF86 FBED -    FBED FBED 6697 6697 -    [霳]
@@ -13589,12 +13589,12 @@ U+97C9   104397 97C9     E99F89       -     1-93-82 7D72 8FE7DC FDF2   EF92 -   
 U+97DE   104397 97DE     E99F9E       -     1-93-83 7D73 8FE7E8 FDF3   EF93 -    -    -    -    -    -    -    [韞]
 U+97DB   104397 97DB     E99F9B       -     1-93-84 7D74 8FE7EA FDF4   EF94 -    -    -    -    -    -    -    [韛]
 U+97F4   104397 97F4     E99FB4       -     1-93-85 7D75 8FE7EF FDF5   EF95 -    -    -    -    -    -    -    [韴]
-U+FA69   134393 FA69     EFA9A9       97FF  1-93-86 7D76 -      FDF6   EF96 -    -    -    -    -    -    -    [響] -> [響] (NFC)
+U+FA69   144393 FA69     EFA9A9       97FF  1-93-86 7D76 -      FDF6   EF96 -    -    -    -    -    -    -    [響] -> [響] (NFC)
 U+980A   104397 980A     E9A08A       -     1-93-87 7D77 8FE7F4 FDF7   EF97 -    -    -    -    -    -    -    [頊]
 U+981E   104397 981E     E9A09E       -     1-93-88 7D78 8FE7FB FDF8   EF98 -    -    -    -    -    -    -    [頞]
 U+982B   104397 982B     E9A0AB       -     1-93-89 7D79 8FE8A1 FDF9   EF99 -    -    -    -    -    -    -    [頫]
 U+9830   104391 9830     E9A0B0       982C  1-93-90 7D7A 8FE8A4 FDFA   EF9A -    -    -    -    -    -    4EB3 [頰] -> [頬] (JIS83-97)
-U+FA6A   134392 FA6A     EFA9AA       983B  1-93-91 7D7B -      FDFB   EF9B -    -    -    -    -    -    -    [頻] -> [頻] (NFC)
+U+FA6A   144392 FA6A     EFA9AA       983B  1-93-91 7D7B -      FDFB   EF9B -    -    -    -    -    -    -    [頻] -> [頻] (NFC)
 U+9852   104397 9852     E9A192       -     1-93-92 7D7C 8FE8AE FDFC   EF9C -    -    -    -    -    -    -    [顒]
 U+9853   104397 9853     E9A193       -     1-93-93 7D7D 8FE8AF FDFD   EF9D -    -    -    -    -    -    -    [顓]
 U+9856   104397 9856     E9A196       -     1-93-94 7D7E 8FE8B0 FDFE   EF9E -    -    -    -    -    -    -    [顖]
@@ -13602,7 +13602,7 @@ U+9856   104397 9856     E9A196       -     1-93-94 7D7E 8FE8B0 FDFE   EF9E -   
 U+9857   104367 9857     E9A197       -     1-94-01 7E21 8FE8B1 FEA1   EF9F FBF4 -    FBF4 FBF4 66CB 66CB -    [顗]
 U+9859   104397 9859     E9A199       -     1-94-02 7E22 8FE8B2 FEA2   EFA0 -    -    -    -    -    -    -    [顙]
 U+985A   104394 985A     E9A19A       985B  1-94-03 7E23 8FE8B3 FEA3   EFA1 -    -    -    -    -    -    55C1 [顚] -> [顛] (JIS83-97)
-U+F9D0   134393 F9D0     EFA790       985E  1-94-04 7E24 -      FEA4   EFA2 -    -    -    -    -    -    -    [類] -> [類] (NFC)
+U+F9D0   144393 F9D0     EFA790       985E  1-94-04 7E24 -      FEA4   EFA2 -    -    -    -    -    -    -    [類] -> [類] (NFC)
 U+9865   104367 9865     E9A1A5       -     1-94-05 7E25 8FE8B6 FEA5   EFA3 FBF5 -    FBF5 FBF5 66CC 66CC -    [顥]
 U+986C   104397 986C     E9A1AC       -     1-94-06 7E26 8FE8B9 FEA6   EFA4 -    -    -    -    -    -    -    [顬]
 U+98BA   104397 98BA     E9A2BA       -     1-94-07 7E27 8FE8C1 FEA7   EFA5 -    -    -    -    -    -    -    [颺]
@@ -14751,7 +14751,7 @@ U+71D9   104497 71D9     E78799       -     2-80-05 7025 8FCAB9 8FF0A5 F5A3 -   
 U+71DC   104497 71DC     E7879C       -     2-80-06 7026 8FCABB 8FF0A6 F5A4 -    -    -    -    -    -    -    [燜]
 U+7207   104497 7207     E78887       -     2-80-07 7027 8FCABF 8FF0A7 F5A5 -    -    -    -    -    -    -    [爇]
 U+3E05   104497 3E05     E3B885       -     2-80-08 7028 -      8FF0A8 F5A6 -    -    -    -    -    -    -    [㸅]
-U+FA49   134497 FA49     EFA989       722B  2-80-09 7029 -      8FF0A9 F5A7 -    -    -    -    -    -    -    [爫] -> [爫] (NFC)
+U+FA49   144497 FA49     EFA989       722B  2-80-09 7029 -      8FF0A9 F5A7 -    -    -    -    -    -    -    [爫] -> [爫] (NFC)
 U+722B   104497 722B     E788AB       -     2-80-10 702A 8FCAC8 8FF0AA F5A8 -    -    -    -    -    -    -    [爫]
 U+7234   104497 7234     E788B4       -     2-80-11 702B 8FCACA 8FF0AB F5A9 -    -    -    -    -    -    -    [爴]
 U+7238   104497 7238     E788B8       -     2-80-12 702C 8FCACB 8FF0AC F5AA -    -    -    -    -    -    -    [爸]
@@ -15170,7 +15170,7 @@ U+7DF1   104497 7DF1     E7B7B1       -     2-84-44 744C 8FD4BA 8FF4CC F7CA -   
 U+7DF9   104497 7DF9     E7B7B9       -     2-84-45 744D 8FD4BD 8FF4CD F7CB -    -    -    -    -    -    -    [緹]
 U+4302   104497 4302     E48C82       -     2-84-46 744E -      8FF4CE F7CC -    -    -    -    -    -    -    [䌂]
 U+0260ED 204497 D858DCED F0A683AD     -     2-84-47 744F -      8FF4CF F7CD -    -    -    -    -    -    -    [𦃭]
-U+FA58   134497 FA58     EFA998       7E09  2-84-48 7450 -      8FF4D0 F7CE -    -    -    -    -    -    -    [縉] -> [縉] (NFC)
+U+FA58   144497 FA58     EFA998       7E09  2-84-48 7450 -      8FF4D0 F7CE -    -    -    -    -    -    -    [縉] -> [縉] (NFC)
 U+7E10   104497 7E10     E7B890       -     2-84-49 7451 8FD4C0 8FF4D1 F7CF -    -    -    -    -    -    -    [縐]
 U+7E17   104497 7E17     E7B897       -     2-84-50 7452 8FD4C3 8FF4D2 F7D0 -    -    -    -    -    -    -    [縗]
 U+7E1D   104497 7E1D     E7B89D       -     2-84-51 7453 8FD4C5 8FF4D3 F7D1 -    -    -    -    -    -    -    [縝]
@@ -15301,8 +15301,8 @@ U+026A8C 204497 D85ADE8C F0A6AA8C     -     2-85-80 7570 -      8FF5F0 F890 -   
 U+825C   104497 825C     E8899C       -     2-85-81 7571 8FD7A6 8FF5F1 F891 -    -    -    -    -    -    -    [艜]
 U+8263   104497 8263     E889A3       6AD3  2-85-82 7572 8FD7A8 8FF5F2 F892 -    -    -    -    -    -    -    [艣] -> [櫓]
 U+026AB7 204497 D85ADEB7 F0A6AAB7     -     2-85-83 7573 -      8FF5F3 F893 -    -    -    -    -    -    -    [𦪷]
-U+FA5D   134497 FA5D     EFA99D       8279  2-85-84 7574 -      8FF5F4 F894 -    -    -    -    -    -    -    [艹] -> [艹] (NFC)
-U+FA5E   134497 FA5E     EFA99E       8279  2-85-85 7575 -      8FF5F5 F895 -    -    -    -    -    -    -    [艹] -> [艹] (NFC)
+U+FA5D   144497 FA5D     EFA99D       8279  2-85-84 7574 -      8FF5F4 F894 -    -    -    -    -    -    -    [艹] -> [艹] (NFC)
+U+FA5E   144497 FA5E     EFA99E       8279  2-85-85 7575 -      8FF5F5 F895 -    -    -    -    -    -    -    [艹] -> [艹] (NFC)
 U+8279   104497 8279     E889B9       -     2-85-86 7576 -      8FF5F6 F896 -    -    -    -    -    -    -    [艹]
 U+4491   104497 4491     E49291       -     2-85-87 7577 -      8FF5F7 F897 -    -    -    -    -    -    -    [䒑]
 U+827D   104497 827D     E889BD       97ED  2-85-88 7578 8FD7AD 8FF5F8 F898 -    -    -    -    -    -    -    [艽] -> [韭]
@@ -15431,7 +15431,7 @@ U+8639   104497 8639     E898B9       -     2-87-20 7734 -      8FF7B4 F953 -   
 U+863C   104497 863C     E898BC       -     2-87-21 7735 8FDAB4 8FF7B5 F954 -    -    -    -    -    -    -    [蘼]
 U+027139 204497 D85CDD39 F0A784B9     -     2-87-22 7736 -      8FF7B6 F955 -    -    -    -    -    -    -    [𧄹]
 U+8640   104497 8640     E89980       -     2-87-23 7737 8FDAB6 8FF7B7 F956 -    -    -    -    -    -    -    [虀]
-U+FA20   134467 FA20     EFA8A0       8612  2-87-24 7738 -      8FF7B8 F957 FB9F -    FB9F FB9F 62CE 62CE -    [蘒] -> [蘒] (NFC)
+U+FA20   144467 FA20     EFA8A0       8612  2-87-24 7738 -      8FF7B8 F957 FB9F -    FB9F FB9F 62CE 62CE -    [蘒] -> [蘒] (NFC)
 U+8653   104497 8653     E89993       -     2-87-25 7739 8FDABA 8FF7B9 F958 -    -    -    -    -    -    -    [虓]
 U+8656   104497 8656     E89996       547C  2-87-26 773A 8FDABB 8FF7BA F959 -    -    -    -    -    -    -    [虖] -> [呼]
 U+866F   104497 866F     E899AF       -     2-87-27 773B 8FDAC7 8FF7BB F95A -    -    -    -    -    -    -    [虯]
@@ -15670,7 +15670,7 @@ U+8F58   104497 8F58     E8BD98       -     2-89-69 7965 8FE1A9 8FF9E5 FA85 -   
 U+02840C 204497 D861DC0C F0A8908C     -     2-89-70 7966 -      8FF9E6 FA86 -    -    -    -    -    -    -    [𨐌]
 U+8FA4   104497 8FA4     E8BEA4       -     2-89-71 7967 8FE1B0 8FF9E7 FA87 -    -    -    -    -    -    -    [辤]
 U+8FB4   104497 8FB4     E8BEB4       -     2-89-72 7968 -      8FF9E8 FA88 -    -    -    -    -    -    -    [辴]
-U+FA66   134497 FA66     EFA9A6       8FB6  2-89-73 7969 -      8FF9E9 FA89 -    -    -    -    -    -    -    [辶] -> [辶] (NFC)
+U+FA66   144497 FA66     EFA9A6       8FB6  2-89-73 7969 -      8FF9E9 FA89 -    -    -    -    -    -    -    [辶] -> [辶] (NFC)
 U+8FB6   104497 8FB6     E8BEB6       -     2-89-74 796A 8FE1B4 8FF9EA FA8A -    -    -    -    -    -    -    [辶]
 U+028455 204497 D861DC55 F0A89195     -     2-89-75 796B -      8FF9EB FA8B -    -    -    -    -    -    -    [𨑕]
 U+8FC1   104497 8FC1     E8BF81       -     2-89-76 796C 8FE1B8 8FF9EC FA8C -    -    -    -    -    -    -    [迁]
@@ -16179,7 +16179,7 @@ U+02DD   125090 02DD     CB9D         -     2-02-19 2233 8FA2B3 AAB6   85B4 -   
 U+00AF   125070 00AF     C2AF         -     2-02-20 2234 8FA2B4 A9AB   854A -    -    -    -    -    -    -    [¯]
 U+02DB   125090 02DB     CB9B         -     2-02-21 2235 8FA2B5 AAAD   85AB -    -    -    -    -    -    -    [˛]
 U+02DA   125590 02DA     CB9A         -     2-02-22 2236 8FA2B6 -      -    -    -    -    -    -    -    -    [˚]
-U+FF5E   125030 FF5E     EFBD9E       007E  2-02-23 2237 8FA2B7 A2B2   81B0 8160 -    -    -    43A1 43A1 -    [～] -> [~] (NFKC)
+U+FF5E   135030 FF5E     EFBD9E       007E  2-02-23 2237 8FA2B7 A2B2   81B0 8160 -    -    -    43A1 43A1 -    [～] -> [~] (NFKC)
 U+0384   125590 0384     CE84         -     2-02-24 2238 8FA2B8 -      -    -    -    -    -    -    -    -    [΄]
 U+0385   125590 0385     CE85         -     2-02-25 2239 8FA2B9 -      -    -    -    -    -    -    -    -    [΅]
 U+00A1   105090 00A1     C2A1         -     2-02-34 2242 8FA2C2 A9A3   8542 -    -    -    -    -    -    -    [¡]
