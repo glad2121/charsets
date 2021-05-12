@@ -9,6 +9,7 @@ import static java.text.Normalizer.Form.*;
 import java.io.*;
 import java.nio.charset.*;
 import java.nio.file.*;
+import java.text.BreakIterator;
 import java.util.*;
 import java.util.regex.*;
 
@@ -59,14 +60,17 @@ class Charsets {
         Pattern p = Pattern.compile("(\\d) (\\S+)");
         Map<String, Character> kanjiMap = new HashMap<>();
         try (BufferedReader in = Files.newBufferedReader(Paths.get("kanji.txt"), UTF_8)) {
+            BreakIterator bi = BreakIterator.getCharacterInstance(Locale.JAPAN);
             String line;
             while ((line = in.readLine()) != null) {
                 Matcher m = p.matcher(line);
                 if (m.matches()) {
                     char kubun = m.group(1).charAt(0);
-                    int[] codePoints = m.group(2).codePoints().toArray();
-                    for (int i = 0; i < codePoints.length; ++i) {
-                        String s = new String(codePoints, i, 1);
+                    String g = m.group(2);
+                    bi.setText(g);
+                    for (int start = bi.first(), end = bi.next();
+                            end != BreakIterator.DONE; start = end, end = bi.next()) {
+                        String s = g.substring(start, end);
                         if (kubun == '3' || !kanjiMap.containsKey(s)) {
                             kanjiMap.put(s, kubun);
                         }
