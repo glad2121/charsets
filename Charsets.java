@@ -603,7 +603,8 @@ class Charsets {
     static int kutenToSjis(int k, int t) {
         assertRange("k", k, 1, 120);
         assertRange("t", t, 1, 94);
-        int c1 = (k + (k <= 62 ? 0x101 : 0x181)) / 2;
+        int c1 = (k - 1) / 2 + (k <= 62 ? 0x81 : 0xC1);
+        //int c1 = (k + (k <= 62 ? 0x101 : 0x181)) / 2;
         int c2 = t + (k % 2 == 1 ? (t <= 63 ? 0x3F : 0x40) : 0x9E);
         return word(c1, c2);
     }
