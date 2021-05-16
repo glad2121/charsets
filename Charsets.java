@@ -536,10 +536,6 @@ class Charsets {
             } else {
                 bab.append("97" + sep);
             }
-            if (csv4()) {
-                // 非漢字。
-                bab.append("0" + sep);
-            }
             if (csv1()) {
                 return Collections.singletonList(bab.toByteArray());
             }
