@@ -8967,7 +8967,7 @@ U+8B7F   707457 8B7F     E8ADBF       -       91-80 -    -      -      F9ED  <EE
 U+8CF0   707457 8CF0     E8B3B0       -       91-81 -    8FDFB9 -      FA4F  <EE91 FBAD  FBAD  647C  647C  [賰]
 U+8CF4   707353 8CF4     E8B3B4       983C    91-82 -    -      -      EEB8  <EE92 FBAE  FBAE  647D  647D  [賴]
 U+8D12   707357 8D12     E8B492       8CE2    91-83 -    8FDFC3 -      EEBC  <EE93 FBAF  FBAF  6485  6485  [贒]
-U+8D76   707757 8D76     E8B5B6       -       91-84 -    -      -      -     <EE94 FBB0  FBB0  648D  648D  [赶]
+U+8D76   707757 8D76     E8B5B6       8D95    91-84 -    -      -      -     <EE94 FBB0  FBB0  648D  648D  [赶]
 U+FA23   707757 FA23     EFA8A3       8D73    91-85 -    -      -      -     <EE95 FBB1  FBB1  648E  648E  [﨣]
 U+8ECF   707557 8ECF     E8BB8F       -       91-86 -    8FE0D9 -      -     <EE96 FBB2  FBB2  64C9  64C9  [軏]
 U+FA24   707457 FA24     EFA8A4       -       91-87 -    -      -      FA8E  <EE97 FBB3  FBB3  64F1  64F1  [﨤]
@@ -11474,7 +11474,7 @@ U+8B7F   107467 8B7F     E8ADBF       -      118-14 -    -      -      F9ED  FBA
 U+8CF0   107467 8CF0     E8B3B0       -      118-15 -    8FDFB9 -      FA4F  FBAD  FBAD  FBAD  647C  647C  [賰]
 U+8CF4   107363 8CF4     E8B3B4       983C   118-16 -    -      -      EEB8  FBAE  FBAE  FBAE  647D  647D  [賴] -> [頼] (JIS97)
 U+8D12   107367 8D12     E8B492       8CE2   118-17 -    8FDFC3 -      EEBC  FBAF  FBAF  FBAF  6485  6485  [贒] -> [賢] (戸籍統一)
-U+8D76   107767 8D76     E8B5B6       -      118-18 -    -      -      -     FBB0  FBB0  FBB0  648D  648D  [赶]
+U+8D76   107767 8D76     E8B5B6       8D95   118-18 -    -      -      -     FBB0  FBB0  FBB0  648D  648D  [赶] -> [趕]
 U+FA23   107767 FA23     EFA8A3       8D73   118-19 -    -      -      -     FBB1  FBB1  FBB1  648E  648E  [﨣] -> [赳] (5200号)
 U+8ECF   107567 8ECF     E8BB8F       -      118-20 -    8FE0D9 -      -     FBB2  FBB2  FBB2  64C9  64C9  [軏]
 U+FA24   107467 FA24     EFA8A4       -      118-21 -    -      -      FA8E  FBB3  FBB3  FBB3  64F1  64F1  [﨤]
@@ -15620,7 +15620,7 @@ U+8D09   104497 8D09     E8B489       -     2-89-19 7933 8FDFC2 8FF9B3 FA52  -  
 U+8D0E   104497 8D0E     E8B48E       -     2-89-20 7934 -      8FF9B4 FA53  -     -     -     -     -     [贎]
 U+8D6C   104497 8D6C     E8B5AC       -     2-89-21 7935 8FDFC8 8FF9B5 FA54  -     -     -     -     -     [赬]
 U+8D84   104497 8D84     E8B684       -     2-89-22 7936 8FDFCC 8FF9B6 FA55  -     -     -     -     -     [趄]
-U+8D95   104497 8D95     E8B695       -     2-89-23 7937 8FDFD1 8FF9B7 FA56  -     -     -     -     -     [趕]
+U+8D95   104497 8D95     E8B695       8D76  2-89-23 7937 8FDFD1 8FF9B7 FA56  -     -     -     -     -     [趕] -> [赶]
 U+8DA6   104497 8DA6     E8B6A6       -     2-89-24 7938 8FDFD5 8FF9B8 FA57  -     -     -     -     -     [趦]
 U+027FB7 204497 D85FDFB7 F0A7BEB7     -     2-89-25 7939 -      8FF9B9 FA58  -     -     -     -     -     [𧾷]
 U+8DC6   104497 8DC6     E8B786       -     2-89-26 793A 8FDFE0 8FF9BA FA59  -     -     -     -     -     [跆]
@@ -20960,7 +20960,7 @@ U+8D88   105597 8D88     E8B688       -     2-63-45 5F4D 8FDFCD -      -     -  
 U+8D8D   105597 8D8D     E8B68D       -     2-63-46 5F4E 8FDFCE -      -     -     -     -     -     -     [趍]
 U+8D90   105597 8D90     E8B690       -     2-63-47 5F4F 8FDFCF -      -     -     -     -     -     -     [趐]
 U+8D91   105597 8D91     E8B691       -     2-63-48 5F50 8FDFD0 -      -     -     -     -     -     -     [趑]
-U+8D95   105497 8D95     E8B695       -     2-63-49 5F51 8FDFD1 8FF9B7 FA56  -     -     -     -     -     [趕]
+U+8D95   105497 8D95     E8B695       8D76  2-63-49 5F51 8FDFD1 8FF9B7 FA56  -     -     -     -     -     [趕] -> [赶]
 U+8D9E   105597 8D9E     E8B69E       -     2-63-50 5F52 8FDFD2 -      -     -     -     -     -     -     [趞]
 U+8D9F   105597 8D9F     E8B69F       -     2-63-51 5F53 8FDFD3 -      -     -     -     -     -     -     [趟]
 U+8DA0   105597 8DA0     E8B6A0       -     2-63-52 5F54 8FDFD4 -      -     -     -     -     -     -     [趠]
