@@ -335,7 +335,7 @@ class Charsets {
         printLines(encodedLinesCombining('\u3099'));
         printLines(encodedLinesCombining('\u309A'));
 
-        if (!csv()) {
+        if (!csv() || csv4()) {
             println();
             println("# JIS X 0212 - 非漢字");
             printHeaderX0213();
@@ -584,9 +584,8 @@ class Charsets {
         }
 
         JisX0212Info info = new JisX0212Info(m, k, t);
-        // 簡易 CSV は Windows-31J で未定義な文字のみ。
-        if ((csv1() || csv2() || csv3())
-                && (info.kubun().charAt(3) != '5' || info.kubun().charAt(4) < '7')) {
+        // CSV は Windows-31J で未定義な文字のみ。
+        if ((csv()) && (info.kubun().charAt(3) != '5' || info.kubun().charAt(4) < '7')) {
             return Collections.emptyList();
         }
         if (info.undefined()) {
