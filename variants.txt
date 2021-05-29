@@ -3852,111 +3852,111 @@ U+9FA2 U+548C # 龢 →
 
 # KS X 1001:1998（韓国）における発音重複に基づくもの
 
-U+F91D U+6B04 JIS97    # 欄 → 欄
-U+F928 U+5ECA JIS97    # 廊 → 廊
-U+F929 U+6717 JIS97    # 朗 → 朗
-U+F936 U+865C JIS97    # 虜 → 虜
-U+F970 U+6BBA JIS97    # 殺 → 殺
-U+F9D0 U+985E JIS97    # 類 → 類
-U+F9DC U+9686 JIS97    # 隆 → 隆
+U+F91D U+6B04 U+FE00 JIS97    # 欄 → 欄
+U+F928 U+5ECA U+FE00 JIS97    # 廊 → 廊
+U+F929 U+6717 U+FE00 JIS97    # 朗 → 朗
+U+F936 U+865C U+FE00 JIS97    # 虜 → 虜
+U+F970 U+6BBA U+FE00 JIS97    # 殺 → 殺
+U+F9D0 U+985E U+FE00 JIS97    # 類 → 類
+U+F9DC U+9686 U+FE00 JIS97    # 隆 → 隆
 
 # IBM拡張文字に基づくもの
 
-U+FA0E U+96D9          # 﨎 → 雙
-U+FA0F -               # 﨏
-U+FA10 U+585A JIS97    # 塚 → 塚
-U+FA11 U+5D0E 戸籍統一 # 﨑 → 崎
-U+FA12 U+6674 NFC*     # 晴 → 晴
-U+FA13 -               # 﨓
-U+FA14 U+6B05          # 﨔 → 欅
-U+FA15 U+51DE NFC*     # 凞 → 凞
-U+FA16 U+732A JIS97    # 猪 → 猪
-U+FA17 U+76CA NFC*     # 益 → 益
-U+FA18 U+793C NFC*     # 礼 → 礼
-U+FA19 U+795E JIS97    # 神 → 神
-U+FA1A U+7965 JIS97    # 祥 → 祥
-U+FA1B U+798F JIS97    # 福 → 福
-U+FA1C U+9756 NFC*     # 靖 → 靖
-U+FA1D U+7CBE NFC*     # 精 → 精
-U+FA1E U+7FBD NFC*     # 羽 → 羽
-U+FA1F U+81C8          # 﨟 → 臈
-U+FA20 U+8612 NFC*     # 蘒 → 蘒
-U+FA21 -               # 﨡
-U+FA22 U+8AF8 JIS97    # 諸 → 諸
-U+FA23 U+8D73 5200号   # 﨣 → 赳
-U+FA24 -               # 﨤
-U+FA25 U+9038 NFC*     # 逸 → 逸
-U+FA26 U+90FD JIS97    # 都 → 都
-U+FA27 -               # 﨧
-U+FA28 -               # 﨨
-U+FA29 U+969D          # 﨩 → 隝
-U+FA2A U+98EF NFC*     # 飯 → 飯
-U+FA2B U+98FC NFC*     # 飼 → 飼
-U+FA2C U+9928 NFC*     # 館 → 館
-U+FA2D U+9DB4 NFC*     # 鶴 → 鶴
+U+FA0E U+96D9                 # 﨎 → 雙
+U+FA0F -                      # 﨏
+U+FA10 U+585A U+FE00 JIS97    # 塚 → 塚
+U+FA11 U+5D0E        戸籍統一 # 﨑 → 崎
+U+FA12 U+6674 U+FE00 NFC*     # 晴 → 晴
+U+FA13 -                      # 﨓
+U+FA14 U+6B05                 # 﨔 → 欅
+U+FA15 U+51DE U+FE00 NFC*     # 凞 → 凞
+U+FA16 U+732A U+FE00 JIS97    # 猪 → 猪
+U+FA17 U+76CA U+FE00 NFC*     # 益 → 益
+U+FA18 U+793C U+FE00 NFC*     # 礼 → 礼
+U+FA19 U+795E U+FE00 JIS97    # 神 → 神
+U+FA1A U+7965 U+FE00 JIS97    # 祥 → 祥
+U+FA1B U+798F U+FE00 JIS97    # 福 → 福
+U+FA1C U+9756 U+FE00 NFC*     # 靖 → 靖
+U+FA1D U+7CBE U+FE00 NFC*     # 精 → 精
+U+FA1E U+7FBD U+FE00 NFC*     # 羽 → 羽
+U+FA1F U+81C8                 # 﨟 → 臈
+U+FA20 U+8612 U+FE00 NFC*     # 蘒 → 蘒
+U+FA21 -                      # 﨡
+U+FA22 U+8AF8 U+FE00 JIS97    # 諸 → 諸
+U+FA23 U+8D73        5200号   # 﨣 → 赳
+U+FA24 -                      # 﨤
+U+FA25 U+9038 U+FE00 NFC*     # 逸 → 逸
+U+FA26 U+90FD U+FE00 JIS97    # 都 → 都
+U+FA27 -                      # 﨧
+U+FA28 -                      # 﨨
+U+FA29 U+969D                 # 﨩 → 隝
+U+FA2A U+98EF U+FE00 NFC*     # 飯 → 飯
+U+FA2B U+98FC U+FE00 NFC*     # 飼 → 飼
+U+FA2C U+9928 U+FE00 NFC*     # 館 → 館
+U+FA2D U+9DB4 U+FE00 NFC*     # 鶴 → 鶴
 
 # JIS X 0213 における包摂基準変更に基づくもの。
 
-U+FA30 U+4FAE JIS97    # 侮 → 侮
-U+FA31 U+50E7 JIS97    # 僧 → 僧
-U+FA32 U+514D JIS97    # 免 → 免
-U+FA33 U+52C9 JIS97    # 勉 → 勉
-U+FA34 U+52E4 JIS97    # 勤 → 勤
-U+FA35 U+5351 JIS97    # 卑 → 卑
-U+FA36 U+559D JIS97    # 喝 → 喝
-U+FA37 U+5606 JIS97    # 嘆 → 嘆
-U+FA38 U+5668 JIS97    # 器 → 器
-U+FA39 U+5840 JIS97    # 塀 → 塀
-U+FA3A U+58A8 JIS97    # 墨 → 墨
-U+FA3B U+5C64 JIS97    # 層 → 層
-U+FA3C U+5C6E NFC*     # 屮 → 屮
-U+FA3D U+6094 JIS97    # 悔 → 悔
-U+FA3E U+6168 JIS97    # 慨 → 慨
-U+FA3F U+618E JIS97    # 憎 → 憎
-U+FA40 U+61F2 JIS97    # 懲 → 懲
-U+FA41 U+654F JIS97    # 敏 → 敏
-U+FA42 U+65E2 JIS97    # 既 → 既
-U+FA43 U+6691 JIS97    # 暑 → 暑
-U+FA44 U+6885 JIS97    # 梅 → 梅
-U+FA45 U+6D77 JIS97    # 海 → 海
-U+FA46 U+6E1A JIS97    # 渚 → 渚
-U+FA47 U+6F22 JIS97    # 漢 → 漢
-U+FA48 U+716E JIS97    # 煮 → 煮
-U+FA49 U+722B NFC*     # 爫 → 爫
-U+FA4A U+7422 JIS97    # 琢 → 琢
-U+FA4B U+7891 JIS97    # 碑 → 碑
-U+FA4C U+793E JIS97    # 社 → 社
-U+FA4D U+7949 JIS97    # 祉 → 祉
-U+FA4E U+7948 JIS97    # 祈 → 祈
-U+FA4F U+7950 JIS97    # 祐 → 祐
+U+FA30 U+4FAE U+FE00 JIS97    # 侮 → 侮
+U+FA31 U+50E7 U+FE00 JIS97    # 僧 → 僧
+U+FA32 U+514D U+FE00 JIS97    # 免 → 免
+U+FA33 U+52C9 U+FE00 JIS97    # 勉 → 勉
+U+FA34 U+52E4 U+FE00 JIS97    # 勤 → 勤
+U+FA35 U+5351 U+FE00 JIS97    # 卑 → 卑
+U+FA36 U+559D U+FE00 JIS97    # 喝 → 喝
+U+FA37 U+5606 U+FE00 JIS97    # 嘆 → 嘆
+U+FA38 U+5668 U+FE00 JIS97    # 器 → 器
+U+FA39 U+5840 U+FE00 JIS97    # 塀 → 塀
+U+FA3A U+58A8 U+FE00 JIS97    # 墨 → 墨
+U+FA3B U+5C64 U+FE00 JIS97    # 層 → 層
+U+FA3C U+5C6E U+FE00 NFC*     # 屮 → 屮
+U+FA3D U+6094 U+FE00 JIS97    # 悔 → 悔
+U+FA3E U+6168 U+FE00 JIS97    # 慨 → 慨
+U+FA3F U+618E U+FE00 JIS97    # 憎 → 憎
+U+FA40 U+61F2 U+FE00 JIS97    # 懲 → 懲
+U+FA41 U+654F U+FE00 JIS97    # 敏 → 敏
+U+FA42 U+65E2 U+FE00 JIS97    # 既 → 既
+U+FA43 U+6691 U+FE00 JIS97    # 暑 → 暑
+U+FA44 U+6885 U+FE00 JIS97    # 梅 → 梅
+U+FA45 U+6D77 U+FE00 JIS97    # 海 → 海
+U+FA46 U+6E1A U+FE00 JIS97    # 渚 → 渚
+U+FA47 U+6F22 U+FE00 JIS97    # 漢 → 漢
+U+FA48 U+716E U+FE00 JIS97    # 煮 → 煮
+U+FA49 U+722B U+FE00 NFC*     # 爫 → 爫
+U+FA4A U+7422 U+FE00 JIS97    # 琢 → 琢
+U+FA4B U+7891 U+FE00 JIS97    # 碑 → 碑
+U+FA4C U+793E U+FE00 JIS97    # 社 → 社
+U+FA4D U+7949 U+FE00 JIS97    # 祉 → 祉
+U+FA4E U+7948 U+FE00 JIS97    # 祈 → 祈
+U+FA4F U+7950 U+FE00 JIS97    # 祐 → 祐
 
-U+FA50 U+7956 JIS97    # 祖 → 祖
-U+FA51 U+795D JIS97    # 祝 → 祝
-U+FA52 U+798D JIS97    # 禍 → 禍
-U+FA53 U+798E JIS97    # 禎 → 禎
-U+FA54 U+7A40 JIS97    # 穀 → 穀
-U+FA55 U+7A81 JIS97    # 突 → 突
-U+FA56 U+7BC0 JIS97    # 節 → 節
-U+FA57 U+7DF4 JIS97    # 練 → 練
-U+FA58 U+7E09 NFC*     # 縉 → 縉
-U+FA59 U+7E41 JIS97    # 繁 → 繁
-U+FA5A U+7F72 JIS97    # 署 → 署
-U+FA5B U+8005 JIS97    # 者 → 者
-U+FA5C U+81ED JIS97    # 臭 → 臭
-U+FA5D U+8279 NFC*     # 艹 → 艹
-U+FA5E U+8279 NFC*     # 艹 → 艹
-U+FA5F U+8457 JIS97    # 著 → 著
-U+FA60 U+8910 JIS97    # 褐 → 褐
-U+FA61 U+8996 JIS97    # 視 → 視
-U+FA62 U+8B01 JIS97    # 謁 → 謁
-U+FA63 U+8B39 JIS97    # 謹 → 謹
-U+FA64 U+8CD3 JIS97    # 賓 → 賓
-U+FA65 U+8D08 JIS97    # 贈 → 贈
-U+FA66 U+8FB6 NFC*     # 辶 → 辶
-U+FA67 U+9038 JIS97    # 逸 → 逸
-U+FA68 U+96E3 JIS97    # 難 → 難
-U+FA69 U+97FF JIS97    # 響 → 響
-U+FA6A U+983B JIS97    # 頻 → 頻
+U+FA50 U+7956 U+FE00 JIS97    # 祖 → 祖
+U+FA51 U+795D U+FE00 JIS97    # 祝 → 祝
+U+FA52 U+798D U+FE00 JIS97    # 禍 → 禍
+U+FA53 U+798E U+FE00 JIS97    # 禎 → 禎
+U+FA54 U+7A40 U+FE00 JIS97    # 穀 → 穀
+U+FA55 U+7A81 U+FE00 JIS97    # 突 → 突
+U+FA56 U+7BC0 U+FE00 JIS97    # 節 → 節
+U+FA57 U+7DF4 U+FE01 JIS97    # 練 → 練
+U+FA58 U+7E09 U+FE00 NFC*     # 縉 → 縉
+U+FA59 U+7E41 U+FE00 JIS97    # 繁 → 繁
+U+FA5A U+7F72 U+FE00 JIS97    # 署 → 署
+U+FA5B U+8005 U+FE00 JIS97    # 者 → 者
+U+FA5C U+81ED U+FE00 JIS97    # 臭 → 臭
+U+FA5D U+8279 U+FE00 NFC*     # 艹 → 艹
+U+FA5E U+8279 U+FE01 NFC*     # 艹 → 艹
+U+FA5F U+8457 U+FE00 JIS97    # 著 → 著
+U+FA60 U+8910 U+FE00 JIS97    # 褐 → 褐
+U+FA61 U+8996 U+FE00 JIS97    # 視 → 視
+U+FA62 U+8B01 U+FE00 JIS97    # 謁 → 謁
+U+FA63 U+8B39 U+FE00 JIS97    # 謹 → 謹
+U+FA64 U+8CD3 U+FE00 JIS97    # 賓 → 賓
+U+FA65 U+8D08 U+FE00 JIS97    # 贈 → 贈
+U+FA66 U+8FB6 U+FE00 NFC*     # 辶 → 辶
+U+FA67 U+9038 U+FE01 JIS97    # 逸 → 逸
+U+FA68 U+96E3 U+FE00 JIS97    # 難 → 難
+U+FA69 U+97FF U+FE00 JIS97    # 響 → 響
+U+FA6A U+983B U+FE00 JIS97    # 頻 → 頻
 
 # 全角ASCII
 
