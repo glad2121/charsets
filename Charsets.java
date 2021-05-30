@@ -413,19 +413,19 @@ class Charsets {
     void printHeader() {
         if (csv()) return;
         println();
-        println("Unicode  区分   UTF-16   UTF-8        VAR      CODE JIS  EUC    2004   SJIS  W31J  I942  I943  I930  I939  備考");
+        println("Unicode  区分   UTF-16   UTF-8        VAR          CODE JIS  EUC    2004   SJIS  W31J  I942  I943  I930  I939  備考");
     }
 
     void printHeaderX0208() {
         if (csv()) return;
         println();
-        println("Unicode  区分   UTF-16   UTF-8        VAR     区-点 JIS  EUC    2004   SJIS  W31J  I942  I943  I930  I939  備考");
+        println("Unicode  区分   UTF-16   UTF-8        VAR         区-点 JIS  EUC    2004   SJIS  W31J  I942  I943  I930  I939  備考");
     }
 
     void printHeaderX0213() {
         if (csv()) return;
         println();
-        println("Unicode  区分   UTF-16   UTF-8        VAR  面-区-点 JIS  EUC    2004   SJIS  W31J  I942  I943  I930  I939  備考");
+        println("Unicode  区分   UTF-16   UTF-8        VAR      面-区-点 JIS  EUC    2004   SJIS  W31J  I942  I943  I930  I939  備考");
     }
 
     void printSeparator() {
@@ -433,7 +433,7 @@ class Charsets {
             println();
             return;
         }
-        println("-------- ------ -------- ------------ ---- -------- ---- ------ ------ ----- ----- ----- ----- ----- ----- ----");
+        println("-------- ------ -------- ------------ -------- -------- ---- ------ ------ ----- ----- ----- ----- ----- ----- ----");
     }
 
     void println() {
@@ -552,7 +552,7 @@ class Charsets {
             // UTF-8
             bab.append("%-12s" + sep, toHexString(s.getBytes(UTF_8)));
             // VARIANT
-            bab.append("-   " + sep);
+            bab.append("-       " + sep);
 
             // 面区点。
             bab.append("       -" + sep);
@@ -883,13 +883,13 @@ class Charsets {
 
         void appendVariant(ByteArrayBuilder bab) {
             if (!nfc.equals(s)) {
-                bab.append("%-4s" + sep, toHexString(nfc));
+                bab.append("%-8s" + sep, toHexString(nfc));
             } else if (!nfkc.equals(s) && nfkc.length() == 1) {
-                bab.append("%-4s" + sep, toHexString(nfkc));
+                bab.append("%-8s" + sep, toHexString(nfkc));
             } else if (variant != null) {
-                bab.append("%-4s" + sep, toHexString(variant[0]));
+                bab.append("%-8s" + sep, toHexString(variant[0]));
             } else {
-                bab.append("-   " + sep);
+                bab.append("-       " + sep);
             }
         }
 
