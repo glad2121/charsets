@@ -37,7 +37,7 @@ class Charsets {
 
     static final Map<String, String[]> VARIANT_MAP;
     static {
-        Pattern p = Pattern.compile(" *U\\+(\\S+) +U\\+(\\S+)(?: +([^#\\s]+))?.*");
+        Pattern p = Pattern.compile(" *U\\+(\\S+) +U\\+(\\S+)(?: +U\\+(\\S+))?(?: +([^#\\s]+))?.*");
         Map<String, String[]> variantMap = new HashMap<>();
         try (BufferedReader in = Files.newBufferedReader(Paths.get("variants.txt"), UTF_8)) {
             String line;
@@ -45,7 +45,11 @@ class Charsets {
                 Matcher m = p.matcher(line);
                 if (m.matches()) {
                     String key = cpToString(m.group(1));
-                    String[] value = {cpToString(m.group(2)), m.group(3)};
+                    String variant = cpToString(m.group(2));
+                    if (m.group(3) != null) {
+                        variant += cpToString(m.group(3));
+                    }
+                    String[] value = {variant, m.group(4)};
                     variantMap.put(key, value);
                 }
             }
@@ -882,12 +886,12 @@ class Charsets {
         }
 
         void appendVariant(ByteArrayBuilder bab) {
-            if (!nfc.equals(s)) {
+            if (variant != null) {
+                bab.append("%-8s" + sep, toHexString(variant[0]));
+            } else if (!nfc.equals(s)) {
                 bab.append("%-8s" + sep, toHexString(nfc));
             } else if (!nfkc.equals(s) && nfkc.length() == 1) {
                 bab.append("%-8s" + sep, toHexString(nfkc));
-            } else if (variant != null) {
-                bab.append("%-8s" + sep, toHexString(variant[0]));
             } else {
                 bab.append("-       " + sep);
             }
@@ -1229,7 +1233,7 @@ class Charsets {
                         }
                     }
                     if (variant != null
-                            && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
+                            && !variant[0].startsWith(nfc) && !variant[0].equals(nfkc)) {
                         bab.append(" -> [%s]", variant[0]);
                         if (variant[1] != null) {
                             bab.append(" (%s)", variant[1]);
@@ -1373,7 +1377,7 @@ class Charsets {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
                     if (variant != null
-                            && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
+                            && !variant[0].startsWith(nfc) && !variant[0].equals(nfkc)) {
                         bab.append(" -> [%s]", variant[0]);
                         if (variant[1] != null) {
                             bab.append(" (%s)", variant[1]);
@@ -1585,7 +1589,7 @@ class Charsets {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
                     if (variant != null
-                            && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
+                            && !variant[0].startsWith(nfc) && !variant[0].equals(nfkc)) {
                         bab.append(" -> [%s]", variant[0]);
                         if (variant[1] != null) {
                             bab.append(" (%s)", variant[1]);
@@ -1825,7 +1829,7 @@ class Charsets {
                         bab.append(" -> [%s] (W31J)", decode(bw2, WINDOWS_31J));
                     }
                     if (variant != null
-                            && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
+                            && !variant[0].startsWith(nfc) && !variant[0].equals(nfkc)) {
                         bab.append(" -> [%s]", variant[0]);
                         if (variant[1] != null) {
                             bab.append(" (%s)", variant[1]);
@@ -2007,7 +2011,7 @@ class Charsets {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
                     if (variant != null
-                            && !variant[0].equals(nfc) && !variant[0].equals(nfkc)) {
+                            && !variant[0].startsWith(nfc) && !variant[0].equals(nfkc)) {
                         bab.append(" -> [%s]", variant[0]);
                         if (variant[1] != null) {
                             bab.append(" (%s)", variant[1]);
