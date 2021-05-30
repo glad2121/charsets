@@ -164,7 +164,7 @@ class Charsets {
         }
 
         println();
-        println("# US-ASCII");
+        println("# ASCII");
         printHeader();
         printSeparator();
         for (int c = 0x00; c <= 0x1F; ++c) {
@@ -367,7 +367,7 @@ class Charsets {
             println();
             println("# コード区分:");
             println("# 0: 制御文字");
-            println("# 1: US-ASCII");
+            println("# 1: ASCII");
             println("# 2: JIS X 0201");
             println("# 3: JIS X 0208");
             println("# 4: NEC特殊文字");
@@ -377,11 +377,11 @@ class Charsets {
         }
         if (csv3()) {
             println();
-            println("# コード区分:");
+            println("# 文字区分:");
             println("# No 規格等         補足情報   ");
             println("# -- -------------- -----------");
             println("#  0 制御文字       制御文字   ");
-            println("#  1 US-ASCII       BasicJ     ");
+            println("#  1 ASCII          BasicJ     ");
             println("#  2 JIS X 0201     互換文字   ");
             println("#  3 JIS X 0208     NEC特殊文字");
             println("#  4 JIS X 0213 1面 IBM拡張文字");
@@ -395,7 +395,7 @@ class Charsets {
         println("# No Unicode      正規化       規格等       水準         Windows-31J        法令等        ");
         println("# -- ------------ ------------ ------------ ------------ ------------------ --------------");
         println("#  0 -            変換なし     制御文字     非漢字       制御文字           非漢字        ");
-        println("#  1 基本多言語面 NFDで変換    US-ASCII     第1水準漢字  US-ASCII           常用漢字      ");
+        println("#  1 基本多言語面 NFDで変換    ASCII        第1水準漢字  ASCII              常用漢字      ");
         println("#  2 追加面       NFKCで変換   JIS X 0201   第2水準漢字  JIS X 0201         常用漢字(旧字)");
         println("#  3 結合文字     半角・全角形 JIS X 0208   第3水準漢字  JIS X 0208         人名用漢字(二)");
         println("#  4 結合文字列   NFCで変換    JIS X 0213   第4水準漢字  NEC特殊文字        人名用漢字(一)");
@@ -541,9 +541,9 @@ class Charsets {
             }
         }
         if (csv4()) {
-            bab.append("3,0,4,0,9,0" + sep);
+            bab.append("3,0,9,0,9,0" + sep);
         } else {
-            bab.append("%-6s" + sep, "304090");
+            bab.append("%-6s" + sep, "309090");
         }
 
         if (!csv2() && !csv3()) {
@@ -2000,7 +2000,7 @@ class Charsets {
             // 備考。
             if (!undefined()) {
                 bab.append("[%s]", s);
-                if (encodableToSjis2004()) {
+                if (encodableToEuc()) {
                     if (!nfc.equals(s)) {
                         bab.append(" -> [%s] (NFC)", nfc);
                     } else if (!nfkc.equals(s) && nfkc.length() == 1) {
