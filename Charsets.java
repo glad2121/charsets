@@ -87,6 +87,10 @@ class Charsets {
         KANJI_MAP = kanjiMap;
     }
 
+    static final Pattern PRINTABLE_VARIANT_PATTERN = Pattern.compile(
+            // サロゲートペア・結合文字・異体字セレクタ。
+            ".[\\uDC00-\\uDFFF\\u0300-\\u036F\\u3099\\u309A\\uFE00-\\uFE0F]?");
+
     final String option;
     final Charset encoding;
     final String sep;
@@ -754,6 +758,10 @@ class Charsets {
         }
     }
 
+    static boolean isPrintableVariant(String s) {
+        return PRINTABLE_VARIANT_PATTERN.matcher(s).matches();
+    }
+
     class CodeInfo {
 
         String s;
@@ -890,8 +898,10 @@ class Charsets {
                 bab.append("%-8s" + sep, toHexString(variant[0]));
             } else if (!nfc.equals(s)) {
                 bab.append("%-8s" + sep, toHexString(nfc));
-            } else if (!nfkc.equals(s) && nfkc.length() == 1) {
-                bab.append("%-8s" + sep, toHexString(nfkc));
+            } else if (!nfkc.equals(s)) {
+                bab.append("%-8s" + sep, isPrintableVariant(nfkc) ? toHexString(nfkc) : "-");
+            } else if (!nfd.equals(s)) {
+                bab.append("%-8s" + sep, isPrintableVariant(nfd) ? toHexString(nfd) : "-");
             } else {
                 bab.append("-       " + sep);
             }
