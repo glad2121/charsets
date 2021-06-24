@@ -87,10 +87,6 @@ class Charsets {
         KANJI_MAP = kanjiMap;
     }
 
-    static final Pattern PRINTABLE_VARIANT_PATTERN = Pattern.compile(
-            // サロゲートペア・結合文字・異体字セレクタ。
-            ".[\\uDC00-\\uDFFF\\u0300-\\u036F\\u3099\\u309A\\uFE00-\\uFE0F]?");
-
     final String option;
     final Charset encoding;
     final String sep;
@@ -758,10 +754,6 @@ class Charsets {
         }
     }
 
-    static boolean isPrintableVariant(String s) {
-        return PRINTABLE_VARIANT_PATTERN.matcher(s).matches();
-    }
-
     class CodeInfo {
 
         String s;
@@ -899,9 +891,17 @@ class Charsets {
             } else if (!nfc.equals(s)) {
                 bab.append("%-8s" + sep, toHexString(nfc));
             } else if (!nfkc.equals(s)) {
-                bab.append("%-8s" + sep, isPrintableVariant(nfkc) ? toHexString(nfkc) : "-");
+                if (nfkc.length() <= 2) {
+                    bab.append("%-8s" + sep, toHexString(nfkc));
+                } else {
+                    bab.append("%04X... " + sep, (int) nfkc.charAt(0));
+                }
             } else if (!nfd.equals(s)) {
-                bab.append("%-8s" + sep, isPrintableVariant(nfd) ? toHexString(nfd) : "-");
+                if (nfd.length() <= 2) {
+                    bab.append("%-8s" + sep, toHexString(nfd));
+                } else {
+                    bab.append("%04X... " + sep, (int) nfd.charAt(0));
+                }
             } else {
                 bab.append("-       " + sep);
             }
@@ -1230,12 +1230,9 @@ class Charsets {
                     bab.append("[%s]", s);
                 }
                 if (encodableToSjis()) {
-                    if (!decodableFromSjis2004()) {
-                        bab.append(" -> %s (SJIS2004)", toHexString(bx2));
-                    }
                     if (!nfc.equals(s)) {
                         bab.append(" -> [%s] (NFC)", nfc);
-                    } else if (!nfkc.equals(s) && nfkc.length() == 1) {
+                    } else if (!nfkc.equals(s)) {
                         if ("\u3099".equals(nfkc) || "\u309A".equals(nfkc)) {
                             bab.append(" -> (NFKC)");
                         } else {
@@ -1248,6 +1245,9 @@ class Charsets {
                         if (variant[1] != null) {
                             bab.append(" (%s)", variant[1]);
                         }
+                    }
+                    if (!decodableFromSjis2004()) {
+                        bab.append(" -> %s (SJIS2004)", toHexString(bx2));
                     }
                 }
             }
@@ -1383,7 +1383,7 @@ class Charsets {
                 if (encodableToSjis()) {
                     if (!nfc.equals(s)) {
                         bab.append(" -> [%s] (NFC)", nfc);
-                    } else if (!nfkc.equals(s) && nfkc.length() == 1) {
+                    } else if (!nfkc.equals(s)) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
                     if (variant != null
@@ -1589,13 +1589,9 @@ class Charsets {
                     bab.append("[%s]", s);
                 }
                 if (encodableToW31j()) {
-                    if ((showSjis || !encodableToSjis2004())
-                            && !contains(bx2, 0x3F) && !decodableFromSjis2004()) {
-                        bab.append(" -> %s (SJIS2004)", toHexString(bx2));
-                    }
                     if (!nfc.equals(s)) {
                         bab.append(" -> [%s] (NFC)", nfc);
-                    } else if (!nfkc.equals(s) && nfkc.length() == 1) {
+                    } else if (!nfkc.equals(s)) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
                     if (variant != null
@@ -1604,6 +1600,10 @@ class Charsets {
                         if (variant[1] != null) {
                             bab.append(" (%s)", variant[1]);
                         }
+                    }
+                    if ((showSjis || !encodableToSjis2004())
+                            && !contains(bx2, 0x3F) && !decodableFromSjis2004()) {
+                        bab.append(" -> %s (SJIS2004)", toHexString(bx2));
                     }
                 }
             }
@@ -1833,10 +1833,8 @@ class Charsets {
                 if (encodableToSjis2004()) {
                     if (!nfc.equals(s)) {
                         bab.append(" -> [%s] (NFC)", nfc);
-                    } else if (!nfkc.equals(s) && nfkc.length() == 1) {
+                    } else if (!nfkc.equals(s)) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
-                    } else if (!contains(bw2, 0x3F) && !decodableFromW31j()) {
-                        bab.append(" -> [%s] (W31J)", decode(bw2, WINDOWS_31J));
                     }
                     if (variant != null
                             && !variant[0].startsWith(nfc) && !variant[0].equals(nfkc)) {
@@ -1844,6 +1842,9 @@ class Charsets {
                         if (variant[1] != null) {
                             bab.append(" (%s)", variant[1]);
                         }
+                    }
+                    if (!contains(bw2, 0x3F) && !decodableFromW31j()) {
+                        bab.append(" -> [%s] (W31J)", decode(bw2, WINDOWS_31J));
                     }
                 }
             }
@@ -2017,7 +2018,7 @@ class Charsets {
                 if (encodableToEuc()) {
                     if (!nfc.equals(s)) {
                         bab.append(" -> [%s] (NFC)", nfc);
-                    } else if (!nfkc.equals(s) && nfkc.length() == 1) {
+                    } else if (!nfkc.equals(s)) {
                         bab.append(" -> [%s] (NFKC)", nfkc);
                     }
                     if (variant != null
