@@ -1972,7 +1972,7 @@ class Charsets {
                 appendVariant(bab);
 
                 // 面区点。
-                bab.append("%2d-%02d-%02d" + sep, m, k, t);
+                bab.append(" S-%02d-%02d" + sep, k, t);
                 // ISO-2022-JP
                 bab.append("%04X" + sep, jis);
                 // EUC-JP
