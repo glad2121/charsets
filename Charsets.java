@@ -16,6 +16,7 @@ import java.util.regex.*;
 class Charsets {
 
     static final Charset ISO_2022_JP = Charset.forName("ISO-2022-JP");
+    static final Charset XJIS = Charset.forName("x-windows-50221");
     static final Charset EUC_JP = Charset.forName("EUC-JP");
     static final Charset SHIFT_JIS = Charset.forName("Shift_JIS");
     static final Charset SHIFT_JIS_2004 = Charset.forName("x-SJIS_0213");
@@ -411,25 +412,25 @@ class Charsets {
     }
 
     void printHeaderCsv4() {
-        println("Unicode,CT,T1,T2,T3,T4,T5,T6,UTF-16,UTF-8,VAR,ID,JIS,EUC,2004,SJIS,W31J,I942,I943,I930,I939,備考");
+        println("Unicode,CT,T1,T2,T3,T4,T5,T6,UTF-16,UTF-8,VAR,ID,JIS,XJIS,EUC,2004,SJIS,W31J,I942,I943,I930,I939,備考");
     }
 
     void printHeader() {
         if (csv()) return;
         println();
-        println("Unicode  区分   UTF-16   UTF-8        VAR          CODE JIS  EUC    2004   SJIS  W31J  I942  I943  I930  I939  備考");
+        println("Unicode  区分   UTF-16   UTF-8        VAR          CODE JIS  XJIS    EUC     2004   SJIS  W31J  I942  I943  I930  I939  備考");
     }
 
     void printHeaderX0208() {
         if (csv()) return;
         println();
-        println("Unicode  区分   UTF-16   UTF-8        VAR         区-点 JIS  EUC    2004   SJIS  W31J  I942  I943  I930  I939  備考");
+        println("Unicode  区分   UTF-16   UTF-8        VAR         区-点 JIS  XJIS    EUC     2004   SJIS  W31J  I942  I943  I930  I939  備考");
     }
 
     void printHeaderX0213() {
         if (csv()) return;
         println();
-        println("Unicode  区分   UTF-16   UTF-8        VAR      面-区-点 JIS  EUC    2004   SJIS  W31J  I942  I943  I930  I939  備考");
+        println("Unicode  区分   UTF-16   UTF-8        VAR      面-区-点 JIS  XJIS    EUC     2004   SJIS  W31J  I942  I943  I930  I939  備考");
     }
 
     void printSeparator() {
@@ -437,7 +438,7 @@ class Charsets {
             println();
             return;
         }
-        println("-------- ------ -------- ------------ -------- -------- ---- ------ ------ ----- ----- ----- ----- ----- ----- ----");
+        println("-------- ------ -------- ------------ -------- -------- ---- ------- ------- ------ ----- ----- ----- ----- ----- ----- ----");
     }
 
     void println() {
@@ -561,9 +562,9 @@ class Charsets {
             // 面区点。
             bab.append("       -" + sep);
             // ISO-2022-JP
-            bab.append("-   " + sep);
+            bab.append("-   %1$s-      %1$s", sep);
             // EUC-JP
-            bab.append("-     %1$s-     %1$s", sep);
+            bab.append("-      %1$s-     %1$s", sep);
             // Shift_JIS
             bab.append("-    " + sep);
             // Windows-31J
@@ -728,6 +729,21 @@ class Charsets {
         return new StringBuilder().appendCodePoint(Integer.parseInt(cp, 16)).toString();
     }
 
+    static String jisToHexString(byte[] jis) {
+        String s = toHexString(jis);
+        if (s.startsWith("1B284A")) {
+            return "1-" + s.substring(6, 8);
+        } else if (s.startsWith("1B2849")) {
+            return "2-" + s.substring(6, 8);
+        } else if (s.startsWith("1B2442")) {
+            return "4-" + s.substring(6, 10);
+        } else if (s.startsWith("1B242844")) {
+            return "5-" + s.substring(8, 12);
+        } else {
+            return "0-" + s;
+        }
+    }
+
     static boolean isEbcdicKanji(byte[] ebcdic) {
         int length = ebcdic.length;
         return length == 4 && ebcdic[0] == 0x0E && ebcdic[length - 1] == 0x0F;
@@ -774,6 +790,8 @@ class Charsets {
         byte[] bx2;
         byte[] bw2;
 
+        byte[] xjis;
+
         byte[] i942;
         byte[] i943;
 
@@ -795,6 +813,7 @@ class Charsets {
             this.bs2 = s.getBytes(SHIFT_JIS);
             this.bx2 = s.getBytes(SHIFT_JIS_2004);
             this.bw2 = s.getBytes(WINDOWS_31J);
+            this.xjis = s.getBytes(XJIS);
             this.i942 = s.getBytes(IBM_942);
             this.i943 = s.getBytes(IBM_943);
             this.i930 = s.getBytes(IBM_930);
@@ -819,6 +838,14 @@ class Charsets {
 
         boolean encodableToW31j() {
             return Arrays.equals(bw2, b);
+        }
+
+        boolean encodableToXjis() {
+            if (s.equals("?") || s.equals("？")) {
+                return true;
+            }
+            String hex = toHexString(xjis);
+            return (!hex.contains("3F") || hex.startsWith("1B")) && !hex.contains("2129");
         }
 
         boolean encodableToI942() {
@@ -851,6 +878,10 @@ class Charsets {
 
         boolean decodableFromW31j() {
             return decode(bw2, WINDOWS_31J).equals(s);
+        }
+
+        boolean decodableFromXjis() {
+            return decode(xjis, XJIS).equals(s);
         }
 
         boolean decodableFromI942() {
@@ -1173,7 +1204,7 @@ class Charsets {
                 // CODE
                 bab.append("      %02X" + sep, c);
                 if (undefined()) {
-                    bab.append("-   %1$s-     %1$s-     %1$s-    %1$s", sep);
+                    bab.append("-   %1$s-     %1$s-     %1$s-     %1$s-    %1$s", sep);
                     // Windows-31J
                     bab.append("%02X   " + sep, c);
                 } else {
@@ -1183,11 +1214,20 @@ class Charsets {
                     } else {
                         bab.append("%02X  " + sep, jis);
                     }
-                    // EUC-JP
-                    if (!encodableToEuc() || !decodableFromEuc()) {
-                        bab.append("-     " + sep);
+                    if (!encodableToXjis()) {
+                        bab.append("-      " + sep);
+                    } else if (!decodableFromXjis()) {
+                        bab.append(">%-6s" + sep, jisToHexString(xjis));
                     } else {
-                        bab.append("%-6s" + sep, toHexString(be2));
+                        bab.append("%-6s " + sep, jisToHexString(xjis));
+                    }
+                    // EUC-JP
+                    if (!encodableToEuc()) {
+                        bab.append("-      " + sep);
+                    } else if (!decodableFromEuc()) {
+                        bab.append(">%-6s" + sep, toHexString(be2));
+                    } else {
+                        bab.append("%-6s " + sep, toHexString(be2));
                     }
                     if (euc < 0) {
                         bab.append("-     " + sep);
@@ -1355,8 +1395,21 @@ class Charsets {
                 bab.append("   %02d-%02d" + sep, k, t);
                 // ISO-2022-JP
                 bab.append("%04X" + sep, jis);
+                if (!encodableToXjis()) {
+                    bab.append("-      " + sep);
+                } else if (!decodableFromXjis()) {
+                    bab.append(">%-6s" + sep, jisToHexString(xjis));
+                } else {
+                    bab.append("%-6s " + sep, jisToHexString(xjis));
+                }
                 // EUC-JP
-                bab.append("%-6s" + sep, toHexString(be2));
+                if (!encodableToEuc()) {
+                    bab.append("-      " + sep);
+                } else if (!decodableFromEuc()) {
+                    bab.append(">%-6s" + sep, toHexString(be2));
+                } else {
+                    bab.append("%-6s " + sep, toHexString(be2));
+                }
                 bab.append("%04X  " + sep, euc);
                 // Shift_JIS
                 bab.append("%04X " + sep, sjis);
@@ -1546,11 +1599,20 @@ class Charsets {
                 if (ss.contains("\uFFFD") || !ss.equals(s)) {
                     // ISO-2022-JP
                     bab.append("-   " + sep);
-                    // EUC-JP
-                    if (!encodableToEuc() || !decodableFromEuc()) {
-                        bab.append("-     " + sep);
+                    if (!encodableToXjis()) {
+                        bab.append("-      " + sep);
+                    } else if (!decodableFromXjis()) {
+                        bab.append(">%-6s" + sep, jisToHexString(xjis));
                     } else {
-                        bab.append("%-6s" + sep, toHexString(be2));
+                        bab.append("%-6s " + sep, jisToHexString(xjis));
+                    }
+                    // EUC-JP
+                    if (!encodableToEuc()) {
+                        bab.append("-      " + sep);
+                    } else if (!decodableFromEuc()) {
+                        bab.append(">%-6s" + sep, toHexString(be2));
+                    } else {
+                        bab.append("%-6s " + sep, toHexString(be2));
                     }
                     bab.append("-     " + sep);
                     // Shift_JIS
@@ -1562,8 +1624,21 @@ class Charsets {
                 } else {
                     // ISO-2022-JP
                     bab.append("%04X" + sep, jis);
+                    if (!encodableToXjis()) {
+                        bab.append("-      " + sep);
+                    } else if (!decodableFromXjis()) {
+                        bab.append(">%-6s" + sep, jisToHexString(xjis));
+                    } else {
+                        bab.append("%-6s " + sep, jisToHexString(xjis));
+                    }
                     // EUC-JP
-                    bab.append("%-6s" + sep, toHexString(be2));
+                    if (!encodableToEuc()) {
+                        bab.append("-      " + sep);
+                    } else if (!decodableFromEuc()) {
+                        bab.append(">%-6s" + sep, toHexString(be2));
+                    } else {
+                        bab.append("%-6s " + sep, toHexString(be2));
+                    }
                     bab.append("%04X  " + sep, euc);
                     // Shift_JIS
                     bab.append("%04X " + sep, sjis);
@@ -1791,11 +1866,20 @@ class Charsets {
                 bab.append("%2d-%02d-%02d" + sep, m, k, t);
                 // ISO-2022-JP
                 bab.append("%04X" + sep, jis);
-                // EUC-JP
-                if (!encodableToEuc() || !decodableFromEuc()) {
-                    bab.append("-     " + sep);
+                if (!encodableToXjis()) {
+                    bab.append("-      " + sep);
+                } else if (!decodableFromXjis()) {
+                    bab.append(">%-6s" + sep, jisToHexString(xjis));
                 } else {
-                    bab.append("%-6s" + sep, toHexString(be2));
+                    bab.append("%-6s " + sep, jisToHexString(xjis));
+                }
+                // EUC-JP
+                if (!encodableToEuc()) {
+                    bab.append("-      " + sep);
+                } else if (!decodableFromEuc()) {
+                    bab.append(">%-6s" + sep, toHexString(be2));
+                } else {
+                    bab.append("%-6s " + sep, toHexString(be2));
                 }
                 if (euc <= 0xFFFF) {
                     bab.append("%04X  " + sep, euc);
@@ -1975,11 +2059,20 @@ class Charsets {
                 bab.append(" S-%02d-%02d" + sep, k, t);
                 // ISO-2022-JP
                 bab.append("%04X" + sep, jis);
-                // EUC-JP
-                if (euc <= 0xFFFF) {
-                    bab.append("%04X  " + sep, euc);
+                if (!encodableToXjis()) {
+                    bab.append("-      " + sep);
+                } else if (!decodableFromXjis()) {
+                    bab.append(">%-6s" + sep, jisToHexString(xjis));
                 } else {
-                    bab.append("%06X" + sep, euc);
+                    bab.append("%-6s " + sep, jisToHexString(xjis));
+                }
+                // EUC-JP
+                if (!encodableToEuc()) {
+                    bab.append("-      " + sep);
+                } else if (!decodableFromEuc()) {
+                    bab.append(">%-6s" + sep, toHexString(be2));
+                } else {
+                    bab.append("%-6s " + sep, toHexString(be2));
                 }
                 if (!encodableToSjis2004() || !decodableFromSjis2004()) {
                     bab.append("-     " + sep);
