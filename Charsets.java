@@ -832,68 +832,68 @@ class Charsets {
             return (!hex.contains("3F") || hex.startsWith("1B")) && !hex.contains("2129");
         }
 
-        boolean encodableToEuc() {
-            return s.equals("?") || !contains(be2, 0x3F);
-        }
-
-        boolean encodableToSjis() {
-            return Arrays.equals(bs2, b);
-        }
-
-        boolean encodableToSjis2004() {
-            return Arrays.equals(bx2, b);
-        }
-
-        boolean encodableToW31j() {
-            return Arrays.equals(bw2, b);
-        }
-
-        boolean encodableToI942() {
-            return s.equals("?") || !contains(i942, 0x3F);
-        }
-
-        boolean encodableToI943() {
-            return s.equals("?") || !contains(i943, 0x3F);
-        }
-
-        boolean encodableToI930() {
-            return s.equals("?") || !contains(i930, 0x6F) || isEbcdicKanji(i930);
-        }
-
-        boolean encodableToI939() {
-            return s.equals("?") || !contains(i939, 0x6F) || isEbcdicKanji(i939);
-        }
-
         boolean decodableFromJis2() {
             return decode(bj2, ISO_2022_JP_X).equals(s);
+        }
+
+        boolean encodableToEuc() {
+            return s.equals("?") || !contains(be2, 0x3F);
         }
 
         boolean decodableFromEuc() {
             return decode(be2, EUC_JP_X).equals(s);
         }
 
+        boolean encodableToSjis() {
+            return Arrays.equals(bs2, b);
+        }
+
         boolean decodableFromSjis() {
             return decode(bs2, SHIFT_JIS_2004).equals(s);
+        }
+
+        boolean encodableToSjis2004() {
+            return Arrays.equals(bx2, b);
         }
 
         boolean decodableFromSjis2004() {
             return decode(bx2, SHIFT_JIS_2004).equals(s);
         }
 
+        boolean encodableToW31j() {
+            return Arrays.equals(bw2, b);
+        }
+
         boolean decodableFromW31j() {
             return decode(bw2, WINDOWS_31J).equals(s);
+        }
+
+        boolean encodableToI942() {
+            return s.equals("?") || !contains(i942, 0x3F);
         }
 
         boolean decodableFromI942() {
             return decode(i942, IBM_942).equals(s);
         }
 
+        boolean encodableToI943() {
+            return s.equals("?") || !contains(i943, 0x3F);
+        }
+
         boolean decodableFromI943() {
             return decode(i943, IBM_943).equals(s);
         }
 
+        boolean encodableToI930() {
+            return s.equals("?") || !contains(i930, 0x6F) || isEbcdicKanji(i930);
+        }
+
         boolean decodableFromI930() {
             return decode(i930, IBM_930).equals(s);
+        }
+
+        boolean encodableToI939() {
+            return s.equals("?") || !contains(i939, 0x6F) || isEbcdicKanji(i939);
         }
 
         boolean decodableFromI939() {
@@ -1683,6 +1683,34 @@ class Charsets {
                 }
             }
             return bab.toByteArray();
+        }
+
+        @Override
+        void appendIbm94x(ByteArrayBuilder bab) {
+            if (undefined()) {
+                bab.append("-    %1$s-    %1$s", sep);
+            } else {
+                // IBM 942
+                if (decode(b, IBM_942).equals(s) && !Arrays.equals(i942, b)) {
+                    bab.append("<%-4s" + sep, toHexString(b));
+                } else if (!encodableToI942()) {
+                    bab.append("-    " + sep);
+                } else if (!decodableFromI942()) {
+                    bab.append(">%-4s" + sep, toHexString(i942));
+                } else {
+                    bab.append("%-4s " + sep, toHexString(i942));
+                }
+                // IBM 943
+                if (decode(b, IBM_943).equals(s) && !Arrays.equals(i943, b)) {
+                    bab.append("<%-4s" + sep, toHexString(b));
+                } else if (!encodableToI943()) {
+                    bab.append("-    " + sep);
+                } else if (!decodableFromI943()) {
+                    bab.append(">%-4s" + sep, toHexString(i943));
+                } else {
+                    bab.append("%-4s " + sep, toHexString(i943));
+                }
+            }
         }
 
         String kubun() {
